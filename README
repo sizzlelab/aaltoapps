@@ -1,3 +1,29 @@
+== Database configuration
+
+We should not send database configuration to public GitHub repo. That's why
+everybody has to make it by themselves. Edit config/database.yml:
+
+common: &common
+  adapter: postgresql
+
+development:
+  username: postgres
+  password: postgres # from psql setup, see Postgresql
+  database: aaltoapps_development
+  <<: *common
+
+test:
+  username: postgres
+  password: postgres # from psql setup, see Postgresql
+  database: aaltoapps_test
+  <<: *common
+
+production:
+  database: myapp_production
+  <<: *common
+
+It should be good enough for development.
+
 == Welcome to Rails
 
 Rails is a web-application framework that includes everything needed to create

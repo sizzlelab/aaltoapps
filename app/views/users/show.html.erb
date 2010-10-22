@@ -20,6 +20,13 @@
   <%= @user.email %>
 </p>
 
+<p>
+  <b>Published Products:</b>
+  <% @user.published.each do |published_product| %>
+    <%= published_product.name %>
+  <% end %>
+</p>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

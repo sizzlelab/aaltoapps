@@ -20,6 +20,25 @@
   <%= @product.url %>
 </p>
 
+<p>
+  <b>Comments:</b>
+  <% @product.comments.each do |comment| %>
+    <p>
+      <b>Commenter: </b>
+      <%= comment.commenter.username %>
+    </p>
+    <p>
+      <b>Created at: </b>
+      <%= comment.created_at %>
+    </p>
+    <p>
+      <b>Comment: </b>
+      <%= comment.body %>
+    </p>
+ <% end %>
+
+</p>
+
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

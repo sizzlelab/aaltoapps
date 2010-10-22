@@ -15,6 +15,28 @@
   <%= @product.url %>
 </p>
 
+<p>
+  <% if @product.ratings.empty? %>
+    not yet rated
+  <% else %>
+    <b>Ratings:</b>
+    <ul>
+      <% @product.ratings.each do |r| %>
+        <li><%= r.user.username %>: <%= r.rating %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= form_for @product.ratings.build, :url => { :controller => 'ratings', :action => 'create', :product_id => @product.id }, do |f| %>
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+    <br />
+    <%= f.label :user_id %>
+    <%= f.text_field :user_id %>
+    <br />
+    <%= f.submit %>
+  <% end %>
+</p>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

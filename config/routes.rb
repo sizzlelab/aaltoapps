@@ -1,4 +1,6 @@
 AaltoApps::Application.routes.draw do
+  resources :ratings
+
   resources :users
 
   resources :products

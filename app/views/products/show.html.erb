@@ -25,6 +25,7 @@
     not yet rated
   <% else %>
     <b>Ratings:</b>
+    <p>average: <%= @product.ratings.average(:rating) %></p>
     <ul>
       <% @product.ratings.each do |r| %>
         <li><%= r.user.username %>: <%= r.rating %></li>
@@ -32,7 +33,10 @@
     </ul>
   <% end %>
 
-  <%= form_for @product.ratings.build, :url => { :controller => 'ratings', :action => 'create', :product_id => @product.id }, do |f| %>
+  <%= form_for @product.ratings.build, :url => {
+          :controller => 'ratings',
+          :action => 'create',
+        }, do |f| %>
     <%= f.label :rating %>
     <%= f.text_field :rating %>
     <br />

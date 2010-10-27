@@ -32,7 +32,7 @@
     </ul>
   <% end %>
 
-  <%= form_for @product.ratings.build, :url => { :controller => 'ratings', :action => 'create', :product_id => @product.id }, do |f| %>
+  <%= form_for @product.ratings.build, :url => { :controller => 'ratings', :action => 'create', :product_id => @product.id } do |f| %>
     <%= f.label :rating %>
     <%= f.text_field :rating %>
     <br />

@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   # GET /users/new.xml
-  def new
+  def register
     @user = User.new
 
     respond_to do |format|

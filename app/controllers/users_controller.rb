@@ -23,7 +23,8 @@ class UsersController < ApplicationController
 
   # GET /users/new
   # GET /users/new.xml
-  def register
+  def new
+    debugger
     @user = User.new
 
     respond_to do |format|
@@ -31,15 +32,42 @@ class UsersController < ApplicationController
       format.xml  { render :xml => @user }
     end
   end
+  
+  # GET /users/login
+  # GET /users/login.xml
+  def login
+    debugger
+    if request.post?
+      @user = User.find_by_username(params[:username])
+      if !@user
+        flash[:error] = 'User not found'
+        
+        respond_to do |format|
+          format.html # login.html.erb
+          format.xml
+        end
+      else
+        current_user = @user
+        flash[:notice] = 'Logged in as user %{name}' % { :name => @user.username }
+        
+        respond_to do |format|
+          format.html # login.html.erb
+          format.xml { render :xml => @user}
+        end
+      end
+    end
+  end
 
   # GET /users/1/edit
   def edit
+    debugger
     @user = User.find(params[:id])
   end
 
   # POST /users
   # POST /users.xml
   def create
+    debugger
     @user = User.new(params[:user])
 
     respond_to do |format|
@@ -56,6 +84,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
+    debugger
     @user = User.find(params[:id])
 
     respond_to do |format|
@@ -72,6 +101,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
+    debugger
     @user = User.find(params[:id])
     @user.destroy
 

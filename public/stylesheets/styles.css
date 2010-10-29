@@ -33,3 +33,37 @@
     visibility: hidden;    
     clear: both;
 }
+.layout_frame
+{
+  width: 70;
+  margin-left: 15%;
+  margin-right: 15%;
+  border: thin solid black;  
+}
+
+.layout_logo
+{
+  padding: 1em;
+  font-size: xx-large;
+  text-align: center;
+}
+
+.layout_menu
+{
+  padding-left: 2em;
+  padding-right: 2em;
+  border-top: thin solid;
+  border-bottom: thin solid;
+}
+
+.layout_master
+{
+  padding: 1em;
+}
+
+.layout_footer
+{
+  padding-left: 2em;
+  padding-right: 2em;
+  border-top: thin solid;
+}

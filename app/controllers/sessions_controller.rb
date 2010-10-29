@@ -31,8 +31,8 @@ class SessionsController < ApplicationController
     end
   end
 
-  # GET /sessions/
-  # GET /users/logout.xml
+  # DELETE /sessions/
+  # DELETE /sessions/destroy.xml
   def destroy
     session[:current_user_id] = nil
     respond_to do |format|

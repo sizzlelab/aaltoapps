@@ -1,7 +1,5 @@
 AaltoApps::Application.routes.draw do
-  match '/users/login', :controller => "users", :action => "login"
-  match '/users/logout', :controller => "users", :action => "logout"
-  
+  resources :sessions
   resources :users do
     resources :products
     resources :comments

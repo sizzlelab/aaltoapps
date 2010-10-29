@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :except => [:destroy, :update, :edit, :login]
+  #before_filter :login_required, :except => [:new, :create]
 
   # GET /users
   # GET /users.xml
@@ -31,45 +31,6 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
-    end
-  end
-  
-  # GET /users/login
-  # GET /users/login.xml
-  def login
-    if request.post?
-      @user = User.find_by_username(params[:username])
-      if !@user
-        flash[:error] = 'User not found'
-        
-        respond_to do |format|
-          format.html # login.html.erb
-          format.xml
-        end
-      else
-        session[:current_user_id] = @user.id
-        flash[:notice] = 'Logged in as user %{name}' % { :name => @user.username }
-        
-        respond_to do |format|
-          format.html { redirect_to(root_path) }
-          format.xml { render :xml => @user}
-        end
-      end
-    elsif logged_in?
-      respond_to do |format|
-        format.html { redirect_to(root_path) }
-        format.xml { render :xml => @user }
-      end
-    end
-  end
-
-  # GET /users/logout
-  # GET /users/logout.xml
-  def logout
-    session[:current_user_id] = nil
-    respond_to do |format|
-      format.html { redirect_to :back }
-      format.xml { head :ok}
     end
   end
 

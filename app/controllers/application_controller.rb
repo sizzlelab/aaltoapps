@@ -4,11 +4,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?
   
   def login_required
-    if !current_user
+    if logged_in?
       return true
     end
     flash[:warning] = 'Login required'
-    redirect_to :controller => 'user', :action => 'login'
+    redirect_to :controller => 'users', :action => 'login'
   end
   
   def current_user

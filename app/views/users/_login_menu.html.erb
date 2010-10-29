@@ -1,6 +1,6 @@
 <% if !logged_in? %>
 <%= link_to "login", :controller => "users", :action => "login" %> :: 
-<%= link_to "register", :controller => "users", :action => "register" %>
+<%= link_to "register", :controller => "users", :action => "new" %>
 <% else %>
 logged in already
 <% end %>

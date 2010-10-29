@@ -35,8 +35,7 @@
 
   <%= form_for @product.ratings.build, :url => {
           :controller => 'ratings',
-          :action => 'create',
-        }, do |f| %>
+          :action => 'create', } do |f| %>
     <%= f.label :rating %>
     <%= f.text_field :rating %>
     <br />

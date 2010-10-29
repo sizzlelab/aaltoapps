@@ -40,12 +40,20 @@ class RatingsController < ApplicationController
   # POST /ratings
   # POST /ratings.xml
   def create
-    @rating = Rating.new(params[:rating])
-    @rating.product_id = params[:product_id]
+    success = false
+
+    # create a rating if one doesn't exist for the product/user pair
+    # otherwise update the existing rating
+    Rating.transaction do
+      @rating = Rating.find_or_initialize_by_product_id_and_user_id(params[:rating])
+      @rating.rating = params[:rating][:rating]
+      success = @rating.save
+      raise ActiveRecord::Rollback unless success
+    end
 
     respond_to do |format|
-      if @rating.save
-        format.html { redirect_to(@rating, :notice => 'Rating was successfully created.') }
+      if success
+        format.html { redirect_to(@rating, :notice => 'Rating was successfully created/updated.') }
         format.xml  { render :xml => @rating, :status => :created, :location => @rating }
       else
         format.html { render :action => "new" }

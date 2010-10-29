@@ -20,21 +20,26 @@ class RatingsController < ApplicationController
   def create
     success = false
 
-    # create a rating if one doesn't exist for the product/user pair
-    # otherwise update the existing rating
-    Rating.transaction do
-      @rating = Rating.find_or_initialize_by_product_id_and_user_id(params[:rating])
-      @rating.rating = params[:rating][:rating]
-      success = @rating.save
-      raise ActiveRecord::Rollback unless success
+    if logged_in?
+      # create a rating if one doesn't exist for the product/user pair
+      # otherwise update the existing rating
+      Rating.transaction do
+        @rating = Rating.find_or_initialize_by_product_id_and_user_id(
+          :product_id => params[:rating][:product_id],
+          :user_id => current_user.id
+        )
+        @rating.rating = params[:rating][:rating]
+        success = @rating.save
+        raise ActiveRecord::Rollback unless success
+      end
     end
 
     respond_to do |format|
       if success
-        format.html { redirect_to(@rating, :notice => 'Rating was successfully created/updated.') }
+        format.html { redirect_to(:back, :notice => 'Rating was successfully created/updated.') }
         format.xml  { render :xml => @rating, :status => :created, :location => @rating }
       else
-        format.html { render :action => "new" }
+        format.html { redirect_to(:back, :notice => 'Rating was not created/updated.') }
         format.xml  { render :xml => @rating.errors, :status => :unprocessable_entity }
       end
     end

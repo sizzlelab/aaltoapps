@@ -33,14 +33,13 @@
     </ul>
   <% end %>
 
-  <%= form_for @product.ratings.build, :url => {
+  <%= form_for :rating, :url => {
           :controller => 'ratings',
-          :action => 'create', } do |f| %>
+          :action => 'create' } do |f| %>
+    <%# TODO: implement passing of product_id properly %>
+    <input type="hidden" name="rating[product_id]" value="<%=  @product.id %>" />
     <%= f.label :rating %>
     <%= f.text_field :rating %>
-    <br />
-    <%= f.label :user_id %>
-    <%= f.text_field :user_id %>
     <br />
     <%= f.submit %>
   <% end %>

@@ -36,7 +36,6 @@ class UsersController < ApplicationController
   # GET /users/login
   # GET /users/login.xml
   def login
-    debugger
     if request.post?
       @user = User.find_by_username(params[:username])
       if !@user
@@ -47,7 +46,7 @@ class UsersController < ApplicationController
           format.xml
         end
       else
-        current_user = @user
+        session[:current_user_id] = @user.id
         flash[:notice] = 'Logged in as user %{name}' % { :name => @user.username }
         
         respond_to do |format|
@@ -55,6 +54,16 @@ class UsersController < ApplicationController
           format.xml { render :xml => @user}
         end
       end
+    end
+  end
+
+  # GET /users/logout
+  # GET /users/logout.xml
+  def logout
+    session[:current_user_id] = nil
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.xml { head :ok}
     end
   end
 

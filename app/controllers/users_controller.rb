@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :login_required, :except => [:destroy, :update, :edit, :login]
+
   # GET /users
   # GET /users.xml
   def index
@@ -24,7 +26,6 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
-    debugger
     @user = User.new
 
     respond_to do |format|
@@ -50,9 +51,14 @@ class UsersController < ApplicationController
         flash[:notice] = 'Logged in as user %{name}' % { :name => @user.username }
         
         respond_to do |format|
-          format.html # login.html.erb
+          format.html { redirect_to(root_path) }
           format.xml { render :xml => @user}
         end
+      end
+    elsif logged_in?
+      respond_to do |format|
+        format.html { redirect_to(root_path) }
+        format.xml { render :xml => @user }
       end
     end
   end
@@ -69,14 +75,12 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    debugger
     @user = User.find(params[:id])
   end
 
   # POST /users
   # POST /users.xml
   def create
-    debugger
     @user = User.new(params[:user])
 
     respond_to do |format|
@@ -93,7 +97,6 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    debugger
     @user = User.find(params[:id])
 
     respond_to do |format|
@@ -110,7 +113,6 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    debugger
     @user = User.find(params[:id])
     @user.destroy
 

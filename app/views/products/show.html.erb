@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
 
 <p>
   <b>Name:</b>
@@ -24,25 +25,25 @@
   <% if @product.ratings.empty? %>
     not yet rated
   <% else %>
+    <% avg = @product.ratings.average(:rating) %>
     <b>Ratings:</b>
-    <p>average: <%= @product.ratings.average(:rating) %></p>
+    <p>
+      average:
+      <%= render :partial => 'ratings/rating', :object => avg %>
+      (<%= avg.round(2) %>)
+    </p>
     <ul>
       <% @product.ratings.each do |r| %>
-        <li><%= r.user.username %>: <%= r.rating %></li>
+        <li>
+          <%= r.user.username %>:
+          <%= render r %>
+          (<%= r.rating.round(2) %>)
+        </li>
       <% end %>
     </ul>
   <% end %>
 
-  <%= form_for :rating, :url => {
-          :controller => 'ratings',
-          :action => 'create' } do |f| %>
-    <%# TODO: implement passing of product_id properly %>
-    <input type="hidden" name="rating[product_id]" value="<%=  @product.id %>" />
-    <%= f.label :rating %>
-    <%= f.text_field :rating %>
-    <br />
-    <%= f.submit %>
-  <% end %>
+  <%= render :partial => 'ratings/form', :object => @product %>
 </p>
 
 <p>

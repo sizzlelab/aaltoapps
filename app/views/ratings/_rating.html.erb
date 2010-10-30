@@ -1,0 +1,36 @@
+<span class="star-rating"><%=
+
+# usage:
+#   render rating
+#   render :partial => 'rating/rating', :object => number
+#   render :partial => 'rating/rating', :object => rating
+#   render :partial => 'rating/rating', :object => product
+#   render :partial => 'rating/rating', :object => product, :locals => { :empty_message => 'message' }
+#
+# If a Product is given as :object, its average rating is displayed.
+# If the value of :object is nil or a Product that has no ratings,
+# :empty_message is displayed.
+
+  rating_val = case rating
+    when Product then rating.ratings.average(:rating)
+    when nil then nil
+    else rating.to_f
+  end
+
+  if rating_val.nil?
+    defined?(empty_message) ? empty_message : 'not yet rated'
+  else
+    stars = rating_val.truncate
+
+    # add +, -, or ½ according to the fractional part of the value
+    suffix = case rating_val % 1
+      when 0     ... 0.125 then ''
+      when 0.125 ... 0.375 then '+'
+      when 0.375 ... 0.625 then '½'
+      when 0.625 ... 0.875 then stars += 1; '-'
+      when 0.875 ... 1     then stars += 1; ''
+    end
+
+    ('★' * stars) + suffix
+  end
+%></span>

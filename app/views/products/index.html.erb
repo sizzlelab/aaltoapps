@@ -5,6 +5,7 @@
     <th>Name</th>
     <th>Description</th>
     <th>Url</th>
+    <th>Rating</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,6 +16,11 @@
     <td><%= product.name %></td>
     <td><%= product.description %></td>
     <td><%= product.url %></td>
+    <td>
+      <%= render :partial =>'ratings/rating',
+                 :object => product,
+                 :locals => { :empty_message => '' } %>
+    </td>
 <% if logged_in? %>
     <td><%= link_to 'Show', product %></td>
     <td><%= link_to 'Edit', edit_product_path(product) %></td>

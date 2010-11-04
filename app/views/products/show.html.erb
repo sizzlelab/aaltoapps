@@ -1,50 +1,52 @@
 <p id="notice"><%= notice %></p>
 <p id="alert"><%= alert %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @product.name %>
-</p>
+<h1 id="product-title"><%= @product.name %> - Detailed view</h1>
 
-<p>
-  <b>Publisher:</b>
-  <%= @product.publisher %>
-</p>
+<div id="product-info">
+  <div id="product-image">
+    <div id="product-image-border">
+      <%# TODO: picture here %>
+      picture
+    </div>
+  </div>
 
-<p>
-  <b>Description:</b>
-  <%= @product.description %>
-</p>
+  <div id="product-details">
+    <dl id="product-publisher">
+      <dt>Publisher:</dt>
+      <dd><%= @product.publisher %></dd>
+    </dl>
 
-<p>
-  <b>Url:</b>
-  <%= @product.url %>
-</p>
+    <dl id="product-published">
+      <dt>Published:</dt>
+      <dd><%= l @product.updated_at.to_date, :format => :long %></dd>
+    </dl>
 
-<p>
-  <% if @product.ratings.empty? %>
-    not yet rated
-  <% else %>
-    <% avg = @product.ratings.average(:rating) %>
-    <b>Ratings:</b>
-    <p>
-      average:
-      <%= render :partial => 'ratings/rating', :object => avg %>
-      (<%= avg.round(2) %>)
-    </p>
-    <ul>
-      <% @product.ratings.each do |r| %>
-        <li>
-          <%= r.user.username %>:
-          <%= render r %>
-          (<%= r.rating.round(2) %>)
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
+    <dl id="product-rating">
+      <dt>Rating:</dt>
+      <dd>
+        <%= render :partial => 'ratings/rating', :object => @product %>
+        
+        <% if logged_in? %>
+          <div id="product-rating-form">
+            Your rating:
+            <%= render :partial => 'ratings/form', :object => @product %>
+          </div>
+        <% end %>
+      </dd>
+    </dl>
 
-  <%= render :partial => 'ratings/form', :object => @product %>
-</p>
+    <dl id="product-url">
+      <dt>Url:</dt>
+      <dd><%= link_to @product.url, @product.url %></dd>
+    </dl>
+
+    <dl id="product-description">
+      <dt>Description:</dt>
+      <dd><%= @product.description %></dd>
+    </dl>
+  </div>
+</div>
 
 <p>
   <b>Comments:</b>

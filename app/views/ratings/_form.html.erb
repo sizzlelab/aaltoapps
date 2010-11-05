@@ -13,7 +13,12 @@
     <% end %>
 
     <div class="field">
-      <%= f.select :rating, [['no rating', '']] + (0..10).map { |i| [0.5*i, 0.5*i] } %>
+      <%=
+        f.select(:rating, [['no rating', '']] + (0 .. (Rating::Max/Rating::Increment)).map { |i|
+          i *= Rating::Increment
+          [i, i]
+        } )
+      %>
     </div>
     <div class="actions">
       <%= f.submit "Rate" %>

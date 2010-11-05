@@ -25,12 +25,12 @@
     <dl id="product-rating">
       <dt>Rating:</dt>
       <dd>
-        <%= render :partial => 'ratings/rating', :object => @product %>
+        <%= render :partial => 'ratings/rating', :object => @product.average_rating %>
         
         <% if logged_in? %>
           <div id="product-rating-form">
             Your rating:
-            <%= render :partial => 'ratings/form', :object => @product %>
+            <%= render 'ratings/form' %>
           </div>
         <% end %>
       </dd>

@@ -1,25 +1,15 @@
 <span class="star-rating"><%=
 
 # usage:
-#   render rating
-#   render :partial => 'rating/rating', :object => number
 #   render :partial => 'rating/rating', :object => rating
-#   render :partial => 'rating/rating', :object => product
-#   render :partial => 'rating/rating', :object => product, :locals => { :empty_message => 'message' }
+#   render :partial => 'rating/rating', :object => rating, :locals => { :empty_message => 'message' }
 #
-# If a Product is given as :object, its average rating is displayed.
-# If the value of :object is nil or a Product that has no ratings,
-# :empty_message is displayed.
+# If rating is nil or its value unset, :empty_message is displayed.
 
-  rating_val = case rating
-    when Product then rating.ratings.average(:rating)
-    when nil then nil
-    else rating.to_f
-  end
-
-  if rating_val.nil?
+  if rating.nil?
     defined?(empty_message) ? empty_message : 'not yet rated'
   else
+    rating_val = rating.to_f
     stars = rating_val.truncate
 
     # add +, -, or ½ according to the fractional part of the value

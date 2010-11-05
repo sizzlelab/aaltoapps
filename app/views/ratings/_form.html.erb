@@ -1,34 +1,11 @@
-<%#
-
-  usage:
-    render :partial => 'ratings/form', :object => rating
-    render :partial => 'ratings/form', :object => product
-
-%>
 <% if logged_in? %>
-  <%
-    product, rating = case form
-      when Rating
-        # use rating as is and its product as product
-        [form.product, form]
-      when Product
-        # use product as is and create a new rating with current user's
-        # current rating as its default value
-        [
-          form,
-          form.ratings.build(
-            :rating => form.ratings.find_by_user_id(current_user.id) || ''
-          )
-        ]
-    end
-  %>
-  <%= form_for [product, rating] do |f| %>
-    <% if rating.errors.any? %>
+  <%= form_for [@product, @new_rating_for_current_user] do |f| %>
+    <% if @new_rating_for_current_user.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
 
         <ul>
-        <% rating.errors.full_messages.each do |msg| %>
+        <% @new_rating_for_current_user.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
         </ul>

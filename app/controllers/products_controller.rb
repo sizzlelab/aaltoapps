@@ -17,6 +17,14 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
 
+    # Create a new Rating for the product copying the value of the
+    # current user's current rating, if any.
+    if logged_in?
+      @new_rating_for_current_user = @product.ratings.build(
+        :rating => @product.ratings.find_by_user_id(current_user.id) || ''
+      )
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @product }

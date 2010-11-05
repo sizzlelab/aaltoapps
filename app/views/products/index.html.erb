@@ -18,7 +18,7 @@
     <td><%= product.url %></td>
     <td>
       <%= render :partial =>'ratings/rating',
-                 :object => product,
+                 :object => product.average_rating,
                  :locals => { :empty_message => '' } %>
     </td>
 <% if logged_in? %>

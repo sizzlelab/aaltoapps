@@ -42,11 +42,12 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     begin
-      @user = User.create(:username => params[:username], 
-                          :password => params[:password], 
-                          :email => params[:email], 
-                          :is_association => params[:is_association], 
-                          :consent => params[:consent])
+      response = AsiSession.new.register(:username => params[:username], 
+                                         :password => params[:password], 
+                                         :email => params[:email], 
+                                         :is_association => false, 
+                                         :consent => params[:consent])
+      @user = User.create!(:asi_id => JSON.parse(response)["entry"]["id"])
     rescue Exception => e
       flash.now[:error] = JSON.parse(e.message)["messages"]
 
@@ -54,13 +55,8 @@ class UsersController < ApplicationController
     end
     
     respond_to do |format|
-      if @user.save
-        format.html { redirect_to(@user, :notice => 'User was successfully created.') }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
+      format.html { redirect_to(@user, :notice => 'User was successfully created.') }
+      format.xml  { render :xml => @user, :status => :created, :location => @user }
     end
   end
 

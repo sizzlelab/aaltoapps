@@ -5,6 +5,7 @@
     <th>Name</th>
     <th>Description</th>
     <th>Url</th>
+    <th>Platform</th>
     <th>Rating</th>
     <th></th>
     <th></th>
@@ -16,6 +17,7 @@
     <td><%= product.name %></td>
     <td><%= product.description %></td>
     <td><%= product.url %></td>
+    <td><%= product.platform %></td>
     <td>
       <%= render :partial =>'ratings/rating',
                  :object => product.average_rating,

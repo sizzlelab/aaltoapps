@@ -1,35 +1,32 @@
 <h1>Listing products</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Url</th>
-    <th>Rating</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<div class="browse_products">
 <% @products.each do |product| %>
-  <tr>
-    <td><%= product.name %></td>
-    <td><%= product.description %></td>
-    <td><%= product.url %></td>
-    <td>
-      <%= render :partial =>'ratings/rating',
-                 :object => product,
-                 :locals => { :empty_message => '' } %>
-    </td>
-<% if logged_in? %>
-    <td><%= link_to 'Show', product %></td>
-    <td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete %></td>
+  <div class="<%= cycle("browse_product_left", "browse_product_right") -%>">
+    <div class="browse_product_picture">
+      <%= link_to 'picture', product.name %>
+    </div>
+    <div class="browse_product_info">
+        <div class="browse_row"><%= link_to product.name, product %></div>
+        <div class="browse_row">Publisher: <%= link_to product.publisher, product.publisher %></div>
+        <div class="browse_row">Rating:
+          <%= render :partial =>'ratings/rating',
+                     :object => product,
+                     :locals => { :empty_message => '' } %>
+        </div>
+    </div>
+    <div class="browse_product_desc"><%= product.description %>
+    <!--<%# if logged_in? %>
+        <div><%#= link_to 'Show', product %></div>
+        <div><%#= link_to 'Edit', edit_product_path(product) %></div>
+        <div><%#= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete %></div>
+    <%# end %>-->
+    </div>
+	</div>
 <% end %>
-	</tr>
-<% end %>
-</table>
+</div>
+    
+  
+  
 
-<br />
 
-<%= if logged_in? then link_to('New Product', new_product_path) end %>
+<%#= if logged_in? then link_to('New Product', new_product_path) end %>

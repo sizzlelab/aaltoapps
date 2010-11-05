@@ -23,9 +23,14 @@ class AsiSession
   def register(params)
     required_params = [:username, :email, :password, :is_association, :consent]
     if required_params.all?{|req_param| params.has_key?(req_param)}
-      cookies = open_application_session
-      RestClient.post asi_uri('people'), {:person => params}, {:cookies => cookies}
-      close_session(cookies)
+      session = open_application_session
+      begin
+        response = RestClient.post asi_uri('people'), {:person => params}, {:cookies => session}
+      rescue RestClient::RequestFailed => e
+        raise e.response
+      end
+      close_session(session)
+      return response
     else
       raise "Missing parameter(s)"
     end
@@ -41,8 +46,8 @@ private
     return response.cookies
   end
   
-  def close_session(cookie)
-    response = RestClient.delete asi_uri('session'), :cookies => cookie
+  def close_session(session)
+    response = RestClient.delete asi_uri('session'), :cookies => session
     return response
   end
   

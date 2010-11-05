@@ -1,3 +1,4 @@
+require 'asi_session'
 class UsersController < ApplicationController
   #before_filter :login_required, :except => [:new, :create]
 
@@ -26,8 +27,6 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
-    @user = User.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
@@ -42,8 +41,18 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    @user = User.new(params[:user])
+    begin
+      @user = User.create(:username => params[:username], 
+                          :password => params[:password], 
+                          :email => params[:email], 
+                          :is_association => params[:is_association], 
+                          :consent => params[:consent])
+    rescue Exception => e
+      flash.now[:error] = JSON.parse(e.message)["messages"]
 
+      render :action => "new" and return
+    end
+    
     respond_to do |format|
       if @user.save
         format.html { redirect_to(@user, :notice => 'User was successfully created.') }

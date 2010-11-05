@@ -14,7 +14,7 @@
   <div id="product-details">
     <dl id="product-publisher">
       <dt>Publisher:</dt>
-      <dd><%= @product.publisher.username %></dd>
+      <dd><%= @product.publisher.username if @product.publisher %></dd>
     </dl>
 
     <dl id="product-published">

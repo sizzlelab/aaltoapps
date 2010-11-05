@@ -50,20 +50,15 @@
 
 <p>
   <b>Comments:</b>
-  <% @product.comments.each do |comment| %>
-    <p>
-      <b>Commenter: </b>
-      <%= comment.commenter.username %>
-    </p>
-    <p>
-      <b>Created at: </b>
-      <%= comment.created_at %>
-    </p>
-    <p>
-      <b>Comment: </b>
-      <%= comment.body %>
-    </p>
- <% end %>
+  <%= render :partial => "comment/list", :collection => @product.comments, :as => :comment %>
+ 
+  <p>
+    <% if logged_in? %>
+      <%= render :partial => "comment/form", :object => @product %>
+    <% else %>
+      <b>Please login to add comments</b>
+    <% end %>
+  <p>
 
 </p>
 

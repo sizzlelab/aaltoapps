@@ -12,6 +12,8 @@ AaltoApps::Application.routes.draw do
     resources :comments
     resources :ratings
   end
+
+  resources :comments, :belongs_to => :products
   
   match ':controller(/:action(/:id))'
   root :to => "products#index"

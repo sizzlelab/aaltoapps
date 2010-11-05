@@ -3,14 +3,14 @@
 <% @products.each do |product| %>
   <div class="<%= cycle("browse_product_left", "browse_product_right") -%>">
     <div class="browse_product_picture">
-      <%= link_to 'picture', product.name %>
+      <%= link_to 'picture', product %>
     </div>
     <div class="browse_product_info">
         <div class="browse_row"><%= link_to product.name, product %></div>
         <div class="browse_row">Publisher: <%= link_to product.publisher, product.publisher %></div>
         <div class="browse_row">Rating:
           <%= render :partial =>'ratings/rating',
-                     :object => product,
+                     :object => product.average_rating,
                      :locals => { :empty_message => '' } %>
         </div>
     </div>

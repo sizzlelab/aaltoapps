@@ -14,10 +14,7 @@
 
     <div class="field">
       <%=
-        f.select(:rating, [['no rating', '']] + (0 .. (Rating::Max/Rating::Increment)).map { |i|
-          i *= Rating::Increment
-          [i, i]
-        } )
+        f.select(:rating, [['no rating', '']] + Rating::allowed_values)
       %>
     </div>
     <div class="actions">

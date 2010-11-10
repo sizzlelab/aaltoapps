@@ -14,7 +14,7 @@
   <div id="product-details">
     <dl id="product-publisher">
       <dt>Publisher:</dt>
-      <dd><%= @product.publisher %></dd>
+      <dd><%= @product.publisher.username if @product.publisher %></dd>
     </dl>
 
     <dl id="product-published">
@@ -25,12 +25,12 @@
     <dl id="product-rating">
       <dt>Rating:</dt>
       <dd>
-        <%= render :partial => 'ratings/rating', :object => @product %>
+        <%= render :partial => 'ratings/rating', :object => @product.average_rating %>
         
         <% if logged_in? %>
           <div id="product-rating-form">
             Your rating:
-            <%= render :partial => 'ratings/form', :object => @product %>
+            <%= render 'ratings/form' %>
           </div>
         <% end %>
       </dd>
@@ -50,20 +50,15 @@
 
 <p>
   <b>Comments:</b>
-  <% @product.comments.each do |comment| %>
-    <p>
-      <b>Commenter: </b>
-      <%= comment.commenter.username %>
-    </p>
-    <p>
-      <b>Created at: </b>
-      <%= comment.created_at %>
-    </p>
-    <p>
-      <b>Comment: </b>
-      <%= comment.body %>
-    </p>
- <% end %>
+  <%= render :partial => "comment/list", :collection => @product.comments, :as => :comment %>
+ 
+  <p>
+    <% if logged_in? %>
+      <%= render :partial => "comment/form", :object => @product %>
+    <% else %>
+      <b>Please login to add comments</b>
+    <% end %>
+  <p>
 
 </p>
 

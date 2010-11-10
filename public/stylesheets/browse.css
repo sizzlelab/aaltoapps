@@ -1,0 +1,54 @@
+.browse_products {
+    border-radius: 0.5em;
+    display:inline-block;
+    width:100%;
+
+}
+
+.browse_product_left {
+    border: thin solid blue;
+    border-radius: 0.5em;
+    width:49%;
+    margin-bottom:1em;
+    float:left;
+    
+}
+
+.browse_product_right {
+    border: thin solid blue;
+    border-radius: 0.5em;
+    width:49%;
+    margin-bottom:1em;
+    float:right;
+    
+}
+
+.browse_product_info {
+    border: thin solid black;
+    border-radius: 0.5em;
+    display:inline-block;
+    float:left;
+
+}
+
+.browse_product_desc {
+    border: thin solid red;
+    border-radius: 0.5em;
+    display:inline-block;
+    float:right;
+    
+}
+
+.browse_product_picture {
+    border: thin solid green;
+    border-radius: 0.5em;
+    display:inline-block;
+    float:left;
+      
+}
+
+.browse_row {
+    border: thin solid black;
+    border-radius: 0.5em;
+    
+}

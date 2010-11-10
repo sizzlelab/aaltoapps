@@ -1,4 +1,3 @@
-require 'asi_session'
 class UsersController < ApplicationController
   #before_filter :login_required, :except => [:new, :create]
 
@@ -16,6 +15,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
+    debugger
     @user = User.find(params[:id])
 
     respond_to do |format|
@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
+    @user = User.new
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
@@ -41,21 +42,19 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
+    @session = Session.create
+    session[:cookie] = @session.cookie
     begin
-      response = AsiSession.new.register(:username => params[:username], 
-                                         :password => params[:password], 
-                                         :email => params[:email], 
-                                         :is_association => false, 
-                                         :consent => params[:consent])
-      @user = User.create!(:asi_id => JSON.parse(response)["entry"]["id"])
-    rescue Exception => e
-      flash.now[:error] = JSON.parse(e.message)["messages"]
-
+      @user = User.create(params[:user], session[:cookie]) 
+    rescue RestClient::RequestFailed => e
+      flash.now[:error] = JSON.parse(e.response.body)["messages"]
+      @user = User.new  
       render :action => "new" and return
     end
-    
+    session[:user_id] = @user.id
+
     respond_to do |format|
-      format.html { redirect_to(@user, :notice => 'User was successfully created.') }
+      format.html { redirect_to(@user, :notice => "Logged in") }
       format.xml  { render :xml => @user, :status => :created, :location => @user }
     end
   end

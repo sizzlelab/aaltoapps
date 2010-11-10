@@ -1,5 +1,5 @@
-<%= form_tag('/users', :method => :post) do %>
-  <% debugger; if flash[:error] %>
+<%= form_for @user do |f| %>
+	<% if flash[:error] %>
     <div id="error_explanation">
       <h2><%= pluralize(flash[:error].count, "error") %> prohibited this user from being saved:</h2>
 
@@ -10,24 +10,19 @@
       </ul>
     </div>
   <% end %>
-	<%= hidden_field_tag :consent, "FI1" %>
-  <div class="field">
-    <%= label_tag :username %><br />
-    <%= text_field_tag :username %>
-  </div>
 	<div class="field">
-		<%= label_tag :password %><br />
-		<%= password_field_tag :password %>
+		<%= f.label :username %><br />
+		<%= f.text_field :username%>
+	</div>
+	<div class="field">
+		<%= f.label :password %><br />
+		<%= f.password_field :password %>
 	</div>
   <div class="field">
-    <%= label_tag :email %><br />
-    <%= text_field_tag :email %>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
   </div>
-	<div class="field">
-		<%= label_tag :is_association, "Is an association?" %>
-		<%= check_box_tag :is_association %>
-	</div>
   <div class="actions">
-    <%= submit_tag "Create" %>
+    <%= f.submit "Create" %>
   </div>
 <% end %>

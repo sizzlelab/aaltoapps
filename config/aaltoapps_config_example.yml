@@ -1,0 +1,18 @@
+# Name should be aaltoapps_config.yml
+development: &non_production_settings
+  asi_url: "http://cos.alpha.sizl.org"
+  ssl_asi_url: "https://cos.alpha.sizl.org"  # Can be same as asi_url if no https in use
+  asi_url_proxied: "http://cos.alpha.sizl.org"  #this won't work completely in develpment mode
+  asi_timeout: 10
+
+  asi_app_name: aaltoapps
+  asi_app_password: insert_password_here  
+
+test:
+  <<: *non_production_settings
+
+production:
+  asi_url: "http://cos.alpha.sizl.org"
+  ssl_asi_url: "https://cos.alpha.sizl.org"  # Can be same as asi_url if no https in use
+  asi_app_name: aaltoapps
+  asi_app_password: insert_password_here  

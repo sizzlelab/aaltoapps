@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
     session[:form_username] = nil
     
     if @session.person_id  # if not app-only-session and person found in cos
-      unless  @current_user = Person.find_by_id(@session.person_id)
+      unless  @current_user = User.find_by_asi_id(@session.person_id)
         # The user has succesfully logged in, but is not found in Kassi DB
         # Existing Sizzle user's first login in Kassi
         session[:temp_cookie] = @session.cookie
@@ -28,12 +28,12 @@ class SessionsController < ApplicationController
     session[:cookie] = @session.cookie
     session[:person_id] = @session.person_id
       
-    flash[:notice] = [:login_successful, (@current_user.given_name + "!").to_s, person_path(@current_user)]
+    flash[:notice] = [:login_successful, (@current_user.given_name + "!").to_s, user_path(@current_user)]
     if session[:return_to]
       redirect_to session[:return_to]
       session[:return_to] = nil
     else
-      redirect_to root
+      redirect_to root_path
     end
   end
   
@@ -46,7 +46,7 @@ class SessionsController < ApplicationController
   end
   
   def index
-   render :file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404
+    
   end
   
   def request_new_password

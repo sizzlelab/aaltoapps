@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
   PERSON_NAME_CACHE_EXPIRE_TIME = 3.hours  ## THE CACHE IS TEMPORARILY OFF BECAUSE CAUSED PROBLEMS ON ALPHA: SEE ALSO COMMENTING OUT AT THE PLACE WHER CACHE IS USED!
   
   def self.create(params, cookie)
-    debugger
     # Try to create the person to ASI
     person_hash = {:person => params.slice(:username, :password, :email).merge!({:consent => "FI1"}) }
     response = UserConnection.create_person(person_hash, cookie)

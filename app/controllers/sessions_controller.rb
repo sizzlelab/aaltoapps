@@ -9,13 +9,12 @@ class SessionsController < ApplicationController
                                   :password => params[:password] })
                                                           
     rescue RestClient::Unauthorized => e
-      flash[:error] = :login_failed
+      flash[:error] = "Login failed"
       redirect_to :controller => "sessions", :action => "index" and return
     end
 
     session[:form_username] = nil
 
-    debugger
     if @session.person_id  # if not app-only-session and person found in cos
       unless session[:current_user_id] = User.find_by_asi_id(@session.person_id).id
         # The user has succesfully logged in, but is not found in Kassi DB

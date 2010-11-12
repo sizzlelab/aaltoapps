@@ -34,14 +34,12 @@ class User < ActiveRecord::Base
   end
   
   def username(cookie=nil)
-    debugger
     username_from_person_hash(cookie)
     # No expire time, because username doesn't change (at least not yet)
     #Rails.cache.fetch("person_username/#{self.id}") {username_from_person_hash(cookie)}  
   end
   
   def username_from_person_hash(cookie=nil)
-    debugger
     if new_record?
       return form_username ? form_username : ""
     end

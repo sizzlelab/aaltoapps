@@ -1,4 +1,9 @@
 <% form_tag :controller => 'sessions' do %>
+	<% if flash[:error] %>
+    <div id="error_explanation">
+      <%= flash[:error] %>
+    </div>
+  <% end %>
 	<%= label_tag "User name:" %><br />
 	<%= text_field_tag "username" %><br />
 	<%= label_tag "Password:" %><br />

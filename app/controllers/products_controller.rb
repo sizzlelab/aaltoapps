@@ -4,8 +4,8 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
   def index
-    page = params[:page] || 1
-    @products = Product.all
+    page = params[:page] ? params[:page] : 1
+    @products = Product.paginate :page => page, :per_page => 6
 
     respond_to do |format|
       format.html # index.html.erb

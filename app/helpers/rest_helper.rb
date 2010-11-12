@@ -48,10 +48,10 @@ module RestHelper
     rescue RestClient::Unauthorized => u
       Rails.logger.error { "Rest-client unauthorized when calling #{method} for #{url}."}
 
-      # if the call was made with Kassi-cookie, try renewing it      
-      if (cookie_used_for_call == Session.kassi_cookie)
-         Rails.logger.info "Renewing Kassi-cookie and trying again..."
-         new_cookie = Session.update_kassi_cookie
+      # if the call was made with AaltoApps-cookie, try renewing it      
+      if (cookie_used_for_call == Session.aaltoapps_cookie)
+         Rails.logger.info "Renewing AaltoApps-cookie and trying again..."
+         new_cookie = Session.update_aaltoapps_cookie
          if method.to_sym == :get || method.to_sym == :delete
            params.merge!({:cookies => new_cookie})
          else

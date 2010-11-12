@@ -2,5 +2,5 @@
 <%= link_to "login", :controller => "sessions" %> :: 
 <%= link_to "register", :controller => "users", :action => "new" %>
 <% else %>
-logged in as <%= current_user.username %>, <%= link_to "logout", "/sessions/destroy", :method => :delete %>
+logged in as <%= debugger; current_user.username %>, <%= link_to "logout", "/sessions/destroy", :method => :delete %>
 <% end %>

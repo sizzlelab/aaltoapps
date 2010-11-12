@@ -10,19 +10,77 @@
       </ul>
     </div>
   <% end %>
-	<div class="field">
-		<%= f.label :username %><br />
-		<%= f.text_field :username%>
-	</div>
-	<div class="field">
-		<%= f.label :password %><br />
-		<%= f.password_field :password %>
-	</div>
+
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username%>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password2 %><br />
+    <%= f.password_field :password2 %>
+  </div>
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
+
+  <div class="field">
+    <%= f.label :birthdate %><br />
+    <%= f.text_field :birthdate %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.select :gender, [['Unspecified', ''], ['Male', 'MALE'], ['Female', 'FEMALE']] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :website %><br />
+    <%= f.text_field :website %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone_number %><br />
+    <%= f.text_field :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :given_name %><br />
+    <%= f.text_field :given_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :family_name %><br />
+    <%= f.text_field :family_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :street_address %><br />
+    <%= f.text_field :street_address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :postal_code %><br />
+    <%= f.text_field :postal_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :locality %><br />
+    <%= f.text_field :locality %>
+  </div>
+
   <div class="actions">
-    <%= f.submit "Create" %>
+    <%= f.submit %>
   </div>
 <% end %>

@@ -7,7 +7,7 @@
     </div>
     <div class="browse_product_info">
         <div class="browse_row"><%= link_to product.name, product %></div>
-        <div class="browse_row">Publisher: <%= link_to product.publisher, product.publisher %></div>
+        <div class="browse_row">P: <%= link_to product.publisher.username, product.publisher %></div>
         <div class="browse_row">Rating:
           <%= render :partial =>'ratings/rating',
                      :object => product.average_rating,
@@ -23,6 +23,7 @@
     </div>
 	</div>
 <% end %>
+    <%= will_paginate @products %>
 </div>
     
   

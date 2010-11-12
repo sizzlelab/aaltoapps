@@ -2,6 +2,12 @@
   <p>
     <b>Commenter: </b>
     <%= comment.commenter.username %>
+
+    <% if !comment.commenter_rating.nil? %>
+      <%= render :partial => 'ratings/rating', :object => comment.commenter_rating %>
+    <% else %>
+      User has not rated this app
+    <% end %>
   </p>
   <p>
     <b>Created at: </b>

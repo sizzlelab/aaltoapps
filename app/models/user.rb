@@ -194,7 +194,7 @@ class User < ActiveRecord::Base
     cookie = Session.aaltoapps_cookie if cookie.nil?
     
     begin
-      person_hash = User.cache_fetch(id,cookie)
+      person_hash = User.cache_fetch(asi_id,cookie)
     rescue RestClient::ResourceNotFound => e
       #Could not find person with that id in ASI Database!
       return nil

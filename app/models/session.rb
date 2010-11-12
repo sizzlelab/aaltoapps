@@ -18,12 +18,12 @@ class Session
     session.login
     return session
   end
-  
+
   def initialize(params={})
     self.username = params[:username]
     self.password = params[:password]
-    self.app_name = params[:app_name]
-    self.app_password = params[:app_password]
+    self.app_name = params[:app_name] || APP_CONFIG.asi_app_name
+    self.app_password = params[:app_password] || APP_CONFIG.asi_app_password
   end
   
   #Logs in to Aalto Social Interface (ASI)
@@ -40,7 +40,7 @@ class Session
 
     resp = RestHelper.make_request(:post, @@session_uri, params , nil, true)
 
-    #@headers["Cookie"] = resp[1].headers[:set_cookie].to_s
+    #@headers["Cookie"] = resp[1].headers[:set_cookie].to_
     @cookie = resp[1].cookies
     @person_id = resp[0]["entry"]["user_id"]
   end

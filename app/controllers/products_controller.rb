@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
   def index
+    page = params[:page] || 1
     @products = Product.all
 
     respond_to do |format|

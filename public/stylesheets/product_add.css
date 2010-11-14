@@ -1,0 +1,20 @@
+#left-column{
+	float:left;
+	width:35%;
+	padding:10px;
+	
+}
+#right-column{
+	float:left;
+
+	width:60%;
+	
+}
+#space-div{
+	
+	clear:both;
+}
+#field{
+	text-align:right;
+}
+

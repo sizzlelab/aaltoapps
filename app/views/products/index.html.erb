@@ -6,16 +6,16 @@
 <!--Prepare for datas-->
 <h2>
  <% @platforms.each do |platform|%>
- <%=link_to platform, apps_by_platform_path(platform) %> &nbsp;&nbsp;
+ <%= link_to platform, products_by_platform_path(platform, params[:sort]) %> &nbsp;&nbsp;
  <%end%>
 </h2>
 <div align="center" id="#">
 <h3 >
   <h4 >Select sort criteria</h4>
-  <%=link_to 'Publication date',apps_by_critea_path(params[:platform],'created_at')%>&nbsp;&nbsp;|
-  <%=link_to 'Most popular',apps_by_critea_path(params[:platform],'popularity')%>&nbsp;&nbsp;|
-  <%=link_to 'Most rated',apps_by_critea_path(params[:platform],'rating')%>&nbsp;&nbsp;|
-  <%=link_to 'Featured apps',apps_by_critea_path(params[:platform],'featured')%>&nbsp;&nbsp;
+  <%=link_to 'Publication date', products_by_platform_path(params[:platform],'created_at')%>&nbsp;&nbsp;|
+  <%=link_to 'Most popular', products_by_platform_path([:platform],'popularity')%>&nbsp;&nbsp;|
+  <%=link_to 'Most rated', products_by_platform_path(params[:platform],'rating')%>&nbsp;&nbsp;|
+  <%=link_to 'Featured apps', products_by_platform_path(params[:platform],'featured')%>&nbsp;&nbsp;
 </h3>
 </div>
   <%if !@err_msg.blank?%>

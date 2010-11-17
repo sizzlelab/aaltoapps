@@ -2,12 +2,16 @@ class ProductsController < ApplicationController
   before_filter :login_required, :except => [:index, :show,:apps_by_platform,:apps_by_critea]
   before_filter :add_popularity, :only=>:show
 
+  PRODUCTS_PER_PAGE = 6
   DEFAULT_CRITERIA="updated_at DESC"
+
   # GET /products
   # GET /products.xml
   def index
- 
-    @products=Product.order(DEFAULT_CRITERIA).all
+    page = params[:page] ? params[:page] : 1
+    @products = Product.paginate :page => page, :per_page => PRODUCTS_PER_PAGE,
+                                 :order => params[:sort] || DEFAULT_CRITERIA
+    
     my_published_apps_by("all platforms")
     #find_apps_by("all platforms")
     respond_to do |format|
@@ -15,11 +19,12 @@ class ProductsController < ApplicationController
       format.xml  { render :xml => @products }
     end
   end
-  def apps_by_platform
-    
+  
+  def by_platform
     sort_by_platform_and_criteria(params[:platform])
     render :action=>:index
   end
+
   def sort_by_platform_and_criteria(platform,criteria=DEFAULT_CRITERIA)
      if platform=="all platforms"
        @products=Product.order(criteria)
@@ -155,6 +160,6 @@ class ProductsController < ApplicationController
      
       end
     end
-    end
-  
   end
+
+end

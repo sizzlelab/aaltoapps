@@ -182,14 +182,13 @@ class User < ActiveRecord::Base
   def update_attributes(params, cookie=nil)
     if params[:preferences]
       super(params)
-    elsif
+    else
       # change empty strings to nil
       params.each { |k,v| params[k] = nil if v == '' }
       # ASI doesn't allow these fields to be unset
       params.delete :email if params[:email].nil?
       params.delete :gender if params[:gender].nil?
       
-debugger
       #Handle name part parameters also if they are in hash root level
       User.remove_root_level_fields(params, "name", ["given_name", "family_name"])
       User.remove_root_level_fields(params, "address", ["street_address", "postal_code", "locality"])

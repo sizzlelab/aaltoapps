@@ -24,31 +24,12 @@
   <h1><%= @err_msg %></h1>
 </div>
   <% end %>
-  <% if !@products.blank? %>
+ <% if !@products.blank? %>
 <div class="browse_products">
-  <h1><%= _("Listing All Products") %></h1>
+    <h1><%= _("Listing All Products") %></h1>
   <%=render :partial=>'product',:collection=>@products%>
 </div>
 <div class="browse_paginate">
    <%= will_paginate @products %>
 </div>
-<%end>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<%#= if logged_in? then link_to('New Product', new_product_path) end %>
+<%end%>

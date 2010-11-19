@@ -15,18 +15,16 @@ class SessionsController < ApplicationController
 
     session[:form_username] = nil
 
-    if @session.person_id  # if not app-only-session and person found in 
-      if user = User.find_by_asi_id(@session.person_id)
-        session[:current_user_id] = user.id
-      else
-        # The user has succesfully logged in, but is not found in AaltoApps DB
-        # Existing Sizzle user's first login in AaltoApps
-        session[:temp_cookie] = @session.cookie
-        session[:temp_person_id] = @session.person_id
-        # TODO: redirect to terms page (when it has been created)
-        #redirect_to terms_path and return
-        redirect_to root_path and return
+    if @session.person_id  # if not app-only-session and person found in cos
+      debugger
+      user = User.find_by_asi_id(@session.person_id)
+      if !user
+        # TODO: Redirect to terms path
+        User.create(:asi_id => @session.person_id)
       end
+      session[:current_user_id] = User.find_by_asi_id(@session.person_id).id
+      
+      redirect_to root_path and return
     end
     
     session[:cookie] = @session.cookie

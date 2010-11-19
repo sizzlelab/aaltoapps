@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   PERSON_HASH_CACHE_EXPIRE_TIME = 0#15  #ALSO THIS CACHE TEMPORARILY OFF TO TEST PERFORMANCE WIHTOUT IT
   PERSON_NAME_CACHE_EXPIRE_TIME = 3.hours  ## THE CACHE IS TEMPORARILY OFF BECAUSE CAUSED PROBLEMS ON ALPHA: SEE ALSO COMMENTING OUT AT THE PLACE WHER CACHE IS USED!
   
-  def self.create(params, cookie)
+  def self.create_to_asi(params, cookie)
     # Try to create the person to ASI
     person_hash = {:person => params.slice(:username, :password, :email).merge!({:consent => "FI1"}) }
     response = UserConnection.create_person(person_hash, cookie)
@@ -31,7 +31,11 @@ class User < ActiveRecord::Base
     #UserConnection.put_attributes(params.except(:username, :email, :password, :password2, :locale, :terms, :id), params[:id], cookie)
     
     # Create locally with less attributes 
-    super(:asi_id => params[:id])
+    User.create(:asi_id => params[:id])
+  end
+  
+  def self.create(params)
+    super(:asi_id => params[:asi_id])
   end
   
   def username(cookie=nil)

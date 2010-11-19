@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b><%= _("Name") %>:</b>
+  <%= @category.name %>
+</p>
+
+<p>
+  <b><%= _("Image URL") %>:</b>
+  <%= @category.image_url %>
+</p>
+
+<p>
+  <b><%= _("Products") %>:</b>
+  <% @category.products.each do |product| %>
+    <%= link_to product.name, product %>
+  <% end %>
+</p>
+
+
+<%= link_to _('Edit'), :action => "edit", :id => @category.id %> |
+<%= link_to _('Back'), :action => "index" %>

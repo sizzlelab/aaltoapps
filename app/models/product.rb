@@ -10,10 +10,12 @@ class Product < ActiveRecord::Base
   def average_rating
     ratings.average(:rating)
   end
-def self.find_apps_by(platform)
-   find_all_by_platform(platform)
-end
-def self.sort_apps_by(platform,criteria)
+  
+  def self.find_apps_by(platform)
+    find_all_by_platform(platform)
+  end
+  
+  def self.sort_apps_by(platform,criteria)
    order("#{criteria}").find_all_by_platform(platform)
-end
+  end
 end

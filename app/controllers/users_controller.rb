@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     @session = Session.create
     session[:cookie] = @session.cookie
     begin
-      @user = User.create(params[:user], session[:cookie]) 
+      @user = User.create_to_asi(params[:user], session[:cookie]) 
     rescue RestClient::RequestFailed => e
       flash.now[:error] = JSON.parse(e.response.body)["messages"]
       @user = User.new  

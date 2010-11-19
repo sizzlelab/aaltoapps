@@ -16,7 +16,6 @@ class SessionsController < ApplicationController
     session[:form_username] = nil
 
     if @session.person_id  # if not app-only-session and person found in cos
-      debugger
       user = User.find_by_asi_id(@session.person_id)
       if !user
         # TODO: Redirect to terms path

@@ -3,5 +3,10 @@
 
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
-
+begin
+  require 'vlad'
+  Vlad.load :scm => :git
+rescue LoadError
+  # do nothing
+end
 AaltoApps::Application.load_tasks

@@ -43,6 +43,7 @@ GEM
       mime-types
       treetop (>= 1.4.5)
     mime-types (1.16)
+    open4 (0.9.6)
     pg (0.9.0)
     polyglot (0.3.1)
     rack (1.2.1)
@@ -64,6 +65,9 @@ GEM
       rake (>= 0.8.4)
       thor (~> 0.14.0)
     rake (0.8.7)
+    rake-remote_task (2.0.2)
+      open4 (~> 0.9.0)
+      rake (~> 0.8.0)
     rest-client (1.6.1)
       mime-types (>= 1.16)
     ruby-debug-base19 (0.11.24)
@@ -81,6 +85,12 @@ GEM
     treetop (1.4.8)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
+    vlad (2.1.0)
+      open4 (~> 0.9.0)
+      rake (~> 0.8.0)
+      rake-remote_task (~> 2.0)
+    vlad-git (2.2.0)
+      vlad (>= 2.1.0)
     will_paginate (3.0.pre2)
 
 PLATFORMS
@@ -92,4 +102,6 @@ DEPENDENCIES
   rest-client
   ruby-debug19
   sqlite3-ruby
+  vlad
+  vlad-git
   will_paginate (~> 3.0.pre2)

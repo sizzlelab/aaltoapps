@@ -6,9 +6,12 @@ AaltoApps::Application.routes.draw do
     resources :ratings
   end
   
+  resources :platforms do
+    resources :products
+  end
+  
   resources :products do
     resources :platforms
-    resources :categories
     resources :comments
     resources :ratings
 

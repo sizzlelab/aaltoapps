@@ -3,15 +3,33 @@ class ProductsController < ApplicationController
   before_filter :add_popularity, :only=>:show
 
   PRODUCTS_PER_PAGE = 6
-  DEFAULT_CRITERIA="updated_at DESC"
+  DEFAULT_SORT="updated_at DESC"
+  ALLOWED_SORT_KEYS = %w(name created_at updated_at publisher average_rating)
 
   # GET /products
   # GET /products.xml
   def index
     page = params[:page] ? params[:page] : 1
-    @products = Product.paginate :page => page, :per_page => PRODUCTS_PER_PAGE,
-                                 :order => params[:sort] || DEFAULT_CRITERIA
-    
+
+    # check the existence and validity of the sort parameter
+    # and if nonexistent or invalid, use default value
+    find_params =
+      if  params[:sort] &&
+          params[:sort] =~ /^([a-z_]+)(?: +DESC)?$/i &&
+          ALLOWED_SORT_KEYS.member?($1)
+        if $1 == 'average_rating'
+          # TODO: implement this
+          #{ :include=>[:ratings], :order=>'ratings.rating' }
+          {}
+        else
+          { :order => params[:sort] }
+        end
+      else
+        { :order => DEFAULT_SORT }
+      end
+
+    @products = Product.paginate({ :page => page, :per_page => PRODUCTS_PER_PAGE }.merge(find_params))
+
     my_published_apps_by("all platforms")
     #find_apps_by("all platforms")
     respond_to do |format|
@@ -25,7 +43,7 @@ class ProductsController < ApplicationController
     render :action=>:index
   end
 
-  def sort_by_platform_and_criteria(platform,criteria=DEFAULT_CRITERIA)
+  def sort_by_platform_and_criteria(platform,criteria=DEFAULT_SORT)
      if platform=="all platforms"
        @products=Product.order(criteria)
     else
@@ -33,31 +51,20 @@ class ProductsController < ApplicationController
       end
      @my_published_products=my_published_apps_by(platform,criteria)
   end
-  def apps_by_critea
-    case params[:criteria]
-    when "created_at"
-       criteria="updated_at DESC"  
+
+  def search
+    if params[:search]&&!params[:search].blank?
+      @products=Product.where("name LIKE ?","%#{params[:search]}%")
+      if @products.blank?
+      @err_msg="The keywords you search don't exist!"
+      end
     else
-       criteria="#{params[:criteria]} DESC"
-      
+      @err_msg="Your should input some keywords!"
     end
-    
-     sort_by_platform_and_criteria(params[:platform],criteria)
-   
+
     render :action=>:index
   end
- def search
-  if params[:search]&&!params[:search].blank?
-    @products=Product.where("name LIKE ?","%#{params[:search]}%")
-    if @products.blank?
-    @err_msg="The keywords you search don't exist!"
-    end
-  else
-    @err_msg="Your should input some keywords!"
-   end
 
-   render :action=>:index
- end
   # GET /products/1
   # GET /products/1.xml
   def show
@@ -149,7 +156,7 @@ class ProductsController < ApplicationController
   end
  
   #return apps that user created by platform
-  def my_published_apps_by(platform,criteria=DEFAULT_CRITERIA)
+  def my_published_apps_by(platform,criteria=DEFAULT_SORT)
   #If user login, show himself's apps
      @my_published_products=[]
     if current_user!=nil

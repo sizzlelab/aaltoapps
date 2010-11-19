@@ -10,6 +10,8 @@ gem 'pg'
 gem 'ruby-debug19'
 gem 'rest-client'
 gem "will_paginate", "~> 3.0.pre2"
+gem 'vlad'
+gem 'vlad-git'
 
 # Use unicorn as the web server
 # gem 'unicorn'

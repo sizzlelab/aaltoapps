@@ -2,58 +2,81 @@
     border-radius: 0.5em;
     display:inline-block;
     width:100%;
-
+    font-size:8pt;
+ 
 }
 
-.browse_product_left {
-    border: thin solid blue;
-    border-radius: 0.5em;
+.browse_product_left_silver {
+    background:silver;
+    margin-bottom:0.2em;
+    border-radius: 2em;
     width:49%;
-    margin-bottom:1em;
     float:left;
-    
+   
 }
 
-.browse_product_right {
-    border: thin solid blue;
-    border-radius: 0.5em;
+.browse_product_right_white {
+    background:white;
+    margin-bottom:0.2em;
+    border-radius: 2em;
     width:49%;
-    margin-bottom:1em;
     float:right;
     
 }
 
+.browse_product_left_white {
+    background:white;
+    margin-bottom:0.2em;
+    border-radius: 2em;
+    width:49%;
+    float:left;
+   
+}
+
+.browse_product_right_silver {
+    background:silver;
+    margin-bottom:0.2em;
+    border-radius: 2em;
+    width:49%;
+    float:right;
+
+}
+
 .browse_product_info {
-    border: thin solid black;
+    background:inherit;
     border-radius: 0.5em;
     display:inline-block;
     float:left;
+    width:35%;
 
 }
 
 .browse_product_desc {
-    border: thin solid red;
+    background:inherit;
     border-radius: 0.5em;
     display:inline-block;
     float:right;
+    width:50%;
+    max-height:5.5em;
+    overflow:hidden;
     
 }
 
 .browse_product_picture {
-    border: thin solid green;
+    background:inherit;
     border-radius: 0.5em;
     display:inline-block;
     float:left;
+    width:15%;
       
 }
 
 .browse_row {
-    border: thin solid black;
-    border-radius: 0.5em;
-    
+    background:inherit;
 }
-browse_product_manage{
-    clear:both
+
+.product_manage{
+    clear:both;
 }
 .browse_search_err_msg{
     border:thin solid red;

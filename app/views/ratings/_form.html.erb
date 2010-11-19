@@ -2,7 +2,7 @@
   <%= form_for [@product, @new_rating_for_current_user] do |f| %>
     <% if @new_rating_for_current_user.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+        <h2><%= _("Validation errors prohibited this rating from being saved") %>:</h2>
 
         <ul>
         <% @new_rating_for_current_user.errors.full_messages.each do |msg| %>
@@ -18,7 +18,7 @@
       %>
     </div>
     <div class="actions">
-      <%= f.submit "Rate" %>
+      <%= f.submit _("Rate") %>
     </div>
   <% end %>
 <% end %>

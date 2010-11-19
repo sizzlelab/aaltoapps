@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   has_many :comments
   attr_accessor :guid, :password, :password2, :username, :email, :form_username,
                 :form_given_name, :form_family_name, :form_password, 
-                :form_password2, :form_email, :consent
+                :form_password2, :form_email, :consent,
+                :birthdate, :gender, :website
   attr_protected :is_admin
   
   PERSON_HASH_CACHE_EXPIRE_TIME = 0#15  #ALSO THIS CACHE TEMPORARILY OFF TO TEST PERFORMANCE WIHTOUT IT
@@ -179,14 +180,14 @@ class User < ActiveRecord::Base
       super(params)
     else  
       #Handle name part parameters also if they are in hash root level
-      Person.remove_root_level_fields(params, "name", ["given_name", "family_name"])
-      Person.remove_root_level_fields(params, "address", ["street_address", "postal_code", "locality"]) 
+      User.remove_root_level_fields(params, "name", ["given_name", "family_name"])
+      User.remove_root_level_fields(params, "address", ["street_address", "postal_code", "locality"])
       if params["name"] || params[:name]
         # If name is going to be changed, expire name cache
         Rails.cache.delete("person_name/#{self.id}")
         Rails.cache.delete("given_name/#{self.id}")
       end
-      PersonConnection.put_attributes(params.except("password2"), self.id, cookie)
+      UserConnection.put_attributes(params.except("password2"), asi_id, cookie)
     end
   end
   
@@ -213,4 +214,14 @@ class User < ActiveRecord::Base
     #Rails.cache.fetch(cache_key(id,cookie), :expires_in => PERSON_HASH_CACHE_EXPIRE_TIME) {PersonConnection.get_person(id, cookie)}
   end
   
+  def self.remove_root_level_fields(params, field_type, fields)
+    fields.each do |field|
+      if params[field] && (params[field_type].nil? || params[field_type][field].nil?)
+        params.update({field_type => Hash.new}) if params[field_type].nil?
+        params[field_type].update({field => params[field]})
+        params.delete(field)
+      end
+    end
+  end
+
 end

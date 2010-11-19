@@ -11,6 +11,14 @@ AaltoApps::Application.routes.draw do
     resources :categories
     resources :comments
     resources :ratings
+
+    collection do
+      namespace 'platform' do
+        get ':platform' => 'products#by_platform'
+      end
+
+      get :search
+    end
   end
 
   resources :comments, :belongs_to => :products

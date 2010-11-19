@@ -1,20 +1,20 @@
 <div class="comment">
   <p>
-    <b>Commenter: </b>
+    <b><%= _("Commenter") %>:</b>
     <%= comment.commenter.username %>
 
     <% if !comment.commenter_rating.nil? %>
       <%= render :partial => 'ratings/rating', :object => comment.commenter_rating %>
     <% else %>
-      User has not rated this app
+      <%= _("User has not rated this app") %>
     <% end %>
   </p>
   <p>
-    <b>Created at: </b>
+    <b><%= _("Created at") %>: </b>
     <%= comment.created_at %>
   </p>
   <p>
-    <b>Comment: </b>
+    <b><%= _("Comment") %>: </b>
     <%= comment.body %>
   </p>
 </div>

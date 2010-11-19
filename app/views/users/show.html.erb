@@ -1,32 +1,32 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Username:</b>
+  <b><%= _("Username") %>:</b>
   <%= @user.username %>
 </p>
 
 <p>
-  <b>Firstname:</b>
+  <b><%= _("Firstname") %>:</b>
   <%= @user.given_name %>
 </p>
 
 <p>
-  <b>Lastname:</b>
+  <b><%= _("Lastname") %>:</b>
   <%= @user.family_name %>
 </p>
 
 <p>
-  <b>Email:</b>
+  <b><%= _("Email") %>:</b>
   <%= @user.email %>
 </p>
 
 <p>
-  <b>Published Products:</b>
+  <b><%= _("Published Products") %>:</b>
   <% @user.published.each do |published_product| %>
     <%= published_product.name %>
   <% end %>
 </p>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to _('Edit'), edit_user_path(@user) %> |
+<%= link_to _('Back'), users_path %>

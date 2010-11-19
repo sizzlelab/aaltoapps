@@ -4,9 +4,9 @@
       <%= flash[:error] %>
     </div>
   <% end %>
-	<%= label_tag "User name:" %><br />
+	<%= label_tag _("User name:") %><br />
 	<%= text_field_tag "username" %><br />
-	<%= label_tag "Password:" %><br />
+	<%= label_tag _("Password:") %><br />
 	<%= password_field_tag "password" %><br />
-	<%= submit_tag "Login" %>
+	<%= submit_tag _("Login") %>
 <% end %>

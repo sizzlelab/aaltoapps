@@ -1,15 +1,14 @@
 <div id="left-column">
   <div id="image" style="border:groove;width:130px;height: 140px;">
-    Drag a image here!
-
+    <%= _("Drag an image here!") %>
   </div>
-  <%=file_field_tag 'Browse'%>
+  <%=file_field_tag _('Browse') %>
   </div>
 <div id="right-column">
 <%= form_for(@product) do |f| %>
 <% if @product.errors.any? %>
 <div id="error_explanation">
-    <h2><%= pluralize(@product.errors.count, "error") %>prohibited this product from being saved:</h2>
+    <h2><%= _("Validation errors prohibited this product from being saved") %>:</h2>
     <ul>
         <% @product.errors.full_messages.each do |msg| %>
         <li>
@@ -21,15 +20,15 @@
 <% end %>
 <div>
     <p>
-        Please fill in the following form. 
+        <%= _("Please fill in the following form.") %> 
         <br/>
-        Fields marked with asterisk (*) are compulsory.
+        <%= _("Fields marked with asterisk (*) are compulsory") %>.
     </p>
 </div>
 <table>
     <tr>
         <td align="right">
-            <%= f.label :name,'Name of the product *:' %>
+            <%= f.label :name, _('Name of the product') + ' *:' %>
         </td>
         <td>
             <%= f.text_field :name %>
@@ -37,7 +36,7 @@
     </tr>
     <tr>
         <td align="right">
-            <%= f.label :url,'URL *:' %>
+            <%= f.label :url,_('URL') + ' *:' %>
         </td>
         <td>
             <%= f.text_field :url %>
@@ -45,7 +44,7 @@
     </tr>
     <tr>
         <td align="right">
-            <%= f.label :description,'Description *:' %>
+            <%= f.label :description, _('Description') + ' *:' %>
         </td>
         <td >
             <%= f.text_area :description %>
@@ -53,7 +52,7 @@
     </tr>
     <tr>
         <td align="right">
-            <%= f.label :platform,'Choose a platform *:' %>
+            <%= f.label :platform, _('Choose a platform') + ' *:' %>
         </td>
         <td>
             <%= f.select :platform, options_for_select([ "all platforms", "web apps", "mobile web apps" ], "all platforms") %>
@@ -61,17 +60,17 @@
     </tr>
     <tr>
         <td align="right">
-            <%= f.label :donate,'Show Donate buttton *:' %>
+            <%= f.label :donate, _('Show Donate buttton') + ' *:' %>
         </td>
         <td>
-            <%= f.radio_button :donate, 'yes' %>Yes<%= f.radio_button :donate, 'no' %>No
+            <%= f.radio_button :donate, 'yes' %><%= _('Yes') %><%= f.radio_button :donate, 'no' %><%= _('No') %>
         </td>
     </tr>
     <tr>
         <td>
         </td>
         <td>
-            <%= f.submit 'Submit' %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=f.submit 'Cancel',:name=>'cancel' %>
+            <%= f.submit _('Submit') %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=f.submit _('Cancel') ,:name=>'cancel' %>
         </td>
     </tr>
     <% end %>

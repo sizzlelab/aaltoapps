@@ -1,6 +1,6 @@
 <!--Prepare for datas-->
 <!--can put this array to configfile/module-->
-<%@platforms=["web apps","mobile web apps","all platforms"]%>
+<% @platforms=["web apps","mobile web apps","all platforms"] %>
 
 
 <!--Prepare for datas-->
@@ -11,24 +11,24 @@
 </h2>
 <div align="center" id="#">
 <h3 >
-  <h4 >Select sort criteria</h4>
-  <%=link_to 'Publication date', products_by_platform_path(params[:platform],'created_at')%>&nbsp;&nbsp;|
-  <%=link_to 'Most popular', products_by_platform_path([:platform],'popularity')%>&nbsp;&nbsp;|
-  <%=link_to 'Most rated', products_by_platform_path(params[:platform],'rating')%>&nbsp;&nbsp;|
-  <%=link_to 'Featured apps', products_by_platform_path(params[:platform],'featured')%>&nbsp;&nbsp;
+  <h4><%= _("Select sort criteria") %></h4>
+  <%= link_to _('Publication date'), products_by_platform_path(params[:platform],'created_at') %>&nbsp;&nbsp;|
+  <%= link_to _('Most popular'), products_by_platform_path([:platform],'popularity') %>&nbsp;&nbsp;|
+  <%= link_to _('Most rated'), products_by_platform_path(params[:platform],'rating') %>&nbsp;&nbsp;|
+  <%= link_to _('Featured apps'), products_by_platform_path(params[:platform],'featured') %>&nbsp;&nbsp;
 </h3>
 </div>
-  <%if !@err_msg.blank?%>
+  <% if !@err_msg.blank? %>
 <br/><br/>
 <div class="browse_search_err_msg" align="center">
-  <h1><%=@err_msg%></h1>
+  <h1><%= @err_msg %></h1>
 </div>
-  <%end%>
- <%if !@products.blank?%>
+  <% end %>
+ <% if !@products.blank? %>
 <div class="browse_products">
 
 <%@products=@products.paginate(:page => params[:page]||1,  :per_page => 6)%>
-    <h1>Listing All Products</h1>
+    <h1><%= _("Listing All Products") %></h1>
   <%=render :partial=>'product',:collection=>@products%>
 </div>
 <div class="browse_paginate">
@@ -39,7 +39,7 @@
 <%if !@my_published_products.blank? %>
 <%@my_published_products=@my_published_products.paginate(:page => params[:page]||1, :per_page => 6)%>
 
-<h1>Listing My Published Products</h1>
+<h1><%= _("Listing My Published Products") %></h1>
 <div class="browse_products">
  <% reset_cycle 'browse_products'%>
   <%=render :partial=>'product',:collection=>@my_published_products%>

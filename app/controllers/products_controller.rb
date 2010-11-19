@@ -17,10 +17,9 @@ class ProductsController < ApplicationController
       if  params[:sort] &&
           params[:sort] =~ /^([a-z_]+)(?: +DESC)?$/i &&
           ALLOWED_SORT_KEYS.member?($1)
-        if $1 == 'average_rating'
-          # TODO: implement this
-          #{ :include=>[:ratings], :order=>'ratings.rating' }
-          {}
+        case $1
+        when 'average_rating'
+          { :order=>'(SELECT AVG(ratings.rating) FROM ratings WHERE products.id = ratings.product_id)' }
         else
           { :order => params[:sort] }
         end

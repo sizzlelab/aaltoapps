@@ -182,10 +182,17 @@ class User < ActiveRecord::Base
   def update_attributes(params, cookie=nil)
     if params[:preferences]
       super(params)
-    else  
+    else
+      # change empty strings to nil
+      params.each { |k,v| params[k] = nil if v == '' }
+      # ASI doesn't allow these fields to be unset
+      params.delete :email if params[:email].nil?
+      params.delete :gender if params[:gender].nil?
+      
       #Handle name part parameters also if they are in hash root level
       User.remove_root_level_fields(params, "name", ["given_name", "family_name"])
       User.remove_root_level_fields(params, "address", ["street_address", "postal_code", "locality"])
+      
       if params["name"] || params[:name]
         # If name is going to be changed, expire name cache
         Rails.cache.delete("person_name/#{self.id}")
@@ -220,8 +227,8 @@ class User < ActiveRecord::Base
   
   def self.remove_root_level_fields(params, field_type, fields)
     fields.each do |field|
-      if params[field] && (params[field_type].nil? || params[field_type][field].nil?)
-        params.update({field_type => Hash.new}) if params[field_type].nil?
+      if params.has_key?(field) && (!params.has_key?(field_type) || !params[field_type].has_key?(field))
+        params.update({field_type => Hash.new}) unless params.has_key?(field_type)
         params[field_type].update({field => params[field]})
         params.delete(field)
       end

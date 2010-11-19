@@ -4,11 +4,6 @@
 
 
 <!--Prepare for datas-->
-<h2>
- <% @platforms.each do |platform|%>
- <%= link_to platform, products_by_platform_path(platform, params[:sort]) %> &nbsp;&nbsp;
- <%end%>
-</h2>
 <div align="center" id="#">
 <h3 >
   <h4><%= _("Select sort criteria") %></h4>

@@ -9,7 +9,7 @@
 .browse_product_left_silver {
     background:silver;
     margin-bottom:0.2em;
-    border-radius: 2em;
+    border-radius: 0.5em;
     width:49%;
     float:left;
    
@@ -18,7 +18,7 @@
 .browse_product_right_white {
     background:white;
     margin-bottom:0.2em;
-    border-radius: 2em;
+    border-radius: 0.5em;
     width:49%;
     float:right;
     
@@ -27,7 +27,7 @@
 .browse_product_left_white {
     background:white;
     margin-bottom:0.2em;
-    border-radius: 2em;
+    border-radius: 0.5em;
     width:49%;
     float:left;
    
@@ -36,7 +36,7 @@
 .browse_product_right_silver {
     background:silver;
     margin-bottom:0.2em;
-    border-radius: 2em;
+    border-radius: 0.5em;
     width:49%;
     float:right;
 

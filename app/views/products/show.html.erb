@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <p id="alert"><%= alert %></p>
 
-<h1 id="product-title"><%= @product.name %> - Detailed view</h1>
+<h1 id="product-title"><%= @product.name %> - <%= _("Detailed view") %></h1>
 
 <div id="product-info">
   <div id="product-image">
@@ -13,23 +13,23 @@
 
   <div id="product-details">
     <dl id="product-publisher">
-      <dt>Publisher:</dt>
+      <dt><%= _("Publisher") %>:</dt>
       <dd><%= @product.publisher.username if @product.publisher %></dd>
     </dl>
 
     <dl id="product-published">
-      <dt>Published:</dt>
+      <dt><%= _("Published") %>:</dt>
       <dd><%= l @product.updated_at.to_date, :format => :long %></dd>
     </dl>
 
     <dl id="product-rating">
-      <dt>Rating:</dt>
+      <dt><%= _("Rating") %>:</dt>
       <dd>
         <%= render :partial => 'ratings/rating', :object => @product.average_rating %>
         
         <% if logged_in? %>
           <div id="product-rating-form">
-            Your rating:
+            <%= _("Your rating:") %>
             <%= render 'ratings/form' %>
           </div>
         <% end %>
@@ -37,26 +37,26 @@
     </dl>
 
     <dl id="product-url">
-      <dt>Url:</dt>
+      <dt><%= _("URL") %>:</dt>
       <dd><%= link_to @product.url, @product.url %></dd>
     </dl>
 
     <dl id="product-description">
-      <dt>Description:</dt>
+      <dt><%= _("Description") %>:</dt>
       <dd><%= @product.description %></dd>
     </dl>
   </div>
 </div>
 
 <p>
-  <b>Comments:</b>
+  <b><%= _("Comments") %>:</b>
   <%= render :partial => "comment/list", :collection => @product.comments, :as => :comment %>
  
   <p>
     <% if logged_in? %>
       <%= render :partial => "comment/form", :object => @product %>
     <% else %>
-      <b>Please login to add comments</b>
+      <b><%= _("Please login to add comments") %></b>
     <% end %>
   <p>
 

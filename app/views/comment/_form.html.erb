@@ -1,11 +1,9 @@
 <% if logged_in? %>
   <p>
-
     <%= form_for [@product, @product.comments.build(:commenter => current_user)] do |f| %>
       <%= f.text_area :body %>
       <%= f.submit %>
     <% end %>
-
   </p>
 <% end %>
 

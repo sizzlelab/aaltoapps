@@ -7,7 +7,7 @@
 # If rating is nil or its value unset, :empty_message is displayed.
 
   if rating.nil?
-    defined?(empty_message) ? empty_message : 'not yet rated'
+    defined?(empty_message) ? empty_message : _('not yet rated')
   else
     rating_val = rating.to_f
     stars = rating_val.truncate

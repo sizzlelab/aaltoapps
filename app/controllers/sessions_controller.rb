@@ -16,13 +16,15 @@ class SessionsController < ApplicationController
     session[:form_username] = nil
 
     if @session.person_id  # if not app-only-session and person found in cos
-      unless session[:current_user_id] = User.find_by_asi_id(@session.person_id).id
-        # The user has succesfully logged in, but is not found in Kassi DB
-        # Existing Sizzle user's first login in Kassi
-        session[:temp_cookie] = @session.cookie
-        session[:temp_person_id] = @session.person_id
-        redirect_to terms_path and return
+      debugger
+      user = User.find_by_asi_id(@session.person_id)
+      if !user
+        # TODO: Redirect to terms path
+        User.create(:asi_id => @session.person_id)
       end
+      session[:current_user_id] = User.find_by_asi_id(@session.person_id).id
+      
+      redirect_to root_path and return
     end
     
     session[:cookie] = @session.cookie

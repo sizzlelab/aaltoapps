@@ -1,11 +1,11 @@
-<h1>Listing users</h1>
+<h1><%= _("Listing users") %></h1>
 
 <table>
   <tr>
-    <th>Username</th>
-    <th>Firstname</th>
-    <th>Lastname</th>
-    <th>Email</th>
+    <th><%= _("Username") %></th>
+    <th><%= _("Firstname") %></th>
+    <th><%= _("Lastname") %></th>
+    <th><%= _("Email") %></th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,16 +14,16 @@
 <% @users.each do |user| %>
   <tr>
     <td><%= user.username %></td>
-    <td><%= user.firstname %></td>
-    <td><%= user.lastname %></td>
+    <td><%= user.given_name %></td>
+    <td><%= user.family_name %></td>
     <td><%= user.email %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to _('Show'), user %></td>
+    <td><%= link_to _('Edit'), edit_user_path(user) %></td>
+    <td><%= link_to _('Destroy'), user, :confirm => _('Are you sure?'), :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to _('New User'), new_user_path %>

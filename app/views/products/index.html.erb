@@ -26,8 +26,6 @@
   <% end %>
  <% if !@products.blank? %>
 <div class="browse_products">
-
-<%@products=@products.paginate(:page => params[:page]||1,  :per_page => 6)%>
     <h1><%= _("Listing All Products") %></h1>
   <%=render :partial=>'product',:collection=>@products%>
 </div>
@@ -35,22 +33,3 @@
    <%= will_paginate @products %>
 </div>
 <%end%>
-
-<%if !@my_published_products.blank? %>
-<%@my_published_products=@my_published_products.paginate(:page => params[:page]||1, :per_page => 6)%>
-
-<h1><%= _("Listing My Published Products") %></h1>
-<div class="browse_products">
- <% reset_cycle 'browse_products'%>
-  <%=render :partial=>'product',:collection=>@my_published_products%>
-
-</div>
-
-  <div>
-   <%= will_paginate @my_published_products %>
-</div>
-<%end%>
-  
-
-
-<%#= if logged_in? then link_to('New Product', new_product_path) end %>

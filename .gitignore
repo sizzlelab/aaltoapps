@@ -6,4 +6,5 @@ log/*.log
 tmp/**/*
 config/database.yml
 config/aaltoapps_config.yml
+config/deploy.rb
 /Gemfile.lock

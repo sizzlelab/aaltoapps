@@ -11,9 +11,11 @@
   <div class="app_menu_row"><%= link_to _("home"), root_path %></div>
   <div class="app_menu_row"><%= link_to _("browse"), root_path %></div>
   <div class="app_menu_row"><%= link_to _("publish"), root_path %></div>
-  <!--<% @platforms.each do |platform|%>
+<% if false %>
+  <% @platforms.each do |platform|%>
   <div class="app_menu_row"><%= link_to platform, products_by_platform_path(platform, params[:sort]) %> &nbsp;&nbsp;</div>
-  <%end%>-->
+  <%end%>
+<%end%>
   </div>
 
   <div class="layout_frame">

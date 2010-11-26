@@ -36,9 +36,6 @@ class RatingsController < ApplicationController
           success = @rating.save
           raise ActiveRecord::Rollback unless success
         end
-        @product=Product.find(params[:product_id])
-        @product.rating=@product.average_rating
-        @product.save
       end
     else
       # create empty Rating for error message

@@ -1,7 +1,7 @@
 <%= form_for @user do |f| %>
 	<% if flash[:error] %>
     <div id="error_explanation">
-      <h2><%= _("Validation errors prohibited this user from being saved") %>:</h2>
+      <h2><%= pluralize(flash[:error].count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
       <% flash[:error].each do |msg| %>
@@ -12,75 +12,77 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :username, _("Username") %><br />
+    <%= f.label :username %><br />
     <%= f.text_field :username%>
   </div>
 
   <div class="field">
-    <%= f.label :password, _("Password") %><br />
+    <%= f.label :password %><br />
     <%= f.password_field :password %>
   </div>
   <div class="field">
-    <%= f.label :password2, _("Password confirmation") %><br />
+    <%= f.label :password2 %><br />
     <%= f.password_field :password2 %>
   </div>
 
   <div class="field">
-    <%= f.label :email, _("Email") %><br />
+    <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
 
-  <div class="field">
-    <%= f.label :birthdate, _("Birthday") %><br />
-    <%= f.text_field :birthdate %>
-  </div>
+  <% unless @user.new_record? %>
+    <div class="field">
+      <%= f.label :birthdate %><br />
+      <%= f.text_field :birthdate %>
+    </div>
 
-  <div class="field">
-    <%= f.label :gender, _("Gender") %><br />
-    <%= f.select :gender, [[_('Unspecified'), ''], [_('Male'), 'MALE'], [_('Female'), 'FEMALE']] %>
-  </div>
+    <div class="field">
+      <%= f.label :gender %><br />
+      <%= f.select :gender, [['Unspecified', ''], ['Male', 'MALE'], ['Female', 'FEMALE']] %>
+    </div>
 
-  <div class="field">
-    <%= f.label :description, _("Description") %><br />
-    <%= f.text_field :description %>
-  </div>
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_field :description %>
+    </div>
 
-  <div class="field">
-    <%= f.label :website, _("Web site") %><br />
-    <%= f.text_field :website %>
-  </div>
+    <div class="field">
+      <%= f.label :website %><br />
+      <%= f.text_field :website %>
+    </div>
 
-  <div class="field">
-    <%= f.label :phone_number, _("Phone number") %><br />
-    <%= f.text_field :phone_number %>
-  </div>
+    <div class="field">
+      <%= f.label :phone_number %><br />
+      <%= f.text_field :phone_number %>
+    </div>
 
-  <div class="field">
-    <%= f.label :given_name, _("Given name") %><br />
-    <%= f.text_field :given_name %>
-  </div>
+    <div class="field">
+      <%= f.label :given_name %><br />
+      <%= f.text_field :given_name %>
+    </div>
 
-  <div class="field">
-    <%= f.label :family_name, _("Family name") %><br />
-    <%= f.text_field :family_name %>
-  </div>
+    <div class="field">
+      <%= f.label :family_name %><br />
+      <%= f.text_field :family_name %>
+    </div>
 
-  <div class="field">
-    <%= f.label :street_address, _("Street address") %><br />
-    <%= f.text_field :street_address %>
-  </div>
+    <div class="field">
+      <%= f.label :street_address %><br />
+      <%= f.text_field :street_address %>
+    </div>
 
-  <div class="field">
-    <%= f.label :postal_code, _("Postal code") %><br />
-    <%= f.text_field :postal_code %>
-  </div>
+    <div class="field">
+      <%= f.label :postal_code %><br />
+      <%= f.text_field :postal_code %>
+    </div>
 
-  <div class="field">
-    <%= f.label :locality, _("Locality") %><br />
-    <%= f.text_field :locality %>
-  </div>
+    <div class="field">
+      <%= f.label :locality %><br />
+      <%= f.text_field :locality %>
+    </div>
+  <% end %>
 
   <div class="actions">
-    <%= f.submit, _("Submit") %>
+    <%= f.submit %>
   </div>
 <% end %>

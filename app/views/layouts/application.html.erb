@@ -7,6 +7,14 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+  <div class="app_menu">
+  <div class="app_menu_row"><%= link_to _("home"), root_path %></div>
+  <div class="app_menu_row"><%= link_to _("browse"), root_path %></div>
+  <div class="app_menu_row"><%= link_to _("publish"), root_path %></div>
+  <% list_platforms.each do |platform|%>
+  <div class="app_menu_row"><%= link_to platform, products_by_platform_path(platform, params[:sort]) %> &nbsp;&nbsp;</div>
+  <%end%>
+  </div>
 
   <div class="layout_frame">
 

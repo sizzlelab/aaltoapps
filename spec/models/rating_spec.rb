@@ -5,7 +5,8 @@ describe Rating do
   before(:each) do
     # create an initially valid rating instance
     # use dummy values for user and product ids
-    @rating = Rating.new(:user_id => 0xdead, :product_id => 0xbeef, :rating => Rating::Max)
+    @rating = Rating.new(:user_id => 0xdead, :product_id => 0xbeef, :rating => Rating::MAX)
+    @rating.should be_valid
   end
   
   it "should accept all valid values" do
@@ -16,10 +17,10 @@ describe Rating do
   end
   
   it "should not accept invalid values" do
-    [ Rating::Min - 1,
-      Rating::Min + Rating::Increment*0.5,
-      Rating::Max - Rating::Increment*0.5,
-      Rating::Max + 1
+    [ Rating::MIN - 1,
+      Rating::MIN + Rating::STEP*0.5,
+      Rating::MAX - Rating::STEP*0.5,
+      Rating::MAX + 1
     ].each do |value|
       @rating.rating = value
       @rating.should_not be_valid

@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Comment do
   before(:each) do
     @comment = Comment.new :body => "comment body", :product_id => 0xcafe, :commenter_id => 0xbabe
+    @comment.should be_valid
   end
 
   it "should not have a nil body" do

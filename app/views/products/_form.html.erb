@@ -55,7 +55,7 @@
             <%= f.label :platform, _('Choose a platform') + ' *:' %>
         </td>
         <td>
-            <%= f.select :platform, options_for_select([ "all platforms", "web apps", "mobile web apps" ], "all platforms") %>
+          <%= f.collection_select :platform_id, Platform.all, :id, :name, {:prompt => true} %>
         </td>
     </tr>
     <tr>

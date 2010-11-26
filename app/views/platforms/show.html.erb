@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b><%= _("Name") %>:</b>
+  <%= @platform.name %>
+</p>
+
+<p>
+  <b><%= _("Image URL") %>:</b>
+  <%= @platform.image_url %>
+</p>
+
+<p>
+  <b><%= _("Products") %>:</b>
+  <% @platform.products.each do |product| %>
+    <%= product.name %>
+  <% end %>
+</p>
+
+
+<%= link_to _('Edit'), :action => "edit", :id => @platform.id %> |
+<%= link_to _('List platforms'), :action => "index" %>

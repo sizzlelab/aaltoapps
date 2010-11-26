@@ -14,7 +14,7 @@
 
     <div class="field">
       <%=
-        f.select(:rating, [['no rating', '']] + Rating::allowed_values)
+        f.select(:rating, [['no rating', '']] + Rating.allowed_values)
       %>
     </div>
     <div class="actions">

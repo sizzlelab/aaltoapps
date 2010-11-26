@@ -12,12 +12,12 @@
       <div class="app_menu_row"><%= link_to _("home"), root_path %></div>
       <div class="app_menu_row"><%= link_to _("browse"), root_path %></div>
 
-    <% if false %>
-      <% @platforms.each do |platform|%>
-      <div class="app_submenu_row"><%= link_to platform, products_by_platform_path(platform, params[:sort]) %></div>
-      <%end%>
-    <%end>
-      <div class="app_menu_row"><%= link_to _("publish"), root_path %></div>
+   
+      <!--<%# @platforms.each do |platform|%>
+      <div class="app_submenu_row"><%#= link_to platform, products_by_platform_path(platform, params[:sort]) %></div>
+      <%#end%>
+    
+      <div class="app_menu_row"><%#= link_to _("publish"), root_path %></div>-->
     
 
     </div>

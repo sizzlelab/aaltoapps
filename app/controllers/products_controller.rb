@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   PRODUCTS_PER_PAGE = 6
   DEFAULT_SORT = "products.updated_at DESC"
-  ALLOWED_SORT_KEYS = %w(name created_at updated_at publisher average_rating)
+  ALLOWED_SORT_KEYS = %w(name created_at updated_at publisher avg_rating)
 
   # GET /products
   # GET /products.xml
@@ -18,10 +18,7 @@ class ProductsController < ApplicationController
           params[:sort] =~ /^ *([a-z_]+) *( (?:ASC|DESC))? *$/i &&
           ALLOWED_SORT_KEYS.member?($1)
         case $1
-        when 'average_rating'
-          '(SELECT AVG(ratings.rating) FROM ratings WHERE products.id = ratings.product_id)' +
-            ($2 || ' DESC')
-        when 'popularity', 'created_at', 'updated_at'
+        when 'popularity', 'created_at', 'updated_at', 'avg_rating'
           # these are sorted in descending order by default
           'products.' + $1 + ($2 || ' DESC')
         else

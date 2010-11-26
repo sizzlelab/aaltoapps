@@ -17,6 +17,16 @@
       <dd><%= @product.publisher.username if @product.publisher %></dd>
     </dl>
 
+    <dl id="product-category">
+      <dt><%= _("Category") %>:</dt>
+      <dd><%= @product.category.name %></dd>
+    </dl>
+
+    <dl id="product-platform">
+      <dt><%= _("Platform") %>:</dt>
+      <dd><%= @product.platform.name %></dd>
+    </dl>
+
     <dl id="product-published">
       <dt><%= _("Published") %>:</dt>
       <dd><%= l @product.updated_at.to_date, :format => :long %></dd>

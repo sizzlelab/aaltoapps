@@ -31,31 +31,27 @@ class ProductsController < ApplicationController
       else
         DEFAULT_SORT
       end
-    
-    find_params = { :order => sort }
-    find_params[:conditions] = { :platform_id => params[:platform] } if params[:platform]
 
-    @products = Product.paginate({ :page => page, :per_page => PRODUCTS_PER_PAGE }.merge(find_params))
-    
-    @my_published_products = my_published_apps_by(params[:platform], sort)
+    catch(:abort) do
+      query = Product
+      if params[:q]
+        if params[:q].empty?
+          flash[:alert] = _('Empty search string')
+          throw :abort
+        end
+        query = query.where("name LIKE ?", params[:q])
+      end
+      query = query.where(:platform_id => params[:platform]) if params[:platform]
+
+      @products = query.paginate(:page => page, :per_page => PRODUCTS_PER_PAGE, :order => sort)
+
+      @my_published_products = my_published_apps_by(params[:platform], sort)
+    end
     
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @products }
     end
-  end
-
-  def search
-    if params[:search]&&!params[:search].blank?
-      @products=Product.where("name LIKE ?","%#{params[:search]}%")
-      if @products.blank?
-      @err_msg="The keywords you search don't exist!"
-      end
-    else
-      @err_msg="Your should input some keywords!"
-    end
-
-    render :action=>:index
   end
 
   # GET /products/1

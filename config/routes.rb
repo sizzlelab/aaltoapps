@@ -19,8 +19,6 @@ AaltoApps::Application.routes.draw do
       namespace 'platform' do
         get ':platform' => 'products#by_platform'
       end
-
-      get :search
     end
   end
 

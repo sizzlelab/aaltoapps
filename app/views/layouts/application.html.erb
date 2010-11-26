@@ -7,40 +7,45 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <div class="app_menu">
-  <div class="app_menu_row"><%= link_to _("home"), root_path %></div>
-  <div class="app_menu_row"><%= link_to _("browse"), root_path %></div>
-  <div class="app_menu_row"><%= link_to _("publish"), root_path %></div>
-<% if false %>
-  <% @platforms.each do |platform|%>
-  <div class="app_menu_row"><%= link_to platform, products_by_platform_path(platform, params[:sort]) %> &nbsp;&nbsp;</div>
-  <%end%>
-<%end%>
-  </div>
+  <div class="wrapper">
+    <div class="app_menu">
+      <div class="app_menu_row"><%= link_to _("home"), root_path %></div>
+      <div class="app_menu_row"><%= link_to _("browse"), root_path %></div>
 
-  <div class="layout_frame">
+      <% @platforms.each do |platform|%>
+      <div class="app_submenu_row"><%= link_to platform, products_by_platform_path(platform, params[:sort]) %></div>
+      <%end%>
+      <div class="app_menu_row"><%= link_to _("publish"), root_path %></div>
+    
 
-    <div class="layout_logo">
-      <%= link_to _("Aalto Apps"), root_path %>
-    </div>
-    <div class="layout_search" align="right">
-      <%=render :partial=>"/products/search"%>
-    </div>
-    <div class="layout_menu">
-      <span class="layout_menuitem">
-        <%= render :partial => "/users/login_menu" %>
-      </span>
     </div>
 
-    <div class="layout_master">
-      <%= yield %>
-    </div>
+    <div class="layout_frame">
 
-    <div class="layout_footer">
-      <%= _("Official looking footer here") %>
-    </div>
+      <div class="layout_logo">
+        <%= link_to _("Aalto Apps"), root_path %>
+      </div>
+      <div class="layout_search" align="right">
+        <%=render :partial=>"/products/search"%>
+      </div>
+      <div class="layout_menu">
+        <span class="layout_menuitem">
+          <%= render :partial => "/users/login_menu" %>
+        </span>
+      </div>
 
-  </div>
+      <div class="layout_master">
+        <%= yield %>
+      </div>
+
+      <div class="layout_footer">
+        <%= _("Official looking footer here") %>
+      </div>
+  
+    </div>
+    <div class="clear"></div>
+    </div>
+  
 
 </body>
 </html>

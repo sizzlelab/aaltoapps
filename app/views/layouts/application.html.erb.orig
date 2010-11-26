@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= _("Aalto Apps") %></title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<<<<<<< HEAD
+  <div class="wrapper">
+    <div class="app_menu">
+      <div class="app_menu_row"><%= link_to _("home"), root_path %></div>
+      <div class="app_menu_row"><%= link_to _("browse"), root_path %></div>
+=======
+  <div class="app_menu">
+  <div class="app_menu_row"><%= link_to _("home"), root_path %></div>
+  <div class="app_menu_row"><%= link_to _("browse"), root_path %></div>
+  <div class="app_menu_row"><%= link_to _("publish"), root_path %></div>
+  <% list_platforms.each do |platform|%>
+  <div class="app_menu_row"><%= link_to platform, products_by_platform_path(platform, params[:sort]) %> &nbsp;&nbsp;</div>
+  <%end%>
+  </div>
+>>>>>>> 9914ac597f00415e192dd6770c2ae03e2ca6f61f
+
+      <% @platforms.each do |platform|%>
+      <div class="app_submenu_row"><%= link_to platform, products_by_platform_path(platform, params[:sort]) %></div>
+      <%end%>
+      <div class="app_menu_row"><%= link_to _("publish"), root_path %></div>
+    
+
+    </div>
+
+    <div class="layout_frame">
+
+      <div class="layout_logo">
+        <%= link_to _("Aalto Apps"), root_path %>
+      </div>
+      <div class="layout_search" align="right">
+        <%=render :partial=>"/products/search"%>
+      </div>
+      <div class="layout_menu">
+        <span class="layout_menuitem">
+          <%= render :partial => "/users/login_menu" %>
+        </span>
+      </div>
+
+      <div class="layout_master">
+        <%= yield %>
+      </div>
+
+      <div class="layout_footer">
+        <%= _("Official looking footer here") %>
+      </div>
+  
+    </div>
+    <div class="clear"></div>
+    </div>
+  
+
+</body>
+</html>

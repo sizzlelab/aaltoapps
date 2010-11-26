@@ -1,0 +1,27 @@
+<%= form_for @platform do |f| %>
+	<% if flash[:error] %>
+    <div id="error_explanation">
+      <h2><%= pluralize(flash[:error].count, "error") %> prohibited this platform from being saved:</h2>
+
+      <ul>
+      <% flash[:error].each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, _("Name") %><br />
+    <%= f.text_field :name%>
+  </div>
+
+  <div class="field">
+    <%= f.label :image_url, _("Category image url") %><br />
+    <%= f.text_field :image_url %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit _("Submit") %>
+  </div>
+<% end %>

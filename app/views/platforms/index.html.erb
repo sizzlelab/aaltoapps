@@ -1,0 +1,27 @@
+<h1><%= _("Listing platforms") %></h1>
+
+<table>
+  <tr>
+    <th><%= _("Name") %></th>
+    <th><%= _("Image url") %></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @platforms.each do |platform| %>
+  <tr>
+    <td><%= platform.username %></td>
+    <td><%= platform.given_name %></td>
+    <td><%= platform.family_name %></td>
+    <td><%= platform.email %></td>
+    <td><%= link_to _('Show'), :action => "show", :id => platform.id %></td>
+    <td><%= link_to _('Edit'), :action => "edit", :id => platform.id %></td>
+    <td><%= link_to _('Destroy'), platform, :confirm => _('Are you sure?'), :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to _('New Platform'), :action => "new" %>

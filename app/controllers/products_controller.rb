@@ -94,19 +94,19 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(params[:product])
     @product.publisher_id = current_user.id
- if params[:cancel]
-   @product = Product.new
-   render :action=>'new'
- else
-    respond_to do |format|
-      if @product.save        
-	format.html { redirect_to(@product, :notice => 'Product was successfully created.') }
-        format.xml  { render :xml => @product, :status => :created, :location => @product }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
+    if params[:cancel]
+      @product = Product.new
+      render :action => 'new'
+    else
+      respond_to do |format|
+        if @product.save        
+          format.html { redirect_to(@product, :notice => 'Product was successfully created.') }
+          format.xml  { render :xml => @product, :status => :created, :location => @product }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
+        end
       end
-    end
     end
   end
 
@@ -137,27 +137,27 @@ class ProductsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
-private
+
+  private
 
   def add_popularity
     @product = Product.find(params[:id])
-    @product.popularity+=1
+    @product.popularity += 1
     @product.save
   end
- 
+
   #return apps that user created by platform
   def my_published_apps_by(platform_id, sort=DEFAULT_SORT)
     # If user logged in, show his/her apps
     if logged_in?
       if platform_id
         current_user.published.order(sort).where(:platform_id => platform_id)
-      else
+       else
         current_user.published.order(sort)
-      end
+       end
     else
       []
-    end
+     end
   end
 
 end

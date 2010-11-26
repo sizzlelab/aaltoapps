@@ -17,7 +17,7 @@ AaltoApps::Application.routes.draw do
 
     collection do
       namespace 'platform' do
-        get ':platform' => 'products#by_platform'
+        get ':platform' => 'products#index'
       end
     end
   end

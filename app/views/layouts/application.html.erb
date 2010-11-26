@@ -5,22 +5,63 @@
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
+
+  <script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+		   
+    if($.browser.msie){
+		  $('#menu .submenu_row') .css('border-width','0 1px 1px;');
+	  }
+
+    $('.toggle:not(.toggle-open)') .addClass('toggle-closed') .parents('li') .children('ul') .hide();
+							
+	  $('#menu .menutop') .click(function(){
+		
+    if ($(this) .hasClass('toggle-open')) {		
+  		$(this) .removeClass('toggle-open') .addClass('toggle-closed')  .parents    ('li') .children('ul') .slideUp(250);
+			$(this) .parent('.menutop') .removeClass('menutop-open') .addClass('menutop-closed');
+		}else{
+			$(this) .parent('.menutop') .removeClass('menutop-closed') .addClass('menutop-open');
+			$(this) .removeClass('toggle-closed') .addClass('toggle-open') .parents('li') .children('ul') .slideDown(250);
+
+    
+		}
+		
+								 })
+							})
+</script>
+
+
 </head>
 <body>
   <div class="wrapper">
-    <div class="app_menu">
-      <div class="app_menu_row"><%= link_to _("home"), root_path %></div>
-      <div class="app_menu_row"><%= link_to _("browse"), root_path %></div>
+    <div id="menu">
+ <ul class="navmenu">
+   <li><div class="menusingle"><%= link_to _("Home"), root_path %></div>
+   </li>
 
-   
-      <!--<%# @platforms.each do |platform|%>
-      <div class="app_submenu_row"><%#= link_to platform, products_by_platform_path(platform, params[:sort]) %></div>
-      <%#end%>
-    
-      <div class="app_menu_row"><%#= link_to _("publish"), root_path %></div>-->
-    
+  
 
-    </div>
+   <li><div class="menutop"><a href="#">Browse</a></div>
+     <ul class="submenu">
+        
+        <!--<%# list_platforms.each do |platform|%>
+      <li class="submenu_row"><%#= link_to platform, products_by_platform_path(platform, params[:sort]) %></li>
+      <%#end%>-->
+    
+       <li class="submenu_row"><%= link_to _("1"), root_path %></li>
+       <li class="submenu_row"><%= link_to _("2"), root_path %></li>
+       <li class="submenu_row"><%= link_to _("3"), root_path %></li>
+     </ul>
+   </li>
+
+   <% if logged_in? %>  
+    <li><div class="menusingle"><%= link_to _("Publish"), root_path %></div>
+    </li>
+   <%end%>
+ </ul>
+ </div>
 
     <div class="layout_frame">
       <div class="layout_logo">

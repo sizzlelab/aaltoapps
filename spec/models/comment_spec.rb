@@ -10,6 +10,11 @@ describe Comment do
     @comment.should_not be_valid
   end
 
+  it "should not have a too short body" do
+    @comment.body = "!"
+    @comment.should_not be_valid 
+  end
+
   it "should not have a nil commenter" do
     @comment.commenter = nil
     @comment.should_not be_valid

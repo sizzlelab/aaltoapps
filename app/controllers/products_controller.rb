@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
       end
     
     find_params = { :order => sort }
-    find_params[:conditions] = { :platform => params[:platform] } if params[:platform]
+    find_params[:conditions] = { :platform_id => params[:platform] } if params[:platform]
 
     @products = Product.paginate({ :page => page, :per_page => PRODUCTS_PER_PAGE }.merge(find_params))
     
@@ -151,11 +151,11 @@ private
   end
  
   #return apps that user created by platform
-  def my_published_apps_by(platform, sort=DEFAULT_SORT)
+  def my_published_apps_by(platform_id, sort=DEFAULT_SORT)
     # If user logged in, show his/her apps
     if logged_in?
-      if platform
-        current_user.published.order(sort).where(:platform => platform)
+      if platform_id
+        current_user.published.order(sort).where(:platform_id => platform_id)
       else
         current_user.published.order(sort)
       end

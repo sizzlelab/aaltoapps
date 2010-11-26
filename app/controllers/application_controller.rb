@@ -5,11 +5,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?, :products_by_platform_path
   
   def login_required
-    if logged_in?
-      return true
+    if !logged_in?
+      flash[:warning] = 'Login required'
+      redirect_to :controller => 'users', :action => 'login'
     end
-    flash[:warning] = 'Login required'
-    redirect_to :controller => 'users', :action => 'login'
   end
   
   def current_user

@@ -15,7 +15,7 @@
     <% if logged_in?&&(current_user==product.publisher) %>
         <%= link_to _('Show'), product %>
         <%= link_to _('Edit'), edit_product_path(product) %>
-        <%= link_to _('Destroy'), product, :confirm => _('Are you sure?'), :method => :delete %>
+        <%= button_to _('Destroy'), product, :confirm => _('Are you sure?'), :method => :delete %>
     <% end %>
     </div>
     </div>

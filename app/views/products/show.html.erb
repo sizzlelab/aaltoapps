@@ -1,6 +1,3 @@
-<p id="notice"><%= notice %></p>
-<p id="alert"><%= alert %></p>
-
 <h1 id="product-title"><%= @product.name %> - <%= _("Detailed view") %></h1>
 
 <div id="product-info">
@@ -15,6 +12,16 @@
     <dl id="product-publisher">
       <dt><%= _("Publisher") %>:</dt>
       <dd><%= @product.publisher.username if @product.publisher %></dd>
+    </dl>
+
+    <dl id="product-category">
+      <dt><%= _("Category") %>:</dt>
+      <dd><%= @product.category.name %></dd>
+    </dl>
+
+    <dl id="product-platform">
+      <dt><%= _("Platform") %>:</dt>
+      <dd><%= @product.platform.name %></dd>
     </dl>
 
     <dl id="product-published">

@@ -78,15 +78,17 @@
   clear: both;
 }
 
- #menu {float:left; margin-right: 0.2em; width: 10%; margin-top: 8.8em;}
- 
- #menu ul.navmenu li {list-style:none; margin-bottom: 0.2em;}
+ #menu .navmenu {float:left; margin-right: 0.2em; width: 8%; margin-top: 9.8em; list-style: none; }
+	
+ #menu a {text-decoration: none;}
 
- #menu .menutop {border: thin solid black; margin-bottom: 0.2em; }
+ #menu .navmenu li ul {list-style: none; padding: 0; margin-bottom: 0.2em;}
 
- #menu .menusingle {border: thin solid black;}
+ #menu .menutop {border: thin solid black; margin-bottom: 0.2em; padding-left:0.1em;}
 
- #menu .submenu {border: thin solid black;}
+ #menu .menusingle {border: thin solid black; margin-bottom: 0.2em; padding-left:0.1em;}
 
- #menu .submenu_row {text-align: left;}:
+ #menu .submenu {padding-left:0.7em; margin-bottom: 0.2em;}
+
+ #menu .submenu_row {margin-bottom: 0.2em; font-size: 0.8em;}
  

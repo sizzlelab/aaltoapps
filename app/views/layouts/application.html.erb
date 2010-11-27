@@ -9,25 +9,20 @@
   <script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
-
-      if($.browser.msie){
-        $('#menu .submenu_row') .css('border-width','0 1px 1px;');
-      }
-
-      $('.toggle:not(.toggle-open)') .addClass('toggle-closed') .parents('li') .children('ul') .hide();
-
-      $('#menu .menutop') .click(function(){
-
-        if ($(this) .hasClass('toggle-open')) {
-          $(this) .removeClass('toggle-open') .addClass('toggle-closed')  .parents    ('li') .children('ul') .slideUp(250);
-          $(this) .parent('.menutop') .removeClass('menutop-open') .addClass('menutop-closed');
-        }else{
-          $(this) .parent('.menutop') .removeClass('menutop-closed') .addClass('menutop-open');
-          $(this) .removeClass('toggle-closed') .addClass('toggle-open') .parents('li') .children('ul') .slideDown(250);
-        }
-        return false;
-      });
-    });
+			$('.menutop:not(.menutop-open)') .addClass('menutop-closed') .parents('li') .children('ul') .hide();
+			
+			$('#menu .menutop') .click(function() {
+			
+				if ($(this) .hasClass('menutop-open')) {				
+					$(this) .removeClass('menutop-open') .addClass('menutop-closed')  .parents    ('li') .children('ul') .slideUp(250);
+					$(this) .parent('.menutop') .removeClass('menutop-open') .addClass('menutop-closed');
+				}else{				
+					$(this) .parent('.menutop') .removeClass('menutop-closed') .addClass('menutop-open');
+					$(this) .removeClass('menutop-closed') .addClass('menutop-open') .parents('li') .children('ul') .slideDown(250);		  
+				}
+		    return false;
+		  });
+		});
   </script>
 
 
@@ -35,23 +30,24 @@
 <body>
   <div class="wrapper">
     <div id="menu">
-  <ul class="navmenu">
-    <li><div class="menusingle"><%= link_to _("Home"), root_path %></div>
-    </li>
+  		<ul class="navmenu">
+    		<li><div class="menusingle"><%= link_to _("Home"), root_path %></div></li>
+				<li><div class="menutop"><%= link_to _("Browse") %> </div>
+      		<ul><div class="submenu">
+        	<!--<%# list_platforms.each do |platform|%>
+          	<li class="submenu_row"><%#= link_to platform.name, products_by_platform_path(platform, params[:sort]) %></li>
+        	<%#end%>-->
+						<li class="submenu_row"><%= link_to _("Platform1"), root_path %></li>
+						<li class="submenu_row"><%= link_to _("Platform2"), root_path %></li>
+						<li class="submenu_row"><%= link_to _("Platform3"), root_path %></li>
+      		</div></ul>
+    		</li>
 
-    <li><div class="menutop"><a href="#">Browse</a></div>
-      <ul class="submenu">
-        <% list_platforms.each do |platform|%>
-          <li class="submenu_row"><%= link_to platform.name, products_by_platform_path(platform, params[:sort]) %></li>
-        <%end%>
-      </ul>
-    </li>
-
-    <% if logged_in? %>
-      <li><div class="menusingle"><%= link_to _("Publish"), root_path %></div></li>
-    <%end%>
- </ul>
- </div>
+    	 <!--<%# if logged_in? %>-->
+      		<li><div class="menusingle"><%= link_to _("Publish"), root_path %></div></li>
+    		<!--<%#end%>-->
+ 			</ul>
+ 		</div>
 
     <div class="layout_frame">
       <div class="layout_logo">
@@ -78,8 +74,8 @@
       </div>
   
     </div>
-    <div class="clear"></div>
-    </div>
+		<div class="clear"></div>
+  </div>
 
 
 </body>

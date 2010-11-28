@@ -6,6 +6,19 @@ class ProductsController < ApplicationController
   DEFAULT_SORT = "products.updated_at DESC"
   ALLOWED_SORT_KEYS = %w(name created_at updated_at publisher avg_rating)
 
+ def search
+  if params[:search]&&!params[:search].blank?
+    @products=Product.where("name LIKE ?","%#{params[:search]}%").paginate(:page => params[:page]||1,  :per_page => PRODUCTS_PER_PAGE)
+    if @products.blank?
+    @err_msg="The keywords you search don't exist!"
+    end
+  else
+    @err_msg="Your should input some keywords!"
+   end
+
+   render :action=>:index
+ end
+ 
   # GET /products
   # GET /products.xml
   def index

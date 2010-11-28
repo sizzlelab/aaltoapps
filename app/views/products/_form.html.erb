@@ -55,7 +55,7 @@
             <%= f.label :platform, _('Choose a platform') + ' *:' %>
         </td>
         <td>
-          <%= f.collection_select :platform_id, Platform.all, :id, :name, {:prompt => true} %>
+              <%= f.collection_select :platform_id, Platform.all, :id, :name, {:prompt => true} %>
         </td>
     </tr>
     <tr>
@@ -63,7 +63,7 @@
             <%= f.label :platform, _('Choose a category') + ' *:' %>
         </td>
         <td>
-          <%= f.collection_select :category_id, Category.all, :id, :name, {:prompt => true} %>
+           <%= f.collection_select :category_id, Category.all, :id, :name, {:prompt => true} %>
         </td>
     </tr>
     <tr>

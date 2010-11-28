@@ -41,7 +41,7 @@ body {
 {
   width:70%;
   float:left;
-  
+	margin-right: 5%;
 }
 
 .layout_logo {
@@ -63,27 +63,27 @@ body {
 .layout_master {
   padding: 1em;
 	text-align: center;
-	border-left: thin solid black;
-	border-right: thin solid black;
+	border: thin solid black;
+	
 }
 
-.layout_welcome {
-  padding: 1em;
-	text-align: center;
-	border-top: thin solid black;
-	border-left: thin solid black;
-	border-right: thin solid black;
+.layout_menuitem {
+	text-align:right;
+	padding: 0.2em;
 }
 
 .layout_footer
 {
   padding-left: 2em;
   padding-right: 2em;
-  border-top: thin solid;
+  border-right: thin solid black;
+	border-left: thin solid black;
+	border-bottom: thin solid black;
 }
 
 .wrapper_1 {
   position:relative;
+	
 }
 
 .wrapper_2 {
@@ -99,7 +99,7 @@ body {
   clear: both;
 }
 
- #menu .navmenu {float:left; margin-right: 0.2em; width: 8%; margin-top: 6em; list-style: none; }
+ #menu .navmenu {float:left; margin-right: 0.2em; width: 8%; margin-top: 6.9em; list-style: none;  margin-left: 5%;}
 	
  #menu a {text-decoration: none;}
 

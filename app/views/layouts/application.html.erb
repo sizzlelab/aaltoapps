@@ -37,14 +37,14 @@
         	<!--<%# list_platforms.each do |platform|%>
           	<li class="submenu_row"><%#= link_to platform.name, products_by_platform_path(platform, params[:sort]) %></li>
         	<%#end%>-->
-						<li class="submenu_row"><%= link_to _("Platform1"), root_path %></li>
-						<li class="submenu_row"><%= link_to _("Platform2"), root_path %></li>
-						<li class="submenu_row"><%= link_to _("Platform3"), root_path %></li>
+                <% Platform.all.each do |platform|%>
+ 		<li class="submenu_row"><%=link_to platform.name, platform_products_path(platform) %> </li>
+		 <%end%>
       		</div></ul>
     		</li>
 
     	 <!--<%# if logged_in? %>-->
-      		<li><div class="menusingle"><%= link_to _("Publish"), root_path %></div></li>
+      		<li><div class="menusingle"><%= link_to _("Publish"), new_product_path %></div></li>
     		<!--<%#end%>-->
  			</ul>
  		</div>

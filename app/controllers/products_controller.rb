@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   PRODUCTS_PER_PAGE = 6
   DEFAULT_SORT = "products.created_at DESC"
-  ALLOWED_SORT_KEYS = %w(name created_at updated_at publisher avg_rating featured) 
+  ALLOWED_SORT_KEYS = %w(name created_at updated_at publisher avg_rating featured popularity) 
   # GET /products
   # GET /products.xml
   def index

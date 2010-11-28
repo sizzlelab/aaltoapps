@@ -29,6 +29,11 @@
       <dd><%= l @product.updated_at.to_date, :format => :long %></dd>
     </dl>
 
+    <dl id="product-popularity">
+      <dt><%= _("Number of views") %>:</dt>
+      <dd><%= @product.popularity %></dd>
+    </dl>
+
     <dl id="product-rating">
       <dt><%= _("Rating") %>:</dt>
       <dd>

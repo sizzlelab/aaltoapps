@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_filter :add_popularity, :only=>:show
 
   PRODUCTS_PER_PAGE = 6
-  DEFAULT_SORT = "products.updated_at DESC"
+  DEFAULT_SORT = "products.created_at DESC"
   ALLOWED_SORT_KEYS = %w(name created_at updated_at publisher avg_rating featured) 
   # GET /products
   # GET /products.xml

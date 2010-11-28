@@ -3,7 +3,7 @@
   <h4><%= _("Select sort criteria") %></h4>
   <%= link_to _('Publication date'), products_by_platform_path(params[:platform],'created_at') %>&nbsp;&nbsp;|
   <%= link_to _('Most popular'), products_by_platform_path(params[:platform],'popularity') %>&nbsp;&nbsp;|
-  <%= link_to _('Most rated'), products_by_platform_path(params[:platform],'rating') %>&nbsp;&nbsp;|
+  <%= link_to _('Most rated'), products_by_platform_path(params[:platform],'avg_rating') %>&nbsp;&nbsp;|
   <%= link_to _('Featured apps'), products_by_platform_path(params[:platform],'featured') %>&nbsp;&nbsp;
 </h3>
 </div>

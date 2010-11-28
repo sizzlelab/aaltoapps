@@ -4,21 +4,7 @@ class ProductsController < ApplicationController
 
   PRODUCTS_PER_PAGE = 6
   DEFAULT_SORT = "products.updated_at DESC"
-  ALLOWED_SORT_KEYS = %w(name created_at updated_at publisher avg_rating)
-
- def search
-  if params[:search]&&!params[:search].blank?
-    @products=Product.where("name LIKE ?","%#{params[:search]}%").paginate(:page => params[:page]||1,  :per_page => PRODUCTS_PER_PAGE)
-    if @products.blank?
-    @err_msg="The keywords you search don't exist!"
-    end
-  else
-    @err_msg="Your should input some keywords!"
-   end
-
-   render :action=>:index
- end
- 
+  ALLOWED_SORT_KEYS = %w(name created_at updated_at publisher avg_rating featured) 
   # GET /products
   # GET /products.xml
   def index
@@ -31,7 +17,7 @@ class ProductsController < ApplicationController
           params[:sort] =~ /^ *([a-z_]+) *( (?:ASC|DESC))? *$/i &&
           ALLOWED_SORT_KEYS.member?($1)
         case $1
-        when 'popularity', 'created_at', 'updated_at', 'avg_rating'
+        when 'popularity', 'created_at', 'updated_at', 'avg_rating','featured'
           # these are sorted in descending order by default
           'products.' + $1 + ($2 || ' DESC')
         else
@@ -49,7 +35,7 @@ class ProductsController < ApplicationController
           flash[:alert] = _('Empty search string')
           throw :abort
         end
-        query = query.where("name LIKE ?", params[:q])
+        query = query.where("name LIKE ?", "%#{params[:q]}%")
       end
       query = query.where(:platform_id => params[:platform]) if params[:platform]
 

@@ -1,3 +1,7 @@
+body {
+	
+}
+
 .productlist_item {
     border: thin solid black;
     border-radius: 0.5em;
@@ -37,27 +41,38 @@
 {
   width:70%;
   float:left;
-  border: thin solid black;
+  
 }
 
-.layout_logo
-{
-  padding: 1em;
+.layout_logo {
+	width: 70%;
   font-size: xx-large;
-  text-align: center;
+	float: right;
+	text-align: center;
+	padding-top: 0.5em;
+	
+	
 }
 
-.layout_menu
-{
-  padding-left: 2em;
-  padding-right: 2em;
-  border-top: thin solid;
-  border-bottom: thin solid;
+.layout_info {
+	float:right;
+	width:30%;
 }
 
-.layout_master
-{
+
+.layout_master {
   padding: 1em;
+	text-align: center;
+	border-left: thin solid black;
+	border-right: thin solid black;
+}
+
+.layout_welcome {
+  padding: 1em;
+	text-align: center;
+	border-top: thin solid black;
+	border-left: thin solid black;
+	border-right: thin solid black;
 }
 
 .layout_footer
@@ -66,8 +81,14 @@
   padding-right: 2em;
   border-top: thin solid;
 }
-.wrapper {
+
+.wrapper_1 {
   position:relative;
+}
+
+.wrapper_2 {
+  position:relative;
+	margin-bottom: 1em;
 }
 
 .clear {
@@ -78,7 +99,7 @@
   clear: both;
 }
 
- #menu .navmenu {float:left; margin-right: 0.2em; width: 8%; margin-top: 9.8em; list-style: none; }
+ #menu .navmenu {float:left; margin-right: 0.2em; width: 8%; margin-top: 6em; list-style: none; }
 	
  #menu a {text-decoration: none;}
 

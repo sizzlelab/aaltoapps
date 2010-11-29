@@ -11,10 +11,8 @@
 
 <% @platforms.each do |platform| %>
   <tr>
-    <td><%= platform.username %></td>
-    <td><%= platform.given_name %></td>
-    <td><%= platform.family_name %></td>
-    <td><%= platform.email %></td>
+    <td><%= platform.name %></td>
+    <td><%= platform.image_url %></td>
     <td><%= link_to _('Show'), :action => "show", :id => platform.id %></td>
     <td><%= link_to _('Edit'), :action => "edit", :id => platform.id %></td>
     <td><%= link_to _('Destroy'), platform, :confirm => _('Are you sure?'), :method => :delete %></td>

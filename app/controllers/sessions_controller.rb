@@ -1,7 +1,6 @@
 require 'rest_client'
 
-class SessionsController < ApplicationController
-  
+class SessionsController < ApplicationController  
   def create
     session[:form_username] = params[:username]
     begin

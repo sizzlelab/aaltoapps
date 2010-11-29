@@ -12,13 +12,7 @@
                      :locals => { :empty_message => '' } %>
         </div>
         
-         <div class="browse_row">
-    <% if logged_in?&&(current_user==product.publisher) %>
-        <%= link_to _('Show'), product %>
-        <%= link_to _('Edit'), edit_product_path(product) %>
-        <%= button_to _('Destroy'), product, :confirm => _('Are you sure?'), :method => :delete %>
-    <% end %>
-    </div>
+        
     </div>
     <div class="browse_product_desc"><%= product.description %>  </div>
    

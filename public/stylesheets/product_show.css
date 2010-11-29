@@ -5,6 +5,7 @@
 #product-info {
   padding-bottom: 2em;
   border-bottom: thin solid gray;
+	text-align: left;
 }
 
 #product-image {
@@ -23,6 +24,7 @@
 #product-details {
   width: 80%;
   float: left;
+	
 }
 
 #product-details > dl {

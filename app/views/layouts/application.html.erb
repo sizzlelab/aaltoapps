@@ -34,18 +34,18 @@
     		<li><div class="menusingle"><%= link_to _("Home"), root_path %></div></li>
 				<li><div class="menutop"><%= link_to _("Browse") %> </div>
       		<ul><div class="submenu">
-        	<!--<%# list_platforms.each do |platform|%>
-          	<li class="submenu_row"><%#= link_to platform.name, products_by_platform_path(platform, params[:sort]) %></li>
-        	<%#end%>-->
-                <% Platform.all.each do |platform|%>
- 		<li class="submenu_row"><%=link_to platform.name, platform_products_path(platform) %> </li>
-		 <%end%>
+						<% if logged_in? %><!-- My Apps to products where current_user==products.publisher -->
+        			<li class="submenu_row"><%=link_to _("My Apps") %> </li>
+    				<% end %>
+
+						<% Platform.all.each do |platform|%>
+ 						<li class="submenu_row"><%=link_to platform.name, platform_products_path(platform) %> </li>
+		 				<%end%>
       		</div></ul>
     		</li>
 
-    	 <!--<%# if logged_in? %>-->
       		<li><div class="menusingle"><%= link_to _("Publish"), new_product_path %></div></li>
-    		<!--<%#end%>-->
+    		
  			</ul>
  		</div>
 
@@ -70,7 +70,7 @@
 
       <div id="notice"><%= notice %></div>
       <div id="alert"><%= alert %></div>
-
+			
       <div class="layout_master">
         <%= yield %>
       </div>

@@ -1,6 +1,7 @@
 <div align="center" id="#">
 <h2>Welcome to AaltoApps</h2>
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+<%unless @my_app_show%>
 <h3 >
   <h4><%= _("Select sort criteria") %></h4>
   <%= link_to _('Publication date'), products_by_platform_path(params[:platform],'created_at') %>&nbsp;&nbsp;|
@@ -8,6 +9,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
   <%= link_to _('Most rated'), products_by_platform_path(params[:platform],'avg_rating') %>&nbsp;&nbsp;|
   <%= link_to _('Featured apps'), products_by_platform_path(params[:platform],'featured') %>&nbsp;&nbsp;
 </h3>
+<%end%>
 </div>
   <% if !@err_msg.blank? %>
 <br/><br/>
@@ -15,6 +17,17 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
   <h1><%= @err_msg %></h1>
 </div>
   <% end %>
+<%if @my_app_show%>
+ <%if !@my_published_products.blank?%>
+   <div class="browse_products">
+    <h1><%= _("Listing My Products") %></h1>
+  <%=render :partial=>'product',:collection=>@my_published_products%>
+</div>
+<div class="browse_paginate">
+   <%= will_paginate @my_published_products %>
+</div>
+ <%end%>
+<%else%>
  <% if !@products.blank? %>
 <div class="browse_products">
     <h1><%= _("Listing All Products") %></h1>
@@ -23,4 +36,5 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 <div class="browse_paginate">
    <%= will_paginate @products %>
 </div>
+<%end%>
 <%end%>

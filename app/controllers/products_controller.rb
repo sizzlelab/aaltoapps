@@ -41,7 +41,10 @@ class ProductsController < ApplicationController
 
       @products = query.paginate(:page => page, :per_page => PRODUCTS_PER_PAGE, :order => sort)
 
-      @my_published_products = my_published_apps_by(params[:platform], sort)
+     if params[:myapp]
+      @my_app_show=true
+     end
+      @my_published_products = my_published_apps_by(params[:platform], sort).paginate(:page => page, :per_page => PRODUCTS_PER_PAGE)
     end
     
     respond_to do |format|

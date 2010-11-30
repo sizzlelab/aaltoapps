@@ -81,5 +81,7 @@
 
 </p>
 
+<%if @product.publisher==current_user%>
 <%= link_to 'Edit', edit_product_path(@product) %> |
+<%end%>
 <%= link_to 'Back', products_path %>

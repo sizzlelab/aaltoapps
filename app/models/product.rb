@@ -1,8 +1,8 @@
 class Product < ActiveRecord::Base
   belongs_to :publisher, :class_name => "User", :foreign_key => "publisher_id"
   belongs_to :category
-  belongs_to :platform
-  validates :name, :description, :url, :platform, :category, :donate, :publisher, :presence => true
+  has_and_belongs_to_many :platforms, :uniq => true
+  validates :name, :description, :url, :category, :donate,:presence => true
   validates :name, :length => { :minimum => 3 }
   validates :url, :length => { :minimum => 12 } # http://ab.cd 
   has_many :ratings, :dependent => :destroy

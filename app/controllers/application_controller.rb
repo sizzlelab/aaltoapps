@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include FastGettext::Translation
   before_filter :set_locale  
-  helper_method :current_user, :logged_in?, :products_by_platform_path 
+  helper_method :current_user, :logged_in?, :products_by_platform_path
   
   def login_required
     if !logged_in?

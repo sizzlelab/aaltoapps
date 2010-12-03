@@ -34,6 +34,7 @@
     		<li><div class="menusingle"><%= link_to _("Home"), root_path %></div></li>
 				<li><div class="menutop"><%= link_to _("Browse") %> </div>
       		<ul><div class="submenu">
+							<li class="submenu_row"><%=link_to _("All"), products_path %> </li>
 						<% Platform.all.each do |platform|%>
  						<li class="submenu_row"><%=link_to platform.name, platform_products_path(platform) %> </li>
 		 				<%end%>
@@ -42,7 +43,7 @@
 					<% if logged_in? %>
       		<li><div class="menutop"><%= link_to _("Publish") %></div>
 							<ul><div class="submenu">
-							<li class="submenu_row"><%=link_to _("My Apps"),products_path(:myapp=>true) %> </li>		
+							<li class="submenu_row"><%=link_to _("My Apps"), products_path %> </li>		
         			<li class="submenu_row"><%=link_to _("New App"), new_product_path %> </li>
 							</div></ul>
 					</li>

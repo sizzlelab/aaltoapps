@@ -11,11 +11,11 @@
                      :object => product.avg_rating,
                      :locals => { :empty_message => '' } %>
         </div>
-         <div class="browse_row"><%if @my_app_show&&product.publisher==current_user %>
-         <%= link_to "Edit", edit_product_path(product) %>|
-         <%= link_to 'Delete', product, :confirm => _('Are you sure?'), :method => :delete %>
-         <%end%>
-       </div>
+        <!--<div class="browse_row">   
+         <%#= link_to "Edit", edit_product_path(product) %>|
+         <%#= link_to 'Delete', product, :confirm => _('Are you sure?'), :method => :delete %>
+         <%#end%>
+       </div>-->
         
         
     </div>

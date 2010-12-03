@@ -3,8 +3,9 @@ require 'spec_helper'
 describe Product do
 
   before(:each) do
-    # TODO: make platform and donate sane
-    @product = Product.new :name => "my product", :url => "http://foo.bar", :description => "the description has to be pretty long", :donate => "no thanks", :platform_id => 0xf00d, :category_id => 0x1337 
+    @platform = Platform.new :name => "plattis", :image_url => "http://foo.com/image.jpeg"
+    @category = Category.new :name => "category", :image_url => "http://category.com/category.png"
+    @product = Product.new :name => "my product", :url => "http://foo.bar", :description => "the description has to be pretty long", :donate => "no thanks", :platform => @platform, :category => @category 
     @product.should be_valid
   end
 

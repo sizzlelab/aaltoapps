@@ -51,7 +51,7 @@
 
     <dl id="product-url">
       <dt><%= _("URL") %>:</dt>
-      <dd><%= link_to @product.url, @product.url %></dd>
+      <dd><%= link_to @product.url, "http://"+@product.url, :popup => true %></dd>
     </dl>
 
     <dl id="product-description">

@@ -25,7 +25,7 @@ describe Product do
   end
 
   it "should not have a too short url" do
-    @product.name = "!"
+    @product.url = "!"
     @product.should_not be_valid
   end
 

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Product do
 
   before(:each) do
-    @publisher = User.new :username => "foo", :password => "bar", :asi_id => "12345"
+    @publisher = User.new :asi_id => "12345"
     @publisher.should be_valid
     @platform = Platform.new :name => "plattis", :image_url => "http://foo.com/image.jpeg"
     @platform.should be_valid

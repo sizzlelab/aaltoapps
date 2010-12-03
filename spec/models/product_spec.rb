@@ -3,9 +3,13 @@ require 'spec_helper'
 describe Product do
 
   before(:each) do
+    @publisher = User.new :username => "foo", :password => "bar", :asi_id => "12345"
+    @publisher.should be_valid
     @platform = Platform.new :name => "plattis", :image_url => "http://foo.com/image.jpeg"
+    @platform.should be_valid
     @category = Category.new :name => "category", :image_url => "http://category.com/category.png"
-    @product = Product.new :name => "my product", :url => "http://foo.bar", :description => "the description has to be pretty long", :donate => "no thanks", :platform => @platform, :category => @category 
+    @category.should be_valid
+    @product = Product.new :name => "my product", :url => "http://foo.bar", :description => "the description has to be pretty long", :donate => "no thanks", :platform => @platform, :category => @category, :publisher => @publisher
     @product.should be_valid
   end
 

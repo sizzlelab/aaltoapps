@@ -1,4 +1,4 @@
 class Platform < ActiveRecord::Base
   validates_presence_of :name
-  has_many :products, :dependent => :destroy
+  has_and_belongs_to_many :products
 end

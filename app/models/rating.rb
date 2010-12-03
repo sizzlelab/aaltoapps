@@ -15,7 +15,7 @@ class Rating < ActiveRecord::Base
   end
 
   def to_f
-    self.rating
+    self.rating 
   end
 
   def self.allowed_values

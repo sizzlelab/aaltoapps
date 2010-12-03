@@ -50,7 +50,7 @@
     background:inherit;
     border-radius: 0.5em;   
     float:left;
-    width:35%;
+    width:30%;
 		overflow:hidden;
 		text-align: left;	
 
@@ -60,7 +60,7 @@
     background:inherit;
     border-radius: 0.5em;    
     float:left;
-    width:50%;
+    width:48%;
     max-height:7em;
     overflow:hidden;
 		text-align:left;
@@ -71,7 +71,9 @@
     background:inherit;
     border-radius: 0.5em;
     float:left;
-    width:15%;
+    width:22%;
+		overflow: hidden;
+		max-height: 7em;
 		
       
 }

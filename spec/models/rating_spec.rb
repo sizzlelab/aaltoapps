@@ -3,9 +3,15 @@ require 'spec_helper'
 describe Rating do
 
   before(:each) do
-    # create an initially valid rating instance
-    # use dummy values for user and product ids
-    @rating = Rating.new(:user_id => 0xdead, :product_id => 0xbeef, :rating => Rating::MAX)
+    @publisher_and_rater = User.new :username => "foo", :password => "bar", :asi_id => "12345"
+    @publisher_and_rater.should be_valid
+    @platform = Platform.new :name => "plattis", :image_url => "http://foo.com/image.jpeg"
+    @platform.should be_valid
+    @category = Category.new :name => "category", :image_url => "http://category.com/category.png"
+    @category.should be_valid
+    @product = Product.new :name => "my product", :url => "http://foo.bar", :description => "the description has to be pretty long", :donate => "no thanks", :platform => @platform, :category => @category, :publisher => @publisher_and_rater
+    @product.should be_valid
+    @rating = Rating.new(:user => @publisher_and_rater, :product => @product, :rating => Rating::MAX)
     @rating.should be_valid
   end
   
@@ -33,12 +39,12 @@ describe Rating do
   end
 
   it "should not accept empty user" do
-    @rating.user_id = nil
+    @rating.user = nil
     @rating.should_not be_valid
   end
 
   it "should not accept empty product" do
-    @rating.product_id = nil
+    @rating.product = nil
     @rating.should_not be_valid
   end
 

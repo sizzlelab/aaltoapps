@@ -5,7 +5,7 @@ class Rating < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :product
-  validates :rating, :user_id, :product_id, :presence => true
+  validates :rating, :user, :product, :presence => true
   validates :rating, :inclusion => {:in => (MIN..MAX).step(STEP).to_a }
   after_save :add_avg_rating_to_product
 

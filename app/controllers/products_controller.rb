@@ -5,48 +5,19 @@ class ProductsController < ApplicationController
   PRODUCTS_PER_PAGE = 6
   DEFAULT_SORT = "products.created_at DESC"
   ALLOWED_SORT_KEYS = %w(name created_at updated_at publisher avg_rating featured popularity) 
+
   # GET /products
   # GET /products.xml
   def index
     page = params[:page] ? params[:page].to_i : 1
-
-    # check the existence and validity of the sort parameter
-    # and if nonexistent or invalid, use default value
-    sort =
-      if  params[:sort] &&
-          params[:sort] =~ /^ *([a-z_]+) *( (?:ASC|DESC))? *$/i &&
-          ALLOWED_SORT_KEYS.member?($1)
-        case $1
-        when 'popularity', 'created_at', 'updated_at', 'avg_rating','featured'
-          # these are sorted in descending order by default
-          'products.' + $1 + ($2 || ' DESC')
-        else
-          # everything else is sorted in ascending order by default
-          'products.' + $1 + ($2 || ' ASC')
-        end
-      else
-        DEFAULT_SORT
-      end
-
-    catch(:abort) do
-      query = Product
-      if params[:q]
-        if params[:q].empty?
-          flash[:alert] = _('Empty search string')
-          throw :abort
-        end
-        query = query.where("name LIKE ?", "%#{params[:q]}%")
-      end
-      query = query.where(:platform_id => params[:platform]) if params[:platform]
-
-      @products = query.paginate(:page => page, :per_page => PRODUCTS_PER_PAGE, :order => sort)
-
-     if params[:myapp]
-      @my_app_show=true
-     end
-      @my_published_products = my_published_apps_by(params[:platform], sort).paginate(:page => page, :per_page => PRODUCTS_PER_PAGE)
-    end
+    products = Product.scoped
+    products = Platform.find(params[:platform].to_i).products.scoped if params[:platform]
+    products = products.where("name LIKE :input", {:input => "%#{params[:q]}%"}) if params[:q]
+    products = products.order(order_parameter(params[:sort]))
     
+    @products = products.all.paginate(:page => page,
+                                      :per_page => PRODUCTS_PER_PAGE)
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @products }
@@ -145,18 +116,22 @@ class ProductsController < ApplicationController
     @product.save
   end
 
-  #return apps that user created by platform
-  def my_published_apps_by(platform_id, sort=DEFAULT_SORT)
-    # If user logged in, show his/her apps
-    if logged_in?
-      if platform_id
-        current_user.published.order(sort).where(:platform_id => platform_id)
-       else
-        current_user.published.order(sort)
-       end
-    else
-      []
-     end
-  end
+  def order_parameter(get_param)
+    return DEFAULT_SORT if !get_param
 
+    case get_param
+    when 'popularity'
+      sort = 'popularity DESC'
+    when 'created_at'
+      sort = 'created_at DESC'
+    when 'avg_rating'
+      sort = 'avg_rating DESC'
+    when 'featured'
+      sort = 'featured DESC'
+    else
+      sort = DEFAULT_SORT
+    end
+
+    return sort
+  end
 end

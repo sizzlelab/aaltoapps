@@ -2,22 +2,28 @@
 
 <%= render 'form' %>
 
-<% form_tag :controller => "platforms", :action => "add_product", :id => @product.id %>
+<% @product.platforms.each do |platform| %>
+  <tr>
+    <td><%= platform.name %></td>
+  </tr>
+<% end %>
+<% form_tag :controller => "platforms", :action => "add_product", :id => @product.id do %>
 <tr>
   <td align="right">
-    <%= f.label :platform, _('Add a platform') + ' *:' %>
+    <%= label_tag :platform, _('Add a platform') + ' *:' %>
   </td>
   <td>
-    <%= f.collection_select :platform_id, Platform.all, :id, :name, {:prompt => true} %>
+    <%= collection_select :product, :platform_ids, Platform.all, :id, :name, {:multiple => true} %>
   </td>
 </tr>
 <tr>
   <td align="right">
   </td>
   <td>
-    <%= f.submit _("Add") %>
+    <%= submit_tag _("Add") %>
   </td>
 </tr>
+<% end %>
 
 <%= link_to _('Show'), @product %> |
 <%= link_to _('Back'), products_path %>

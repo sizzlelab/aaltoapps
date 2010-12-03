@@ -84,4 +84,12 @@ class PlatformsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def add_product
+    product = Product.find(params[:id])
+    platform = Platform.find(params[:product][:platform_ids])
+    product.platforms << platform
+    product.save!
+    redirect_to :back
+  end
 end

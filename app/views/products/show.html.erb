@@ -19,9 +19,9 @@
     </dl>
 
     <dl id="product-platform">
+    <dt><%= _("Platforms") %>:</dt>
     <% @product.platforms.each do |platform| %>
-      <dt><%= _("Platform") %>:</dt>
-      <dd><%= platform.name %></dd>
+      <dd><%= platform.name %>&nbsp;</dd>
     <% end %>
     </dl>
 

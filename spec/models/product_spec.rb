@@ -3,8 +3,13 @@ require 'spec_helper'
 describe Product do
 
   before(:each) do
-    # TODO: make platform and donate sane
-    @product = Product.new :name => "my product", :url => "http://foo.bar", :description => "the description has to be pretty long", :donate => "no thanks", :platform_id => 0xf00d, :category_id => 0x1337 
+    @publisher = User.new :asi_id => "12345"
+    @publisher.should be_valid
+    @platform = Platform.new :name => "plattis", :image_url => "http://foo.com/image.jpeg"
+    @platform.should be_valid
+    @category = Category.new :name => "category", :image_url => "http://category.com/category.png"
+    @category.should be_valid
+    @product = Product.new :name => "my product", :url => "http://foo.bar", :description => "the description has to be pretty long", :donate => "no thanks", :platform => @platform, :category => @category, :publisher => @publisher
     @product.should be_valid
   end
 
@@ -24,7 +29,7 @@ describe Product do
   end
 
   it "should not have a too short url" do
-    @product.name = "!"
+    @product.url = "!"
     @product.should_not be_valid
   end
 

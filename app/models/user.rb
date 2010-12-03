@@ -1,13 +1,13 @@
 class User < ActiveRecord::Base
   has_many :ratings, :dependent => :destroy
-	has_many :published, :class_name => "Product", :foreign_key => "publisher_id"
-	validates :asi_id, :presence => true
+  has_many :published, :class_name => "Product", :foreign_key => "publisher_id"
   has_many :comments
   attr_accessor :guid, :password, :password2, :username, :email, :form_username,
                 :form_given_name, :form_family_name, :form_password, 
                 :form_password2, :form_email, :consent,
                 :birthdate, :gender, :website
   attr_protected :is_admin
+  validates :asi_id, :presence => true
   
   PERSON_HASH_CACHE_EXPIRE_TIME = 0#15  #ALSO THIS CACHE TEMPORARILY OFF TO TEST PERFORMANCE WIHTOUT IT
   PERSON_NAME_CACHE_EXPIRE_TIME = 3.hours  ## THE CACHE IS TEMPORARILY OFF BECAUSE CAUSED PROBLEMS ON ALPHA: SEE ALSO COMMENTING OUT AT THE PLACE WHER CACHE IS USED!

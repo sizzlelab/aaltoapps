@@ -36,4 +36,5 @@ group :development, :test do
   gem 'rspec-rails', '>= 2.1.0'
   gem 'cucumber', '>= 0.9.4'
   gem 'webrat'
+  gem 'railroady'
 end

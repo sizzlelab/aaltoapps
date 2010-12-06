@@ -43,7 +43,7 @@
 					<% if logged_in? %>
       		<li><div class="menutop"><%= link_to _("Publish") %></div>
 							<ul><div class="submenu">
-							<li class="submenu_row"><%=link_to _("My Apps"), products_path %> </li>		
+							<li class="submenu_row"><%=link_to _("My Apps"), products_path(:myapps=>true) %> </li>		
         			<li class="submenu_row"><%=link_to _("New App"), new_product_path %> </li>
 							</div></ul>
 					</li>
@@ -56,7 +56,7 @@
 			<div class="wrapper_2">
 				<div class="layout_info">
 					<div class="layout_menuitem">
-          Choose language:
+          Choose language: English, suomi
         	</div>
 					<div class="layout_menuitem">
           <%= render :partial => "/users/login_menu" %>
@@ -71,10 +71,11 @@
 			<div class="clear"></div>
 			</div>			
 
-      <div id="notice"><%= notice %></div>
-      <div id="alert"><%= alert %></div>
+      
 			
       <div class="layout_master">
+				<div id="notice"><%= notice %></div>
+      	<div id="alert"><%= alert %></div>
         <%= yield %>
       </div>
 

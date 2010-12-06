@@ -58,13 +58,15 @@
       <dt><%= _("Description") %>:</dt>
       <dd><%= @product.description %></dd>
     </dl>
-		<!--<#% if logged_in? && (current_user==product.publisher) %>
+
+		<%if @product.publisher==current_user%>
 		<dl id="product-admin">
-      <dt><#%=_("Admin") %>:</dt>
-      <dd><#%= link_to _("Edit"), edit_product_path(product) %>
-        <#%= button_to _("Destroy"), product, :confirm => _('Are you sure?'), :method => :delete %></dd>
-    </dl>
-		<#%end%>-->
+			<dt><%= _("Admin") %>:</dt>
+			<dd><%= link_to 'Edit', edit_product_path(@product) %></dd>
+			<dd><%= button_to 'Delete', @product, :confirm => _('Are you sure?'), :method => :delete %></dd>
+		</dl>
+		<%end%>
+		
   </div>
 </div>
 
@@ -82,7 +84,4 @@
 
 </p>
 
-<%if @product.publisher==current_user%>
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%end%>
 <%= link_to 'Back', products_path %>

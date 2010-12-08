@@ -22,10 +22,12 @@ div.field, div.actions {
 
 #notice {
   color: green;
+	text-align: left;
 }
 
 #alert {
   color: red;
+	text-align: left;
 }
 
 .field_with_errors {

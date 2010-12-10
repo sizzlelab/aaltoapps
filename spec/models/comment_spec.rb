@@ -8,7 +8,7 @@ describe Comment do
     @platform.should be_valid
     @category = Category.new :name => "category", :image_url => "http://category.com/category.png"
     @category.should be_valid
-    @product = Product.new :name => "my product", :url => "http://foo.bar", :description => "the description has to be pretty long", :donate => "no thanks", :platform => @platform, :category => @category, :publisher => @publisher_and_commenter
+    @product = Product.new :name => "my product", :url => "http://foo.bar", :description => "the description has to be pretty long", :donate => "no thanks", :platforms => [@platform], :category => @category, :publisher => @publisher_and_commenter
     @product.should be_valid
     @comment = Comment.new :body => "comment body", :product => @product, :commenter => @publisher_and_commenter
     @comment.should be_valid

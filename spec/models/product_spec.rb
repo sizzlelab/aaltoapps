@@ -9,7 +9,7 @@ describe Product do
     @platform.should be_valid
     @category = Category.new :name => "category", :image_url => "http://category.com/category.png"
     @category.should be_valid
-    @product = Product.new :name => "my product", :url => "http://foo.bar", :description => "the description has to be pretty long", :donate => "no thanks", :platform => @platform, :category => @category, :publisher => @publisher
+    @product = Product.new :name => "my product", :url => "http://foo.bar", :description => "the description has to be pretty long", :donate => "no thanks", :platforms => [@platform], :category => @category, :publisher => @publisher
     @product.should be_valid
   end
 
@@ -39,7 +39,7 @@ describe Product do
   end
 
   it "should not have a nil platform" do
-    @product.platform = nil
+    @product.platforms = nil
     @product.should_not be_valid
   end
 

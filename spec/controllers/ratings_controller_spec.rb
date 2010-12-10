@@ -12,8 +12,11 @@ describe RatingsController do
   describe "POST create" do
 
     describe "with valid params" do
-      it "assigns a newly created rating as @rating" do
+      before(:each) do
         post :create, :rating => {:rating => Rating::MIN.to_s}, :product_id => products(:product1).id
+      end
+
+      it "assigns a newly created rating as @rating" do
         assigns(:rating).should be_valid
         assigns(:rating).rating.should eql(Rating::MIN.to_f)
         assigns(:rating).product_id.should eql(products(:product1).id)
@@ -21,57 +24,65 @@ describe RatingsController do
       end
 
       it "redirects to the page it got as referrer" do
-        post :create, :rating => {:rating => Rating::MIN.to_s}, :product_id => products(:product1).id
         response.should redirect_to(@referrer_url)
       end
     end
 
     describe "with an invalid value" do
-      it "assigns a newly created but unsaved rating as @rating" do
+      before(:each) do
         post :create, :rating => {:rating => (Rating::MAX+1).to_s}, :product_id => products(:product1).id
+      end
+
+      it "assigns a newly created but unsaved rating as @rating" do
         assigns(:rating).product_id.should eql(products(:product1).id)
         assigns(:rating).user_id.should eql(@current_user_id)
       end
 
       it "redirects to the page it got as referrer" do
-        post :create, :rating => {:rating => (Rating::MAX+1).to_s}, :product_id => products(:product1).id
         response.should redirect_to(@referrer_url)
       end
 
-      it "displays an error message"
+      it "displays an error message" do
+        flash[:alert].should_not be_empty
+      end
     end
 
     describe "with a nonexistent product" do
-      it "assigns a newly created but unsaved rating as @rating" do
+      before(:each) do
         post :create, :rating => {:rating => Rating::MIN.to_s}, :product_id => -1
+      end
+
+      it "assigns a newly created but unsaved rating as @rating" do
         assigns(:rating).rating.should eql(Rating::MIN.to_f)
         assigns(:rating).user_id.should eql(@current_user_id)
       end
 
       it "redirects to the page it got as referrer" do
-        post :create, :rating => {:rating => Rating::MIN.to_s}, :product_id => -1
         response.should redirect_to(@referrer_url)
       end
 
-      it "displays an error message"
+      it "displays an error message" do
+        flash[:alert].should_not be_empty
+      end
     end
 
     describe "with no user logged in" do
       before(:each) do
         session.delete(:current_user_id)
+        post :create, :rating => {:rating => Rating::MIN.to_s}, :product_id => products(:product1).id
       end
 
       it "assigns a newly created but unsaved rating as @rating" do
-        post :create, :rating => {:rating => Rating::MIN.to_s}, :product_id => products(:product1).id
         assigns(:rating).should_not be_valid
       end
 
       it "redirects to the page it got as referrer" do
-        post :create, :rating => {:rating => Rating::MIN.to_s}, :product_id => products(:product1).id
         response.should redirect_to(@referrer_url)
       end
 
-      it "displays an error message"
+      it "displays an error message" do
+        flash[:alert].should_not be_empty
+      end
     end
 
   end

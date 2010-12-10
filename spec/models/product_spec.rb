@@ -38,11 +38,6 @@ describe Product do
     @product.should_not be_valid
   end
 
-  it "should not have a nil platform" do
-    @product.platforms = nil
-    @product.should_not be_valid
-  end
-
   it "should not have a nil category" do
     @product.category = nil
     @product.should_not be_valid

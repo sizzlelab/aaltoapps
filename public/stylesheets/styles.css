@@ -40,8 +40,9 @@ body {
 .layout_frame
 {
   width:70%;
-  float:left;
-	margin-right: 5%;
+  float:right;
+  margin-right: 15%;
+	
 }
 
 .layout_logo {
@@ -69,7 +70,12 @@ body {
 
 .layout_menuitem {
 	text-align:right;
-	padding: 0.2em;
+	padding: 0.2em; 
+
+}
+
+.layout_menuitem form, .layout_menuitem div {
+  display: inline;
 }
 
 .layout_footer
@@ -81,8 +87,15 @@ body {
 	border-bottom: thin solid black;
 }
 
+.wrapper {
+  
+}
 .wrapper_1 {
   position:relative;
+  width: 70%;
+  float:right;
+  margin-right: 15%;
+  
 	
 }
 
@@ -99,7 +112,9 @@ body {
   clear: both;
 }
 
- #menu .navmenu {float:left; margin-right: 0.2em; width: 8%; margin-top: 6.9em; list-style: none;  margin-left: 5%;}
+ #menu  {margin-right: 0.2em;}
+  
+ #menu .navmenu {float:right; margin-right: 0.2em; width: 8%; list-style: none; margin-top: 0;}
 	
  #menu a {text-decoration: none;}
 

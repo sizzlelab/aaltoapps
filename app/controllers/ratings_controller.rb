@@ -1,20 +1,4 @@
 class RatingsController < ApplicationController
-  # GET /ratings/new
-  # GET /ratings/new.xml
-  def new
-    @rating = Rating.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @rating }
-    end
-  end
-
-  # GET /ratings/1/edit
-  def edit
-    @rating = Rating.find(params[:id])
-  end
-
   # POST /ratings
   # POST /ratings.xml
   def create
@@ -56,34 +40,6 @@ class RatingsController < ApplicationController
         }
         format.xml  { render :xml => @rating.errors, :status => :unprocessable_entity }
       end
-    end
-  end
-
-  # PUT /ratings/1
-  # PUT /ratings/1.xml
-  def update
-    @rating = Rating.find(params[:id])
-
-    respond_to do |format|
-      if @rating.update_attributes(params[:rating])
-        format.html { redirect_to(@rating, :notice => 'Rating was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @rating.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /ratings/1
-  # DELETE /ratings/1.xml
-  def destroy
-    @rating = Rating.find(params[:id])
-    @rating.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(ratings_url) }
-      format.xml  { head :ok }
     end
   end
 end

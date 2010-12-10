@@ -78,9 +78,8 @@
       
 }
 
-.browse_row {
-    background:inherit;
-
+.browse_row form, .browse_row div{
+    display: inline;
 }
 
 .clear{

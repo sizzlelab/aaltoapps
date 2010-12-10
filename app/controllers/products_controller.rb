@@ -8,10 +8,11 @@ class ProductsController < ApplicationController
 
   # GET /products
   # GET /products.xml
-  def index
-    page = params[:page] ? params[:page].to_i : 1
+  def index 
+		page = params[:page] ? params[:page].to_i : 1
     products = Product.scoped
     products = Platform.find(params[:platform].to_i).products.scoped if params[:platform]
+    products = products.where(:publisher_id => current_user.id) if params[:myapps]
     products = products.where("name LIKE :input", {:input => "%#{params[:q]}%"}) if params[:q]
     products = products.order(order_parameter(params[:sort]))
     
@@ -134,4 +135,5 @@ class ProductsController < ApplicationController
 
     return sort
   end
+
 end

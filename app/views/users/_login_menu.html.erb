@@ -1,7 +1,7 @@
 <% if !logged_in? %>
-<%= link_to _("login"), :controller => "sessions" %> :: 
-<%= link_to _("register"), :controller => "users", :action => "new" %>
+<%= link_to _("Login"), :controller => "sessions" %> :: 
+<%= link_to _("Register"), :controller => "users", :action => "new" %>
 <% else %>
-logged in as <%= current_user.username %>, 
-<%= button_to _("logout"), { :controller => "sessions", :action => "delete" }, :method => :delete %>
+Logged in as <%= current_user.username %>
+<%= button_to _("Logout"), { :controller => "sessions", :action => "delete" }, :method => :delete %>
 <% end %>

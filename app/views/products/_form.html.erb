@@ -2,7 +2,9 @@
   <div id="image" style="border:groove;width:130px;height: 140px;">
     <%= _("Drag an image here!") %>
   </div>
-  <%=file_field_tag _('Browse') %>
+  <%= form_tag({:action => :upload}, :multipart => true) do %>
+  <%= file_field_tag _("Browse") %>
+<% end %>
   </div>
 <div id="right-column">
 <%= form_for(@product) do |f| %>

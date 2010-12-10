@@ -17,16 +17,17 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
   <h1><%= @err_msg %></h1>
 </div>
   <% end %>
-<%if @my_app_show%>
- <%if !@my_published_products.blank?%>
+<% if params[:myapps] %>
+	<% if !@products.blank? %>
    <div class="browse_products">
     <h1><%= _("Listing My Products") %></h1>
-  <%=render :partial=>'product',:collection=>@my_published_products%>
-</div>
-<div class="browse_paginate">
-   <%= will_paginate @my_published_products %>
-</div>
- <%end%>
+  	<%=render :partial=>'product',:collection=>@products%>
+		</div>
+		<div class="browse_paginate">
+   	<%= will_paginate @products %>
+		</div>
+	<%end%>
+
 <%else%>
  <% if !@products.blank? %>
 <div class="browse_products">

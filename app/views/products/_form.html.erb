@@ -1,11 +1,4 @@
-<div id="left-column">
-  <div id="image" style="border:groove;width:130px;height: 140px;">
-    <%= _("Drag an image here!") %>
-  </div>
-  <%= form_tag({:action => :upload}, :multipart => true) do %>
-  <%= file_field_tag _("Browse") %>
-<% end %>
-  </div>
+
 <div id="right-column">
 <%= form_for(@product) do |f| %>
 <% if @product.errors.any? %>
@@ -78,5 +71,13 @@
     <% end %>
 </table>
 </div>
+<div id="left-column">
+  <div id="image" style="border:groove;width:130px;height: 140px;">
+    <%= _("Drag an image here!") %>
+  </div>
+  <%= form_tag({:action => :upload}, :multipart => true) do %>
+  <%= file_field_tag _("Browse") %>
+<% end %>
+  </div>
 <div id="space-div">
 </div>

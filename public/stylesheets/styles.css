@@ -1,6 +1,36 @@
 body {
+	background-color: #2E2E2E;
+	color: #00BFFF;
+}
+
+.layout_line {
+	position: relative;
+	clear: both;
+	margin-bottom: 1em;
+}
+
+.layout_frame {
+  width:70%;
+  float:right;
+  margin-right: 15%;
 	
 }
+
+.layout_master {
+  padding: 1em;
+	text-align: center;
+	background-color: #202020;
+}
+
+.wrapper_top {
+  position:relative;
+	width: 100%;
+	padding-right: 15%;
+	padding-bottom: 1em;
+  float:right;
+	  
+}
+
 
 .productlist_item {
     border: thin solid black;
@@ -19,12 +49,6 @@ body {
     float: left;
 }
 
-.product_info_header {
-}
-
-.product_description {
-}
-
 .product_download {
     width: 10%;
     float:right;
@@ -36,20 +60,11 @@ body {
     height: 0;
     visibility: hidden;    
     clear: both;
-}
-.layout_frame
-{
-  width:70%;
-  float:right;
-  margin-right: 15%;
-	
-}
+}	
 
 .layout_logo {
-	width: 70%;
   font-size: xx-large;
 	float: right;
-	text-align: center;
 	padding-top: 0.5em;
 	
 	
@@ -58,14 +73,6 @@ body {
 .layout_info {
 	float:right;
 	width:30%;
-}
-
-
-.layout_master {
-  padding: 1em;
-	text-align: center;
-	border: thin solid black;
-	
 }
 
 .layout_menuitem {
@@ -82,24 +89,10 @@ body {
 {
   padding-left: 2em;
   padding-right: 2em;
-  border-right: thin solid black;
-	border-left: thin solid black;
-	border-bottom: thin solid black;
+	background-color: #202020;
 }
 
-.wrapper {
-  
-}
-.wrapper_1 {
-  position:relative;
-  width: 70%;
-  float:right;
-  margin-right: 15%;
-  
-	
-}
-
-.wrapper_2 {
+.wrapper_bottom {
   position:relative;
 	margin-bottom: 1em;
 }
@@ -112,19 +105,19 @@ body {
   clear: both;
 }
 
- #menu  {margin-right: 0.2em;}
+ #menu  {margin-right: 2em; }
   
- #menu .navmenu {float:right; margin-right: 0.2em; width: 8%; list-style: none; margin-top: 0;}
+ #menu .navmenu {float:right; margin-right: 2em; width: 8%; list-style: none; background-color:#202020; }
 	
  #menu a {text-decoration: none;}
 
- #menu .navmenu li ul {list-style: none; padding: 0; margin-bottom: 0.2em;}
+ #menu .navmenu li ul {list-style: none; padding: 0; margin: 0;}
 
- #menu .menutop {border: thin solid black; margin-bottom: 0.2em; padding-left:0.1em;}
+ #menu .menutop {padding:0.3em;}
 
- #menu .menusingle {border: thin solid black; margin-bottom: 0.2em; padding-left:0.1em;}
+ #menu .menusingle {padding:0.3em; }
 
- #menu .submenu {padding-left:0.7em; margin-bottom: 0.2em;}
+ #menu .navmenu li div ul {margin:none; padding: none;}
 
- #menu .submenu_row {margin-bottom: 0.2em; font-size: 0.8em;}
+ #menu .submenu_row a {padding-left: 2em; font-size: 0.8em; color: #00BFFF;}
  

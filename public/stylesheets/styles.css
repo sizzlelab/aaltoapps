@@ -1,6 +1,17 @@
+@font-face {
+  font-family: 'Harabara';
+  src: url('Harabara.ttf');
+}
+
+@font-face {
+  font-family: 'Sansumi';
+  src: url('Sansumi-DemiBold.ttf');
+}
+
 body {
 	background-color: #2E2E2E;
-	color: #00BFFF;
+	color: #00ced1;
+	font-family: 'Sansumi';
 }
 
 .layout_line {
@@ -13,6 +24,9 @@ body {
   width:70%;
   float:right;
   margin-right: 15%;
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px #888;
+	box-shadow: 0 0 5px #888;
 	
 }
 
@@ -20,6 +34,7 @@ body {
   padding: 1em;
 	text-align: center;
 	background-color: #202020;
+	
 }
 
 .wrapper_top {
@@ -27,10 +42,8 @@ body {
 	width: 100%;
 	padding-right: 15%;
 	padding-bottom: 1em;
-  float:right;
-	  
+  float:right;	  
 }
-
 
 .productlist_item {
     border: thin solid black;
@@ -63,10 +76,19 @@ body {
 }	
 
 .layout_logo {
-  font-size: xx-large;
 	float: right;
-	padding-top: 0.5em;
+	width: 40%;
+	padding-top: 2em;
 	
+}
+
+.layout_logo a {
+	font-family: 'Harabara';
+	text-decoration: none;
+  font-size: 6em;
+	color: #00BFFF;
+	padding-left: 1em;	
+	text-shadow: 0.1em 0.1em 0.1em #000;
 	
 }
 
@@ -89,6 +111,7 @@ body {
 {
   padding-left: 2em;
   padding-right: 2em;
+	padding-bottom: 1em;
 	background-color: #202020;
 }
 
@@ -105,19 +128,29 @@ body {
   clear: both;
 }
 
- #menu  {margin-right: 2em; }
+ #menu  {margin-right: 1em; font-family: 'Harabara';}
   
- #menu .navmenu {float:right; margin-right: 2em; width: 8%; list-style: none; background-color:#202020; }
+ #menu .navmenu {
+	float:right; 
+	margin-right: 2em; 
+	width: 8%;
+	list-style: none; 
+	background-color:#202020;
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px #888;
+	box-shadow: 0 0 5px #888;
+
+}
 	
- #menu a {text-decoration: none;}
+ #menu a {text-decoration: none; font-size: 1.5em;}
 
- #menu .navmenu li ul {list-style: none; padding: 0; margin: 0;}
+ #menu .navmenu li ul {list-style: none; padding: 0; margin: 0; }
 
- #menu .menutop {padding:0.3em;}
+ #menu .menutop {padding:0.3em; padding-left: 1em; font-size: 1em;}
 
- #menu .menusingle {padding:0.3em; }
+ #menu .menusingle {padding:0.3em; padding-left: 1em; font-size: 1em;}
 
  #menu .navmenu li div ul {margin:none; padding: none;}
 
- #menu .submenu_row a {padding-left: 2em; font-size: 0.8em; color: #00BFFF;}
+ #menu .submenu_row a {text-align: center; padding-left: 2em; font-size: 0.8em; color: #00BFFF; font-family: 'Harabara'; font-size: 1em;}
  

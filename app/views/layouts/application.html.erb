@@ -41,13 +41,13 @@
 				</div>
 			</div>
 		  <div class="layout_logo">
-		    <%= link_to _("Aalto Apps"), root_path %>
+		    <%= link_to _("aalto apps"), root_path %>
 		  </div>
-			<div class="clear"></div>
+			<div class="layout_line"></div>
 		</div>
 			
 
-		<div class="layout_line"></div>
+		
 
     <div class="wrapper_bottom">
 
@@ -66,8 +66,8 @@
 
           <div id="menu">
   		      <div class="navmenu">
-    		      <li><div class="menusingle"><%= link_to _("Home"), root_path %></div></li>
-				      <li><div class="menutop"><%= link_to _("Browse") %> </div>
+    		      <li><div class="menusingle"><%= link_to _("home"), root_path %></div></li>
+				      <li><div class="menutop"><%= link_to _("browse") %> </div>
           		  <ul>
                   <div class="submenu">
   							    <li class="submenu_row"><%=link_to _("All"), products_path %> </li>
@@ -78,7 +78,7 @@
                 </ul>
 					    <% if logged_in? %>
           		<li>
-                <div class="menutop"><%= link_to _("Publish") %></div>
+                <div class="menutop"><%= link_to _("publish") %></div>
 							    <ul>
                     <div class="submenu">
 							        <li class="submenu_row"><%=link_to _("My Apps"), products_path(:myapps=>true) %> </li>		

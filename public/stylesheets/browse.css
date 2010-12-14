@@ -8,7 +8,7 @@
 
 .browse_product_left_silver {
     background:#2E2E2E;
-    margin-bottom:0.2em;
+    margin-bottom:0.5em;
     border-radius: 0.5em;
     width:49%;
     float:left;
@@ -18,7 +18,7 @@
 
 .browse_product_right_white {
     background:#404040;
-    margin-bottom:0.2em;
+    margin-bottom:0.5em;
     border-radius: 0.5em;
     width:49%;
     float:right;
@@ -28,7 +28,7 @@
 
 .browse_product_left_white {
     background:#404040;
-    margin-bottom:0.2em;
+    margin-bottom:0.5em;
     border-radius: 0.5em;
     width:49%;
     float:left;
@@ -38,7 +38,7 @@
 
 .browse_product_right_silver {
     background:#2E2E2E;
-    margin-bottom:0.2em;
+    margin-bottom:0.5em;
     border-radius: 0.5em;
     width:49%;
     float:right;

@@ -70,8 +70,8 @@
   </div>
 </div>
 
-<p>
-  <b><%= _("Comments") %>:</b>
+<div class="product_comment">
+  <h2><%= _("Comments") %>:</h2>
   <%= render :partial => "comment/list", :collection => @product.comments, :as => :comment %>
  
   <p>
@@ -82,6 +82,7 @@
     <% end %>
   <p>
 
-</p>
+
 
 <%= link_to 'Back', products_path %>
+</div>

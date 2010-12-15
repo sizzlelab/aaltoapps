@@ -31,7 +31,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 <%else%>
  <% if !@products.blank? %>
 <div class="browse_products">
-    <h1><%= _("Listing All Products") %></h1>
+    <h2><%= _("Listing All Products") %></h2>
   <%=render :partial=>'product',:collection=>@products%>
 </div>
 <div class="browse_paginate">

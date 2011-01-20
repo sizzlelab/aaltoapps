@@ -24,11 +24,10 @@ class ApplicationController < ActionController::Base
   def products_by_platform_path(platform, sort=nil)
     if platform.nil?
       products_path :sort => sort
-    else
+    else	
       platform_products_path platform, :sort => sort
     end
   end
-
 
 protected
   

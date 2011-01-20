@@ -1,0 +1,3 @@
+platform1:
+  name: testplatform
+  image_url: http://tesr.url.invalid/testimage.jpg

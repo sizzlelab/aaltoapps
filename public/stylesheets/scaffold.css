@@ -1,9 +1,19 @@
-body { background-color: #fff; color: #333; }
+@font-face {
+  font-family: 'Harabara';
+  src: url('Harabara.ttf');
+}
 
-body, p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   13px;
-  line-height: 18px;
+@font-face {
+  font-family: 'TB';
+  src: url('Qlassik_TB-webfont.ttf');
+}
+
+body {
+	background-color: #2E2E2E;
+	color: #00ced1;
+	font-family: 'TB';
+	font-size: 1.1em;
+	line-height: 18px;
 }
 
 pre {
@@ -12,9 +22,7 @@ pre {
   font-size: 11px;
 }
 
-a { color: #000; }
-a:visited { color: #666; }
-a:hover { color: #fff; background-color:#000; }
+a { color: #666; }
 
 div.field, div.actions {
   margin-bottom: 10px;

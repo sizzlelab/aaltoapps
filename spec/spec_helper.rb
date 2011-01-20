@@ -25,3 +25,7 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 end
+
+def do_login
+  post({:controller => :sessions, :action => :create}, :username => "aaltoappstest1", :password => "aaltoappstest1")
+end

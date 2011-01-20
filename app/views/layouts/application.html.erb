@@ -28,64 +28,72 @@
 
 </head>
 <body>
-  <div class="wrapper_1">
-    <div id="menu">
-  		<ul class="navmenu">
-    		<li><div class="menusingle"><%= link_to _("Home"), root_path %></div></li>
-				<li><div class="menutop"><%= link_to _("Browse") %> </div>
-      		<ul><div class="submenu">
-							<li class="submenu_row"><%=link_to _("All"), products_path %> </li>
-						<% Platform.all.each do |platform|%>
- 						<li class="submenu_row"><%=link_to platform.name, platform_products_path(platform) %> </li>
-		 				<%end%>
-      		</div></ul>
-    		</li>
-					<% if logged_in? %>
-      		<li><div class="menutop"><%= link_to _("Publish") %></div>
-							<ul><div class="submenu">
-							<li class="submenu_row"><%=link_to _("My Apps"), products_path(:myapps=>true) %> </li>		
-        			<li class="submenu_row"><%=link_to _("New App"), new_product_path %> </li>
-							</div></ul>
-					</li>
-    				<% end %>
-    		
- 			</ul>
- 		</div>
-
-    <div class="layout_frame">
-			<div class="wrapper_2">
-				<div class="layout_info">
-					<div class="layout_menuitem">
+    <div class="wrapper_top">
+    	<div class="layout_info">
+				<div class="layout_menuitem">
           Choose language: English, suomi
-        	</div>
-					<div class="layout_menuitem">
+        </div>
+				<div class="layout_menuitem">
           <%= render :partial => "/users/login_menu" %>
-        	</div>
-					<div class="layout_menuitem">
+        </div>
+				<div class="layout_menuitem">
 					<%=render :partial=>"/products/search"%>
-					</div>
 				</div>
-		    <div class="layout_logo">
-		      <%= link_to _("Aalto Apps"), root_path %>
-		    </div>
-			<div class="clear"></div>
-			</div>			
-
-      
+			</div>
+		  <div class="layout_logo">
+		    <%= link_to _("aalto apps"), root_path %>
+		  </div>
+			<div class="layout_line"></div>
+		</div>
 			
-      <div class="layout_master">
-				<div id="notice"><%= notice %></div>
-      	<div id="alert"><%= alert %></div>
-        <%= yield %>
-      </div>
 
-      <div class="layout_footer">
-        <%= _("Official looking footer here") %>
-      </div>
-  
+		
+
+    <div class="wrapper_bottom">
+
+          <div class="layout_frame">
+            <div class="layout_master">
+				      <div id="notice"><%= notice %></div>
+            	<div id="alert"><%= alert %></div>
+              <%= yield %>
+            </div>
+
+            <div class="layout_footer">
+              <%= _("Official looking footer here") %>
+            </div>
+          </div>
+
+
+          <div id="menu">
+  		      <div class="navmenu">
+    		      <li><div class="menusingle"><%= link_to _("home"), root_path %></div></li>
+				      <li><div class="menutop"><%= link_to _("browse") %> </div>
+          		  <ul>
+                  <div class="submenu">
+  							    <li class="submenu_row"><%=link_to _("All"), products_path %> </li>
+						        <% Platform.all.each do |platform|%>
+     						      <li class="submenu_row"><%=link_to platform.name, platform_products_path(platform) %> </li>
+		     				    <%end%>
+          		    </div>
+                </ul>
+					    <% if logged_in? %>
+          		<li>
+                <div class="menutop"><%= link_to _("publish") %></div>
+							    <ul>
+                    <div class="submenu">
+							        <li class="submenu_row"><%=link_to _("My Apps"), products_path(:myapps=>true) %> </li>		
+            			    <li class="submenu_row"><%=link_to _("New App"), new_product_path %> </li>
+							      </div>
+                  </ul>
+					    </li>
+        				<% end %>
+    		
+ 			      </ul>
+ 		      </div>
+
+          
     </div>
-		<div class="clear"></div>
-  </div>
+    	
 
 
 </body>

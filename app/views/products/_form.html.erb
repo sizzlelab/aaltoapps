@@ -1,4 +1,3 @@
-
 <div id="right-column">
 <%= form_for(@product) do |f| %>
 <% if @product.errors.any? %>
@@ -15,7 +14,7 @@
 <% end %>
 <div>
     <p>
-        <%= _("Please fill in the following form.") %> 
+        <%= _("Please fill in the following form.") %>
         <br/>
         <%= _("Fields marked with asterisk (*) are compulsory") %>.
     </p>
@@ -23,10 +22,10 @@
 <table>
     <tr>
         <td align="right">
-            <%= f.label :name, _('Name of the product') + ' *:', %>
+            <%= f.label :name, _('Name of the product') + ' *:' %>
         </td>
         <td>
-            <%= f.text_field :name, :class=>'textfield' %>
+            <%= f.text_field :name %>
         </td>
     </tr>
     <tr>
@@ -34,7 +33,7 @@
             <%= f.label :url,_('URL') + ' *:' %>
         </td>
         <td>
-            <%= f.text_field :url, :class=>'textfield' %>
+            <%= f.text_field :url %>
         </td>
     </tr>
     <tr>
@@ -42,7 +41,7 @@
             <%= f.label :description, _('Description') + ' *:' %>
         </td>
         <td >
-            <%= f.text_area :description, :class=>'textfield' %>
+            <%= f.text_area :description %>
         </td>
     </tr>
     <tr>
@@ -53,6 +52,7 @@
            <%= f.collection_select :category_id, Category.all, :id, :name, {:prompt => true} %>
         </td>
     </tr>
+    
     <tr>
         <td>
         </td>
@@ -71,4 +71,5 @@
   <%= file_field_tag _("Browse") %>
 <% end %>
   </div>
-
+<div id="space-div">
+</div>

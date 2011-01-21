@@ -8,8 +8,18 @@
 
   <script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js"></script>
   <script type="text/javascript">
-    // update open/closed status of menus from cookie
+    function submenuOpen(j) {
+      j .parent('.menutop') .removeClass('menutop-closed') .addClass('menutop-open');
+      j .removeClass('menutop-closed') .addClass('menutop-open') .parents('li') .children('ul') .slideDown(250);
+    }
+
+    function submenuClose(j) {
+      j .removeClass('menutop-open') .addClass('menutop-closed')  .parents    ('li') .children('ul') .slideUp(250);
+      j .parent('.menutop') .removeClass('menutop-open') .addClass('menutop-closed');
+    }
+
     $(document).ready(function() {
+      // update open/closed status of menus from cookie
       $.each(document.cookie.split(';'), function (i, cookie) {
         var match = $.trim(cookie).match(/^openMenus=([a-zA-Z0-9_,-]+)$/);
         if (match) {
@@ -24,11 +34,10 @@
       $('#menu .menutop') .click(function() {
 
         if ($(this) .hasClass('menutop-open')) {
-          $(this) .removeClass('menutop-open') .addClass('menutop-closed')  .parents    ('li') .children('ul') .slideUp(250);
-          $(this) .parent('.menutop') .removeClass('menutop-open') .addClass('menutop-closed');
+          submenuClose($(this));
         }else{
-          $(this) .parent('.menutop') .removeClass('menutop-closed') .addClass('menutop-open');
-          $(this) .removeClass('menutop-closed') .addClass('menutop-open') .parents('li') .children('ul') .slideDown(250);
+          submenuClose($('#menu .menutop-open'));
+          submenuOpen($(this));
         }
 
         // set cookie to a list of ids of open menus

@@ -2,33 +2,46 @@ class RatingsController < ApplicationController
   # POST /ratings
   # POST /ratings.xml
   def create
-    success = false
+    status = :unprocessable_entity
+    # create empty Rating for error message
+    @rating = Rating.new
 
     if logged_in?
-      # create a rating if one doesn't exist for the product/user pair
-      # otherwise update the existing rating
-      Rating.transaction do
-        @rating = Rating.find_or_initialize_by_product_id_and_user_id(
-          :product_id => params[:rating][:product_id] || params[:product_id],
-          :user_id => current_user.id )
-        if params[:rating][:rating].empty?
-          # if the new rating value is empty, destroy the rating if it exists
-          @rating.destroy unless @rating.new_record?
-          success = true
+      begin
+        product = Product.find(params[:rating][:product_id] || params[:product_id])
+        if product.publisher != current_user
+          # create a rating if one doesn't exist for the product/user pair
+          # otherwise update the existing rating
+          Rating.transaction do
+            @rating = Rating.find_or_initialize_by_product_id_and_user_id(
+              :product_id => product.id,
+              :user_id => current_user.id )
+            if params[:rating][:rating].empty?
+              # if the new rating value is empty, destroy the rating if it exists
+              @rating.destroy unless @rating.new_record?
+              status = :ok
+            else
+              @rating.rating = params[:rating][:rating]
+              status = @rating.save ? :ok : :unprocessable_entity
+              raise ActiveRecord::Rollback unless status == :ok
+            end
+          end
         else
-          @rating.rating = params[:rating][:rating]
-          success = @rating.save
-          raise ActiveRecord::Rollback unless success
+          # publisher tried to rate his/her own product
+          @rating.errors.add :rating, 'can not be given by the publisher of the product'
+          status = :forbidden
         end
+      rescue RecordNotFound
+        @rating.errors.add :rating, 'can not be given for nonexistent product'
+        status = :unprocessable_entity
       end
     else
-      # create empty Rating for error message
-      @rating = Rating.new
       @rating.errors.add :rating, 'can not be given when not logged in'
+      status = :forbidden
     end
 
     respond_to do |format|
-      if success
+      if status == :ok
         format.html { redirect_to(:back, :notice => 'Rating was successfully created/updated.') }
         format.xml  { render :xml => @rating, :status => :created, :location => @rating }
       else
@@ -38,7 +51,7 @@ class RatingsController < ApplicationController
           errmsg = " (#{errmsg})" unless errmsg.empty?
           redirect_to(:back, :alert => 'Rating was not created/updated.' + errmsg)
         }
-        format.xml  { render :xml => @rating.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @rating.errors, :status => status }
       end
     end
   end

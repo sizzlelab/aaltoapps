@@ -40,7 +40,7 @@
       <dd>
         <%= render :partial => 'ratings/rating', :object => @product.avg_rating %>
         
-        <% if logged_in? %>
+        <% if logged_in? && @product.publisher != current_user %>
           <div id="product-rating-form">
             <%= _("Your rating:") %>
             <%= render 'ratings/form' %>

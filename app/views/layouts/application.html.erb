@@ -72,7 +72,7 @@
                   <div class="submenu">
   							    <li class="submenu_row"><%=link_to _("All"), products_path %> </li>
 						        <% Platform.all.each do |platform|%>
-     						      <li class="submenu_row"><%=link_to platform.name, platform_products_path(platform) %> </li>
+										<li class="submenu_row"><%=link_to platform.name, "/platforms/%{p_id}/products/" % {:p_id => platform.id} %> </li>
 		     				    <%end%>
           		    </div>
                 </ul>

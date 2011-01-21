@@ -72,7 +72,9 @@
 
 <div class="product_comment">
   <h2><%= _("Comments") %>:</h2>
-  <%= render :partial => "comment/list", :collection => @product.comments, :as => :comment %>
+  <div id="product-comment-list">
+    <%= render :partial => "comment/list", :collection => @product.comments, :as => :comment %>
+  </div>
  
   <p>
     <% if logged_in? %>
@@ -80,7 +82,7 @@
     <% else %>
       <b><%= _("Please login to add comments") %></b>
     <% end %>
-  <p>
+  </p>
 
 
 

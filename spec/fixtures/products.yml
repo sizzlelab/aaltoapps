@@ -2,7 +2,7 @@ product1:
   name: testproduct
   url: http://test.url.invalid/somepath
   description: this is a test product
-  donate: no thanks
   platforms: [platform1]
   category: category1
-  publisher: aaltoappstest1
+  publisher: aaltoappstest1 
+

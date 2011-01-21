@@ -10,7 +10,7 @@
 
 body {
 	background-color: #2E2E2E;
-	color: #00ced1;
+	color: #00BFFF;
 	font-family: 'TB';
 	font-size: 1.1em;
 	line-height: 18px;
@@ -22,7 +22,7 @@ pre {
   font-size: 11px;
 }
 
-a { color: #666; }
+a { color: white; }
 
 div.field, div.actions {
   margin-bottom: 10px;

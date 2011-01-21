@@ -9,8 +9,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
   def index 
-		debugger
-		page = params[:page] ? params[:page].to_i : 1
+    page = params[:page] ? params[:page].to_i : 1
     products = Product.scoped
     products = Platform.find(params[:platform_id].to_i).products.scoped if params[:platform_id]
     products = products.where(:publisher_id => current_user.id) if params[:myapps]

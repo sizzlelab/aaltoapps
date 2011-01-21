@@ -2,13 +2,20 @@
 	float:left;
 	width:35%;
 	padding:10px;
+  
 	
 }
 #right-column{
 	float:left;
 	text-align: left;
 	width:60%;
-	
+  
+}
+#current-platform{
+  float:left;
+  text-align: left;
+  
+  width:100%;
 }
 #space-div{
 	

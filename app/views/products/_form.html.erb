@@ -23,10 +23,10 @@
 <table>
     <tr>
         <td align="right">
-            <%= f.label :name, _('Name of the product') + ' *:' %>
+            <%= f.label :name, _('Name of the product') + ' *:', %>
         </td>
         <td>
-            <%= f.text_field :name %>
+            <%= f.text_field :name, :class=>'textfield' %>
         </td>
     </tr>
     <tr>
@@ -34,7 +34,7 @@
             <%= f.label :url,_('URL') + ' *:' %>
         </td>
         <td>
-            <%= f.text_field :url %>
+            <%= f.text_field :url, :class=>'textfield' %>
         </td>
     </tr>
     <tr>
@@ -42,7 +42,7 @@
             <%= f.label :description, _('Description') + ' *:' %>
         </td>
         <td >
-            <%= f.text_area :description %>
+            <%= f.text_area :description, :class=>'textfield' %>
         </td>
     </tr>
     <tr>
@@ -51,14 +51,6 @@
         </td>
         <td>
            <%= f.collection_select :category_id, Category.all, :id, :name, {:prompt => true} %>
-        </td>
-    </tr>
-    <tr>
-        <td align="right">
-            <%= f.label :donate, _('Show Donate buttton') + ' *:' %>
-        </td>
-        <td>
-            <%= f.radio_button :donate, 'yes' %><%= _('Yes') %><%= f.radio_button :donate, 'no' %><%= _('No') %>
         </td>
     </tr>
     <tr>
@@ -79,5 +71,4 @@
   <%= file_field_tag _("Browse") %>
 <% end %>
   </div>
-<div id="space-div">
-</div>
+

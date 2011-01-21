@@ -1,29 +1,118 @@
 <h1><%= _("Editing product") %></h1>
 
-<%= render 'form' %>
+<div id="right-column">
+<%= form_for(@product) do |f| %>
+<% if @product.errors.any? %>
+<div id="error_explanation">
+    <h2><%= _("Validation errors prohibited this product from being saved") %>:</h2>
+    <ul>
+        <% @product.errors.full_messages.each do |msg| %>
+        <li>
+            <%= msg %>
+        </li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+<div>
+    <p>
+        <%= _("Please fill in the following form.") %> 
+        <br/>
+        <%= _("Fields marked with asterisk (*) are compulsory") %>.
+    </p>
+</div>
+<table>
+    <tr>
+        <td align="right">
+            <%= f.label :name, _('Name of the product') + ' *:', %>
+        </td>
+        <td>
+            <%= f.text_field :name, :class=>'textfield' %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <%= f.label :url,_('URL') + ' *:' %>
+        </td>
+        <td>
+            <%= f.text_field :url, :class=>'textfield' %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <%= f.label :description, _('Description') + ' *:' %>
+        </td>
+        <td >
+            <%= f.text_area :description, :class=>'textfield' %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <%= f.label :platform, _('Choose a category') + ' *:' %>
+        </td>
+        <td>
+           <%= f.collection_select :category_id, Category.all, :id, :name, {:prompt => true} %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <%= f.label :donate, _('Show Donate buttton') + ' *:' %>
+        </td>
+        <td>
+            <%= f.radio_button :donate, 'yes' %><%= _('Yes') %><%= f.radio_button :donate, 'no' %><%= _('No') %>
+        </td>
+    </tr>
+   
 
-<% @product.platforms.each do |platform| %>
+    <tr>
+        <td>
+        </td>
+        <td>
+            <%= f.submit _('Submit') %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=f.submit _('Cancel') ,:name=>'cancel' %>
+        </td>
+    </tr>
+    <% end %>
+</table>
+</div>
+<div id="left-column">
+  <div id="image" style="border:groove;width:130px;height: 140px;">
+    <%= _("Drag an image here!") %>
+  </div>
+  <%= form_tag({:action => :upload}, :multipart => true) do %>
+  <%= file_field_tag _("Browse") %>
+<% end %>
+  </div>
+
+<div id="current-platform">
+  <% @product.platforms.each do |platform| %>
+  <table>
+    <tr>
+      <td align="right"><%= _("Current platform: ")%><%= platform.name %></td>
+    </tr>
+  <% end %>
+  <% form_tag :controller => "platforms", :action => "add_product", :id => @product.id do %>
   <tr>
-    <td><%= platform.name %></td>
+    <td align="right">
+      <%= label_tag :platform, _('Add a platform') + ' *:' %>
+    </td>
+    <td>
+      <%= collection_select :product, :platform_ids, Platform.all, :id, :name, {:multiple => true} %>
+    </td>
   </tr>
-<% end %>
-<% form_tag :controller => "platforms", :action => "add_product", :id => @product.id do %>
-<tr>
-  <td align="right">
-    <%= label_tag :platform, _('Add a platform') + ' *:' %>
-  </td>
-  <td>
-    <%= collection_select :product, :platform_ids, Platform.all, :id, :name, {:multiple => true} %>
-  </td>
-</tr>
-<tr>
-  <td align="right">
-  </td>
-  <td>
-    <%= submit_tag _("Add") %>
-  </td>
-</tr>
-<% end %>
+  <tr>
+    <td>
+    </td>
+    <td>
+      <%= submit_tag _("Add") %>
+    </td>
+  </tr>
+  <% end %>
+  </table>
+
+</div>
 
 <%= link_to _('Show'), @product %> |
 <%= link_to _('Back'), products_path %>
+
+<div id="space-div">
+</div>

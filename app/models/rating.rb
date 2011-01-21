@@ -1,7 +1,7 @@
 class Rating < ActiveRecord::Base
   MIN = 1
   MAX = 5
-  STEP = 0.5
+  STEP = 1
 
   belongs_to :user
   belongs_to :product

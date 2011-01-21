@@ -9,7 +9,7 @@ describe Rating do
     @platform.should be_valid
     @category = Category.new :name => "category", :image_url => "http://category.com/category.png"
     @category.should be_valid
-    @product = Product.new :name => "my product", :url => "http://foo.bar", :description => "the description has to be pretty long", :donate => "no thanks", :platforms => [@platform], :category => @category, :publisher => @publisher_and_rater
+    @product = Product.new :name => "my product", :url => "http://foo.bar", :description => "the description has to be pretty long", :platforms => [@platform], :category => @category, :publisher => @publisher_and_rater
     @product.should be_valid
     @rating = Rating.new(:user => @publisher_and_rater, :product => @product, :rating => Rating::MAX)
     @rating.should be_valid

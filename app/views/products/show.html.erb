@@ -76,7 +76,7 @@
  
   <p>
     <% if logged_in? %>
-      <%= render :partial => "comment/form", :object => @product %>
+      <%= render :partial => "comment/form" %>
     <% else %>
       <b><%= _("Please login to add comments") %></b>
     <% end %>

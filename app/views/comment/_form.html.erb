@@ -1,6 +1,6 @@
 <% if logged_in? %>
   <p>
-    <%= form_for [@product, @product.comments.build(:commenter => current_user)] do |f| %>
+    <%= form_for defined?(comment) ? comment :  [@product, @product.comments.build(:commenter => current_user)] do |f| %>
       <%= f.text_area :body, :class => 'commentfield', :size => '60x5' %><br>
       <%= f.submit %>
     <% end %>

@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
 protected
   
   def set_locale
-    FastGettext.available_locales = ['en']
+    FastGettext.available_locales = ['en', 'fi']
     FastGettext.text_domain = 'frontend'
     session[:locale] = I18n.locale = FastGettext.set_locale(params[:locale] || session[:locale] || request.env['HTTP_ACCEPT_LANGUAGE'] || 'en')
   end

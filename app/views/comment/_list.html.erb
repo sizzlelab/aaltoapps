@@ -14,6 +14,13 @@
   </p>
   <p>
     <b><%= _("Comment") %>: </b>
-    <%= comment.body %>
+    <% if comment.commenter == current_user %>
+      <%= render 'comment/form', :comment => comment %>
+    <% else %>
+      <%= comment.body %>
+    <% end %>
   </p>
 
+  <% if comment.commenter == current_user %>
+    <%= button_to _('Delete'), comment, :confirm => _('Are you sure?'), :method => :delete %>
+  <% end %>

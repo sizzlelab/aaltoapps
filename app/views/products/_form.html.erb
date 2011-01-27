@@ -1,5 +1,5 @@
 <div id="right-column">
-<%= form_for(@product) do |f| %>
+<%= form_for @product, :html => { :multipart => true } do |f| %>
 <% if @product.errors.any? %>
 <div id="error_explanation">
     <h2><%= _("Validation errors prohibited this product from being saved") %>:</h2>
@@ -52,6 +52,14 @@
            <%= f.collection_select :category_id, Category.all, :id, :name, {:prompt => true} %>
         </td>
     </tr>
+    <tr>
+        <td align="right">
+            <%= f.label :photo, _('Choose a Photo') + ' *:' %>
+        </td>
+        <td>
+           <%= f.file_field :photo %>
+        </td>
+    </tr>
     
     <tr>
         <td>
@@ -67,9 +75,11 @@
   <div id="image" style="border:groove;width:130px;height: 140px;">
     <%= _("Drag an image here!") %>
   </div>
-  <%= form_tag({:action => :upload}, :multipart => true) do %>
-  <%= file_field_tag _("Browse") %>
-<% end %>
+  <div class="input">  
+		<% form_for @product, :html => { :multipart => true } do |f| %>
+  		<%= f.file_field :photo %>
+		<% end %>
   </div>
+</div>
 <div id="space-div">
 </div>

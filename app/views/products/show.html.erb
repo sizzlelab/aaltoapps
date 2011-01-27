@@ -3,7 +3,9 @@
 <div id="product-info">
   <div id="product-image">
     <div id="product-image-border">
-      <%= image_tag("http://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Soccer_ball.svg/600px-Soccer_ball.svg.png", :size => "100x100", :border => 0) %>
+			<div id="image" style="border:groove;width:150px;height:150px;">
+				<%= image_tag @product.photo.url(:small) %>
+  		</div>
     </div>
   </div>
 

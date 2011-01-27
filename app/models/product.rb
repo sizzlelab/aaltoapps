@@ -7,4 +7,11 @@ class Product < ActiveRecord::Base
   validates :url, :length => { :minimum => 12 } # http://ab.cd 
   has_many :ratings, :dependent => :destroy
   has_many :comments, :dependent => :destroy
+	has_attached_file :photo, :styles => { :thumb=> "75x75#",:small => "150x150>" },
+                  :url  => "/:class/:attachment/:id/:style_:basename.:extension",
+                  :path => ":rails_root/public/:class/:attachment/:id/:style_:basename.:extension"
+	validates_attachment_presence :photo
+	validates_attachment_size :photo, :less_than => 5.megabytes
+	validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+
 end

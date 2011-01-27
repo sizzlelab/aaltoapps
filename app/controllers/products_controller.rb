@@ -65,7 +65,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(params[:product])
     @product.publisher_id = current_user.id
-    if params[:cancel]
+		if params[:cancel]
       @product = Product.new
       render :action => 'new'
     else

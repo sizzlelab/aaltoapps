@@ -45,8 +45,8 @@
 	float: left;
 	padding-top: 1.5em;
   margin-left: 2em;
-  //border: solid red;
   margin-top: 1em;
+  //border: solid red;
 	
 }
 
@@ -94,7 +94,7 @@
 }
 
 .current_platform {
-  //border: solid red;
+  border: solid red;
   text-align: left;
 }
 
@@ -117,11 +117,11 @@
 
 #menu .navmenu li ul {list-style: none; padding: 0; margin: 0; }
 
-#menu .menutop {padding:0.3em; padding-left: 1.5em; font-size: 1em;}
+#menu .menutop {padding:0.3em; padding-left: 0.5em; font-size: 1em; overflow:hidden;}
 
-#menu .menusingle {padding:0.3em; padding-left: 1.5em; font-size: 1em;}
+#menu .menusingle {padding:0.3em; padding-left: 0.5em; font-size: 1em;overflow:hidden;}
 
 #menu .navmenu li div ul {margin:none; padding: none;}
 
-#menu .submenu_row a {text-align: center; padding-left: 2.5em; font-size: 0.8em; color: #00BFFF; font-family: 'Harabara'; font-size: 1em; }
+#menu .submenu_row a {text-align: center; padding-left: 1.0em; font-size: 0.8em; color: #00BFFF; font-family: 'Harabara'; font-size: 1em; overflow:hidden; }
  

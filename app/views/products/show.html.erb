@@ -65,7 +65,7 @@
 		<dl id="product-admin">
 			<dt><%= _("Admin") %>:</dt>
 			<dd><%= link_to 'Edit', edit_product_path(@product) %></dd>
-			<dd><%= button_to 'Delete', @product, :confirm => _('Are you sure?'), :method => :delete %></dd>
+			<dd><%= button_to 'Delete', @product, :confirm => _('Are you sure?'), :class=>"button", :method => :delete %></dd>
 		</dl>
 		<%end%>
 		

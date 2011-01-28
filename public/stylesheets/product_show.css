@@ -25,7 +25,9 @@
   float: left;
 	
 }
-
+/*#product-url{
+  border: solid green;
+}*/
 #product-details > dl {
   margin-top: 0.1em;
   margin-bottom: 0.1em;
@@ -75,4 +77,27 @@
     visibility: hidden;    
     clear: left;
 }
+
+/*#product-description{
+  border: solid red;
+
+}*/
+
+#product-comment-list{
+  //border: solid blue;
+}
+
+#product-comment-time{
+  color: #8407B5;
+  //border: solid white;
+}
+
+#product-comment-rating{
+  //border: solid white;
+}
+
+#product-comment-line{
+  //border: solid yellow;
+}
+
 

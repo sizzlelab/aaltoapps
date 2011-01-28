@@ -5,20 +5,20 @@
 }
 
 .browse_product_left_silver {
-    background-image: -webkit-gradient(
+background-image: -webkit-gradient(
     linear,
     left bottom,
     left top,
-    color-stop(0.38, #2E2E2E),
-    color-stop(0.62, #454545),
-    color-stop(1, #706C70)
-    );
-    background-image: -moz-linear-gradient(
+    color-stop(0.36, #202020),
+    color-stop(0.58, #2B292B),
+    color-stop(0.84, #333033)
+);
+background-image: -moz-linear-gradient(
     center bottom,
-    #2E2E2E 38%,
-    #454545 62%,
-    #706C70 100%
-    );
+    #202020 36%,
+    #2B292B 58%,
+    #333033 84%
+);
     //background:#2E2E2E;
     margin-bottom: 1em;
     border-radius: 0.5em;
@@ -28,27 +28,27 @@
     float:left;
 		position:relative;
     //border: solid red;
-    -moz-box-shadow: 0 0 7px black;
+    /**/-moz-box-shadow: 0 0 7px black;
 	  -webkit-box-shadow: 0 0 7px black;
 	  box-shadow: 0 0 7px black;
 		   
 }
 
 .browse_product_right_white {
-    background-image: -webkit-gradient(
+background-image: -webkit-gradient(
     linear,
     left bottom,
     left top,
-    color-stop(0.38, #2E2E2E),
-    color-stop(0.62, #454545),
-    color-stop(1, #706C70)
-    );
-    background-image: -moz-linear-gradient(
+    color-stop(0.36, #202020),
+    color-stop(0.58, #2B292B),
+    color-stop(0.84, #333033)
+);
+background-image: -moz-linear-gradient(
     center bottom,
-    #2E2E2E 38%,
-    #454545 62%,
-    #706C70 100%
-    );
+    #202020 36%,
+    #2B292B 58%,
+    #333033 84%
+);
     //background:#404040;
     margin-bottom: 1em;
     border-radius: 0.5em;
@@ -65,20 +65,20 @@
 }
 
 .browse_product_left_white {
-    background-image: -webkit-gradient(
+  background-image: -webkit-gradient(
     linear,
     left bottom,
     left top,
-    color-stop(0.38, #2E2E2E),
-    color-stop(0.62, #454545),
-    color-stop(1, #706C70)
-    );
-    background-image: -moz-linear-gradient(
+    color-stop(0.36, #202020),
+    color-stop(0.58, #2B292B),
+    color-stop(0.84, #333033)
+);
+background-image: -moz-linear-gradient(
     center bottom,
-    #2E2E2E 38%,
-    #454545 62%,
-    #706C70 100%
-    );
+    #202020 36%,
+    #2B292B 58%,
+    #333033 84%
+);
     //background:#404040;
     margin-bottom: 1em;
     border-radius: 0.5em;
@@ -95,21 +95,20 @@
 }
 
 .browse_product_right_silver {
-    //background:#2E2E2E;
-   background-image: -webkit-gradient(
+    background-image: -webkit-gradient(
     linear,
     left bottom,
     left top,
-    color-stop(0.38, #2E2E2E),
-    color-stop(0.62, #454545),
-    color-stop(1, #706C70)
-    );
-    background-image: -moz-linear-gradient(
+    color-stop(0.36, #202020),
+    color-stop(0.58, #2B292B),
+    color-stop(0.84, #333033)
+);
+background-image: -moz-linear-gradient(
     center bottom,
-    #2E2E2E 38%,
-    #454545 62%,
-    #706C70 100%
-    );
+    #202020 36%,
+    #2B292B 58%,
+    #333033 84%
+);
     margin-bottom: 1em;
     border-radius: 0.5em;
 		-moz-border-radius 0.5em;
@@ -138,7 +137,7 @@
     border-radius: 0.5em;    
     float:left;
     width:48%;
-    max-height:7em;
+    max-height:4em;
     overflow:hidden;
 		text-align:left;
     

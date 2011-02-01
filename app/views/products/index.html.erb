@@ -17,9 +17,8 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 <h3 >
   <h2><%= _("Select sort criteria") %></h2>
   <%= link_to _('Publication date'), products_by_platform_path(params[:platform],'created_at') %>&nbsp;&nbsp;|
-  <%= link_to _('Most popular'), products_by_platform_path(params[:platform],'popularity') %>&nbsp;&nbsp;|
-  <%= link_to _('Most rated'), products_by_platform_path(params[:platform],'avg_rating') %>&nbsp;&nbsp;|
-  <%= link_to _('Featured apps'), products_by_platform_path(params[:platform],'featured') %>&nbsp;&nbsp;
+  <%= link_to _('Popularity'), products_by_platform_path(params[:platform],'popularity') %>&nbsp;&nbsp;|
+  <%= link_to _('User rating'), products_by_platform_path(params[:platform],'avg_rating') %>
 </h3><br><br>
 <%end%>
   	<%=render :partial=>'product',:collection=>@products%>
@@ -37,9 +36,12 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 <h3 >
   <h2><%= _("Select sort criteria") %></h2>
   <%= link_to _('Publication date'), products_by_platform_path(params[:platform],'created_at') %>&nbsp;&nbsp;|
-  <%= link_to _('Most popular'), products_by_platform_path(params[:platform],'popularity') %>&nbsp;&nbsp;|
-  <%= link_to _('Most rated'), products_by_platform_path(params[:platform],'avg_rating') %>&nbsp;&nbsp;|
+  <%= link_to _('Popularity'), products_by_platform_path(params[:platform],'popularity') %>&nbsp;&nbsp;|
+  <%= link_to _('User rating'), products_by_platform_path(params[:platform],'avg_rating') %>
+<%unless params[:platform_id]%>
+&nbsp;&nbsp;|
   <%= link_to _('Featured apps'), products_by_platform_path(params[:platform],'featured') %>&nbsp;&nbsp;
+<%end%>
 </h3><br><br>
 <%end%>
   <%=render :partial=>'product',:collection=>@products%>

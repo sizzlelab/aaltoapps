@@ -29,5 +29,4 @@ AaltoApps::Application.routes.draw do
   
   match ':controller(/:action(/:id))'
   root :to => "products#index"
-#  root :to => redirect('/en/')
 end

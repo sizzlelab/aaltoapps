@@ -33,6 +33,14 @@ protected
   
   def set_locale
     FastGettext.available_locales = I18n.available_locales
+
+    # redirect main page url without a locale string (locale == undetermined)
+    # to an url with a proper locale string
+    if I18n.locale.to_s == 'und' && request.fullpath == '/'
+      locale = FastGettext.best_locale_in(request.env['HTTP_ACCEPT_LANGUAGE']) || 'en'
+      redirect_to("/#{locale}")
+    end
+
     I18n.locale = FastGettext.set_locale(params[:locale] || request.env['HTTP_ACCEPT_LANGUAGE'] || 'en')
   end
 end

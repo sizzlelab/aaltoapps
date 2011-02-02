@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include FastGettext::Translation
-  before_filter :set_locale  
+  before_filter :set_locale
   helper_method :current_user, :logged_in?, :products_by_platform_path
   
   def login_required
@@ -32,8 +32,7 @@ class ApplicationController < ActionController::Base
 protected
   
   def set_locale
-    FastGettext.available_locales = ['en', 'fi']
-    FastGettext.text_domain = 'frontend'
-    session[:locale] = I18n.locale = FastGettext.set_locale(params[:locale] || session[:locale] || request.env['HTTP_ACCEPT_LANGUAGE'] || 'en')
+    FastGettext.available_locales = I18n.available_locales
+    I18n.locale = FastGettext.set_locale(params[:locale] || request.env['HTTP_ACCEPT_LANGUAGE'] || 'en')
   end
 end

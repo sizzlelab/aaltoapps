@@ -1,4 +1,7 @@
 AaltoApps::Application.routes.draw do
+  # prefix all urls with language (e.g. /en/rest_of_url)
+  filter :locale
+
   resources :sessions
   resources :users do
     resources :products
@@ -26,4 +29,5 @@ AaltoApps::Application.routes.draw do
   
   match ':controller(/:action(/:id))'
   root :to => "products#index"
+#  root :to => redirect('/en/')
 end

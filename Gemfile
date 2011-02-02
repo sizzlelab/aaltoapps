@@ -14,6 +14,11 @@ gem 'vlad'
 gem 'vlad-git'
 gem 'fast_gettext'
 gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git"
+gem 'routing-filter'
+
+# these are used to extract translatable strings from code
+gem 'gettext_i18n_rails', :require => false, :group => :development
+gem 'gettext', :require => false, :group => :development
 
 # Use unicorn as the web server
 # gem 'unicorn'

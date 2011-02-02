@@ -79,7 +79,22 @@
     <div class="wrapper_top">
     	<div class="layout_info">
 				<div class="layout_menuitem">
-          Choose language: English, suomi
+          <%= _("Choose language:") %>
+          <span class="locale_selector">
+            <%=
+              FastGettext.available_locales.map { |l|
+                # get the native language name by reading a special
+                # I18n-style translation
+                name = I18n.translate 'i18n.language.name', :locale => l
+                # no link for current locale
+                if l.to_s == I18n.locale.to_s
+                  content_tag(:span, name, :class => 'selected_locale')
+                else
+                  link_to name, :locale => l
+                end
+              }.join(', ').html_safe
+            %>
+          </span>
         </div>
 				<div class="layout_menuitem">
           <%= render :partial => "/users/login_menu" %>

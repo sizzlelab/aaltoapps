@@ -18,7 +18,5 @@ module AaltoApps
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-
-    I18n.default_locale = 'und'  # default locale = undetermined
   end
 end

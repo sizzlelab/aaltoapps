@@ -34,25 +34,29 @@ protected
   def set_locale
     FastGettext.available_locales = I18n.available_locales
 
-    # redirect main page url without a locale string (locale == undetermined)
-    # to an url with a proper locale string
-    if I18n.locale.to_s == 'und' && request.fullpath == '/'
+    if params[:locale]
+
+      I18n.locale = FastGettext.set_locale(params['locale'])
+
+      # make a sorted list of available locales and their associated information
+      @available_locales = FastGettext.available_locales.map do |locale|
+        {
+          :id => locale,
+          # get the native language name by reading a special
+          # I18n-style translation string, which contains the name
+          :name => I18n.translate('i18n.language.name', :locale => locale),
+          :current? => (locale.to_s == I18n.locale.to_s),
+        }
+      end
+      @available_locales.sort! { |a, b| a[:name].casecmp(b[:name]) }
+
+    elsif request.fullpath == '/'
+      # redirect main page url without a locale string
+      # to an url with a proper locale string
       locale = FastGettext.best_locale_in(request.env['HTTP_ACCEPT_LANGUAGE']) || 'en'
       redirect_to("/#{locale}")
+    else
+      raise ActionController::RoutingError.new('No locale in path')
     end
-
-    I18n.locale = FastGettext.set_locale(params[:locale] || request.env['HTTP_ACCEPT_LANGUAGE'] || 'en')
-
-    # make a sorted list of available locales and their associated information
-    @available_locales = FastGettext.available_locales.map do |locale|
-      {
-        :id => locale,
-        # get the native language name by reading a special
-        # I18n-style translation string, which contains the name
-        :name => I18n.translate('i18n.language.name', :locale => locale),
-        :current? => (locale.to_s == I18n.locale.to_s),
-      }
-    end
-    @available_locales.sort! { |a, b| a[:name].casecmp(b[:name]) }
   end
 end

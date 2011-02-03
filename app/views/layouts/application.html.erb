@@ -82,15 +82,11 @@
           <%= _("Choose language:") %>
           <span class="locale_selector">
             <%=
-              FastGettext.available_locales.map { |l|
-                # get the native language name by reading a special
-                # I18n-style translation
-                name = I18n.translate 'i18n.language.name', :locale => l
-                # no link for current locale
-                if l.to_s == I18n.locale.to_s
-                  content_tag(:span, name, :class => 'selected_locale')
+              @available_locales.map { |l|
+                if l[:current?]
+                  content_tag(:span, l[:name], :class => 'current_locale')
                 else
-                  link_to name, :locale => l
+                  link_to l[:name], :locale => l[:id]
                 end
               }.join(', ').html_safe
             %>

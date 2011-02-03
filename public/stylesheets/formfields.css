@@ -8,7 +8,7 @@
 
 .searchfield {
 	background: #666;
-	color: #00ced1;
+	color: white;
 	-moz-border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
   border-radius: 0.5em;
@@ -16,22 +16,23 @@
 
 .commentfield {
 	background: #2E2E2E;
-	color: #00ced1;
+	color: white;
 	-moz-border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
   border-radius: 0.5em;
 }
 
-.submit {
+.button {
 	-moz-border-radius: 1em;
 	-webkit-border-radius: 1em;
   border-radius: 1em;
+	color: red;
   
 }
 
 .pwfield {
 	background: #2E2E2E;
-	color: #00ced1;
+	color: white;
 	-moz-border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
   border-radius: 0.5em;

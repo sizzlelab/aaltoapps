@@ -87,8 +87,12 @@
   //border: solid blue;
 }
 
+#product-comment-name{
+  color: white;
+}
+
 #product-comment-time{
-  color: #8407B5;
+  color: #993366;
   //border: solid white;
 }
 

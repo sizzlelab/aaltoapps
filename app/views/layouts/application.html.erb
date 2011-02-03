@@ -112,7 +112,7 @@
 
 		
 
-    <!--<div class="wrapper_bottom">-->
+    
 
           <div class="layout_frame">
             <div class="layout_master">
@@ -120,9 +120,22 @@
             	<div id="alert"><%= alert %></div>
               <%= yield %>
             </div>
-
+						
+					<% if show_welcome_info%>
             <div class="layout_footer">
-              <%= _("Official looking footer here") %>
+							<div class="footer_pictures">
+								<div class="footer_pic">Register<br>harmaasävyset kuvat photarilla ja hoverilla värit kuviin, linkeiksi. ja sit jos sais tasaseks vielä nää tähän.</div>
+								<div class="footer_pic">Login</div>
+								<div class="footer_pic">Publish a new app</div>
+								<div class="footer_pic">View users</div>
+								<div class="footer_pic">Eat shit</div>
+								<div class="clear"></div>
+							</div>
+					<%end%>
+							<div class="footer_text">
+              <%= _("Aalto Apps 2011") %>
+							</div>
+								<div class="clear"></div>
             </div>
           </div>
 
@@ -156,7 +169,7 @@
  		      </div>
 
           
-    <!--</div>-->
+    
     	
 
 

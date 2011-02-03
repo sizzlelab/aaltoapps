@@ -25,7 +25,7 @@
             <%= f.label :name, _('Name of the product') + ' *:' %>
         </td>
         <td>
-            <%= f.text_field :name %>
+            <%= f.text_field :name, :class => "textfield" %>
         </td>
     </tr>
     <tr>
@@ -33,7 +33,7 @@
             <%= f.label :url,_('URL') + ' *:' %>
         </td>
         <td>
-            <%= f.text_field :url %>
+            <%= f.text_field :url, :class => "textfield" %>
         </td>
     </tr>
     <tr>
@@ -41,7 +41,7 @@
             <%= f.label :description, _('Description') + ' *:' %>
         </td>
         <td >
-            <%= f.text_area :description %>
+            <%= f.text_area :description, :class => "textfield" %>
         </td>
     </tr>
     <tr>

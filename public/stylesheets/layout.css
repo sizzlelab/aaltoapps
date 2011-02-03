@@ -1,10 +1,10 @@
 .wrapper_top {
   position:relative;
-	width: 70%;
+	width: 60%;
 	padding-bottom: 1em;
 	margin-bottom: 0.5em;
 	margin-top: 2em;
-  margin-right: 15%;
+  margin-right: 22%;
   float:right;
   //border: solid aqua;
 }
@@ -23,9 +23,9 @@
 }*/
 
 .layout_frame {
-  width:70%;
+  width:60%;
   float:right;
-  margin-right: 15%;
+  margin-right: 22%;
 	-moz-box-shadow: 0 0 7px black;
 	-webkit-box-shadow: 0 0 7px black;
 	box-shadow: 0 0 7px black;
@@ -79,10 +79,34 @@
 }
 
 .layout_footer {
-	padding-left: 0.5em;
-  padding-right: 2em;
-	padding-bottom: 1em;
 	background-color: #202020;
+	//border: solid blue;
+	position: relative;
+	
+}
+
+.footer_pictures {
+	position: relative;
+	
+}
+
+.footer_pic {
+	float: left;
+	border: solid thin black;
+	margin: 0.5em;
+	width: 17.5%;
+	height: 15em;
+	
+	-moz-box-shadow: inset 0 0 15px black;
+	 -webkit-box-shadow: inset 0 0 15px black;
+	 box-shadow: inset 0 0 15px black;
+
+}
+
+.footer_text {
+	//border: solid green;
+	background-color: #202020;
+	padding: 0.5em;
 }
 
 .clear {
@@ -91,11 +115,6 @@
   height: 0;
   visibility: hidden;    
   clear: both;
-}
-
-.current_platform {
-  border: solid red;
-  text-align: left;
 }
 
 #menu  {margin-right: 1em; font-family: 'Harabara';}

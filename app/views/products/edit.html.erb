@@ -7,7 +7,7 @@
     <td><%= platform.name %></td>
   </tr>
 <% end %>
-<% form_tag :controller => "platforms", :action => "add_product", :id => @product.id do %>
+<%= form_tag :controller => "platforms", :action => "add_product", :id => @product.id do %>
 <tr>
   <td align="right">
     <%= label_tag :platform, _('Add a platform') + ' *:' %>

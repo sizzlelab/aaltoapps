@@ -76,9 +76,9 @@
     <%= _("Drag an image here!") %>
   </div>
   <div class="input">  
-		<% form_for @product, :html => { :multipart => true } do |f| %>
-  		<%= f.file_field :photo %>
-		<% end %>
+    <%= form_for @product, :html => { :multipart => true } do |f| %>
+      <%= f.file_field :photo %>
+    <% end %>
   </div>
 </div-->
 <div id="space-div">

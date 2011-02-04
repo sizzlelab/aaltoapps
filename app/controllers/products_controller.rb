@@ -126,7 +126,7 @@ class ProductsController < ApplicationController
     when 'created_at'
       sort = 'created_at DESC'
     when 'avg_rating'
-      sort = 'avg_rating DESC'
+      sort = 'avg_rating IS NULL ASC, avg_rating DESC'
     when 'featured'
       sort = 'featured DESC'
     else

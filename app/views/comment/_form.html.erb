@@ -1,4 +1,4 @@
-<div id="product-comment-line">
+<div class="product-comment-line">
   <% if logged_in? %>
       <%= form_for defined?(comment) ? comment :  [@product, @product.comments.build(:commenter => current_user)] do |f| %>
         <%= f.text_area :body, :class => 'commentfield', :size => '60x5' %><br>

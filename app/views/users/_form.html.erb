@@ -33,7 +33,7 @@
   <% unless @user.new_record? %>
     <div class="field">
       <%= f.label :birthdate %><br />
-      <%= f.text_field :birthdate %>
+      <%= f.text_field :birthdate, :class => 'textfield' %>
     </div>
 
     <div class="field">
@@ -43,42 +43,42 @@
 
     <div class="field">
       <%= f.label :description %><br />
-      <%= f.text_field :description %>
+      <%= f.text_field :description, :class => 'textfield' %>
     </div>
 
     <div class="field">
       <%= f.label :website %><br />
-      <%= f.text_field :website %>
+      <%= f.text_field :website, :class => 'textfield' %>
     </div>
 
     <div class="field">
       <%= f.label :phone_number %><br />
-      <%= f.text_field :phone_number %>
+      <%= f.text_field :phone_number, :class => 'textfield' %>
     </div>
 
     <div class="field">
       <%= f.label :given_name %><br />
-      <%= f.text_field :given_name %>
+      <%= f.text_field :given_name, :class => 'textfield'%>
     </div>
 
     <div class="field">
       <%= f.label :family_name %><br />
-      <%= f.text_field :family_name %>
+      <%= f.text_field :family_name, :class => 'textfield' %>
     </div>
 
     <div class="field">
       <%= f.label :street_address %><br />
-      <%= f.text_field :street_address %>
+      <%= f.text_field :street_address, :class => 'textfield' %>
     </div>
 
     <div class="field">
       <%= f.label :postal_code %><br />
-      <%= f.text_field :postal_code %>
+      <%= f.text_field :postal_code, :class => 'textfield' %>
     </div>
 
     <div class="field">
       <%= f.label :locality %><br />
-      <%= f.text_field :locality %>
+      <%= f.text_field :locality, :class => 'textfield' %>
     </div>
   <% end %>
 

@@ -130,6 +130,7 @@ background-image: -moz-linear-gradient(
     min-width: 5em;
 		overflow:hidden;
 		text-align: left;	
+    
 
 }
 
@@ -158,6 +159,7 @@ background-image: -moz-linear-gradient(
 
 .browse_row form, .browse_row div{
     display: inline;
+    white-space: nowrap;
 }
 
 .clear{

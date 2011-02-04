@@ -54,7 +54,7 @@
     </tr>
     <tr>
         <td align="right">
-            <%= f.label :photo, _('Choose a Photo') + ' *:' %>
+            <%= f.label :photo, _('Choose a Photo') + ' :' %>
         </td>
         <td>
            <%= f.file_field :photo %>
@@ -76,9 +76,9 @@
     <%= _("Drag an image here!") %>
   </div>
   <div class="input">  
-		<% form_for @product, :html => { :multipart => true } do |f| %>
-  		<%= f.file_field :photo %>
-		<% end %>
+    <%= form_for @product, :html => { :multipart => true } do |f| %>
+      <%= f.file_field :photo %>
+    <% end %>
   </div>
 </div-->
 <div id="space-div">

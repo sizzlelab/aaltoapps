@@ -1,20 +1,19 @@
-<div id="product-comment-current">
-    <span id="product-comment-time">  <%= comment.created_at%> </span> 
-		<span id="product-comment-name"><%=_('by ') %><%= link_to comment.commenter.username, @product.publisher %> </span>
-		
-		<span id="product-comment-rating">
-    <% if !comment.commenter_rating.nil? %>
-      <%= render :partial => 'ratings/rating', :object => comment.commenter_rating %></span>
-    <% else %>
-      <%= _("(User has not rated this app)") %></span>
-    <% end %>  
-		<br>
+<div id="product-comment-current"> 
+		<span id="product-comment-name"><%= link_to comment.commenter.username, @product.publisher %> </span>
 		<% if comment.commenter == current_user %>
       <%= render 'comment/form', :comment => comment %>
     <% else %>
       <%= comment.body %>
     <% end %>
-		
+		<br />
+		<span id="product-comment-time">  <%= comment.created_at%> </span>
+		<span id="product-comment-rating">
+    <% if !comment.commenter_rating.nil? %>
+      <%= render :partial => 'ratings/rating', :object => comment.commenter_rating %></span>
+    <% else %>
+      <%= _("(User has not rated this app)") %></span>
+    <% end %>
+		 	
 
   <% if comment.commenter == current_user %>
     <%= button_to _('Delete'), comment, :confirm => _('Are you sure?'), :method => :delete %>

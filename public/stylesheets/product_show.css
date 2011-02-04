@@ -78,10 +78,10 @@
     clear: left;
 }
 
-/*#product-description{
-  border: solid red;
+#product-description{
+  //border: solid red;
 
-}*/
+}
 
 #product-comment-list{
   //border: solid blue;
@@ -92,16 +92,31 @@
 }
 
 #product-comment-time{
-  color: #993366;
-  //border: solid white;
+  color: #666;
+  //border-top: solid thin black;
 }
 
 #product-comment-rating{
   //border: solid white;
+	//border-top: solid thin black;
 }
 
 #product-comment-line{
   //border: solid yellow;
+}
+
+#product-comment-current{
+	//border: solid black;
+	margin-bottom: 1em;
+	/*border-left: solid thin black;
+	border-bottom: solid thin black;
+	-moz-box-shadow: 0 0 7px black;
+	-webkit-box-shadow: 0 0 7px black;
+	box-shadow: 0 0 7px black;
+	-moz-border-radius: 0.5em;
+	-webkit-border-radius: 0.5em;
+  border-radius: 0.5em;
+	padding: 0.2em;*/
 }
 
 

@@ -1,23 +1,29 @@
+.layout_whole {
+  //border: solid red;
+  min-width: 80em;
+}
+
 .wrapper_top {
   position:relative;
-	width: 60%;
+	width: 70%;
+  min-width: 55em;
 	padding-bottom: 1em;
 	margin-bottom: 0.5em;
 	margin-top: 2em;
-  margin-right: 22%;
+  margin-right: 15%;
   float:right;
   //border: solid aqua;
 }
 
 .layout_frame {
-  width:60%;
+  width:70%;
   float:right;
-  margin-right: 22%;
+  min-width: 55em;
+  margin-right: 15%;
 	-moz-box-shadow: 0 0 7px black;
 	-webkit-box-shadow: 0 0 7px black;
 	box-shadow: 0 0 7px black;
   //border: solid blue;
-	min-width: 50em;
 	
 }
 
@@ -114,13 +120,12 @@
 	float:right; 
 	margin-right: 2em;
 	margin-top: 2em; 
-	width: 8%;
+	width: 7em;
 	list-style: none; 
 	background-color:#202020;
 	-moz-box-shadow: 0 0 7px black;
 	-webkit-box-shadow: 0 0 7px black;
 	box-shadow: 0 0 7px black;
-	min-width: 6em;
 
 }
 	

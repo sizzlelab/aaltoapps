@@ -76,6 +76,7 @@
 
 </head>
 <body>
+  <div class="layout_whole">
     <div class="wrapper_top">
     	<div class="layout_info">
 				<div class="layout_menuitem">
@@ -110,30 +111,24 @@
 
     
 
-          <div class="layout_frame">
+           <div class="layout_frame">
             <div class="layout_master">
-				      <div id="notice"><%= notice %></div>
-            	<div id="alert"><%= alert %></div>
+              <div id="notice"><%= notice %></div>
+              <div id="alert"><%= alert %></div>
               <%= yield %>
             </div>
-						
-					<% if show_welcome_info%>
-            <div class="layout_footer">
-							<div class="footer_pictures">
-								<div class="footer_pic">Register<br>jotain makeita kuvia linkeiksi hover efektillä.</div>
-								<div class="footer_pic">Login</div>
-								<div class="footer_pic">Publish a new app</div>
-								<div class="footer_pic">View users</div>
-								<div class="footer_pic">Eat shit</div>
-								<div class="clear"></div>
-							</div>
-					<%end%>
-							<div class="footer_text">
-              <%= _("Aalto Apps 2011") %>
-							</div>
-								<div class="clear"></div>
+
+
+              <div class="footer_text">
+                            <%= _("Aalto Apps 2011") %>
+              </div>
+              <div class="clear"></div>
             </div>
           </div>
+  
+           
+							
+						
 
 
           <div id="menu">
@@ -166,7 +161,7 @@
 
           
     
-    	
+    	</div>
 
 
 </body>

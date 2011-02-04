@@ -51,22 +51,24 @@
 
       // replace each comment edit form with comment text and a button that
       // opens the form
-      $('#product-comment-list .commentfield').parents('form').each(function () {
+      $('#product-comment-list .commentfield').parents('.product-comment-line').each(function () {
         var form = $(this);
-        var div = $('<div class="commenttext"/>').text(form.find('.commentfield').val())
+        var text = $('<span class="commenttext"/>').text(form.find('.commentfield').val()).append('<br/>')
           .insertBefore(form);
         form.hide();
-        $('<button>').text('<%= _('Edit') %>')
-          .appendTo( $('<div/>').appendTo(div) )
-          .click(function () {
-            div.slideUp(250);
-            form.slideDown(250);
+        var editbutton = $('<button>').text('<%= _('Edit') %>')
+          .prependTo( form.parent().find('.product-comment-buttons') );
+        editbutton.click(function () {
+            editbutton.attr("disabled", true);
+            text.hide();
+            form.show();
           });
         $('<button>').text('<%= _('Cancel') %>')
           .appendTo(form)
           .click(function () {
-            div.slideDown(250);
-            form.slideUp(250);
+            editbutton.attr("disabled", false);
+            text.show();
+            form.hide();
             return false; // don't submit form'
           });
       });

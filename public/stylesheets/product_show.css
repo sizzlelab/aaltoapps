@@ -101,11 +101,11 @@
 	//border-top: solid thin black;
 }
 
-#product-comment-line{
+.product-comment-line{
   //border: solid yellow;
 }
 
-#product-comment-current{
+.product-comment-current{
 	//border: solid black;
 	margin-bottom: 1em;
 	/*border-left: solid thin black;
@@ -119,4 +119,10 @@
 	padding: 0.2em;*/
 }
 
+.product-comment-current form {
+    display: inline;
+}
 
+.product-comment-buttons * {
+    display: inline;
+}

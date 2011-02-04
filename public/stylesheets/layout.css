@@ -133,11 +133,12 @@
 
 #menu .navmenu li ul {list-style: none; padding: 0; margin: 0; }
 
-#menu .menutop {padding:0.3em; padding-left: 0.5em; font-size: 1em; overflow:hidden;}
+#menu .menutop {padding:0.3em; padding-left: 0.5em; font-size: 1em; overflow:hidden; }
 
 #menu .menusingle {padding:0.3em; padding-left: 0.5em; font-size: 1em;overflow:hidden;}
 
 #menu .navmenu li div ul {margin:none; padding: none;}
 
-#menu .submenu_row a {text-align: center; padding-left: 1.0em; font-size: 0.8em; color: #00BFFF; font-family: 'Harabara'; font-size: 1em; overflow:hidden; }
+#menu .submenu_row a {text-align: center; padding-left: 1.0em; font-size: 0.8em; color: #00BFFF; font-family: 'Harabara'; font-size: 1em; 
+overflow:hidden; }
  

@@ -126,19 +126,20 @@ background-image: -moz-linear-gradient(
     background:none;
     border-radius: 0.5em;   
     float:left;
-    width:30%;
+    width:29%;
     min-width: 5em;
 		overflow:hidden;
 		text-align: left;	
-    
+    //border:solid red;
 
 }
 
 .browse_product_desc {
     background:none;
-    border-radius: 0.5em;    
+    border-radius: 0.5em;
+    margin-left: 0.5em;  
     float:left;
-    width:48%;
+    width:47%;
     max-height:4em;
     overflow:hidden;
 		text-align:left;
@@ -159,7 +160,13 @@ background-image: -moz-linear-gradient(
 
 .browse_row form, .browse_row div{
     display: inline;
-    white-space: nowrap;
+    text-overflow: hidden;
+    //border: solid yellow;
+  
+    
+}
+.browse_row {
+   white-space:nowrap;
 }
 
 .clear{

@@ -16,6 +16,11 @@
 </p>
 
 <p>
+  <b><%= _("Type") %>:</b>
+  <%= @user.is_admin? ? _('administrator') : _('normal user') %>
+</p>
+
+<p>
   <b><%= _("Email") %>:</b>
   <%= @user.email %>
 </p>
@@ -28,5 +33,7 @@
 </p>
 
 
-<%= link_to _('Edit'), edit_user_path(@user) %> |
+<% if can? :edit, @user %>
+  <%= link_to _('Edit'), edit_user_path(@user) %> |
+<% end %>
 <%= link_to _('Back'), users_path %>

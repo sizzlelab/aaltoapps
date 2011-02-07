@@ -1,9 +1,9 @@
 class CategoriesController < ApplicationController
+  load_and_authorize_resource
+
   # GET /products
   # GET /products.xml
   def index
-    @categories = Category.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @categories }
@@ -13,8 +13,6 @@ class CategoriesController < ApplicationController
   # GET /products/1
   # GET /products/1.xml
   def show
-    @category = Category.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @category }
@@ -24,8 +22,6 @@ class CategoriesController < ApplicationController
   # GET /products/new
   # GET /products/new.xml
   def new
-    @category = Category.new
- 
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @category }
@@ -34,7 +30,6 @@ class CategoriesController < ApplicationController
   
   # GET /products/1/edit
   def edit
-    @category = Category.find(params[:id])
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @category }
@@ -44,7 +39,6 @@ class CategoriesController < ApplicationController
   # POST /products
   # POST /products.xml
   def create
-    @category = Category.new(params[:category])
     respond_to do |format|
       if @category.save        
         format.html { redirect_to(:action => "show", :id => @category.id, :notice => _('Category was successfully created.')) }
@@ -59,8 +53,6 @@ class CategoriesController < ApplicationController
    # PUT /products/1
    # PUT /products/1.xml
    def update
-     @category = Category.find(params[:id])
-  
      respond_to do |format|
        if @category.update_attributes(params[:category])
          format.html { redirect_to(:action => "edit", :id => @category.id, :notice => _('Category was successfully updated.')) }
@@ -75,7 +67,6 @@ class CategoriesController < ApplicationController
    # DELETE /products/1
    # DELETE /products/1.xml
    def destroy
-     @category = Category.find(params[:id])
      @category.destroy
   
      respond_to do |format|
@@ -84,4 +75,3 @@ class CategoriesController < ApplicationController
      end
    end
 end
-

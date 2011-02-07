@@ -3,9 +3,9 @@
 <div id="product-info">
   <div id="product-image">
     <div id="product-image-border">
-			<div id="image" style="border:groove;width:150px;height:150px;">
-				<%= image_tag @product.photo.url(:small) %>
-  		</div>
+      <div id="image" style="border:groove;width:150px;height:150px;">
+        <%= image_tag @product.photo.url(:small) %>
+      </div>
     </div>
   </div>
 
@@ -61,25 +61,29 @@
       <dd><%= @product.description %></dd>
     </dl>
 
-		<%if @product.publisher==current_user%>
-		<dl id="product-admin">
-			<dt><%= _("Admin") %>:</dt>
-			<dd><%= button_to 'Edit', edit_product_path(@product), :method => :get, :class => "smallbutton" %></dd>
-			<dd><%= button_to 'Delete', @product, :confirm => _('Are you sure?'), :class=>"smallbutton", :method => :delete %></dd>
-		</dl>
-		<%end%>
+    <% if can?(:edit, @product) || can?(:delete, @product) %>
+      <dl id="product-admin">
+        <dt><%= _("Admin") %>:</dt>
+        <dd><%= button_to 'Edit', edit_product_path(@product), :method => :get,
+                                  :class => "smallbutton" if can? :edit, @product %></dd>
+        <dd><%= button_to 'Delete', @product, :class=>"smallbutton", :method => :delete,
+                                    :confirm => _('Are you sure?') if can? :delete, @product %></dd>
+      </dl>
+    <% end %>
 		
   </div>
 </div>
 
 <div class="product_comment">
-  <h2><%= _("Comments") %>:</h2>
-  <div id="product-comment-list">
-    <%= render :partial => "comment/list", :collection => @product.comments, :as => :comment %>
-  </div>
+  <% if can? :show, Comment %>
+    <h2><%= _("Comments") %>:</h2>
+    <div id="product-comment-list">
+      <%= render :partial => "comment/list", :collection => @comments, :as => :comment %>
+    </div>
+  <% end %>
  
   <p>
-    <% if logged_in? %>
+    <% if can? :new, Comment %>
       <%= render :partial => "comment/form" %>
     <% else %>
       <b><%= _("Please login to add comments") %></b>

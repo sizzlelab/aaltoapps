@@ -18,5 +18,7 @@
 </p>
 
 
-<%= link_to _('Edit'), :action => "edit", :id => @platform.id %> |
-<%= link_to _('List platforms'), :action => "index" %>
+<% if can? :edit, @platform %>
+  <%= link_to _('Edit'), :action => "edit", :id => @platform.id %> |
+<% end %>
+<%= link_to _('List platforms'), :action => "index" if can? :index, Platform %>

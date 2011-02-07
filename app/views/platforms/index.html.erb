@@ -12,14 +12,15 @@
 <% @platforms.each do |platform| %>
   <tr>
     <td><%= platform.name %></td>
-    <td><%= platform.image_url %></td>
-    <td><%= link_to _('Show'), :action => "show", :id => platform.id %></td>
-    <td><%= link_to _('Edit'), :action => "edit", :id => platform.id %></td>
-    <td><%= link_to _('Destroy'), platform, :confirm => _('Are you sure?'), :method => :delete %></td>
+    <td><%= link_to platform.image_url, platform.image_url %></td>
+    <td><%= link_to _('Show'), :action => "show", :id => platform.id if can? :show, platform %></td>
+    <td><%= link_to _('Edit'), :action => "edit", :id => platform.id if can? :edit, platform %></td>
+    <td><%= button_to _('Destroy'), platform, :method => :delete,
+                                    :confirm => _('Are you sure?') if can? :delete, platform %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to _('New Platform'), :action => "new" %>
+<%= link_to _('New Platform'), :action => "new" if can? :new, Platform %>

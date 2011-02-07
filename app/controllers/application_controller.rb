@@ -3,7 +3,16 @@ class ApplicationController < ActionController::Base
   include FastGettext::Translation
   before_filter :set_locale
   helper_method :current_user, :logged_in?, :products_by_platform_path
-  
+
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/public/403.html",
+                           :layout => false,
+                           :status => :forbidden }
+      format.xml  { head :forbidden }
+    end
+  end
+
   def login_required
     if !logged_in?
       flash[:warning] = 'Login required'

@@ -216,7 +216,7 @@ class User < ActiveRecord::Base
   end
   
   def is_admin?
-    is_admin == 1
+    is_admin
   end
   
   def self.cache_fetch(id,cookie)

@@ -9,4 +9,3 @@ class Comment < ActiveRecord::Base
     return product.ratings.find_by_user_id commenter
   end
 end
-

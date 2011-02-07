@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
     @products = @products.joins(:platforms).
       where(:platforms => {:id => params[:platform_id].to_i}) if params[:platform_id]
     @products = @products.where(:publisher_id => current_user.id) if params[:myapps]
-    @products = @products.where("name LIKE :input", {:input => "%#{params[:q]}%"}) if params[:q]
+    @products = @products.where("name ILIKE :input", {:input => "%#{params[:q]}%"}) if params[:q]
     @products = @products.order(order_parameter(params[:sort]))
     
     @products = @products.all.paginate(:page => page,

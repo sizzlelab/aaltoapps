@@ -13,13 +13,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def login_required
-    if !logged_in?
-      flash[:warning] = 'Login required'
-      redirect_to :controller => 'users', :action => 'login'
-    end
-  end
-  
   def current_user
     @_current_user ||= session[:current_user_id] && User.find(session[:current_user_id])
   end

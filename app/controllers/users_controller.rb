@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   load_and_authorize_resource :except => :create
-  #before_filter :login_required, :except => [:new, :create]
 
   # GET /users
   # GET /users.xml

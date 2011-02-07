@@ -61,13 +61,13 @@
       <dd><%= @product.description %></dd>
     </dl>
 
-    <% if can?(:edit, @product) || can?(:delete, @product) %>
+    <% if (can_edit, can_delete = can?(:edit, @product), can?(:delete, @product)).any? %>
       <dl id="product-admin">
         <dt><%= _("Admin") %>:</dt>
         <dd><%= button_to 'Edit', edit_product_path(@product), :method => :get,
-                                  :class => "smallbutton" if can? :edit, @product %></dd>
+                                  :class => "smallbutton" if can_edit %></dd>
         <dd><%= button_to 'Delete', @product, :class=>"smallbutton", :method => :delete,
-                                    :confirm => _('Are you sure?') if can? :delete, @product %></dd>
+                                    :confirm => _('Are you sure?') if can_delete %></dd>
       </dl>
     <% end %>
 		

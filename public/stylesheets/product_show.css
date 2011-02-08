@@ -126,3 +126,7 @@
 .product-comment-buttons * {
     display: inline;
 }
+
+.product_new {
+	text-align: left;
+}

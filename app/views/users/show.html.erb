@@ -34,6 +34,6 @@
 
 
 <% if can? :edit, @user %>
-  <%= link_to _('Edit'), edit_user_path(@user) %> |
+  <%= button_to _('Edit'), edit_user_path(@user), :class => 'smallbutton', :method => :get %>
 <% end %>
-<%= link_to _('Back'), users_path %>
+<%= button_to _('Back'), users_path, :class => 'smallbutton', :method => :get %>

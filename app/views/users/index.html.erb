@@ -1,3 +1,4 @@
+<div align="left">
 <h1><%= _("Listing users") %></h1>
 
 <table>
@@ -28,4 +29,5 @@
 
 <br />
 
-<%= link_to _('New User'), new_user_path %>
+<%= button_to _('New User'), new_user_path, :class => 'smallbutton', :method => :get %>
+</div>

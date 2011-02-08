@@ -1,4 +1,4 @@
-<div id="right-column">
+<div class="product_new">
 <%= form_for @product, :html => { :multipart => true } do |f| %>
 <% if @product.errors.any? %>
 <div id="error_explanation">
@@ -49,7 +49,7 @@
             <%= f.label :platform, _('Choose a category') + ' *:' %>
         </td>
         <td>
-           <%= f.collection_select :category_id, Category.all, :id, :name, {:prompt => true} %>
+           <%= f.collection_select :category_id, Category.all, :id, :name, {:prompt => true}, :class => 'otherfield' %>
         </td>
     </tr>
     <tr>
@@ -57,7 +57,7 @@
             <%= f.label :photo, _('Choose a Photo') + ' :' %>
         </td>
         <td>
-           <%= f.file_field :photo %>
+           <%= f.file_field :photo, :class => 'otherfield' %>
         </td>
     </tr>
     
@@ -65,7 +65,7 @@
         <td>
         </td>
         <td>
-            <%= f.submit _('Submit') %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=f.submit _('Cancel') ,:name=>'cancel' %>
+            <%= f.submit _('Submit'), :class => 'smallbutton' %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=f.submit _('Cancel') ,:name=>'cancel', :class => 'smallbutton' %>
         </td>
     </tr>
     <% end %>

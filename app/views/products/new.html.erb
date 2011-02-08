@@ -1,5 +1,7 @@
+<div class="product_new">
 <h1><%= _("Add a product") %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', products_path %>
+<%= button_to 'Back', products_path, :class => 'smallbutton', :method => :get %>
+</div>

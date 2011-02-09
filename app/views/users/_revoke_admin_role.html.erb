@@ -1,0 +1,12 @@
+<%
+  user = revoke_admin_role
+  attrs = if user == current_user
+    { :onsubmit => 'return confirm("' + _('Are you sure you want to revoke your own administrator role?') + '");' }
+  else
+    {}
+  end
+%>
+<%= form_for user, :html => attrs do |f| %>
+  <%= f.hidden_field :is_admin, :value => false %>
+  <%= f.submit _('Revoke administrator role') %>
+<% end %>

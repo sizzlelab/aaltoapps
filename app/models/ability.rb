@@ -13,6 +13,7 @@ class Ability
         cannot :update, Comment do |comment|  # except modify others' comments
           comment.commenter != user
         end
+        can [:grant_admin_role, :revoke_admin_role], User
       else
         can :create, Product
         can [:update, :delete, :add_platform], Product, :publisher => user

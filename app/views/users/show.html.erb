@@ -17,7 +17,13 @@
 
 <p>
   <b><%= _("Type") %>:</b>
-  <%= @user.is_admin? ? _('administrator') : _('normal user') %>
+  <% if @user.is_admin? %>
+    <%= _('administrator') %>
+    <%= render :partial => '/users/revoke_admin_role', :object => @user if can?(:revoke_admin_role, @user) %>
+  <% else %>
+    <%= _('normal user') %>
+    <%= render :partial => '/users/grant_admin_role', :object => @user if can?(:grant_admin_role, @user) %>
+  <% end %>
 </p>
 
 <p>

@@ -10,6 +10,7 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @users.each do |user| %>
@@ -22,6 +23,13 @@
     <td><%= link_to _('Show'), user if can? :show, user %></td>
     <td><%= link_to _('Edit'), edit_user_path(user) if can? :edit, user %></td>
     <td><%= button_to _('Destroy'), user, :confirm => _('Are you sure?'), :method => :delete if can? :delete, user %></td>
+    <td>
+      <% if user.is_admin? && can?(:revoke_admin_role, user) %>
+        <%= render :partial => '/users/revoke_admin_role', :object => user %>
+      <% elsif !user.is_admin? && can?(:grant_admin_role, user) %>
+        <%= render :partial => '/users/grant_admin_role', :object => user %>
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>

@@ -4,6 +4,8 @@
 	-moz-border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
   border-radius: 0.5em;
+	border: none;
+	padding: 0.2em;
 }
 
 .searchfield {
@@ -26,11 +28,20 @@
 	-moz-border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
   border-radius: 0.5em;
+	border: none;
+	padding: 0.2em;
 
 }
 
+.otherfield {
+	background: #2E2E2E;
+	color: white; 
+	border: none;
+	padding: 0.2em;
 
-	.button {
+}
+
+.button {
 	display: inline-block;
 	outline: none;
 	cursor: pointer;
@@ -75,8 +86,25 @@
 
 .pwfield {
 	background: #2E2E2E;
-	color: white;
+	color: white; 
+	border: none;
+	padding: 0.2em;
 	-moz-border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
   border-radius: 0.5em;
+}
+
+.smallbutton {
+	background: none;
+	border: none;
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+	text-transform: uppercase;
+	
+}
+
+.smallbutton:hover {
+	color: #f47c20;
+	cursor: pointer;
 }

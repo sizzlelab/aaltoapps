@@ -70,8 +70,8 @@
                                     :confirm => _('Are you sure?') if can_delete %></dd>
       </dl>
     <% end %>
-
-    <%=link_to 'Report issue','http://www.sizzlelab.org/contact'%>
+		<br>
+    <%=button_to 'Report issue','http://www.sizzlelab.org/contact', :class => 'smallbutton', :method => :get  %>
   </div>
 </div>
 
@@ -92,6 +92,5 @@
   </p>
 
 
-<br>
-<%= link_to 'Back', products_path %>
+<%= button_to 'Back', products_path, :class => 'smallbutton', :method => :get %>
 </div>

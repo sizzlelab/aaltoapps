@@ -17,7 +17,7 @@
 
   <div class="product-comment-buttons">
     <% if can? :delete, comment %>
-      <%= button_to _('Delete'), comment, :confirm => _('Are you sure?'), :method => :delete %>
+      <%= button_to _('Delete'), comment, :confirm => _('Are you sure?'), :method => :delete, :class => 'smallbutton' %>
     <% end %>
   </div>
 </div>

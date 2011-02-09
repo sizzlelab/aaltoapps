@@ -38,7 +38,7 @@
 
     <div class="field">
       <%= f.label :gender %><br />
-      <%= f.select :gender, [['Unspecified', ''], ['Male', 'MALE'], ['Female', 'FEMALE']] %>
+      <%= f.select :gender, [['Unspecified', ''], ['Male', 'MALE'], ['Female', 'FEMALE']]%>
     </div>
 
     <div class="field">
@@ -83,6 +83,6 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit _('Create user'), :class => 'smallbutton' %>
   </div>
 <% end %>

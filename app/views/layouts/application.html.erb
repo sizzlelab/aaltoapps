@@ -159,6 +159,23 @@
         				<% end %>
     		
  			      </ul>
+
+                        <% if (can_i_users, can_i_platforms = can?(:index, User), can?(:index, Platform)).any? %>
+                          <li id="menu-admin">
+                            <div class="menutop"><%= link_to _("admin") %></div>
+                            <ul>
+                              <div class="submenu">
+                                <% if can_i_users %>
+                                  <li class="submenu_row"><%= link_to _('Users'), users_path %></li>
+                                <% end %>
+                                <% if can_i_platforms %>
+                                  <li class="submenu_row"><%= link_to _('Platforms'), platforms_path %></li>
+                                <% end %>
+                              </div>
+                            </ul>
+                          </li>
+                        <% end %>
+
  		      </div>
 
           

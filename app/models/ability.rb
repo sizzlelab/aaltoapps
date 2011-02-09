@@ -6,6 +6,8 @@ class Ability
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
     can :read, :all
+    cannot :index, [User, Platform]
+    cannot :read, User
 
     if user  # logged in
       if user.is_admin?
@@ -19,8 +21,7 @@ class Ability
         can [:update, :delete, :add_platform], Product, :publisher => user
         can :create, Comment
         can [:update, :delete], Comment, :commenter => user
-        can :read, User
-        can [:update, :delete], User, :asi_id => user.asi_id
+        can [:show, :update, :delete], User, :asi_id => user.asi_id
       end
     else  # not logged in
       can :create, User

@@ -14,7 +14,11 @@
 
     <div class="field">
       <%=
-        f.select(:rating, [['no rating', '']] + Rating.allowed_values)
+        f.select(:rating, [[_('no rating'), nil]] + Rating.allowed_values.map { |v|
+            # display numbers with fractional part == 0 without the fractional part
+            # (e.g. "1" instead of "1.0")
+            [((v == v.to_i) ? v.to_i : v).to_s, v]
+          })
       %>
     </div>
     <div class="actions">

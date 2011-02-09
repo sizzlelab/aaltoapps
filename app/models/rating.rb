@@ -8,6 +8,7 @@ class Rating < ActiveRecord::Base
   validates :rating, :user, :product, :presence => true
   validates :rating, :inclusion => {:in => (MIN..MAX).step(STEP).to_a }
   after_save :add_avg_rating_to_product
+  after_destroy :add_avg_rating_to_product
 
   def add_avg_rating_to_product
     self.product.avg_rating = self.product.ratings.average(:rating)  
@@ -19,7 +20,7 @@ class Rating < ActiveRecord::Base
   end
 
   def self.allowed_values
-    return (MIN..MAX).step(STEP).to_a
+    return (MIN..MAX).step(STEP).map &:to_f
   end
 
 end

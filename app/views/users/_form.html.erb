@@ -1,7 +1,7 @@
 <%= form_for @user do |f| %>
 	<% if flash[:error] %>
     <div id="error_explanation">
-      <h2><%= pluralize(flash[:error].count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%= _("Validation errors prohibited this user from being saved") %>:</h2>
 
       <ul>
       <% flash[:error].each do |msg| %>
@@ -38,7 +38,7 @@
 
     <div class="field">
       <%= f.label :gender %><br />
-      <%= f.select :gender, [['Unspecified', ''], ['Male', 'MALE'], ['Female', 'FEMALE']]%>
+      <%= f.select :gender, [[_('Unspecified'), ''], [_('Male'), 'MALE'], [_('Female'), 'FEMALE']]%>
     </div>
 
     <div class="field">

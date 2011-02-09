@@ -1,7 +1,7 @@
 <%= form_for @platform do |f| %>
 	<% if flash[:error] %>
     <div id="error_explanation">
-      <h2><%= pluralize(flash[:error].count, "error") %> prohibited this platform from being saved:</h2>
+      <h2><%= _("Validation errors prohibited this platform from being saved") %>:</h2>
 
       <ul>
       <% flash[:error].each do |msg| %>

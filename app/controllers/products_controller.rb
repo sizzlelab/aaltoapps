@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
     # current user's current rating, if any.
     if logged_in?
       @new_rating_for_current_user = @product.ratings.build(
-        :rating => @product.ratings.find_by_user_id(current_user.id) || ''
+        :rating => @product.ratings.find_by_user_id(current_user.id) || nil
       )
     end
 
@@ -67,7 +67,7 @@ class ProductsController < ApplicationController
     else
       respond_to do |format|
         if @product.save        
-          format.html { redirect_to(@product, :notice => 'Product was successfully created.') }
+          format.html { redirect_to(@product, :notice => _('Product was successfully created.')) }
           format.xml  { render :xml => @product, :status => :created, :location => @product }
         else
           format.html { render :action => "new" }
@@ -82,7 +82,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update_attributes(params[:product])
-        format.html { redirect_to(@product, :notice => 'Product was successfully updated.') }
+        format.html { redirect_to(@product, :notice => _('Product was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

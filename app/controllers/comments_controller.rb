@@ -7,14 +7,14 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to(@comment.product, :notice => 'New comment created.') }
+        format.html { redirect_to(@comment.product, :notice => _('New comment created.')) }
         format.xml  { head :ok }
       else
         format.html {
           # put error messages to :alert flash message
           errmsg = @comment.errors.full_messages.join(', ')
           errmsg = " (#{errmsg})" unless errmsg.empty?
-          redirect_to(:back, :alert => 'Comment was not created.' + errmsg)
+          redirect_to(:back, :alert => _('Comment was not created.') + errmsg)
         }
         format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
       end
@@ -24,14 +24,14 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
-        format.html { redirect_to(@comment.product, :notice => 'Your comment was successfully updated.') }
+        format.html { redirect_to(@comment.product, :notice => _('Your comment was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html {
           # put error messages to :alert flash message
           errmsg = @comment.errors.full_messages.join(', ')
           errmsg = " (#{errmsg})" unless errmsg.empty?
-          redirect_to(:back, :alert => 'Your comment was not updated.' + errmsg)
+          redirect_to(:back, :alert => _('Your comment was not updated.') + errmsg)
         }
         format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
       end
@@ -42,7 +42,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to(@comment.product, :notice => 'Comment deleted.') }
+      format.html { redirect_to(@comment.product, :notice => _('Comment deleted.')) }
       format.xml  { head :ok }
     end
   end

@@ -64,14 +64,14 @@
     <% if (can_edit, can_delete = can?(:edit, @product), can?(:delete, @product)).any? %>
       <dl id="product-admin">
         <dt><%= _("Admin") %>:</dt>
-        <dd><%= button_to 'Edit', edit_product_path(@product), :method => :get,
-                                  :class => "smallbutton" if can_edit %></dd>
-        <dd><%= button_to 'Delete', @product, :class=>"smallbutton", :method => :delete,
-                                    :confirm => _('Are you sure?') if can_delete %></dd>
+        <dd><%= button_to _('Edit'), edit_product_path(@product), :method => :get,
+                                     :class => "smallbutton" if can_edit %></dd>
+        <dd><%= button_to _('Delete'), @product, :class=>"smallbutton", :method => :delete,
+                                       :confirm => _('Are you sure?') if can_delete %></dd>
       </dl>
     <% end %>
 		<br>
-    <%=button_to 'Report issue','http://www.sizzlelab.org/contact', :class => 'smallbutton', :method => :get  %>
+    <%=button_to _('Report issue'), 'http://www.sizzlelab.org/contact', :class => 'smallbutton', :method => :get %>
   </div>
 </div>
 
@@ -92,5 +92,5 @@
   </p>
 
 
-<%= button_to 'Back', products_path, :class => 'smallbutton', :method => :get %>
+<%= button_to _('Back'), products_path, :class => 'smallbutton', :method => :get %>
 </div>

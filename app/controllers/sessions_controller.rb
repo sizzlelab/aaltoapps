@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
     Session.destroy(session[:cookie]) if session[:cookie]
     session[:cookie] = nil
     session[:current_user_id] = nil
-    flash[:notice] = "Logout successful."
+    flash[:notice] = _("Logout successful.")
     redirect_to root_path
   end
   

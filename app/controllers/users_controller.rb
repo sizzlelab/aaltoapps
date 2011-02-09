@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     session[:user_id] = @user.id
 
     respond_to do |format|
-      format.html { redirect_to(@user, :notice => "Logged in") }
+      format.html { redirect_to(@user, :notice => _("Logged in")) }
       format.xml  { render :xml => @user, :status => :created, :location => @user }
     end
   end
@@ -70,7 +70,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user], session[:cookie])
-        format.html { redirect_to(:back, :notice => 'User was successfully updated.') }
+        format.html { redirect_to(:back, :notice => _('User was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

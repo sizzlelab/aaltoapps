@@ -51,22 +51,24 @@
 
       // replace each comment edit form with comment text and a button that
       // opens the form
-      $('#product-comment-list .commentfield').parents('form').each(function () {
+      $('#product-comment-list .commentfield').parents('.product-comment-line').each(function () {
         var form = $(this);
-        var div = $('<div class="commenttext"/>').text(form.find('.commentfield').val())
+        var text = $('<span class="commenttext"/>').text(form.find('.commentfield').val()).append('<br/>')
           .insertBefore(form);
         form.hide();
-        $('<button>').text('<%= _('Edit') %>')
-          .appendTo( $('<div/>').appendTo(div) )
-          .click(function () {
-            div.slideUp(250);
-            form.slideDown(250);
+        var editbutton = $('<button>').text('<%= _('Edit') %>')
+          .prependTo( form.parent().find('.product-comment-buttons') );
+        editbutton.click(function () {
+            editbutton.attr("disabled", true);
+            text.hide();
+            form.show();
           });
         $('<button>').text('<%= _('Cancel') %>')
           .appendTo(form)
           .click(function () {
-            div.slideDown(250);
-            form.slideUp(250);
+            editbutton.attr("disabled", false);
+            text.show();
+            form.hide();
             return false; // don't submit form'
           });
       });
@@ -76,21 +78,18 @@
 
 </head>
 <body>
+  <div class="layout_whole">
     <div class="wrapper_top">
     	<div class="layout_info">
 				<div class="layout_menuitem">
           <%= _("Choose language:") %>
           <span class="locale_selector">
             <%=
-              FastGettext.available_locales.map { |l|
-                # get the native language name by reading a special
-                # I18n-style translation
-                name = I18n.translate 'i18n.language.name', :locale => l
-                # no link for current locale
-                if l.to_s == I18n.locale.to_s
-                  content_tag(:span, name, :class => 'selected_locale')
+              @available_locales.map { |l|
+                if l[:current?]
+                  content_tag(:span, l[:name], :class => 'current_locale')
                 else
-                  link_to name, :locale => l
+                  link_to l[:name], :locale => l[:id]
                 end
               }.join(', ').html_safe
             %>
@@ -112,19 +111,26 @@
 
 		
 
-    <!--<div class="wrapper_bottom">-->
+    
 
-          <div class="layout_frame">
+           <div class="layout_frame">
             <div class="layout_master">
-				      <div id="notice"><%= notice %></div>
-            	<div id="alert"><%= alert %></div>
+              <div id="notice"><%= notice %></div>
+              <div id="alert"><%= alert %></div>
               <%= yield %>
             </div>
 
-            <div class="layout_footer">
-              <%= _("Official looking footer here") %>
+
+              <div class="footer_text">
+                            <%= _("Aalto Apps 2011") %>
+              </div>
+              <div class="clear"></div>
             </div>
           </div>
+  
+           
+							
+						
 
 
           <div id="menu">
@@ -135,7 +141,7 @@
                   <div class="submenu">
   							    <li class="submenu_row"><%=link_to _("All"), products_path %> </li>
 						        <% Platform.all.each do |platform|%>
-										<li class="submenu_row"><%=link_to platform.name, "/platforms/%{p_id}/products/" % {:p_id => platform.id} %> </li>
+											<li class="submenu_row"><%=link_to platform.name, platforms_path+"/%{p_id}/products/" % {:p_id => platform.id} %> </li>
 		     				    <%end%>
           		    </div>
                 </ul>
@@ -153,11 +159,28 @@
         				<% end %>
     		
  			      </ul>
+
+                        <% if (can_i_users, can_i_platforms = can?(:index, User), can?(:index, Platform)).any? %>
+                          <li id="menu-admin">
+                            <div class="menutop"><%= link_to _("admin") %></div>
+                            <ul>
+                              <div class="submenu">
+                                <% if can_i_users %>
+                                  <li class="submenu_row"><%= link_to _('Users'), users_path %></li>
+                                <% end %>
+                                <% if can_i_platforms %>
+                                  <li class="submenu_row"><%= link_to _('Platforms'), platforms_path %></li>
+                                <% end %>
+                              </div>
+                            </ul>
+                          </li>
+                        <% end %>
+
  		      </div>
 
           
-    <!--</div>-->
-    	
+    
+    	</div>
 
 
 </body>

@@ -1,26 +1,27 @@
 <div class="<%= cycle("browse_product_left_silver", "browse_product_right_silver", "browse_product_left_white", "browse_product_right_white", :name=>'browse_products') -%>">
-    <div class="browse_product_picture">
-      <%= link_to( image_tag(product.photo.url(:thumb), :size => "75x75", :border => 0), product ) %>
+  <div class="browse_product_picture">
+    <%= link_to( image_tag(product.photo.url(:thumb), :size => "75x75", :border => 0), product ) %>
+  </div>
+  <div class="browse_product_info">
+    <div class="browse_row"><%= link_to product.name, product %></div>
+    <div class="browse_row"><%= _("Publisher:") %> <%= link_to product.publisher.username, product.publisher %></div>
+    <div class="browse_row"><%= _("Popularity:") %><%= product.popularity %></div>
+    <div class="browse_row"><%= _("Rating") %>:
+      <%= render :partial =>'ratings/rating',
+                 :object => product.avg_rating,
+                 :locals => { :empty_message => '' } %>
     </div>
-    <div class="browse_product_info">
-        <div class="browse_row"><%= link_to product.name, product %></div>
-        <div class="browse_row"><%= _("Publisher:") %> <%= link_to product.publisher.username, product.publisher %></div>
-        <div class="browse_row"><%= _("Popularity:") %><%= product.popularity %></div>
-        <div class="browse_row"><%= _("Rating") %>:
-          <%= render :partial =>'ratings/rating',
-                     :object => product.avg_rating,
-                     :locals => { :empty_message => '' } %>
-        </div>
-        <div class="browse_row">  
-				 <% if params[:myapps] %> 
-         <%= link_to "Edit", edit_product_path(product) %>
-         <%= button_to 'Delete', product, :confirm => _('Are you sure?'), :method => :delete %>
-         <%end%>
-       </div>
-        
-        
+    <div class="browse_row">
+      <% if params[:myapps] %>
+        <%= button_to _("Edit"), edit_product_path(product), :method => :get,
+                                 :class => 'smallbutton' if can? :edit, product %>
+        <%= button_to _('Delete'), product, :class => 'smallbutton', :method => :delete,
+                                   :confirm => _('Are you sure?') if can? :delete, product %>
+      <% end %>
     </div>
-    <div class="browse_product_desc"><%= product.description %>  </div>
-   
-	</div>
+
+  </div>
+  <div class="browse_product_desc"><%= product.description %> </div>
+
+</div>
  

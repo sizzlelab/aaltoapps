@@ -1,29 +1,33 @@
+<div class="product_new">
 <h1><%= _("Editing product") %></h1>
 
 <%= render 'form' %>
 
 <% @product.platforms.each do |platform| %>
+<table>
   <tr>
-    <td><%= platform.name %></td>
+    <td align="right"><%= platform.name %></td>
   </tr>
 <% end %>
-<% form_tag :controller => "platforms", :action => "add_product", :id => @product.id do %>
+<%= form_tag :controller => "platforms", :action => "add_product", :id => @product.id do %>
 <tr>
   <td align="right">
     <%= label_tag :platform, _('Add a platform') + ' *:' %>
   </td>
   <td>
-    <%= collection_select :product, :platform_ids, Platform.all, :id, :name, {:multiple => true} %>
+    <%= collection_select :product, :platform_ids, Platform.all, :id, :name, {:multiple => true}, :class => 'otherfield' %>
   </td>
 </tr>
 <tr>
   <td align="right">
   </td>
   <td>
-    <%= submit_tag _("Add") %>
+    <%= submit_tag _("Add"), :class => 'smallbutton' %>
   </td>
 </tr>
-<% end %>
+</table>
+<% end %><br>
 
-<%= link_to _('Show'), @product %> |
-<%= link_to _('Back'), products_path %>
+<%= button_to _('Show'), @product, :class => 'smallbutton', :method => :get %><br>
+<%= button_to _('Back'), products_path, :class => 'smallbutton', :method => :get %>
+</div>

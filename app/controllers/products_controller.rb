@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :login_required, :except => [:index, :show,:apps_by_platform,:apps_by_critea]
+  load_and_authorize_resource :only => [:index, :show, :new, :edit, :create, :update, :destroy]
   before_filter :add_popularity, :only=>:show
 
   PRODUCTS_PER_PAGE = 6
@@ -10,14 +10,14 @@ class ProductsController < ApplicationController
   # GET /products.xml
   def index 
     page = params[:page] ? params[:page].to_i : 1
-    products = Product.scoped
-    products = Platform.find(params[:platform_id].to_i).products.scoped if params[:platform_id]
-    products = products.where(:publisher_id => current_user.id) if params[:myapps]
-    products = products.where("name LIKE :input", {:input => "%#{params[:q]}%"}) if params[:q]
-    products = products.order(order_parameter(params[:sort]))
+    @products = @products.joins(:platforms).
+      where(:platforms => {:id => params[:platform_id].to_i}) if params[:platform_id]
+    @products = @products.where(:publisher_id => current_user.id) if params[:myapps]
+    @products = @products.where("name ILIKE :input", {:input => "%#{params[:q]}%"}) if params[:q]
+    @products = @products.order(order_parameter(params[:sort]))
     
-    @products = products.all.paginate(:page => page,
-                                      :per_page => PRODUCTS_PER_PAGE)
+    @products = @products.all.paginate(:page => page,
+                                       :per_page => PRODUCTS_PER_PAGE)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,15 +28,15 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.xml
   def show
-    @product = Product.find(params[:id])
-
     # Create a new Rating for the product copying the value of the
     # current user's current rating, if any.
     if logged_in?
       @new_rating_for_current_user = @product.ratings.build(
-        :rating => @product.ratings.find_by_user_id(current_user.id) || ''
+        :rating => @product.ratings.find_by_user_id(current_user.id) || nil
       )
     end
+
+    @comments = @product.comments.accessible_by(current_ability)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -47,8 +47,6 @@ class ProductsController < ApplicationController
   # GET /products/new
   # GET /products/new.xml
   def new
-    @product = Product.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @product }
@@ -57,13 +55,11 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
-    @product = Product.find(params[:id])
   end
 
   # POST /products
   # POST /products.xml
   def create
-    @product = Product.new(params[:product])
     @product.publisher_id = current_user.id
 		if params[:cancel]
       @product = Product.new
@@ -71,7 +67,7 @@ class ProductsController < ApplicationController
     else
       respond_to do |format|
         if @product.save        
-          format.html { redirect_to(@product, :notice => 'Product was successfully created.') }
+          format.html { redirect_to(@product, :notice => _('Product was successfully created.')) }
           format.xml  { render :xml => @product, :status => :created, :location => @product }
         else
           format.html { render :action => "new" }
@@ -84,11 +80,9 @@ class ProductsController < ApplicationController
   # PUT /products/1
   # PUT /products/1.xml
   def update
-    @product = Product.find(params[:id])
-
     respond_to do |format|
       if @product.update_attributes(params[:product])
-        format.html { redirect_to(@product, :notice => 'Product was successfully updated.') }
+        format.html { redirect_to(@product, :notice => _('Product was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -100,7 +94,6 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.xml
   def destroy
-    @product = Product.find(params[:id])
     @product.destroy
 
     respond_to do |format|
@@ -126,7 +119,7 @@ class ProductsController < ApplicationController
     when 'created_at'
       sort = 'created_at DESC'
     when 'avg_rating'
-      sort = 'avg_rating DESC'
+      sort = 'avg_rating IS NULL ASC, avg_rating DESC'
     when 'featured'
       sort = 'featured DESC'
     else

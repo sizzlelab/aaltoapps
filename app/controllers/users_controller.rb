@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
-  #before_filter :login_required, :except => [:new, :create]
+  load_and_authorize_resource :except => :create
 
   # GET /users
   # GET /users.xml
   def index
-    @users = User.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
@@ -15,8 +13,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user }
@@ -26,7 +22,6 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
-    @user = User.new
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
@@ -35,12 +30,13 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
   end
 
   # POST /users
   # POST /users.xml
   def create
+    authorize! :create, User
+
     @session = Session.create
     session[:cookie] = @session.cookie
     begin
@@ -50,10 +46,13 @@ class UsersController < ApplicationController
       @user = User.new  
       render :action => "new" and return
     end
+
+    authorize! :grant_admin_role, @user if @user.is_admin?
+
     session[:user_id] = @user.id
 
     respond_to do |format|
-      format.html { redirect_to(@user, :notice => "Logged in") }
+      format.html { redirect_to(@user, :notice => _("Logged in")) }
       format.xml  { render :xml => @user, :status => :created, :location => @user }
     end
   end
@@ -61,11 +60,17 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    @user = User.find(params[:id])
+    # if admin status changes, check authorization for the change
+    if params[:user].has_key?(:is_admin)
+      was_admin = @user.is_admin?
+      @user.is_admin = params[:user][:is_admin]
+      authorize! :grant_admin_role, @user if !was_admin && @user.is_admin?
+      authorize! :revoke_admin_role, @user if was_admin && !@user.is_admin?
+    end
 
     respond_to do |format|
       if @user.update_attributes(params[:user], session[:cookie])
-        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+        format.html { redirect_to(:back, :notice => _('User was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -77,7 +82,6 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
 
     respond_to do |format|

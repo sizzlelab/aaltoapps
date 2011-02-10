@@ -1,11 +1,9 @@
 class PlatformsController < ApplicationController
-  before_filter :login_required
+  load_and_authorize_resource :except => :add_product
 
   # GET /platforms
   # GET /platforms
   def index
-    @platforms = Platform.all
-    
     respond_to do |format|
       format.html # index.html.erb
       format.xml { render :xml => @platforms }
@@ -15,8 +13,6 @@ class PlatformsController < ApplicationController
   # GET /platforms/new
   # GET /platforms/new.xml
   def new
-    @platform = Platform.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @platform }
@@ -26,8 +22,6 @@ class PlatformsController < ApplicationController
   # GET /platforms/1
   # GET /platforms/1
   def show
-    @platform = Platform.find(params[:id])
-
     respond_to do |format|
       format.html # edit.html.erb
       format.xml  { render :xml => @platform }
@@ -36,14 +30,11 @@ class PlatformsController < ApplicationController
 
   # GET /platforms/1/edit
   def edit
-    @platform = Platform.find(params[:id])
   end
 
   # POST /platforms
   # POST /platforms.xml
   def create
-    @platform = Platform.new(params[:platform])
-    
     if @platform.save
       respond_to do |format|
         format.html { redirect_to :action => "show", :id => @platform.id, :notice => _("Platform was successfully created")}
@@ -60,8 +51,6 @@ class PlatformsController < ApplicationController
   # PUT /platforms/1
   # PUT /platforms/1.xml
   def update
-    @platform = Platform.find(params[:id])
-
     respond_to do |format|
       if @platform.update_attributes(params[:platform])
         format.html { redirect_to(:action => "show", :id => @platform.id, :notice => _('Platform was successfully updated.')) }
@@ -76,7 +65,6 @@ class PlatformsController < ApplicationController
   # DELETE /platforms/1
   # DELETE /platforms/1.xml
   def destroy
-    @platform = Platform.find(params[:id])
     @platform.destroy
 
     respond_to do |format|
@@ -89,6 +77,9 @@ class PlatformsController < ApplicationController
     product = Product.find(params[:id])
     platform = Platform.find(params[:product][:platform_ids])
     product.platforms << platform
+
+    authorize! :add_platform, product
+
     product.save!
     redirect_to :back
   end

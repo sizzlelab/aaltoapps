@@ -1,12 +1,12 @@
-<% form_tag :controller => 'sessions' do %>
-	<% if flash[:error] %>
+<%= form_tag :controller => 'sessions' do %>
+  <% if flash[:error] %>
     <div id="error_explanation">
       <%= flash[:error] %>
     </div>
   <% end %>
-	<%= label_tag _("User name:") %><br />
-	<%= text_field_tag "username", nil, :class=>'textfield' %><br /><br>
-	<%= label_tag _("Password:") %><br />
-	<%= password_field_tag "password", nil, :class=>'pwfield' %><br />
-	<%= submit_tag _("Login") %>
+    <%= label_tag _("User name:") %><br />
+    <%= text_field_tag "username", nil, :class=>'textfield' %><br /><br />
+    <%= label_tag _("Password:") %><br />
+    <%= password_field_tag "password", nil, :class=>'pwfield' %><br /><br />
+    <%= submit_tag _("Login"), :class => 'smallbutton' %>
 <% end %>

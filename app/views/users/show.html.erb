@@ -16,6 +16,17 @@
 </p>
 
 <p>
+  <b><%= _("Type") %>:</b>
+  <% if @user.is_admin? %>
+    <%= _('administrator') %>
+    <%= render :partial => '/users/revoke_admin_role', :object => @user if can?(:revoke_admin_role, @user) %>
+  <% else %>
+    <%= _('normal user') %>
+    <%= render :partial => '/users/grant_admin_role', :object => @user if can?(:grant_admin_role, @user) %>
+  <% end %>
+</p>
+
+<p>
   <b><%= _("Email") %>:</b>
   <%= @user.email %>
 </p>
@@ -28,5 +39,7 @@
 </p>
 
 
-<%= link_to _('Edit'), edit_user_path(@user) %> |
-<%= link_to _('Back'), users_path %>
+<% if can? :edit, @user %>
+  <%= button_to _('Edit'), edit_user_path(@user), :class => 'smallbutton', :method => :get %>
+<% end %>
+<%= button_to _('Back'), users_path, :class => 'smallbutton', :method => :get %>

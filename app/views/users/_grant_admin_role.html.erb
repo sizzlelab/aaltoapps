@@ -1,0 +1,4 @@
+<%= form_for grant_admin_role do |f| %>
+  <%= f.hidden_field :is_admin, :value => true %>
+  <%= f.submit _('Grant administrator role') %>
+<% end %>

@@ -1,3 +1,4 @@
+<div align="left">
 <h1><%= _("Listing users") %></h1>
 
 <table>
@@ -5,7 +6,9 @@
     <th><%= _("Username") %></th>
     <th><%= _("Firstname") %></th>
     <th><%= _("Lastname") %></th>
+    <th><%= _("Type") %></th>
     <th><%= _("Email") %></th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,14 +19,23 @@
     <td><%= user.username %></td>
     <td><%= user.given_name %></td>
     <td><%= user.family_name %></td>
+    <td><%= user.is_admin? ? _('administrator') : _('normal user') %></td>
     <td><%= user.email %></td>
-    <td><%= link_to _('Show'), user %></td>
-    <td><%= link_to _('Edit'), edit_user_path(user) %></td>
-    <td><%= link_to _('Destroy'), user, :confirm => _('Are you sure?'), :method => :delete %></td>
+    <td><%= link_to _('Show'), user if can? :show, user %></td>
+    <td><%= link_to _('Edit'), edit_user_path(user) if can? :edit, user %></td>
+    <td><%= button_to _('Destroy'), user, :confirm => _('Are you sure?'), :method => :delete if can? :delete, user %></td>
+    <td>
+      <% if user.is_admin? && can?(:revoke_admin_role, user) %>
+        <%= render :partial => '/users/revoke_admin_role', :object => user %>
+      <% elsif !user.is_admin? && can?(:grant_admin_role, user) %>
+        <%= render :partial => '/users/grant_admin_role', :object => user %>
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to _('New User'), new_user_path %>
+<%= button_to _('New User'), new_user_path, :class => 'smallbutton', :method => :get %>
+</div>

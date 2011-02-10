@@ -183,22 +183,33 @@ class User < ActiveRecord::Base
     if params[:preferences]
       super(params)
     else
+      # save is_admin to local database
+      if params.has_key?(:is_admin)
+        is_admin = params[:is_admin]
+        save!
+        params.delete :is_admin
+      end
+
       # change empty strings to nil
       params.each { |k,v| params[k] = nil if v == '' }
       # ASI doesn't allow these fields to be unset
       params.delete :email if params[:email].nil?
       params.delete :gender if params[:gender].nil?
-      
-      #Handle name part parameters also if they are in hash root level
-      User.remove_root_level_fields(params, "name", ["given_name", "family_name"])
-      User.remove_root_level_fields(params, "address", ["street_address", "postal_code", "locality"])
-      
-      if params["name"] || params[:name]
-        # If name is going to be changed, expire name cache
-        Rails.cache.delete("person_name/#{self.id}")
-        Rails.cache.delete("given_name/#{self.id}")
+
+      if !params.empty?
+        #Handle name part parameters also if they are in hash root level
+        User.remove_root_level_fields(params, "name", ["given_name", "family_name"])
+        User.remove_root_level_fields(params, "address", ["street_address", "postal_code", "locality"])
+
+        if params["name"] || params[:name]
+          # If name is going to be changed, expire name cache
+          Rails.cache.delete("person_name/#{self.id}")
+          Rails.cache.delete("given_name/#{self.id}")
+        end
+        UserConnection.put_attributes(params.except("password2"), asi_id, cookie)
+      else
+        true
       end
-      UserConnection.put_attributes(params.except("password2"), asi_id, cookie)
     end
   end
   
@@ -216,9 +227,9 @@ class User < ActiveRecord::Base
   end
   
   def is_admin?
-    is_admin == 1
+    is_admin
   end
-  
+
   def self.cache_fetch(id,cookie)
     # FIXME: CACHING DISABLED DUE PROBLEMS AT ALPHA SERVER
     UserConnection.get_person(id, cookie)  # A line to skip the cache temporarily

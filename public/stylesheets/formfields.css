@@ -4,35 +4,107 @@
 	-moz-border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
   border-radius: 0.5em;
+	border: none;
+	padding: 0.2em;
 }
 
 .searchfield {
 	background: #666;
-	color: #00ced1;
+	color: white;
 	-moz-border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
   border-radius: 0.5em;
+  border: none;
+  padding: 0.7em;
+  -moz-box-shadow: 0 0 7px black;
+	-webkit-box-shadow: 0 0 7px black;
+	box-shadow: 0 0 7px black;
+  margin-right: 0.5em;
 }
 
 .commentfield {
 	background: #2E2E2E;
-	color: #00ced1;
+	color: white;
 	-moz-border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
   border-radius: 0.5em;
+	border: none;
+	padding: 0.2em;
+
 }
 
-.submit {
-	-moz-border-radius: 1em;
-	-webkit-border-radius: 1em;
-  border-radius: 1em;
-  
+.otherfield {
+	background: #2E2E2E;
+	color: white; 
+	border: none;
+	padding: 0.2em;
+
+}
+
+.button {
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 1em/100% Harabara;
+	padding: 0.5em 0.5em 0.5em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-moz-box-shadow: 0 0 7px black;
+	-webkit-box-shadow: 0 0 7px black;
+	box-shadow: 0 0 7px black;
+  color: #00BFFF;
+  width: 5em;
+	border: none;
+	background: #202020;
+	//background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	//background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	//filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
+.button:hover {
+	text-decoration: none;
+  background: #f47c20;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+}
+.button:active {
+  color: #fcd3a5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+	background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+	position: relative;
+	top: 1px;
+}
+
+.logout {
+  margin-left: 0.5em;
 }
 
 .pwfield {
 	background: #2E2E2E;
-	color: #00ced1;
+	color: white; 
+	border: none;
+	padding: 0.2em;
 	-moz-border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
   border-radius: 0.5em;
+}
+
+.smallbutton {
+	background: none;
+	border: none;
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+	text-transform: uppercase;
+	
+}
+
+.smallbutton:hover {
+	color: #f47c20;
+	cursor: pointer;
 }

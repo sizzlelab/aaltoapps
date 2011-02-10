@@ -1,4 +1,4 @@
-<div id="right-column">
+<div class="product_new">
 <%= form_for @product, :html => { :multipart => true } do |f| %>
 <% if @product.errors.any? %>
 <div id="error_explanation">
@@ -25,7 +25,7 @@
             <%= f.label :name, _('Name of the product') + ' *:' %>
         </td>
         <td>
-            <%= f.text_field :name %>
+            <%= f.text_field :name, :class => "textfield" %>
         </td>
     </tr>
     <tr>
@@ -33,7 +33,7 @@
             <%= f.label :url,_('URL') + ' *:' %>
         </td>
         <td>
-            <%= f.text_field :url %>
+            <%= f.text_field :url, :class => "textfield" %>
         </td>
     </tr>
     <tr>
@@ -41,7 +41,7 @@
             <%= f.label :description, _('Description') + ' *:' %>
         </td>
         <td >
-            <%= f.text_area :description %>
+            <%= f.text_area :description, :class => "textfield" %>
         </td>
     </tr>
     <tr>
@@ -49,7 +49,7 @@
             <%= f.label :platform, _('Choose a category') + ' *:' %>
         </td>
         <td>
-           <%= f.collection_select :category_id, Category.all, :id, :name, {:prompt => true} %>
+           <%= f.collection_select :category_id, Category.all, :id, :name, {:prompt => true}, :class => 'otherfield' %>
         </td>
     </tr>
     <tr>
@@ -57,7 +57,7 @@
             <%= f.label :photo, _('Choose a Photo') + ' :' %>
         </td>
         <td>
-           <%= f.file_field :photo %>
+           <%= f.file_field :photo, :class => 'otherfield' %>
         </td>
     </tr>
     
@@ -65,7 +65,7 @@
         <td>
         </td>
         <td>
-            <%= f.submit _('Submit') %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=f.submit _('Cancel') ,:name=>'cancel' %>
+            <%= f.submit _('Submit'), :class => 'smallbutton' %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%=f.submit _('Cancel') ,:name=>'cancel', :class => 'smallbutton' %>
         </td>
     </tr>
     <% end %>
@@ -76,9 +76,9 @@
     <%= _("Drag an image here!") %>
   </div>
   <div class="input">  
-		<% form_for @product, :html => { :multipart => true } do |f| %>
-  		<%= f.file_field :photo %>
-		<% end %>
+    <%= form_for @product, :html => { :multipart => true } do |f| %>
+      <%= f.file_field :photo %>
+    <% end %>
   </div>
 </div-->
 <div id="space-div">

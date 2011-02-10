@@ -28,28 +28,28 @@ class RatingsController < ApplicationController
           end
         else
           # publisher tried to rate his/her own product
-          @rating.errors.add :rating, 'can not be given by the publisher of the product'
+          @rating.errors.add :rating, _('can not be given by the publisher of the product')
           status = :forbidden
         end
       rescue RecordNotFound
-        @rating.errors.add :rating, 'can not be given for nonexistent product'
+        @rating.errors.add :rating, _('can not be given for nonexistent product')
         status = :unprocessable_entity
       end
     else
-      @rating.errors.add :rating, 'can not be given when not logged in'
+      @rating.errors.add :rating, _('can not be given when not logged in')
       status = :forbidden
     end
 
     respond_to do |format|
       if status == :ok
-        format.html { redirect_to(:back, :notice => 'Rating was successfully created/updated.') }
+        format.html { redirect_to(:back, :notice => _('Rating was successfully created/updated.')) }
         format.xml  { render :xml => @rating, :status => :created, :location => @rating }
       else
         format.html {
           # put error messages to :alert flash message
           errmsg = @rating.errors.full_messages.join(', ')
           errmsg = " (#{errmsg})" unless errmsg.empty?
-          redirect_to(:back, :alert => 'Rating was not created/updated.' + errmsg)
+          redirect_to(:back, :alert => _('Rating was not created/updated.') + errmsg)
         }
         format.xml  { render :xml => @rating.errors, :status => status }
       end

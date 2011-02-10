@@ -17,6 +17,9 @@ AaltoApps::Application.routes.draw do
     resources :platforms
     resources :comments
     resources :ratings
+
+		put :block
+		put :approve
    
     collection do
       namespace 'platform' do

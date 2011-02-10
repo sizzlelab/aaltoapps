@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   load_and_authorize_resource :only => [:index, :show, :new, :edit, :create, :update, :destroy]
   before_filter :add_popularity, :only=>:show
+	before_filter :require_admin, :only => [:block, :approve]
 
   PRODUCTS_PER_PAGE = 6
   DEFAULT_SORT = "products.created_at DESC"
@@ -9,20 +10,28 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
   def index 
-    page = params[:page] ? params[:page].to_i : 1
-    @products = @products.joins(:platforms).
-      where(:platforms => {:id => params[:platform_id].to_i}) if params[:platform_id]
-    @products = @products.where(:publisher_id => current_user.id) if params[:myapps]
-    @products = @products.where("name ILIKE :input", {:input => "%#{params[:q]}%"}) if params[:q]
-    @products = @products.order(order_parameter(params[:sort]))
-    
-    @products = @products.all.paginate(:page => page,
-                                       :per_page => PRODUCTS_PER_PAGE)
+		if params[:approval] && current_user.is_admin?
+			@products = Product.where(:is_approved)
+			respond_to do |format|
+				format.html { render_template :template => "products/approval" }
+				format.xml { render :xml => @products }
+			end
+		else
+			page = params[:page] ? params[:page].to_i : 1
+			@products = @products.joins(:platforms).
+				where(:platforms => {:id => params[:platform_id].to_i}) if params[:platform_id]
+			@products = @products.where(:publisher_id => current_user.id) if params[:myapps]
+			@products = @products.where("name ILIKE :input", {:input => "%#{params[:q]}%"}) if params[:q]
+			@products = @products.order(order_parameter(params[:sort]))
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @products }
-    end
+			@products = @products.all.paginate(:page => page,
+																				 :per_page => PRODUCTS_PER_PAGE)
+
+    	respond_to do |format|
+      	format.html # index.html.erb
+      	format.xml  { render :xml => @products }
+    	end
+		end
   end
 
   # GET /products/1
@@ -102,6 +111,19 @@ class ProductsController < ApplicationController
     end
   end
 
+	def approve
+		@product = Product.find(params[:id])	
+
+		@product.change_approval true
+		redirect_to :back
+	end
+
+	def block
+		@product = Product.find(params[:id])
+		@product.change_approval false
+		redirect_to :back	
+	end
+
   private
 
   def add_popularity
@@ -128,5 +150,10 @@ class ProductsController < ApplicationController
 
     return sort
   end
+
+	def require_admin
+		return if current_user && current_user.is_admin?
+		redirect_to root_path
+	end
 
 end

@@ -11,6 +11,14 @@
                  :object => product.avg_rating,
                  :locals => { :empty_message => '' } %>
     </div>
+		<% if current_user && current_user.is_admin %>
+			<span class="product_admin">Approval status: <%= approval_status product %></span>
+			<% if product.is_approved? %>
+			<%= button_to _("Block"), { :action => :block, :id => product.id }, :method => :put %>
+			<% else %>
+			<%= button_to _("Approve"), { :action => :approve, :id => product.id }, :method => :put %>
+			<% end %>
+		<% end %>
     <div class="browse_row">
       <% if params[:myapps] %>
         <%= button_to _("Edit"), edit_product_path(product), :method => :get,

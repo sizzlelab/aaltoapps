@@ -15,4 +15,16 @@ class Product < ActiveRecord::Base
 	validates_attachment_size :photo, :less_than => 5.megabytes
 	validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
+	attr_protected :is_approved
+
+	def is_approved?
+		self.is_approved
+	end
+	
+	def change_approval state
+		self.is_approved = state
+		self.approval_date = DateTime.now
+		self.save!	
+	end
+
 end

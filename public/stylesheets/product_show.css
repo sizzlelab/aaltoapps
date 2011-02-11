@@ -7,7 +7,11 @@
   border-bottom: thin solid gray;
 	text-align: left;
 }
-
+#image{
+	width:150px;
+	height:150px;
+	border:none;
+}
 #product-image {
   width: 20%;
   float: left;

@@ -80,12 +80,19 @@
       <%= f.label :locality %><br />
       <%= f.text_field :locality, :class => 'textfield' %>
     </div>
-  <% end %>
+
+  <% else %>
+
     <div class="field">
-      <%= f.check_box :term %><%= f.label _('I accept the OtaSizzle') %>
-      <%=link_to '"Terms and Conditions"','http://www.sizzlelab.org/content/legal-information', :target => '_blank' %>
+      <%= f.check_box :term %>
+      <%= f.label :term, (
+              _('I accept the OtaSizzle ') +
+              link_to('"Terms and Conditions"', 'http://www.sizzlelab.org/content/legal-information', :target => '_blank')
+            ).html_safe %>
     </div>
- 
+
+  <% end %>
+
   <div class="actions">
     <%= f.submit _('Register'), :class => 'smallbutton' %>
   </div>

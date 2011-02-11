@@ -44,7 +44,9 @@
   padding-top: 3em;
   margin-left: 5em;
   margin-top: 1em;
+
   //border: solid red;
+	
 
 }
 
@@ -54,7 +56,6 @@ text-decoration: none;
   font-size: 6em;
 color: #00BFFF;
   text-shadow: 0.1em 0.1em 0.1em #000;
-  
 
 }
 

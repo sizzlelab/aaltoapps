@@ -3,7 +3,7 @@
 <div id="product-info">
   <div id="product-image">
     <div id="product-image-border">
-      <div id="image" style="border:groove;width:150px;height:150px;">
+      <div id="image">
         <%= image_tag @product.photo.url(:small) %>
       </div>
     </div>
@@ -58,7 +58,7 @@
 
     <dl id="product-description">
       <dt><%= _("Description") %>:</dt>
-      <dd><%= @product.description %></dd>
+      <dd><%= word_wrap(@product.description) %></dd>
     </dl>
 
     <% if (can_edit, can_delete = can?(:edit, @product), can?(:delete, @product)).any? %>

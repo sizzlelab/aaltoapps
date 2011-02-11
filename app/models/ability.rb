@@ -7,7 +7,6 @@ class Ability
 
     can :read, :all
     cannot :index, [User, Platform]
-    cannot :read, User
 
     if user  # logged in
       if user.is_admin?

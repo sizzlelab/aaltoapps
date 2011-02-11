@@ -34,7 +34,7 @@
 <p>
   <b><%= _("Published Products") %>:</b>
   <% @user.published.each do |published_product| %>
-    <%= published_product.name %>
+    <%= link_to published_product.name, published_product %>
   <% end %>
 </p>
 
@@ -42,4 +42,4 @@
 <% if can? :edit, @user %>
   <%= button_to _('Edit'), edit_user_path(@user), :class => 'smallbutton', :method => :get %>
 <% end %>
-<%= button_to _('Back'), users_path, :class => 'smallbutton', :method => :get %>
+<%= button_to _('Back'), :back, :class => 'smallbutton', :method => :get %>

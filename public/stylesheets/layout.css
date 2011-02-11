@@ -5,21 +5,21 @@
 
 .wrapper_top {
   position:relative;
-	width: 70%;
+	width: 60%;
   min-width: 55em;
 	padding-bottom: 1em;
 	margin-bottom: 0.5em;
 	margin-top: 2em;
-  margin-right: 15%;
+  margin-right: 17%;
   float:right;
   //border: solid aqua;
 }
 
 .layout_frame {
-  width:70%;
+  width:60%;
   float:right;
-  min-width: 55em;
-  margin-right: 15%;
+  min-width: 50em;
+  margin-right: 17%;
 	-moz-box-shadow: 0 0 7px black;
 	-webkit-box-shadow: 0 0 7px black;
 	box-shadow: 0 0 7px black;
@@ -39,9 +39,9 @@
 }
 
 .layout_logo {
-float: left;
-padding-top: 3em;
-  margin-left: 3em;
+  float: left;
+  padding-top: 3em;
+  margin-left: 5em;
   margin-top: 1em;
   //border: solid red;
 
@@ -98,7 +98,7 @@ color: #00BFFF;
 	float:right; 
 	margin-right: 2em;
 	margin-top: 2em; 
-	width: 7em;
+	width: 10em;
 	list-style: none; 
 	background-color:#202020;
 	-moz-box-shadow: 0 0 7px black;
@@ -120,6 +120,7 @@ color: #00BFFF;
 
 #menu .navmenu li div ul {margin:none; padding: none;}
 
-#menu .submenu_row a {text-align: center; padding-left: 1.0em; font-size: 0.8em; color: #00BFFF; font-family: 'Harabara'; font-size: 1em; 
-overflow:hidden; }
+#menu .submenu_row {overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+
+#menu .submenu_row a {text-align: center; padding-left: 1.0em; font-size: 0.8em; color: #00BFFF; font-family: 'Harabara'; font-size: 1em;}
  

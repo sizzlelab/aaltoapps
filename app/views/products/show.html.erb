@@ -58,7 +58,7 @@
 
     <dl id="product-description">
       <dt><%= _("Description") %>:</dt>
-      <dd><%= @product.description %></dd>
+      <dd><%= word_wrap(@product.description) %></dd>
     </dl>
 
     <% if (can_edit, can_delete = can?(:edit, @product), can?(:delete, @product)).any? %>

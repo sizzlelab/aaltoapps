@@ -6,6 +6,7 @@
   border-radius: 0.5em;
 	border: none;
 	padding: 0.2em;
+	
 }
 
 .searchfield {
@@ -92,6 +93,7 @@
 	-moz-border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
   border-radius: 0.5em;
+	
 }
 
 .smallbutton {

@@ -5,6 +5,7 @@
 }
 
 .browse_product_left_silver {
+padding-top:0.4em;
 background-image: -webkit-gradient(
     linear,
     left bottom,
@@ -35,6 +36,7 @@ background-image: -moz-linear-gradient(
 }
 
 .browse_product_right_white {
+padding-top:0.4em;
 background-image: -webkit-gradient(
     linear,
     left bottom,
@@ -65,6 +67,7 @@ background-image: -moz-linear-gradient(
 }
 
 .browse_product_left_white {
+padding-top:0.4em;
   background-image: -webkit-gradient(
     linear,
     left bottom,
@@ -95,6 +98,7 @@ background-image: -moz-linear-gradient(
 }
 
 .browse_product_right_silver {
+padding-top:0.4em;
     background-image: -webkit-gradient(
     linear,
     left bottom,

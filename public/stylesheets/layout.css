@@ -23,6 +23,7 @@
 	-moz-box-shadow: 0 0 7px black;
 	-webkit-box-shadow: 0 0 7px black;
 	box-shadow: 0 0 7px black;
+	
   //border: solid blue;
 	margin-bottom: 5em;
 
@@ -32,10 +33,9 @@
   padding: 0.5em;
 	text-align: center;
 	background-color: #202020;
-  //border: solid green;
+	//border: solid green;
 	
-	
-	
+
 }
 
 .layout_logo {
@@ -104,6 +104,9 @@
 	-moz-box-shadow: 0 0 7px black;
 	-webkit-box-shadow: 0 0 7px black;
 	box-shadow: 0 0 7px black;
+	-moz-border-radius: 0.7em 0.1em 0.7em 0.1em;
+	border-radius: 0.7em 0.1em 0.7em 0.1em;
+	padding-bottom: 0.5em;
 
 }
 	
@@ -111,9 +114,9 @@
 
 #menu .navmenu li ul {list-style: none; padding: 0; margin: 0; }
 
-#menu .menutop {padding:0.3em; padding-left: 0.5em; font-size: 1em; overflow:hidden; }
+#menu .menutop {padding:0.3em; padding-left: 0.7em; font-size: 1em; overflow:hidden; }
 
-#menu .menusingle {padding:0.3em; padding-left: 0.5em; font-size: 1em;overflow:hidden;}
+#menu .menusingle {padding:0.3em; padding-top:0.7em; padding-left: 0.7em; font-size: 1em;overflow:hidden;}
 
 #menu .navmenu li div ul {margin:none; padding: none;}
 

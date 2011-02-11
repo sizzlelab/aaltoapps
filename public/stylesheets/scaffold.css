@@ -24,7 +24,10 @@ pre {
 
 a { color: white; }
 
-a:hover { color: #666; }
+a:hover { 
+  color: #FF6A00; 
+  -webkit-transition: color 0.3s;
+}
 
 div.field, div.actions {
   margin-bottom: 10px;
@@ -42,31 +45,44 @@ div.field, div.actions {
 
 .field_with_errors {
   padding: 2px;
-  background-color: red;
+  color: red;
   display: table;
+	
 }
 
 #error_explanation {
-  width: 450px;
-  border: 2px solid red;
+	margin-left: 29%;
+  width:40%;
+  border: 2px solid rd;
   padding: 7px;
-  padding-bottom: 0;
+  padding-bottom: 0.1em;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  background-color: #2E2E2E;
+	
+	-moz-border-radius: 0.7em 0.2em 0.7em 0.2em;
+	border-radius: 0.7em 0.2em 0.7em 0.2em;
+	
 }
 
-#error_explanation h2 {
-  text-align: left;
+#error_explanation h2 {  
+	text-align: left;
   font-weight: bold;
   padding: 5px 5px 5px 15px;
-  font-size: 12px;
+  font-size: 1em;
   margin: -7px;
+	text-align: center;
   margin-bottom: 0px;
   background-color: #c00;
   color: #fff;
+	//border: solid white;
+	-moz-border-radius: 0.7em 0.2em 0em 0em;
+	border-radius: 0.7em 0.2em 0em 0em;
 }
 
 #error_explanation ul li {
-  font-size: 12px;
-  list-style: square;
-}
+	margin-right: 11%;
+  font-size: 0.8em;
+	color: white;
+	
+	list-style: none;
+  //border: solid green;

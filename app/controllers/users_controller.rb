@@ -35,9 +35,13 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    #check user accpet the term
-    if params[:user][:term]==0
-      flash.now[:error]='In order to register, you must accept the OtaSizzle "Terms and Conditions".'
+    #check user accept the term
+    debugger
+    if params[:user][:term] == "0"
+      @user = User.new
+      # TODO: make storing temporary values to User and reading them possible
+      # @user.attributes = params[:user]
+      flash.now[:error] = [_('In order to register, you must accept the OtaSizzle "Terms and Conditions".')]
       render :action => "new" and return
     end
     authorize! :create, User
@@ -53,7 +57,7 @@ class UsersController < ApplicationController
 
     authorize! :grant_admin_role, @user if @user.is_admin?
 
-    session[:user_id] = @user.id
+    session[:current_user_id] = @user.id
 
     respond_to do |format|
       format.html { redirect_to(@user, :notice => _("Logged in")) }

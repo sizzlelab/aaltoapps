@@ -56,14 +56,14 @@
         var text = $('<span class="commenttext"/>').text(form.find('.commentfield').val()).append('<br/>')
           .insertBefore(form);
         form.hide();
-        var editbutton = $('<button>').text('<%= _('Edit') %>')
+        var editbutton = $('<button class="smallbutton">').text('<%= _('Edit') %>')
           .prependTo( form.parent().find('.product-comment-buttons') );
         editbutton.click(function () {
             editbutton.attr("disabled", true);
             text.hide();
             form.show();
           });
-        $('<button>').text('<%= _('Cancel') %>')
+        $('<button class="smallbutton">').text('<%= _('Cancel') %>')
           .appendTo(form)
           .click(function () {
             editbutton.attr("disabled", false);

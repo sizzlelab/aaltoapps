@@ -1,5 +1,7 @@
 #product-title {
   text-align: left;
+  white-space: nowrap;
+
 }
 
 #product-info {
@@ -129,4 +131,13 @@
 
 .product_new {
 	text-align: left;
+}
+
+.platform_list {
+  text-align: left;
+}
+
+.product_admin * {
+  display: inline;
+  //border: solid green;
 }

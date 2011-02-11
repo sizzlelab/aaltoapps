@@ -1,7 +1,6 @@
 class ProductsController < ApplicationController
-  load_and_authorize_resource :only => [:index, :show, :new, :edit, :create, :update, :destroy]
+  load_and_authorize_resource :only => [:index, :show, :new, :edit, :create, :update, :destroy, :block, :approve]
   before_filter :add_popularity, :only=>:show
-	before_filter :require_admin, :only => [:block, :approve]
 
   PRODUCTS_PER_PAGE = 6
   DEFAULT_SORT = "products.created_at DESC"
@@ -9,9 +8,9 @@ class ProductsController < ApplicationController
 
   # GET /products
   # GET /products.xml
-  def index 
+  def index
 		if params[:approval] && current_user.is_admin?
-			@products = Product.where(:is_approved)
+			@products = @products.where(:is_approved)
 			respond_to do |format|
 				format.html { render_template :template => "products/approval" }
 				format.xml { render :xml => @products }
@@ -20,7 +19,11 @@ class ProductsController < ApplicationController
 			page = params[:page] ? params[:page].to_i : 1
 			@products = @products.joins(:platforms).
 				where(:platforms => {:id => params[:platform_id].to_i}) if params[:platform_id]
-			@products = @products.where(:publisher_id => current_user.id) if params[:myapps]
+      if params[:myapps]
+        @products = @products.where(:publisher_id => current_user.id)
+      else
+        @products = @products.where(:is_approved)
+      end
 			@products = @products.where("name ILIKE :input", {:input => "%#{params[:q]}%"}) if params[:q]
 			@products = @products.order(order_parameter(params[:sort]))
 
@@ -112,14 +115,11 @@ class ProductsController < ApplicationController
   end
 
 	def approve
-		@product = Product.find(params[:id])	
-
 		@product.change_approval true
 		redirect_to :back
 	end
 
 	def block
-		@product = Product.find(params[:id])
 		@product.change_approval false
 		redirect_to :back	
 	end

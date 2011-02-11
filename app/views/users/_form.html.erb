@@ -21,7 +21,7 @@
     <%= f.password_field :password, :class=>'pwfield' %>
   </div>
   <div class="field">
-    <%= f.label :password2 %><br />
+    <%= f.label _('password again') %><br />
     <%= f.password_field :password2, :class=>'pwfield' %>
   </div>
 
@@ -81,8 +81,12 @@
       <%= f.text_field :locality, :class => 'textfield' %>
     </div>
   <% end %>
-
+    <div class="field">
+      <%= f.check_box :term %><%= f.label _('I accept the OtaSizzle') %>
+      <%=link_to '"Terms and Conditions"','http://www.sizzlelab.org/content/legal-information' %>
+    </div>
+ 
   <div class="actions">
-    <%= f.submit _('Create user'), :class => 'smallbutton' %>
+    <%= f.submit _('Register'), :class => 'smallbutton' %>
   </div>
 <% end %>

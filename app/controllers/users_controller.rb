@@ -35,8 +35,12 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
+    #check user accpet the term
+    if params[:user][:term]==0
+      flash.now[:error]='In order to register, you must accept the OtaSizzle "Terms and Conditions".'
+      render :action => "new" and return
+    end
     authorize! :create, User
-
     @session = Session.create
     session[:cookie] = @session.cookie
     begin

@@ -25,7 +25,7 @@ pre {
 a { color: white; }
 
 a:hover { 
-  color: #666; 
+  color: #FF6A00; 
   -webkit-transition: color 0.3s;
 }
 
@@ -45,14 +45,14 @@ div.field, div.actions {
 
 .field_with_errors {
   padding: 2px;
-  background-color: red;
+  color: red;
   display: table;
 	
 }
 
 #error_explanation {
-	margin-left: 32%;
-  width:35%;
+	margin-left: 29%;
+  width:40%;
   border: 2px solid rd;
   padding: 7px;
   padding-bottom: 0.1em;

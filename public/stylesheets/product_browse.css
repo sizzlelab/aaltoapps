@@ -4,7 +4,7 @@
     font-size: 1em;
 }
 
-.browse_product_left_silver {
+.browse_product_left {
 padding-top:0.4em;
 background-image: -webkit-gradient(
     linear,
@@ -32,10 +32,18 @@ background-image: -moz-linear-gradient(
     -moz-box-shadow: 0 0 7px black;
 	  -webkit-box-shadow: 0 0 7px black;
 	  box-shadow: 0 0 7px black;
-		   
+		border-radius: 0.5em 0.2em 0.2em 0.5em;
+		-moz-border-radius: 0.5em 0.2em 0.2em 0.5em;
+		-webkit-border-radius: 0.5em 0.2em 0.2em 0.5em;;
+       
 }
-
-.browse_product_right_white {
+.browse_product_left:hover {
+	-moz-box-shadow: 0 0 7px #FF6A00;
+	-webkit-box-shadow: 0 0 7px #FF6A00;
+	box-shadow: 0 0 7px #FF6A00;
+	-webkit-transition: -webkit-box-shadow 0.5s;
+}
+.browse_product_right {
 padding-top:0.4em;
 background-image: -webkit-gradient(
     linear,
@@ -53,9 +61,9 @@ background-image: -moz-linear-gradient(
 );
     //background:#404040;
     margin-bottom: 1em;
-    //border-radius: 0.5em;
-		//-moz-border-radius: 0.5em;
-		//-webkit-border-radius: 0.5em;
+    border-radius: 0.2em 0.5em 0.5em 0.2em;
+		-moz-border-radius: 0.2em 0.5em 0.5em 0.2em;
+		-webkit-border-radius: 0.2em 0.5em 0.5em 0.2em;
     width:49%;
     float:right;
 		position:relative;
@@ -65,67 +73,12 @@ background-image: -moz-linear-gradient(
 	  box-shadow: 0 0 7px black;
     
 }
-
-.browse_product_left_white {
-padding-top:0.4em;
-  background-image: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(0.36, #202020),
-    color-stop(0.58, #2B292B),
-    color-stop(0.84, #333033)
-);
-background-image: -moz-linear-gradient(
-    center bottom,
-    #202020 36%,
-    #2B292B 58%,
-    #333033 84%
-);
-    //background:#404040;
-    margin-bottom: 1em;
-    //border-radius: 0.5em;
-		//-moz-border-radius: 0.5em;
-		//-webkit-border-radius: 0.5em;
-    width:49%;
-    float:left;
-		position:relative;
-    //border: solid red;
-    -moz-box-shadow: 0 0 7px black;
-	  -webkit-box-shadow: 0 0 7px black;
-	  box-shadow: 0 0 7px black;
-		
+.browse_product_right:hover {
+	-moz-box-shadow: 0 0 7px #FF6A00;
+	-webkit-box-shadow: 0 0 7px #FF6A00;
+	box-shadow: 0 0 7px #FF6A00;
+	-webkit-transition: -webkit-box-shadow 0.5s;
 }
-
-.browse_product_right_silver {
-padding-top:0.4em;
-    background-image: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(0.36, #202020),
-    color-stop(0.58, #2B292B),
-    color-stop(0.84, #333033)
-);
-background-image: -moz-linear-gradient(
-    center bottom,
-    #202020 36%,
-    #2B292B 58%,
-    #333033 84%
-);
-    margin-bottom: 1em;
-    //border-radius: 0.5em;
-		//-moz-border-radius: 0.5em;
-		//-webkit-border-radius: 0.5em;
-    width:49%;
-    float:right;
-		position:relative;
-    //border: solid red;
-    -moz-box-shadow: 0 0 7px black;
-	  -webkit-box-shadow: 0 0 7px black;
-	  box-shadow: 0 0 7px black;
-}
-
 .browse_product_info {
     background:none;
     border-radius: 0.5em;   

@@ -57,7 +57,7 @@
 	-moz-box-shadow: 0 0 7px black;
 	-webkit-box-shadow: 0 0 7px black;
 	box-shadow: 0 0 7px black;
-  color: #00BFFF;
+  color: #FF6A00;
   width: 5em;
 	border: none;
 	background: #202020;
@@ -68,9 +68,10 @@
 .button:hover {
   -webkit-transition: -webkit-box-shadow 0.5s;
 	text-decoration: none;
-  -moz-box-shadow: 0 0 7px #00BFFF;
-	-webkit-box-shadow: 0 0 7px #00BFFF;
-	box-shadow: 0 0 7px #00BFFF;
+	color:#FF6A00;
+  -moz-box-shadow: 0 0 7px #FF6A00;
+	-webkit-box-shadow: 0 0 7px #FF6A00;
+	box-shadow: 0 0 7px #FF6A00;
 	
 }
 
@@ -98,7 +99,7 @@
 }
 
 .smallbutton:hover {
-	color: #666;
+	color: #FF6A00;
 	cursor: pointer;
   -webkit-transition: color 0.3s;
 }

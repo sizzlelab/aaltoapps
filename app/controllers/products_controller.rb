@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   # GET /products.xml
   def index
 		if params[:approval] && current_user.is_admin?
-			@products = @products.where(:is_approved)
+			@products = @products.where(:is_approved => true)
 			respond_to do |format|
 				format.html { render_template :template => "products/approval" }
 				format.xml { render :xml => @products }
@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
       if params[:myapps]
         @products = @products.where(:publisher_id => current_user.id)
       else
-        @products = @products.where(:is_approved)
+        @products = @products.where(:is_approved => true)
       end
 			@products = @products.where("name ILIKE :input", {:input => "%#{params[:q]}%"}) if params[:q]
 			@products = @products.order(order_parameter(params[:sort]))

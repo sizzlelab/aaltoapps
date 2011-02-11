@@ -24,7 +24,10 @@ pre {
 
 a { color: white; }
 
-a:hover { color: #666; }
+a:hover { 
+  color: #666; 
+  -webkit-transition: color 0.3s;
+}
 
 div.field, div.actions {
   margin-bottom: 10px;

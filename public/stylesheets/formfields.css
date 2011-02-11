@@ -52,7 +52,7 @@
 
 }
 
-.button {
+.bigbutton {
 	display: inline-block;
 	outline: none;
 	cursor: pointer;
@@ -75,7 +75,8 @@
 	//background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
 	//filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
 }
-.button:hover {
+
+.bigbutton:hover {
   -webkit-transition: -webkit-box-shadow 0.5s;
 	text-decoration: none;
 	color:#FF6A00;
@@ -84,7 +85,6 @@
 	box-shadow: 0 0 7px #FF6A00;
 	
 }
-
 
 .pwfield {
 	background: #2E2E2E;
@@ -97,7 +97,7 @@
 	
 }
 
-.smallbutton {
+.smallbutton, button, input[type="submit"] {
 	background: none;
 	border: none;
 	text-decoration: none;
@@ -108,7 +108,7 @@
 	
 }
 
-.smallbutton:hover {
+.smallbutton:hover, button:hover, input[type="submit"]:hover {
 	color: #FF6A00;
 	cursor: pointer;
   -webkit-transition: color 0.3s;

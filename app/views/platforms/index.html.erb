@@ -1,3 +1,4 @@
+<div class="platform_list">
 <h1><%= _("Listing platforms") %></h1>
 
 <table>
@@ -13,8 +14,8 @@
   <tr>
     <td><%= platform.name %></td>
     <td><%= link_to platform.image_url, platform.image_url %></td>
-    <td><%= link_to _('Show'), :action => "show", :id => platform.id if can? :show, platform %></td>
-    <td><%= link_to _('Edit'), :action => "edit", :id => platform.id if can? :edit, platform %></td>
+    <td><%= button_to _('Show'), platform_path(platform.id), :method => :get if can? :show, platform%></td>
+    <td><%= button_to _('Edit'), edit_platform_path(platform.id), :method => :get if can? :edit, platform %></td>
     <td><%= button_to _('Destroy'), platform, :method => :delete,
                                     :confirm => _('Are you sure?') if can? :delete, platform %></td>
   </tr>
@@ -23,4 +24,5 @@
 
 <br />
 
-<%= link_to _('New Platform'), :action => "new" if can? :new, Platform %>
+<%= button_to _('New Platform'), :action => "new" if can? :new, Platform, :method => :get %>
+</div>

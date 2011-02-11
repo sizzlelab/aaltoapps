@@ -1,5 +1,7 @@
 #product-title {
   text-align: left;
+  white-space: nowrap;
+
 }
 
 #product-info {
@@ -7,7 +9,11 @@
   border-bottom: thin solid gray;
 	text-align: left;
 }
-
+#image{
+	width:150px;
+	height:150px;
+	border:none;
+}
 #product-image {
   width: 20%;
   float: left;
@@ -129,4 +135,13 @@
 
 .product_new {
 	text-align: left;
+}
+
+.platform_list {
+  text-align: left;
+}
+
+.product_admin * {
+  display: inline;
+  //border: solid green;
 }

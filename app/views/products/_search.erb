@@ -1,6 +1,6 @@
 <% if can? :index, Product %>
   <%= form_tag(products_path, :method => :get) do %>
    <%= search_field_tag 'q', nil, :maxlength=>20, :size=>10, :class=>'searchfield' %>
-   <%= submit_tag _('search'), :class => 'button' %>
+   <%= submit_tag _('search'), :class => 'bigbutton' %>
   <% end %>
 <% end %>

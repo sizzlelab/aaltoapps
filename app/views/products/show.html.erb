@@ -15,13 +15,8 @@
       <dd><%= link_to @product.publisher.username, @product.publisher %></dd>
     </dl>
 
-    <dl id="product-category">
-      <dt><%= _("Category") %>:</dt>
-      <dd><%= @product.category.name %></dd>
-    </dl>
-
     <dl id="product-platform">
-    <dt><%= _("Platforms") %>:</dt>
+    <dt><%= n_("Platform", "Platforms", @product.platforms.length) %>:</dt>
     <% @product.platforms.each do |platform| %>
       <dd><%= platform.name %>&nbsp;</dd>
     <% end %>

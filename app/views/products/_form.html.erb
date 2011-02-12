@@ -46,10 +46,13 @@
     </tr>
     <tr>
         <td align="right">
-            <%= f.label :platform, _('Choose a category') + ' *:' %>
+            <%= f.label :platform_ids, _('Choose a platform') + ' *:' %>
         </td>
         <td>
-           <%= f.collection_select :category_id, Category.all, :id, :name, {:prompt => true}, :class => 'otherfield' %>
+           <%= f.collection_select :platform_ids, Platform.all, :id, :name,
+                                   { :prompt => true },
+                                   { :class => 'otherfield',
+                                     :name => 'product[platform_ids][]' } %>
         </td>
     </tr>
     <tr>

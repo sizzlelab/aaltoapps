@@ -9,32 +9,35 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
   def index
-		if params[:approval] && current_user.is_admin?
-			@products = @products.where(:is_approved => true)
-			respond_to do |format|
-				format.html { render_template :template => "products/approval" }
-				format.xml { render :xml => @products }
-			end
-		else
-			page = params[:page] ? params[:page].to_i : 1
-			@products = @products.joins(:platforms).
-				where(:platforms => {:id => params[:platform_id].to_i}) if params[:platform_id]
-      if params[:myapps]
-        @products = @products.where(:publisher_id => current_user.id)
-      else
-        @products = @products.where(:is_approved => true)
+    page = params[:page] ? params[:page].to_i : 1
+    @products = @products.joins(:platforms).
+      where(:platforms => {:id => params[:platform_id].to_i}) if params[:platform_id]
+    if params[:myapps]
+      @products = @products.where(:publisher_id => current_user.id)
+      @view_type = :myapps
+    elsif params[:approval]
+      # this authorization might not be necessary; the results would be empty for normal users
+      authorize! :approve, Product
+      @products = case params[:approval]
+        when 'new'     then @products.where(:is_approved => nil)
+        when 'blocked' then @products.where(:is_approved => false)
+        else                @products.where('NOT is_approved OR is_approved IS NULL')
       end
-			@products = @products.where("name ILIKE :input", {:input => "%#{params[:q]}%"}) if params[:q]
-			@products = @products.order(order_parameter(params[:sort]))
+      @view_type = :approval
+    else
+      @products = @products.where(:is_approved => true)
+      @view_type = :index
+    end
+    @products = @products.where("name ILIKE :input", {:input => "%#{params[:q]}%"}) if params[:q]
+    @products = @products.order(order_parameter(params[:sort]))
 
-			@products = @products.all.paginate(:page => page,
-																				 :per_page => PRODUCTS_PER_PAGE)
+    @products = @products.all.paginate(:page => page,
+                                       :per_page => PRODUCTS_PER_PAGE)
 
-    	respond_to do |format|
-      	format.html # index.html.erb
-      	format.xml  { render :xml => @products }
-    	end
-		end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @products }
+    end
   end
 
   # GET /products/1

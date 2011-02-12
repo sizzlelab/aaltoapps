@@ -11,9 +11,9 @@
     <%unless @my_app_show%>
 <h3 >
   <h2><%= _("Select sort criteria") %></h2>
-  <%= link_to _('Publication date'), products_by_platform_path(params[:platform],'created_at') %>&nbsp;&nbsp;|
-  <%= link_to _('Popularity'), products_by_platform_path(params[:platform],'popularity') %>&nbsp;&nbsp;|
-  <%= link_to _('User rating'), products_by_platform_path(params[:platform],'avg_rating') %>
+  <%= link_to _('Publication date'), products_path_with_params(:sort => 'created_at') %>&nbsp;&nbsp;|
+  <%= link_to _('Popularity'), products_path_with_params(:sort => 'popularity') %>&nbsp;&nbsp;|
+  <%= link_to _('User rating'), products_path_with_params(:sort => 'avg_rating') %>
 </h3><br><br>
 <%end%>
   	<%=render :partial=>'product',:collection=>@products%>
@@ -30,12 +30,12 @@
   <%unless @my_app_show%>
 <h3 >
   <h2><%= _("Select sort criteria") %></h2>
-  <%= link_to _('Publication date'), products_by_platform_path(params[:platform],'created_at') %>&nbsp;&nbsp;|
-  <%= link_to _('Popularity'), products_by_platform_path(params[:platform],'popularity') %>&nbsp;&nbsp;|
-  <%= link_to _('User rating'), products_by_platform_path(params[:platform],'avg_rating') %>
+  <%= link_to _('Publication date'), products_path_with_params(:sort => 'created_at') %>&nbsp;&nbsp;|
+  <%= link_to _('Popularity'), products_path_with_params(:sort => 'popularity') %>&nbsp;&nbsp;|
+  <%= link_to _('User rating'), products_path_with_params(:sort => 'avg_rating') %>
 <%unless params[:platform_id]%>
 &nbsp;&nbsp;|
-  <%= link_to _('Featured apps'), products_by_platform_path(params[:platform],'featured') %>&nbsp;&nbsp;
+  <%= link_to _('Featured apps'), products_path_with_params(:sort => 'featured') %>&nbsp;&nbsp;
 <%end%>
 </h3><br><br>
 <%end%>

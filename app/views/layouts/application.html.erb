@@ -160,11 +160,21 @@
     		
  			      </ul>
 
-                        <% if (can_i_users, can_i_platforms = can?(:index, User), can?(:index, Platform)).any? %>
+                        <% if (can_approve, can_i_users, can_i_platforms =
+                                 can?(:approve, Product), can?(:index, User), can?(:index, Platform)
+                              ).any? %>
                           <li id="menu-admin">
                             <div class="menutop"><%= link_to _("admin") %></div>
                             <ul>
                               <div class="submenu">
+                                <% if can_approve %>
+                                  <li class="submenu_row"><%= link_to _('New products'),
+                                                                      products_path(:approval => 'new')
+                                                          %></li>
+                                  <li class="submenu_row"><%= link_to _('Blocked products'),
+                                                                      products_path(:approval => 'blocked')
+                                                          %></li>
+                                <% end %>
                                 <% if can_i_users %>
                                   <li class="submenu_row"><%= link_to _('Users'), users_path %></li>
                                 <% end %>

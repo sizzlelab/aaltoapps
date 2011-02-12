@@ -11,18 +11,21 @@
                  :object => product.avg_rating,
                  :locals => { :empty_message => '' } %>
     </div>
-		<% if current_user && current_user.is_admin %>
-			<span class="product_admin"><%= approval_status product %>
+
+    <% if [:myapps, :approval].include?(@view_type) || (logged_in? && current_user.is_admin?) %>
+      <span class="product_admin"><%= approval_status product %>
         <% if product.is_approved? %>
-			    <%= button_to _("Block"), { :action => :block, :id => product.id }, :method => :put, :class => 'smallbutton' %>
-			    <% else %>
-			    <%= button_to _("Approve"), { :action => :approve, :id => product.id }, :method => :put, :class => 'smallbutton' %>
-			  <% end %>
+          <%= button_to _("Block"), { :action => :block, :id => product.id },
+                        :method => :put, :class => 'smallbutton' if can? :approve, product %>
+        <% else %>
+          <%= button_to _("Approve"), { :action => :approve, :id => product.id },
+                        :method => :put, :class => 'smallbutton' if can? :block, product %>
+        <% end %>
       </span>
-			
-		<% end %>
+    <% end %>
+
     <div class="browse_row">
-      <% if params[:myapps] %>
+      <% if @view_type == :myapps %>
         <%= button_to _("Edit"), edit_product_path(product), :method => :get,
                                  :class => 'smallbutton' if can? :edit, product %>
         <%= button_to _('Delete'), product, :class => 'smallbutton', :method => :delete,
@@ -34,4 +37,3 @@
   <div class="browse_product_desc"><%= product.description %> </div>
 
 </div>
- 

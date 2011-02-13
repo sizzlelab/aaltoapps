@@ -185,3 +185,7 @@ en:
 
       full_messages:
         format: "%{attribute}%{message}"
+
+      attributes:
+        name: Name of the product
+        platforms: Platform

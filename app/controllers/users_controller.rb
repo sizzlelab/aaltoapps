@@ -36,7 +36,6 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     #check user accept the term
-    debugger
     if params[:user][:term] == "0"
       @user = User.new
       # TODO: make storing temporary values to User and reading them possible

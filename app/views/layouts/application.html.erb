@@ -89,7 +89,7 @@
                 if l[:current?]
                   content_tag(:span, l[:name], :class => 'current_locale')
                 else
-                  link_to l[:name], :locale => l[:id]
+                  link_to l[:name], params.merge(:locale => l[:id])
                 end
               }.join(', ').html_safe
             %>

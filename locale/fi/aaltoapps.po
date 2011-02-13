@@ -7,15 +7,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-02-12 19:31+0200\n"
+"POT-Creation-Date: 2011-02-13 22:50+0200\n"
 "PO-Revision-Date: 2011-02-02 15:23+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: app/views/products/index.html.erb:23 app/views/products/index.html.erb:48
+msgid "&#8592; Previous"
+msgstr "&#8592; Edellinen"
 
 #: app/views/comment/_list.html.erb:13
 msgid "(User has not rated this app)"
@@ -78,7 +82,7 @@ msgid "Blocked products"
 msgstr ""
 
 #: app/views/layouts/application.html.erb:66
-#: app/views/products/_form.html.erb:71
+#: app/views/products/_form.html.erb:72
 msgid "Cancel"
 msgstr "Peruuta"
 
@@ -94,7 +98,7 @@ msgstr "Kategoria luotiin onnistuneesti."
 msgid "Category was successfully updated."
 msgstr "Kategoriaa päivitettiin onnistuneesti"
 
-#: app/views/products/_form.html.erb:60
+#: app/views/products/_form.html.erb:61
 msgid "Choose a Photo"
 msgstr "Valitse kuva"
 
@@ -140,7 +144,7 @@ msgstr "Tuhoa"
 msgid "Detailed view"
 msgstr "Yksityiskohdat"
 
-#: app/views/products/_form.html.erb:79
+#: app/views/products/_form.html.erb:80
 msgid "Drag an image here!"
 msgstr "Siirrä kuva tähän!"
 
@@ -174,7 +178,7 @@ msgstr "Käyttäjän muokkaus"
 msgid "Email"
 msgstr "Sähköposti"
 
-#: app/views/products/index.html.erb:38
+#: app/views/products/index.html.erb:40
 msgid "Featured apps"
 msgstr "Ehdotetut sovellukset"
 
@@ -195,7 +199,7 @@ msgid "Grant administrator role"
 msgstr "Anna admin-oikeudet"
 
 #: app/views/users/_form.html.erb:89
-msgid "I accept the OtaSizzle "
+msgid "I accept the OtaSizzle %{link_begin}\"Terms and Conditions\"%{link_end}"
 msgstr ""
 
 #: app/views/categories/show.html.erb:9 app/views/categories/index.html.erb:6
@@ -208,7 +212,7 @@ msgstr "Kuvan URL"
 msgid "Image url"
 msgstr "Kuvan url"
 
-#: app/controllers/users_controller.rb:44
+#: app/controllers/users_controller.rb:43
 msgid ""
 "In order to register, you must accept the OtaSizzle \"Terms and Conditions\"."
 msgstr ""
@@ -225,7 +229,7 @@ msgstr "Alustat"
 msgid "Listing My Products"
 msgstr "Omat sovellukseni"
 
-#: app/views/products/index.html.erb:29
+#: app/views/products/index.html.erb:31
 msgid "Listing Products"
 msgstr "Sovellukset"
 
@@ -245,7 +249,7 @@ msgstr "Arviot"
 msgid "Listing users"
 msgstr "Käyttäjät"
 
-#: app/controllers/users_controller.rb:63
+#: app/controllers/users_controller.rb:62
 msgid "Logged in"
 msgstr "Olet kirjautunut sisään"
 
@@ -312,6 +316,10 @@ msgstr "Uudet sovellukset"
 msgid "New rating"
 msgstr "Uusi arvio"
 
+#: app/views/products/index.html.erb:24 app/views/products/index.html.erb:49
+msgid "Next &#8594;"
+msgstr "Seuraava &#8594;"
+
 #: app/views/products/show.html.erb:31
 msgid "Number of views"
 msgstr "Katselukerrat"
@@ -350,7 +358,7 @@ msgstr "Ole hyvä ja täytä alla oleva lomake."
 msgid "Please login to add comments"
 msgstr "Voit kommentoida kun olet kirjautunut sisään"
 
-#: app/views/products/index.html.erb:15 app/views/products/index.html.erb:34
+#: app/views/products/index.html.erb:15 app/views/products/index.html.erb:36
 msgid "Popularity"
 msgstr "Katselukerrat"
 
@@ -374,7 +382,7 @@ msgstr "Sovellus päivitettiin onnistuneesti."
 msgid "Products"
 msgstr "Sovellukset"
 
-#: app/views/products/index.html.erb:14 app/views/products/index.html.erb:33
+#: app/views/products/index.html.erb:14 app/views/products/index.html.erb:35
 msgid "Publication date"
 msgstr "Julkaisupäivä"
 
@@ -411,7 +419,7 @@ msgstr "Arviota ei luotu/päivitetty"
 msgid "Rating was successfully created/updated."
 msgstr "Arvio luotiin/päivitettiin onnistuneesti."
 
-#: app/views/users/_form.html.erb:97 app/views/users/_login_menu.html.erb:3
+#: app/views/users/_form.html.erb:99 app/views/users/_login_menu.html.erb:3
 msgid "Register"
 msgstr "Rekisteröidy"
 
@@ -427,7 +435,7 @@ msgstr "Ilmoita ongelmasta"
 msgid "Revoke administrator role"
 msgstr "Poista admin-oikeudet"
 
-#: app/views/products/index.html.erb:13 app/views/products/index.html.erb:32
+#: app/views/products/index.html.erb:13 app/views/products/index.html.erb:34
 msgid "Select sort criteria"
 msgstr "Valitse lajitteluperuste"
 
@@ -438,7 +446,7 @@ msgid "Show"
 msgstr "Näytä"
 
 #: app/views/categories/edit.html.erb:25 app/views/categories/new.html.erb:25
-#: app/views/products/_form.html.erb:71 app/views/platforms/_form.html.erb:25
+#: app/views/products/_form.html.erb:72 app/views/platforms/_form.html.erb:25
 msgid "Submit"
 msgstr "Hyväksy"
 
@@ -462,11 +470,11 @@ msgstr "Käyttäjä"
 msgid "User name:"
 msgstr "Käyttäjänimi:"
 
-#: app/views/products/index.html.erb:16 app/views/products/index.html.erb:35
+#: app/views/products/index.html.erb:16 app/views/products/index.html.erb:37
 msgid "User rating"
 msgstr "Käyttäjän arvio"
 
-#: app/controllers/users_controller.rb:81
+#: app/controllers/users_controller.rb:80
 msgid "User was successfully updated."
 msgstr "Käyttäjä päivitettiin onnistuneesti."
 

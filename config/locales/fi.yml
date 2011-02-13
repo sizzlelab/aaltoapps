@@ -158,3 +158,28 @@ fi:
         odd: "täytyy olla pariton"
         even: "täytyy olla parillinen"
         record_invalid: "Validointi epäonnistui: %{errors}"
+
+    models:
+      user: Käyttäjä
+      product: Tuote
+      platform: Alusta
+      comment: Kommentti
+      rating: Arvio
+
+    attributes:
+      user:
+        # TODO: täydennä
+      product:
+        name: Tuotteen nimi
+        description: Kuvaus
+        url: URL
+        publisher: Julkaisija
+        popularity: Katselukerrat
+        platforms: Alusta
+        photo: Kuva
+      platform:
+        name: Nimi
+        image_url: Kuvan URL
+      comment:
+        product: Tuote
+        commenter: Kommentoija

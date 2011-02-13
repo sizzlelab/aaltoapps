@@ -19,7 +19,9 @@
   	<%=render :partial=>'product',:collection=>@products%>
 		</div>
 		<div class="browse_paginate">
-   	<%= will_paginate @products %>
+        <%= will_paginate @products,
+                          :previous_label => _('&#8592; Previous'),
+                          :next_label => _('Next &#8594;') %>
 		</div>
 	<%end%>
 
@@ -42,7 +44,9 @@
   <%=render :partial=>'product',:collection=>@products%>
 </div>
 <div class="browse_paginate">
-   <%= will_paginate @products %>
+  <%= will_paginate @products,
+                    :previous_label => _('&#8592; Previous'),
+                    :next_label => _('Next &#8594;') %>
 </div>
 <%end%>
 <%end%>

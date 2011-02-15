@@ -16,12 +16,8 @@ module ProductsHelper
   # Returns product list path with current request parameters (except page)
   # combined with parameters given in _params
   def products_path_with_params(_params)
-    _params = params.except(:page, :controller, :action).merge(_params)
-    if _params[:platform_id]
-      _params[:platform] = _params.delete(:platform_id)
-      platform_products_path _params
-    else
-      products_path _params
-    end
+    url_for( params.except(:page).
+             merge(:controller => 'products', :action => 'index').
+             merge(_params) )
   end
 end

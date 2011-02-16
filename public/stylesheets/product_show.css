@@ -141,7 +141,39 @@
   text-align: left;
 }
 
-.product_admin * {
-  /*display: inline;*/
-  /*border: solid green;*/
+.productlist_item {
+    border: thin solid black;
+    border-radius: 0.5em;
+    margin-bottom: 0.5em;    
 }
+
+.product_image {
+    width: 10%;
+    float: left;
+    overflow: hidden;
+}
+
+.product_comment {
+	margin-top: 1em;
+	text-align: left;
+}
+
+.product_info {
+    width: 80%;
+    float: left;
+}
+
+.product_download {
+    width: 10%;
+    float:right;
+}
+
+.productlist_item:after {
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;    
+    clear: both;
+}	
+
+

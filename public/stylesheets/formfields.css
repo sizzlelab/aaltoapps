@@ -52,6 +52,23 @@
 
 }
 
+.smallbutton, input[type="submit"] {
+	background: none;
+	border: none;
+	text-decoration: none;
+	color: white;
+  font-size: 1em;
+	font-family: 'Harabara';
+	text-transform: lowercase;
+	
+}
+
+.smallbutton:hover, input[type="submit"]:hover {
+	color: #FF6A00;
+	cursor: pointer;
+  -webkit-transition: color 0.3s;
+}
+
 .bigbutton {
 	display: inline-block;
 	outline: none;
@@ -95,21 +112,4 @@
 	-webkit-border-radius: 0.5em;
   border-radius: 0.5em;
 	
-}
-
-.smallbutton, button, input[type="submit"] {
-	background: none;
-	border: none;
-	text-decoration: none;
-	color: white;
-  font-size: 1em;
-	font-family: 'Harabara';
-	text-transform: lowercase;
-	
-}
-
-.smallbutton:hover, button:hover, input[type="submit"]:hover {
-	color: #FF6A00;
-	cursor: pointer;
-  -webkit-transition: color 0.3s;
 }

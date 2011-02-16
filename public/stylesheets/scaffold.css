@@ -12,7 +12,7 @@ body {
 	background-color: #2E2E2E;
 	color: #00BFFF;
 	font-family: 'TB';
-	font-size: 1.1em;
+	font-size: 1em;
 	line-height: 18px;
 }
 
@@ -34,12 +34,12 @@ div.field, div.actions {
 }
 
 #notice {
-  color: green;
+  color: #666;
 	text-align: left;
 }
 
 #alert {
-  color: red;
+  color: #666;
 	text-align: left;
 }
 

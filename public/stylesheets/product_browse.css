@@ -99,7 +99,7 @@ background-image: -moz-linear-gradient(
     margin-left: 0.5em;  
     float:left;
     width:43%;
-    max-height:4em;
+    max-height:4.5em;
     overflow:hidden;
     text-overflow-ellipsis: hidden;
 		text-align:left;
@@ -137,5 +137,9 @@ background-image: -moz-linear-gradient(
     color: red;
     font:bold;
     
+}
 
+.product_admin * {
+  display: inline;
+  /*border: solid green;*/
 }

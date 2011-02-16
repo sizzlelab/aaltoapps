@@ -19,6 +19,6 @@
 
 
 <% if can? :edit, @platform %>
-  <%= link_to _('Edit'), :action => "edit", :id => @platform.id %> |
+  <%= button_to _('Edit'), edit_platform_path(@platform.id), :method => :get %>
+	<%= button_to _('List platforms'), platforms_path, :method => :get %>
 <% end %>
-<%= link_to _('List platforms'), :action => "index" if can? :index, Platform %>

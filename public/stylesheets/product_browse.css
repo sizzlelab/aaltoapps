@@ -83,11 +83,11 @@ background-image: -moz-linear-gradient(
     background:none;
     border-radius: 0.5em;   
     float:left;
-    width:32%;
-    min-width: 5em;
     overflow: hidden; 
     white-space: nowrap; 
     text-overflow: ellipsis;
+    width:32%;
+    min-width: 5em;
 		text-align: left;	
     //border:solid red;
 
@@ -140,6 +140,6 @@ background-image: -moz-linear-gradient(
 }
 
 .product_admin * {
-  display: inline;
+  //display: inline;
   /*border: solid green;*/
 }

@@ -23,7 +23,6 @@
 	-moz-box-shadow: 0 0 7px black;
 	-webkit-box-shadow: 0 0 7px black;
 	box-shadow: 0 0 7px black;
-	
   //border: solid blue;
 	margin-bottom: 5em;
 
@@ -41,22 +40,22 @@
 
 .layout_logo {
   float: left;
-  padding-top: 3em;
-  margin-left: 5em;
+  padding-top: 2em;
+  padding-left: 5em;
   margin-top: 1em;
-
+  width: 50%;
+  min-height: 4em;
+  font-size: 1.1em; 
   //border: solid red;
-	
 
 }
 
 .layout_logo a, .layout_logo a:hover {
-font-family: 'Harabara';
-text-decoration: none;
+  font-family: 'Harabara';
+  text-decoration: none;
   font-size: 6em;
-color: #00BFFF;
+  color: #00BFFF;
   text-shadow: 0.1em 0.1em 0.1em #000;
-
 }
 
 .layout_info {

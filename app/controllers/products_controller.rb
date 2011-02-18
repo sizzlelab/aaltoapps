@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  load_and_authorize_resource :only => [:index, :show, :new, :edit, :create, :update, :destroy, :block, :approve]
+  load_and_authorize_resource :only => [:index, :show, :new, :edit, :create, :update, :destroy, :block, :approve, :request_approval]
   before_filter :add_popularity, :only=>:show
 
   PRODUCTS_PER_PAGE = 6
@@ -18,14 +18,10 @@ class ProductsController < ApplicationController
     elsif params[:approval]
       # this authorization might not be necessary; the results would be empty for normal users
       authorize! :approve, Product
-      @products = case params[:approval]
-        when 'new'     then @products.where(:is_approved => nil)
-        when 'blocked' then @products.where(:is_approved => false)
-        else                @products.where('NOT is_approved OR is_approved IS NULL')
-      end
+      @products = @products.where(:approval_state => params[:approval])
       @view_type = :approval
     else
-      @products = @products.where(:is_approved => true)
+      @products = @products.where(:approval_state => 'published')
       @view_type = :index
     end
     @products = @products.where("name ILIKE :input", {:input => "%#{params[:q]}%"}) if params[:q]
@@ -118,13 +114,18 @@ class ProductsController < ApplicationController
   end
 
 	def approve
-		@product.change_approval true
+		@product.change_approval 'published'
 		redirect_to :back
 	end
 
 	def block
-		@product.change_approval false
+		@product.change_approval 'blocked'
 		redirect_to :back	
+	end
+
+  def request_approval
+		@product.change_approval 'pending'
+		redirect_to :back
 	end
 
   private

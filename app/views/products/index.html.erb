@@ -26,7 +26,13 @@
 <%else%>
  <% if !@products.blank? %>
 <div class="browse_products">
-    <h1><%= _("Listing Products") %></h1>
+    <h1><%=
+      if defined?(@platform)
+        _('%{platform} Products') % {:platform => @platform.name}
+      else
+        _("Listing Products")
+      end
+    %></h1>
   <%unless @my_app_show%>
   <%= link_to _('Publication date'), products_path_with_params(:sort => 'created_at') %>&nbsp;&nbsp;|
   <%= link_to _('Popularity'), products_path_with_params(:sort => 'popularity') %>&nbsp;&nbsp;|

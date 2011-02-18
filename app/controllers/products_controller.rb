@@ -10,8 +10,10 @@ class ProductsController < ApplicationController
   # GET /products.xml
   def index
     page = params[:page] ? params[:page].to_i : 1
-    @products = @products.joins(:platforms).
-      where(:platforms => {:id => params[:platform_id].to_i}) if params[:platform_id]
+    if params[:platform_id]
+      @platform = Platform.find(params[:platform_id])
+      @products = @products.joins(:platforms).where(:platforms => {:id => @platform.id})
+    end
     if params[:myapps]
       @products = @products.where(:publisher_id => current_user.id)
       @view_type = :myapps

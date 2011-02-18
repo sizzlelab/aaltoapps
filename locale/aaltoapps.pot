@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-02-18 15:40+0200\n"
+"POT-Creation-Date: 2011-02-18 17:46+0200\n"
 "PO-Revision-Date: 2011-02-02 15:23+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,11 @@ msgstr ""
 "Language: \n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: app/views/products/index.html.erb:21 app/views/products/index.html.erb:44
+#: app/views/products/index.html.erb:31
+msgid "%{platform} Products"
+msgstr ""
+
+#: app/views/products/index.html.erb:21 app/views/products/index.html.erb:50
 msgid "&#8592; Previous"
 msgstr ""
 
@@ -41,7 +45,7 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:147
+#: app/views/layouts/application.html.erb:152
 msgid "All"
 msgstr ""
 
@@ -83,11 +87,11 @@ msgstr ""
 msgid "Block"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:182
+#: app/views/layouts/application.html.erb:187
 msgid "Blocked products"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:66
+#: app/views/layouts/application.html.erb:69
 #: app/views/products/_form.html.erb:72
 msgid "Cancel"
 msgstr ""
@@ -112,7 +116,7 @@ msgstr ""
 msgid "Choose a platform"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:85
+#: app/views/layouts/application.html.erb:90
 msgid "Choose language:"
 msgstr ""
 
@@ -158,7 +162,7 @@ msgstr ""
 msgid "E-mail"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:59
+#: app/views/layouts/application.html.erb:62
 #: app/views/ratings/show.html.erb:19 app/views/ratings/index.html.erb:19
 #: app/views/categories/show.html.erb:21
 #: app/views/categories/index.html.erb:17 app/views/products/show.html.erb:62
@@ -188,7 +192,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: app/views/products/index.html.erb:36
+#: app/views/products/index.html.erb:42
 msgid "Featured apps"
 msgstr ""
 
@@ -239,7 +243,7 @@ msgstr ""
 msgid "Listing My Products"
 msgstr ""
 
-#: app/views/products/index.html.erb:29
+#: app/views/products/index.html.erb:33
 msgid "Listing Products"
 msgstr ""
 
@@ -283,7 +287,7 @@ msgstr ""
 msgid "Male"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:159
+#: app/views/layouts/application.html.erb:164
 msgid "My Apps"
 msgstr ""
 
@@ -298,7 +302,7 @@ msgstr ""
 msgid "Name of the product"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:160
+#: app/views/layouts/application.html.erb:165
 msgid "New App"
 msgstr ""
 
@@ -322,7 +326,7 @@ msgstr ""
 msgid "New comment created."
 msgstr ""
 
-#: app/views/layouts/application.html.erb:176
+#: app/views/layouts/application.html.erb:181
 msgid "New products"
 msgstr ""
 
@@ -330,7 +334,7 @@ msgstr ""
 msgid "New rating"
 msgstr ""
 
-#: app/views/products/index.html.erb:22 app/views/products/index.html.erb:45
+#: app/views/products/index.html.erb:22 app/views/products/index.html.erb:51
 msgid "Next &#8594;"
 msgstr ""
 
@@ -360,7 +364,7 @@ msgstr ""
 msgid "Platform was successufully deleted."
 msgstr ""
 
-#: app/views/layouts/application.html.erb:190
+#: app/views/layouts/application.html.erb:195
 msgid "Platforms"
 msgstr ""
 
@@ -372,7 +376,7 @@ msgstr ""
 msgid "Please login to add comments"
 msgstr ""
 
-#: app/views/products/index.html.erb:13 app/views/products/index.html.erb:32
+#: app/views/products/index.html.erb:13 app/views/products/index.html.erb:38
 msgid "Popularity"
 msgstr ""
 
@@ -384,11 +388,11 @@ msgstr ""
 msgid "Product"
 msgstr ""
 
-#: app/controllers/products_controller.rb:81
+#: app/controllers/products_controller.rb:83
 msgid "Product was successfully created."
 msgstr ""
 
-#: app/controllers/products_controller.rb:96
+#: app/controllers/products_controller.rb:98
 msgid "Product was successfully updated."
 msgstr ""
 
@@ -396,11 +400,11 @@ msgstr ""
 msgid "Products"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:179
+#: app/views/layouts/application.html.erb:184
 msgid "Products pending approval"
 msgstr ""
 
-#: app/views/products/index.html.erb:12 app/views/products/index.html.erb:31
+#: app/views/products/index.html.erb:12 app/views/products/index.html.erb:37
 msgid "Publication date"
 msgstr ""
 
@@ -489,7 +493,7 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: app/views/products/index.html.erb:14 app/views/products/index.html.erb:33
+#: app/views/products/index.html.erb:14 app/views/products/index.html.erb:39
 msgid "User rating"
 msgstr ""
 
@@ -502,7 +506,7 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:187
+#: app/views/layouts/application.html.erb:192
 msgid "Users"
 msgstr ""
 
@@ -535,7 +539,7 @@ msgstr ""
 msgid "Your rating:"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:172
+#: app/views/layouts/application.html.erb:177
 msgid "admin"
 msgstr ""
 
@@ -547,7 +551,7 @@ msgstr ""
 msgid "blocked"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:144
+#: app/views/layouts/application.html.erb:149
 msgid "browse"
 msgstr ""
 
@@ -563,7 +567,7 @@ msgstr ""
 msgid "can not be given when not logged in"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:143
+#: app/views/layouts/application.html.erb:148
 msgid "home"
 msgstr ""
 
@@ -591,7 +595,7 @@ msgstr ""
 msgid "password again"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:156
+#: app/views/layouts/application.html.erb:161
 msgid "publish"
 msgstr ""
 

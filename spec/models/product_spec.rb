@@ -36,11 +36,6 @@ describe Product do
   it "should not have a nil description" do
     @product.description = nil
     @product.should_not be_valid
-  end
-
-  it "should not have a nil category" do
-    @product.category = nil
-    @product.should_not be_valid
-  end
+    end
 end
 

@@ -13,7 +13,7 @@ describe RatingsController do
 
     describe "with valid params" do
       before(:each) do
-        post :create, :rating => {:rating => Rating::MIN.to_s}, :product_id => products(:product1).id
+        post :create, :rating => {:rating => Rating::MIN.to_s}, :product_id => products(:product1).id, :locale => "en"
       end
 
       it "assigns a newly created rating as @rating" do
@@ -30,7 +30,7 @@ describe RatingsController do
 
     describe "with an invalid value" do
       before(:each) do
-        post :create, :rating => {:rating => (Rating::MAX+1).to_s}, :product_id => products(:product1).id
+        post :create, :rating => {:rating => (Rating::MAX+1).to_s}, :product_id => products(:product1).id, :locale => "en"
       end
 
       it "assigns a newly created but unsaved rating as @rating" do
@@ -49,12 +49,7 @@ describe RatingsController do
 
     describe "with a nonexistent product" do
       before(:each) do
-        post :create, :rating => {:rating => Rating::MIN.to_s}, :product_id => -1
-      end
-
-      it "assigns a newly created but unsaved rating as @rating" do
-        assigns(:rating).rating.should eql(Rating::MIN.to_f)
-        assigns(:rating).user_id.should eql(@current_user_id)
+        post :create, :rating => {:rating => Rating::MIN.to_s}, :product_id => -1, :locale => "en"
       end
 
       it "redirects to the page it got as referrer" do
@@ -69,7 +64,7 @@ describe RatingsController do
     describe "with no user logged in" do
       before(:each) do
         session.delete(:current_user_id)
-        post :create, :rating => {:rating => Rating::MIN.to_s}, :product_id => products(:product1).id
+        post :create, :rating => {:rating => Rating::MIN.to_s}, :product_id => products(:product1).id, :locale => "en"
       end
 
       it "assigns a newly created but unsaved rating as @rating" do

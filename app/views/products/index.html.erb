@@ -9,12 +9,10 @@
    <div class="browse_products">
     <h1><%= _("Listing My Products") %></h1>
     <%unless @my_app_show%>
-<h3 >
-  <h2><%= _("Select sort criteria") %></h2>
   <%= link_to _('Publication date'), products_path_with_params(:sort => 'created_at') %>&nbsp;&nbsp;|
   <%= link_to _('Popularity'), products_path_with_params(:sort => 'popularity') %>&nbsp;&nbsp;|
   <%= link_to _('User rating'), products_path_with_params(:sort => 'avg_rating') %>
-</h3><br><br>
+<br><br>
 <%end%>
   	<%=render :partial=>'product',:collection=>@products%>
 		</div>
@@ -30,8 +28,6 @@
 <div class="browse_products">
     <h1><%= _("Listing Products") %></h1>
   <%unless @my_app_show%>
-<h3 >
-  <h2><%= _("Select sort criteria") %></h2>
   <%= link_to _('Publication date'), products_path_with_params(:sort => 'created_at') %>&nbsp;&nbsp;|
   <%= link_to _('Popularity'), products_path_with_params(:sort => 'popularity') %>&nbsp;&nbsp;|
   <%= link_to _('User rating'), products_path_with_params(:sort => 'avg_rating') %>
@@ -39,7 +35,7 @@
 &nbsp;&nbsp;|
   <%= link_to _('Featured apps'), products_path_with_params(:sort => 'featured') %>&nbsp;&nbsp;
 <%end%>
-</h3><br><br>
+<br><br>
 <%end%>
   <%=render :partial=>'product',:collection=>@products%>
 </div>

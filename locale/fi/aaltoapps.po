@@ -7,17 +7,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-02-13 22:50+0200\n"
+"POT-Creation-Date: 2011-02-18 14:20+0200\n"
 "PO-Revision-Date: 2011-02-02 15:23+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/views/products/index.html.erb:23 app/views/products/index.html.erb:48
+#: app/views/products/index.html.erb:21 app/views/products/index.html.erb:44
 msgid "&#8592; Previous"
 msgstr "&#8592; Edellinen"
 
@@ -28,10 +28,6 @@ msgstr "(Käyttäjä ei ole arvostellut tätä sovellusta)"
 #: app/views/layouts/application.html.erb:4
 msgid "Aalto Apps"
 msgstr "Aalto Apps"
-
-#: app/views/layouts/application.html.erb:125
-msgid "Aalto Apps 2011"
-msgstr "Aalto Apps 2011"
 
 #: app/views/products/new.html.erb:2
 msgid "Add a product"
@@ -45,7 +41,7 @@ msgstr "Lisää uusi alusta"
 msgid "Admin"
 msgstr "Admin"
 
-#: app/views/layouts/application.html.erb:142
+#: app/views/layouts/application.html.erb:147
 msgid "All"
 msgstr "Kaikki"
 
@@ -57,19 +53,19 @@ msgstr "Hyväksy"
 msgid "Are you sure you want to revoke your own administrator role?"
 msgstr "Oletko varma että haluat poistaa itseltäsi admin-oikeudet?"
 
-#: app/views/categories/index.html.erb:18 app/views/ratings/index.html.erb:20
-#: app/views/products/show.html.erb:65 app/views/products/_product.html.erb:32
-#: app/views/comment/_list.html.erb:20 app/views/users/index.html.erb:26
+#: app/views/ratings/index.html.erb:20 app/views/users/index.html.erb:26
 #: app/views/platforms/index.html.erb:20
+#: app/views/categories/index.html.erb:18 app/views/comment/_list.html.erb:20
+#: app/views/products/_product.html.erb:32 app/views/products/show.html.erb:65
 msgid "Are you sure?"
 msgstr "Oletko varma?"
 
-#: app/views/categories/show.html.erb:22 app/views/ratings/show.html.erb:20
-#: app/views/ratings/edit.html.erb:6 app/views/ratings/new.html.erb:5
-#: app/views/products/show.html.erb:89 app/views/products/edit.html.erb:6
-#: app/views/users/show.html.erb:45 app/views/users/edit.html.erb:6
-#: app/views/users/new.html.erb:5 app/views/platforms/edit.html.erb:5
-#: app/views/platforms/new.html.erb:5
+#: app/views/ratings/edit.html.erb:6 app/views/ratings/show.html.erb:20
+#: app/views/ratings/new.html.erb:5 app/views/users/edit.html.erb:6
+#: app/views/users/show.html.erb:45 app/views/users/new.html.erb:5
+#: app/views/platforms/edit.html.erb:5 app/views/platforms/new.html.erb:5
+#: app/views/categories/show.html.erb:22 app/views/products/edit.html.erb:6
+#: app/views/products/show.html.erb:89 app/views/products/new.html.erb:6
 msgid "Back"
 msgstr "Takaisin"
 
@@ -77,7 +73,7 @@ msgstr "Takaisin"
 msgid "Block"
 msgstr "Estä"
 
-#: app/views/layouts/application.html.erb:174
+#: app/views/layouts/application.html.erb:179
 msgid "Blocked products"
 msgstr "Estetyt sovellukset"
 
@@ -126,8 +122,8 @@ msgstr "Kommentit"
 msgid "Create comment"
 msgstr "Luo kommentti"
 
-#: app/views/products/show.html.erb:64 app/views/products/_product.html.erb:31
-#: app/views/comment/_list.html.erb:20
+#: app/views/comment/_list.html.erb:20 app/views/products/_product.html.erb:31
+#: app/views/products/show.html.erb:64
 msgid "Delete"
 msgstr "Poista"
 
@@ -135,8 +131,9 @@ msgstr "Poista"
 msgid "Description"
 msgstr "Kuvaus"
 
-#: app/views/categories/index.html.erb:18 app/views/ratings/index.html.erb:20
-#: app/views/users/index.html.erb:26 app/views/platforms/index.html.erb:19
+#: app/views/ratings/index.html.erb:20 app/views/users/index.html.erb:26
+#: app/views/platforms/index.html.erb:19
+#: app/views/categories/index.html.erb:18
 msgid "Destroy"
 msgstr "Tuhoa"
 
@@ -148,13 +145,16 @@ msgstr "Yksityiskohdat"
 msgid "Drag an image here!"
 msgstr "Siirrä kuva tähän!"
 
-#: app/views/categories/show.html.erb:21
-#: app/views/categories/index.html.erb:17
-#: app/views/layouts/application.html.erb:59
+#: app/views/users/index.html.erb:10 app/views/users/_form.html.erb:29
+msgid "E-mail"
+msgstr "Sähköposti"
+
 #: app/views/ratings/show.html.erb:19 app/views/ratings/index.html.erb:19
-#: app/views/products/show.html.erb:62 app/views/products/_product.html.erb:29
-#: app/views/users/show.html.erb:43 app/views/users/index.html.erb:25
-#: app/views/platforms/show.html.erb:22 app/views/platforms/index.html.erb:18
+#: app/views/layouts/application.html.erb:59 app/views/users/show.html.erb:43
+#: app/views/users/index.html.erb:25 app/views/platforms/show.html.erb:22
+#: app/views/platforms/index.html.erb:18 app/views/categories/show.html.erb:21
+#: app/views/categories/index.html.erb:17
+#: app/views/products/_product.html.erb:29 app/views/products/show.html.erb:62
 msgid "Edit"
 msgstr "Muokkaa"
 
@@ -174,11 +174,12 @@ msgstr "Arvion muokkaus"
 msgid "Editing user"
 msgstr "Käyttäjän muokkaus"
 
-#: app/views/users/show.html.erb:30 app/views/users/index.html.erb:10
-msgid "E-mail"
+#: app/views/users/show.html.erb:30
+#, fuzzy
+msgid "Email"
 msgstr "Sähköposti"
 
-#: app/views/products/index.html.erb:40
+#: app/views/products/index.html.erb:36
 msgid "Featured apps"
 msgstr "Ehdotetut sovellukset"
 
@@ -202,9 +203,9 @@ msgstr "Anna admin-oikeudet"
 msgid "I accept the OtaSizzle %{link_begin}\"Terms and Conditions\"%{link_end}"
 msgstr "Hyväksyn OtaSizzlen %{link_begin}\"ehdot\"%{link_end}"
 
+#: app/views/platforms/show.html.erb:9 app/views/categories/edit.html.erb:20
 #: app/views/categories/show.html.erb:9 app/views/categories/index.html.erb:6
-#: app/views/categories/edit.html.erb:20 app/views/categories/new.html.erb:20
-#: app/views/platforms/show.html.erb:9
+#: app/views/categories/new.html.erb:20
 msgid "Image URL"
 msgstr "Kuvan URL"
 
@@ -213,14 +214,15 @@ msgid "Image url"
 msgstr "Kuvan url"
 
 #: app/controllers/users_controller.rb:43
-msgid "In order to register, you must accept the OtaSizzle \"Terms and Conditions\"."
+msgid ""
+"In order to register, you must accept the OtaSizzle \"Terms and Conditions\"."
 msgstr "Rekisteröityäksesi, sinun täytyy hyväksyä OtaSizzlen \"ehdot\"."
 
 #: app/views/users/show.html.erb:14 app/views/users/index.html.erb:8
 msgid "Lastname"
 msgstr "Sukunimi"
 
-#: app/views/platforms/show.html.erb:24
+#: app/views/platforms/show.html.erb:23
 msgid "List platforms"
 msgstr "Alustat"
 
@@ -228,7 +230,7 @@ msgstr "Alustat"
 msgid "Listing My Products"
 msgstr "Omat sovellukseni"
 
-#: app/views/products/index.html.erb:31
+#: app/views/products/index.html.erb:29
 msgid "Listing Products"
 msgstr "Sovellukset"
 
@@ -249,10 +251,14 @@ msgid "Listing users"
 msgstr "Käyttäjät"
 
 #: app/controllers/users_controller.rb:62
-msgid "Logged in."
+msgid "Logged in"
 msgstr "Olet kirjautunut sisään."
 
-#: app/views/sessions/index.html.erb:11 app/views/users/_login_menu.html.erb:2
+#: app/views/users/_login_menu.html.erb:5
+msgid "Logged in as "
+msgstr "Kirjautuneena "
+
+#: app/views/users/_login_menu.html.erb:2 app/views/sessions/index.html.erb:11
 msgid "Login"
 msgstr "Kirjaudu sisään"
 
@@ -268,14 +274,14 @@ msgstr "Olet kirjautunut ulos."
 msgid "Male"
 msgstr "Mies"
 
-#: app/views/layouts/application.html.erb:154
+#: app/views/layouts/application.html.erb:159
 msgid "My Apps"
 msgstr "Omat sovellukseni"
 
-#: app/views/categories/show.html.erb:4 app/views/categories/index.html.erb:5
-#: app/views/categories/edit.html.erb:15 app/views/categories/new.html.erb:15
 #: app/views/platforms/show.html.erb:4 app/views/platforms/index.html.erb:6
-#: app/views/platforms/_form.html.erb:15
+#: app/views/platforms/_form.html.erb:15 app/views/categories/edit.html.erb:15
+#: app/views/categories/show.html.erb:4 app/views/categories/index.html.erb:5
+#: app/views/categories/new.html.erb:15
 msgid "Name"
 msgstr "Nimi"
 
@@ -283,7 +289,7 @@ msgstr "Nimi"
 msgid "Name of the product"
 msgstr "Tuotteen nimi"
 
-#: app/views/layouts/application.html.erb:155
+#: app/views/layouts/application.html.erb:160
 msgid "New App"
 msgstr "Uusi sovellus"
 
@@ -307,7 +313,7 @@ msgstr "Uusi käyttäjä"
 msgid "New comment created."
 msgstr "Kommentti luotu."
 
-#: app/views/layouts/application.html.erb:171
+#: app/views/layouts/application.html.erb:176
 msgid "New products"
 msgstr "Uudet sovellukset"
 
@@ -315,7 +321,7 @@ msgstr "Uudet sovellukset"
 msgid "New rating"
 msgstr "Uusi arvio"
 
-#: app/views/products/index.html.erb:24 app/views/products/index.html.erb:49
+#: app/views/products/index.html.erb:22 app/views/products/index.html.erb:45
 msgid "Next &#8594;"
 msgstr "Seuraava &#8594;"
 
@@ -323,7 +329,7 @@ msgstr "Seuraava &#8594;"
 msgid "Number of views"
 msgstr "Katselukerrat"
 
-#: app/views/sessions/index.html.erb:9
+#: app/views/users/_form.html.erb:20 app/views/sessions/index.html.erb:9
 msgid "Password"
 msgstr "Salasana"
 
@@ -334,7 +340,7 @@ msgstr[0] "Alusta"
 msgstr[1] "Alustat"
 
 #: app/controllers/platforms_controller.rb:40
-msgid "Platform was successfully created."
+msgid "Platform was successfully created"
 msgstr "Alusta luotiin onnistuneesti."
 
 #: app/controllers/platforms_controller.rb:56
@@ -345,7 +351,7 @@ msgstr "Alusta päivitetty onnistuneesti."
 msgid "Platform was successufully deleted."
 msgstr "Alusta poistettu."
 
-#: app/views/layouts/application.html.erb:182
+#: app/views/layouts/application.html.erb:187
 msgid "Platforms"
 msgstr "Alustat"
 
@@ -357,7 +363,7 @@ msgstr "Ole hyvä ja täytä alla oleva lomake."
 msgid "Please login to add comments"
 msgstr "Voit kommentoida kun olet kirjautunut sisään"
 
-#: app/views/products/index.html.erb:15 app/views/products/index.html.erb:36
+#: app/views/products/index.html.erb:13 app/views/products/index.html.erb:32
 msgid "Popularity"
 msgstr "Katselukerrat"
 
@@ -377,11 +383,11 @@ msgstr "Sovellus luotiin onnistuneesti"
 msgid "Product was successfully updated."
 msgstr "Sovellus päivitettiin onnistuneesti."
 
-#: app/views/categories/show.html.erb:14 app/views/platforms/show.html.erb:14
+#: app/views/platforms/show.html.erb:14 app/views/categories/show.html.erb:14
 msgid "Products"
 msgstr "Sovellukset"
 
-#: app/views/products/index.html.erb:14 app/views/products/index.html.erb:35
+#: app/views/products/index.html.erb:12 app/views/products/index.html.erb:31
 msgid "Publication date"
 msgstr "Julkaisupäivä"
 
@@ -406,7 +412,7 @@ msgid "Rate"
 msgstr "Arvostele"
 
 #: app/views/ratings/show.html.erb:14 app/views/ratings/index.html.erb:7
-#: app/views/products/show.html.erb:36 app/views/products/_product.html.erb:9
+#: app/views/products/_product.html.erb:9 app/views/products/show.html.erb:36
 msgid "Rating"
 msgstr "Arvio"
 
@@ -418,7 +424,7 @@ msgstr "Arviota ei luotu/päivitetty"
 msgid "Rating was successfully created/updated."
 msgstr "Arvio luotiin/päivitettiin onnistuneesti."
 
-#: app/views/users/_form.html.erb:99 app/views/users/_login_menu.html.erb:3
+#: app/views/users/_login_menu.html.erb:3 app/views/users/_form.html.erb:99
 msgid "Register"
 msgstr "Rekisteröidy"
 
@@ -434,18 +440,15 @@ msgstr "Ilmoita ongelmasta"
 msgid "Revoke administrator role"
 msgstr "Poista admin-oikeudet"
 
-#: app/views/products/index.html.erb:13 app/views/products/index.html.erb:34
-msgid "Select sort criteria"
-msgstr "Valitse lajitteluperuste"
-
-#: app/views/categories/index.html.erb:16 app/views/ratings/index.html.erb:18
-#: app/views/ratings/edit.html.erb:5 app/views/users/index.html.erb:24
-#: app/views/users/edit.html.erb:5 app/views/platforms/index.html.erb:17
+#: app/views/ratings/edit.html.erb:5 app/views/ratings/index.html.erb:18
+#: app/views/users/edit.html.erb:5 app/views/users/index.html.erb:24
+#: app/views/platforms/index.html.erb:17
+#: app/views/categories/index.html.erb:16
 msgid "Show"
 msgstr "Näytä"
 
-#: app/views/categories/edit.html.erb:25 app/views/categories/new.html.erb:25
-#: app/views/products/_form.html.erb:72 app/views/platforms/_form.html.erb:25
+#: app/views/platforms/_form.html.erb:25 app/views/categories/edit.html.erb:25
+#: app/views/categories/new.html.erb:25 app/views/products/_form.html.erb:72
 msgid "Submit"
 msgstr "Hyväksy"
 
@@ -465,7 +468,7 @@ msgstr "Määrittelemätön"
 msgid "User"
 msgstr "Käyttäjä"
 
-#: app/views/products/index.html.erb:16 app/views/products/index.html.erb:37
+#: app/views/products/index.html.erb:14 app/views/products/index.html.erb:33
 msgid "User rating"
 msgstr "Käyttäjän arvio"
 
@@ -473,11 +476,12 @@ msgstr "Käyttäjän arvio"
 msgid "User was successfully updated."
 msgstr "Käyttäjä päivitettiin onnistuneesti."
 
-#: app/views/users/show.html.erb:4 app/views/users/index.html.erb:6 app/views/sessions/index.html.erb:7
+#: app/views/users/show.html.erb:4 app/views/users/index.html.erb:6
+#: app/views/users/_form.html.erb:15 app/views/sessions/index.html.erb:7
 msgid "Username"
 msgstr "Käyttäjänimi"
 
-#: app/views/layouts/application.html.erb:179
+#: app/views/layouts/application.html.erb:184
 msgid "Users"
 msgstr "Käyttäjät"
 
@@ -493,8 +497,8 @@ msgstr "Virheet, jotka estävät sovelluksen tallentamisen"
 msgid "Validation errors prohibited this rating from being saved"
 msgstr "Virheet, jotka estävät arvion tallentamisen"
 
-#: app/views/categories/edit.html.erb:4 app/views/categories/new.html.erb:4
-#: app/views/users/_form.html.erb:4
+#: app/views/users/_form.html.erb:4 app/views/categories/edit.html.erb:4
+#: app/views/categories/new.html.erb:4
 msgid "Validation errors prohibited this user from being saved"
 msgstr "Virheet, jotka estävät tuotteen tallentamisen"
 
@@ -510,7 +514,7 @@ msgstr "Kommenttisi päivitettiin onnistuneesti."
 msgid "Your rating:"
 msgstr "Sinun arviosi:"
 
-#: app/views/layouts/application.html.erb:167
+#: app/views/layouts/application.html.erb:172
 msgid "admin"
 msgstr "admin"
 
@@ -526,7 +530,7 @@ msgstr "hyväksytty"
 msgid "blocked"
 msgstr "estetty"
 
-#: app/views/layouts/application.html.erb:139
+#: app/views/layouts/application.html.erb:144
 msgid "browse"
 msgstr "selaa"
 
@@ -542,7 +546,7 @@ msgstr "ei voida antaa olemattomalle sovellukselle"
 msgid "can not be given when not logged in"
 msgstr "ei voida antaa kun ei ole sisäänkirjautunut"
 
-#: app/views/layouts/application.html.erb:138
+#: app/views/layouts/application.html.erb:143
 msgid "home"
 msgstr "etusivu"
 
@@ -570,7 +574,7 @@ msgstr "ei vielä arvioitu"
 msgid "password again"
 msgstr "salasana uudestaan"
 
-#: app/views/layouts/application.html.erb:151
+#: app/views/layouts/application.html.erb:156
 msgid "publish"
 msgstr "julkaise"
 
@@ -583,5 +587,5 @@ msgid "search"
 msgstr "etsi"
 
 #: app/helpers/products_helper.rb:8
-msgid "waiting"
-msgstr "odottaa"
+msgid "waiting for approval"
+msgstr "odottaa hyväksymistä"

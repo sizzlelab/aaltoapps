@@ -4,7 +4,8 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :platforms, :uniq => true
   validates :name, :description, :url, :platforms, :presence => true
   validates :name, :length => { :minimum => 3 }
-  validates :url, :length => { :minimum => 12 } # http://ab.cd 
+  validates :url, :length => { :minimum => 12 } # http://ab.cd
+  validates :approval_state, :inclusion => { :in => %w( submitted pending published blocked ) }
   has_many :ratings, :dependent => :destroy
   has_many :comments, :dependent => :destroy
 	has_attached_file :photo, :styles => { :thumb=> "75x75#",:small => "150x150>" },
@@ -15,14 +16,14 @@ class Product < ActiveRecord::Base
 	validates_attachment_size :photo, :less_than => 5.megabytes
 	validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
-	attr_protected :is_approved
+	attr_protected :approval_state
 
 	def is_approved?
-		self.is_approved
+		self.approval_state == 'published'
 	end
 	
 	def change_approval state
-		self.is_approved = state
+		self.approval_state = state.to_s
 		self.approval_date = DateTime.now
 		self.save!	
 	end

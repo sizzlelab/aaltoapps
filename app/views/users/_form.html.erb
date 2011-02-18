@@ -12,21 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= f.label _('Username') %><br />
+    <%= f.label _('Username')+ ' *' %><br />
     <%= f.text_field :username, :class=>'textfield' %>
   </div>
 
   <div class="field">
-    <%= f.label _('Password') %><br />
+    <%= f.label _('Password')+ ' *' %><br />
     <%= f.password_field :password, :class=>'pwfield' %>
   </div>
   <div class="field">
-    <%= f.label _('password again') %><br />
+    <%= f.label _('password again')+ ' *' %><br />
     <%= f.password_field :password2, :class=>'pwfield' %>
   </div>
 
   <div class="field">
-    <%= f.label _('e-mail') %><br />
+    <%= f.label _('E-mail')+ ' *' %><br />
     <%= f.text_field :email, :class=>'textfield' %>
   </div>
 

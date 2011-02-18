@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-02-18 13:05+0200\n"
+"POT-Creation-Date: 2011-02-18 14:20+0200\n"
 "PO-Revision-Date: 2011-02-02 15:23+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Language: \n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: app/views/products/index.html.erb:23 app/views/products/index.html.erb:48
+#: app/views/products/index.html.erb:21 app/views/products/index.html.erb:44
 msgid "&#8592; Previous"
 msgstr ""
 
@@ -65,7 +65,7 @@ msgstr ""
 #: app/views/users/show.html.erb:45 app/views/users/new.html.erb:5
 #: app/views/platforms/edit.html.erb:5 app/views/platforms/new.html.erb:5
 #: app/views/categories/show.html.erb:22 app/views/products/edit.html.erb:6
-#: app/views/products/show.html.erb:89
+#: app/views/products/show.html.erb:89 app/views/products/new.html.erb:6
 msgid "Back"
 msgstr ""
 
@@ -145,7 +145,7 @@ msgstr ""
 msgid "Drag an image here!"
 msgstr ""
 
-#: app/views/users/index.html.erb:10
+#: app/views/users/index.html.erb:10 app/views/users/_form.html.erb:29
 msgid "E-mail"
 msgstr ""
 
@@ -178,7 +178,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: app/views/products/index.html.erb:40
+#: app/views/products/index.html.erb:36
 msgid "Featured apps"
 msgstr ""
 
@@ -229,7 +229,7 @@ msgstr ""
 msgid "Listing My Products"
 msgstr ""
 
-#: app/views/products/index.html.erb:31
+#: app/views/products/index.html.erb:29
 msgid "Listing Products"
 msgstr ""
 
@@ -320,7 +320,7 @@ msgstr ""
 msgid "New rating"
 msgstr ""
 
-#: app/views/products/index.html.erb:24 app/views/products/index.html.erb:49
+#: app/views/products/index.html.erb:22 app/views/products/index.html.erb:45
 msgid "Next &#8594;"
 msgstr ""
 
@@ -362,7 +362,7 @@ msgstr ""
 msgid "Please login to add comments"
 msgstr ""
 
-#: app/views/products/index.html.erb:15 app/views/products/index.html.erb:36
+#: app/views/products/index.html.erb:13 app/views/products/index.html.erb:32
 msgid "Popularity"
 msgstr ""
 
@@ -386,7 +386,7 @@ msgstr ""
 msgid "Products"
 msgstr ""
 
-#: app/views/products/index.html.erb:14 app/views/products/index.html.erb:35
+#: app/views/products/index.html.erb:12 app/views/products/index.html.erb:31
 msgid "Publication date"
 msgstr ""
 
@@ -439,10 +439,6 @@ msgstr ""
 msgid "Revoke administrator role"
 msgstr ""
 
-#: app/views/products/index.html.erb:13 app/views/products/index.html.erb:34
-msgid "Select sort criteria"
-msgstr ""
-
 #: app/views/ratings/edit.html.erb:5 app/views/ratings/index.html.erb:18
 #: app/views/users/edit.html.erb:5 app/views/users/index.html.erb:24
 #: app/views/platforms/index.html.erb:17
@@ -471,7 +467,7 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: app/views/products/index.html.erb:16 app/views/products/index.html.erb:37
+#: app/views/products/index.html.erb:14 app/views/products/index.html.erb:33
 msgid "User rating"
 msgstr ""
 
@@ -549,10 +545,6 @@ msgstr ""
 msgid "can not be given when not logged in"
 msgstr ""
 
-#: app/views/users/_form.html.erb:29
-msgid "e-mail"
-msgstr ""
-
 #: app/views/layouts/application.html.erb:143
 msgid "home"
 msgstr ""
@@ -594,5 +586,5 @@ msgid "search"
 msgstr ""
 
 #: app/helpers/products_helper.rb:8
-msgid "waiting"
+msgid "waiting for approval"
 msgstr ""

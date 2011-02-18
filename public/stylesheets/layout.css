@@ -23,7 +23,6 @@
 	-moz-box-shadow: 0 0 7px black;
 	-webkit-box-shadow: 0 0 7px black;
 	box-shadow: 0 0 7px black;
-	
   //border: solid blue;
 	margin-bottom: 5em;
 
@@ -41,10 +40,12 @@
 
 .layout_logo {
   float: left;
-  padding-top: 3em;
-  margin-left: 5em;
+  padding-top: 2em;
+  padding-left: 5em;
   margin-top: 1em;
-
+  width: 50%;
+  min-height: 4em;
+  font-size: 1.1em; 
   //border: solid red;
 	
 

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-02-18 13:05+0200\n"
+"POT-Creation-Date: 2011-02-18 14:20+0200\n"
 "PO-Revision-Date: 2011-02-02 15:23+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/views/products/index.html.erb:23 app/views/products/index.html.erb:48
+#: app/views/products/index.html.erb:21 app/views/products/index.html.erb:44
 msgid "&#8592; Previous"
 msgstr "&#8592; Edellinen"
 
@@ -65,7 +65,7 @@ msgstr "Oletko varma?"
 #: app/views/users/show.html.erb:45 app/views/users/new.html.erb:5
 #: app/views/platforms/edit.html.erb:5 app/views/platforms/new.html.erb:5
 #: app/views/categories/show.html.erb:22 app/views/products/edit.html.erb:6
-#: app/views/products/show.html.erb:89
+#: app/views/products/show.html.erb:89 app/views/products/new.html.erb:6
 msgid "Back"
 msgstr "Takaisin"
 
@@ -145,7 +145,7 @@ msgstr "Yksityiskohdat"
 msgid "Drag an image here!"
 msgstr "Siirrä kuva tähän!"
 
-#: app/views/users/index.html.erb:10
+#: app/views/users/index.html.erb:10 app/views/users/_form.html.erb:29
 msgid "E-mail"
 msgstr "Sähköposti"
 
@@ -179,7 +179,7 @@ msgstr "Käyttäjän muokkaus"
 msgid "Email"
 msgstr "Sähköposti"
 
-#: app/views/products/index.html.erb:40
+#: app/views/products/index.html.erb:36
 msgid "Featured apps"
 msgstr "Ehdotetut sovellukset"
 
@@ -230,7 +230,7 @@ msgstr "Alustat"
 msgid "Listing My Products"
 msgstr "Omat sovellukseni"
 
-#: app/views/products/index.html.erb:31
+#: app/views/products/index.html.erb:29
 msgid "Listing Products"
 msgstr "Sovellukset"
 
@@ -321,7 +321,7 @@ msgstr "Uudet sovellukset"
 msgid "New rating"
 msgstr "Uusi arvio"
 
-#: app/views/products/index.html.erb:24 app/views/products/index.html.erb:49
+#: app/views/products/index.html.erb:22 app/views/products/index.html.erb:45
 msgid "Next &#8594;"
 msgstr "Seuraava &#8594;"
 
@@ -363,7 +363,7 @@ msgstr "Ole hyvä ja täytä alla oleva lomake."
 msgid "Please login to add comments"
 msgstr "Voit kommentoida kun olet kirjautunut sisään"
 
-#: app/views/products/index.html.erb:15 app/views/products/index.html.erb:36
+#: app/views/products/index.html.erb:13 app/views/products/index.html.erb:32
 msgid "Popularity"
 msgstr "Katselukerrat"
 
@@ -387,7 +387,7 @@ msgstr "Sovellus päivitettiin onnistuneesti."
 msgid "Products"
 msgstr "Sovellukset"
 
-#: app/views/products/index.html.erb:14 app/views/products/index.html.erb:35
+#: app/views/products/index.html.erb:12 app/views/products/index.html.erb:31
 msgid "Publication date"
 msgstr "Julkaisupäivä"
 
@@ -440,10 +440,6 @@ msgstr "Ilmoita ongelmasta"
 msgid "Revoke administrator role"
 msgstr "Poista admin-oikeudet"
 
-#: app/views/products/index.html.erb:13 app/views/products/index.html.erb:34
-msgid "Select sort criteria"
-msgstr "Valitse lajitteluperuste"
-
 #: app/views/ratings/edit.html.erb:5 app/views/ratings/index.html.erb:18
 #: app/views/users/edit.html.erb:5 app/views/users/index.html.erb:24
 #: app/views/platforms/index.html.erb:17
@@ -472,7 +468,7 @@ msgstr "Määrittelemätön"
 msgid "User"
 msgstr "Käyttäjä"
 
-#: app/views/products/index.html.erb:16 app/views/products/index.html.erb:37
+#: app/views/products/index.html.erb:14 app/views/products/index.html.erb:33
 msgid "User rating"
 msgstr "Käyttäjän arvio"
 
@@ -550,10 +546,6 @@ msgstr "ei voida antaa olemattomalle sovellukselle"
 msgid "can not be given when not logged in"
 msgstr "ei voida antaa kun ei ole sisäänkirjautunut"
 
-#: app/views/users/_form.html.erb:29
-msgid "e-mail"
-msgstr "Sähköposti"
-
 #: app/views/layouts/application.html.erb:143
 msgid "home"
 msgstr "etusivu"
@@ -595,5 +587,5 @@ msgid "search"
 msgstr "etsi"
 
 #: app/helpers/products_helper.rb:8
-msgid "waiting"
-msgstr "odottaa"
+msgid "waiting for approval"
+msgstr "odottaa hyväksymistä"

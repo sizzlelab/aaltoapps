@@ -19,10 +19,10 @@ class Ability
       else
         can :read, Product, :publisher_id => user.id
         can :create, Product
-        can [:update, :delete, :add_platform], Product, :publisher_id => user.id
+        can [:update, :destroy, :add_platform], Product, :publisher_id => user.id
         can :create, Comment
-        can [:update, :delete], Comment, :commenter_id => user.id
-        can [:show, :update, :delete], User, :asi_id => user.asi_id
+        can [:update, :destroy], Comment, :commenter_id => user.id
+        can [:show, :update, :destroy], User, :asi_id => user.asi_id
       end
     else  # not logged in
       can :create, User

@@ -1,0 +1,587 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2011-02-18 13:04+0200\n"
+"PO-Revision-Date: 2011-02-18 13:04+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: app/helpers/products_helper.rb:8
+msgid "waiting"
+msgstr ""
+
+#: app/helpers/products_helper.rb:10
+msgid "approved"
+msgstr ""
+
+#: app/helpers/products_helper.rb:12
+msgid "blocked"
+msgstr ""
+
+#: app/controllers/ratings_controller.rb:31
+msgid "can not be given by the publisher of the product"
+msgstr ""
+
+#: app/controllers/ratings_controller.rb:35
+msgid "can not be given for nonexistent product"
+msgstr ""
+
+#: app/controllers/ratings_controller.rb:39
+msgid "can not be given when not logged in"
+msgstr ""
+
+#: app/controllers/ratings_controller.rb:45
+msgid "Rating was successfully created/updated."
+msgstr ""
+
+#: app/controllers/ratings_controller.rb:52
+msgid "Rating was not created/updated."
+msgstr ""
+
+#: app/controllers/platforms_controller.rb:40
+msgid "Platform was successfully created"
+msgstr ""
+
+#: app/controllers/platforms_controller.rb:56
+msgid "Platform was successfully updated."
+msgstr ""
+
+#: app/controllers/platforms_controller.rb:71
+msgid "Platform was successufully deleted."
+msgstr ""
+
+#: app/controllers/users_controller.rb:43
+msgid "In order to register, you must accept the OtaSizzle \"Terms and Conditions\"."
+msgstr ""
+
+#: app/controllers/users_controller.rb:62
+msgid "Logged in"
+msgstr ""
+
+#: app/controllers/users_controller.rb:80
+msgid "User was successfully updated."
+msgstr ""
+
+#: app/controllers/products_controller.rb:85
+msgid "Product was successfully created."
+msgstr ""
+
+#: app/controllers/products_controller.rb:100
+msgid "Product was successfully updated."
+msgstr ""
+
+#: app/controllers/categories_controller.rb:44
+msgid "Category was successfully created."
+msgstr ""
+
+#: app/controllers/categories_controller.rb:58
+msgid "Category was successfully updated."
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:44
+msgid "Logout successful."
+msgstr ""
+
+#: app/controllers/comments_controller.rb:10
+msgid "New comment created."
+msgstr ""
+
+#: app/controllers/comments_controller.rb:17
+msgid "Comment was not created."
+msgstr ""
+
+#: app/controllers/comments_controller.rb:27
+msgid "Your comment was successfully updated."
+msgstr ""
+
+#: app/controllers/comments_controller.rb:34
+msgid "Your comment was not updated."
+msgstr ""
+
+#: app/controllers/comments_controller.rb:45
+msgid "Comment deleted."
+msgstr ""
+
+#: app/views/ratings/edit.html.erb:1
+msgid "Editing rating"
+msgstr ""
+
+#: app/views/ratings/edit.html.erb:5 app/views/ratings/index.html.erb:18 app/views/users/edit.html.erb:5
+#: app/views/users/index.html.erb:24 app/views/platforms/index.html.erb:17
+#: app/views/categories/index.html.erb:16
+msgid "Show"
+msgstr ""
+
+#: app/views/ratings/edit.html.erb:6 app/views/ratings/show.html.erb:20 app/views/ratings/new.html.erb:5
+#: app/views/users/edit.html.erb:6 app/views/users/show.html.erb:45 app/views/users/new.html.erb:5
+#: app/views/platforms/edit.html.erb:5 app/views/platforms/new.html.erb:5
+#: app/views/categories/show.html.erb:22 app/views/products/edit.html.erb:6
+#: app/views/products/show.html.erb:89
+msgid "Back"
+msgstr ""
+
+#: app/views/ratings/show.html.erb:4 app/views/ratings/index.html.erb:5
+msgid "User"
+msgstr ""
+
+#: app/views/ratings/show.html.erb:9 app/views/ratings/index.html.erb:6
+msgid "Product"
+msgstr ""
+
+#: app/views/ratings/show.html.erb:14 app/views/ratings/index.html.erb:7
+#: app/views/products/_product.html.erb:9 app/views/products/show.html.erb:36
+msgid "Rating"
+msgstr ""
+
+#: app/views/ratings/show.html.erb:19 app/views/ratings/index.html.erb:19
+#: app/views/layouts/application.html.erb:59 app/views/users/show.html.erb:43 app/views/users/index.html.erb:25
+#: app/views/platforms/show.html.erb:22 app/views/platforms/index.html.erb:18
+#: app/views/categories/show.html.erb:21 app/views/categories/index.html.erb:17
+#: app/views/products/_product.html.erb:29 app/views/products/show.html.erb:62
+msgid "Edit"
+msgstr ""
+
+#: app/views/ratings/index.html.erb:1
+msgid "Listing ratings"
+msgstr ""
+
+#: app/views/ratings/index.html.erb:20 app/views/users/index.html.erb:26
+#: app/views/platforms/index.html.erb:19 app/views/categories/index.html.erb:18
+msgid "Destroy"
+msgstr ""
+
+#: app/views/ratings/index.html.erb:20 app/views/users/index.html.erb:26
+#: app/views/platforms/index.html.erb:20 app/views/categories/index.html.erb:18
+#: app/views/comment/_list.html.erb:20 app/views/products/_product.html.erb:32
+#: app/views/products/show.html.erb:65
+msgid "Are you sure?"
+msgstr ""
+
+#: app/views/ratings/index.html.erb:27
+msgid "New Rating"
+msgstr ""
+
+#: app/views/ratings/new.html.erb:1
+msgid "New rating"
+msgstr ""
+
+#: app/views/ratings/_rating.html.erb:10
+msgid "not yet rated"
+msgstr ""
+
+#: app/views/ratings/_form.html.erb:5
+msgid "Validation errors prohibited this rating from being saved"
+msgstr ""
+
+#: app/views/ratings/_form.html.erb:17
+msgid "no rating"
+msgstr ""
+
+#: app/views/ratings/_form.html.erb:25
+msgid "Rate"
+msgstr ""
+
+#: app/views/layouts/application.html.erb:4
+msgid "Aalto Apps"
+msgstr ""
+
+#: app/views/layouts/application.html.erb:66 app/views/products/_form.html.erb:72
+msgid "Cancel"
+msgstr ""
+
+#: app/views/layouts/application.html.erb:85
+msgid "Choose language:"
+msgstr ""
+
+#: app/views/layouts/application.html.erb:143
+msgid "home"
+msgstr ""
+
+#: app/views/layouts/application.html.erb:144
+msgid "browse"
+msgstr ""
+
+#: app/views/layouts/application.html.erb:147
+msgid "All"
+msgstr ""
+
+#: app/views/layouts/application.html.erb:156
+msgid "publish"
+msgstr ""
+
+#: app/views/layouts/application.html.erb:159
+msgid "My Apps"
+msgstr ""
+
+#: app/views/layouts/application.html.erb:160
+msgid "New App"
+msgstr ""
+
+#: app/views/layouts/application.html.erb:172
+msgid "admin"
+msgstr ""
+
+#: app/views/layouts/application.html.erb:176
+msgid "New products"
+msgstr ""
+
+#: app/views/layouts/application.html.erb:179
+msgid "Blocked products"
+msgstr ""
+
+#: app/views/layouts/application.html.erb:184
+msgid "Users"
+msgstr ""
+
+#: app/views/layouts/application.html.erb:187
+msgid "Platforms"
+msgstr ""
+
+#: app/views/users/_grant_admin_role.html.erb:3
+msgid "Grant administrator role"
+msgstr ""
+
+#: app/views/users/edit.html.erb:1
+msgid "Editing user"
+msgstr ""
+
+#: app/views/users/show.html.erb:4 app/views/users/index.html.erb:6 app/views/users/_form.html.erb:15
+#: app/views/sessions/index.html.erb:7
+msgid "Username"
+msgstr ""
+
+#: app/views/users/show.html.erb:9 app/views/users/index.html.erb:7
+msgid "Firstname"
+msgstr ""
+
+#: app/views/users/show.html.erb:14 app/views/users/index.html.erb:8
+msgid "Lastname"
+msgstr ""
+
+#: app/views/users/show.html.erb:19 app/views/users/index.html.erb:9
+msgid "Type"
+msgstr ""
+
+#: app/views/users/show.html.erb:21 app/views/users/index.html.erb:22
+msgid "administrator"
+msgstr ""
+
+#: app/views/users/show.html.erb:24 app/views/users/index.html.erb:22
+msgid "normal user"
+msgstr ""
+
+#: app/views/users/show.html.erb:30
+msgid "Email"
+msgstr ""
+
+#: app/views/users/show.html.erb:35
+msgid "Published Products"
+msgstr ""
+
+#: app/views/users/index.html.erb:2
+msgid "Listing users"
+msgstr ""
+
+#: app/views/users/index.html.erb:10 app/views/users/_form.html.erb:29
+msgid "E-mail"
+msgstr ""
+
+#: app/views/users/index.html.erb:40
+msgid "New User"
+msgstr ""
+
+#: app/views/users/_login_menu.html.erb:2 app/views/sessions/index.html.erb:11
+msgid "Login"
+msgstr ""
+
+#: app/views/users/_login_menu.html.erb:3 app/views/users/_form.html.erb:99
+msgid "Register"
+msgstr ""
+
+#: app/views/users/_login_menu.html.erb:5
+msgid "Logged in as "
+msgstr ""
+
+#: app/views/users/_login_menu.html.erb:6
+msgid "Logout"
+msgstr ""
+
+#: app/views/users/_revoke_admin_role.html.erb:4
+msgid "Are you sure you want to revoke your own administrator role?"
+msgstr ""
+
+#: app/views/users/_revoke_admin_role.html.erb:11
+msgid "Revoke administrator role"
+msgstr ""
+
+#: app/views/users/new.html.erb:1
+msgid "Register to aaltoapps"
+msgstr ""
+
+#: app/views/users/_form.html.erb:4 app/views/categories/edit.html.erb:4
+#: app/views/categories/new.html.erb:4
+msgid "Validation errors prohibited this user from being saved"
+msgstr ""
+
+#: app/views/users/_form.html.erb:20 app/views/sessions/index.html.erb:9
+msgid "Password"
+msgstr ""
+
+#: app/views/users/_form.html.erb:24
+msgid "password again"
+msgstr ""
+
+#: app/views/users/_form.html.erb:41
+msgid "Unspecified"
+msgstr ""
+
+#: app/views/users/_form.html.erb:41
+msgid "Male"
+msgstr ""
+
+#: app/views/users/_form.html.erb:41
+msgid "Female"
+msgstr ""
+
+#: app/views/users/_form.html.erb:89
+msgid "I accept the OtaSizzle %{link_begin}\"Terms and Conditions\"%{link_end}"
+msgstr ""
+
+#: app/views/platforms/edit.html.erb:1
+msgid "Editing platform"
+msgstr ""
+
+#: app/views/platforms/show.html.erb:4 app/views/platforms/index.html.erb:6
+#: app/views/platforms/_form.html.erb:15 app/views/categories/edit.html.erb:15
+#: app/views/categories/show.html.erb:4 app/views/categories/index.html.erb:5
+#: app/views/categories/new.html.erb:15
+msgid "Name"
+msgstr ""
+
+#: app/views/platforms/show.html.erb:9 app/views/categories/edit.html.erb:20
+#: app/views/categories/show.html.erb:9 app/views/categories/index.html.erb:6
+#: app/views/categories/new.html.erb:20
+msgid "Image URL"
+msgstr ""
+
+#: app/views/platforms/show.html.erb:14 app/views/categories/show.html.erb:14
+msgid "Products"
+msgstr ""
+
+#: app/views/platforms/show.html.erb:23
+msgid "List platforms"
+msgstr ""
+
+#: app/views/platforms/index.html.erb:2
+msgid "Listing platforms"
+msgstr ""
+
+#: app/views/platforms/index.html.erb:7
+msgid "Image url"
+msgstr ""
+
+#: app/views/platforms/index.html.erb:27
+msgid "New Platform"
+msgstr ""
+
+#: app/views/platforms/_login_menu.html.erb:2
+msgid "login"
+msgstr ""
+
+#: app/views/platforms/_login_menu.html.erb:3
+msgid "register"
+msgstr ""
+
+#: app/views/platforms/_login_menu.html.erb:5
+msgid "logout"
+msgstr ""
+
+#: app/views/platforms/new.html.erb:1
+msgid "Add new platform"
+msgstr ""
+
+#: app/views/platforms/_form.html.erb:4
+msgid "Validation errors prohibited this platform from being saved"
+msgstr ""
+
+#: app/views/platforms/_form.html.erb:20
+msgid "Category image url"
+msgstr ""
+
+#: app/views/platforms/_form.html.erb:25 app/views/categories/edit.html.erb:25
+#: app/views/categories/new.html.erb:25 app/views/products/_form.html.erb:72
+msgid "Submit"
+msgstr ""
+
+#: app/views/categories/index.html.erb:1
+msgid "Listing categories"
+msgstr ""
+
+#: app/views/categories/index.html.erb:25
+msgid "New Category"
+msgstr ""
+
+#: app/views/comment/_list.html.erb:13
+msgid "(User has not rated this app)"
+msgstr ""
+
+#: app/views/comment/_list.html.erb:20 app/views/products/_product.html.erb:31
+#: app/views/products/show.html.erb:64
+msgid "Delete"
+msgstr ""
+
+#: app/views/comment/_form.html.erb:4
+msgid "Create comment"
+msgstr ""
+
+#: app/views/products/edit.html.erb:2
+msgid "Editing product"
+msgstr ""
+
+#: app/views/products/_product.html.erb:7
+msgid "Publisher:"
+msgstr ""
+
+#: app/views/products/_product.html.erb:8
+msgid "Popularity: "
+msgstr ""
+
+#: app/views/products/_product.html.erb:18
+msgid "Block"
+msgstr ""
+
+#: app/views/products/_product.html.erb:21
+msgid "Approve"
+msgstr ""
+
+#: app/views/products/show.html.erb:1
+msgid "Detailed view"
+msgstr ""
+
+#: app/views/products/show.html.erb:14
+msgid "Publisher"
+msgstr ""
+
+#: app/views/products/show.html.erb:19
+msgid "Platform"
+msgid_plural "Platforms"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/views/products/show.html.erb:26
+msgid "Published"
+msgstr ""
+
+#: app/views/products/show.html.erb:31
+msgid "Number of views"
+msgstr ""
+
+#: app/views/products/show.html.erb:42
+msgid "Your rating:"
+msgstr ""
+
+#: app/views/products/show.html.erb:50 app/views/products/_form.html.erb:33
+msgid "URL"
+msgstr ""
+
+#: app/views/products/show.html.erb:55 app/views/products/_form.html.erb:41
+msgid "Description"
+msgstr ""
+
+#: app/views/products/show.html.erb:61
+msgid "Admin"
+msgstr ""
+
+#: app/views/products/show.html.erb:69
+msgid "Report issue"
+msgstr ""
+
+#: app/views/products/show.html.erb:75
+msgid "Comments"
+msgstr ""
+
+#: app/views/products/show.html.erb:85
+msgid "Please login to add comments"
+msgstr ""
+
+#: app/views/products/index.html.erb:10
+msgid "Listing My Products"
+msgstr ""
+
+#: app/views/products/index.html.erb:13 app/views/products/index.html.erb:34
+msgid "Select sort criteria"
+msgstr ""
+
+#: app/views/products/index.html.erb:14 app/views/products/index.html.erb:35
+msgid "Publication date"
+msgstr ""
+
+#: app/views/products/index.html.erb:15 app/views/products/index.html.erb:36
+msgid "Popularity"
+msgstr ""
+
+#: app/views/products/index.html.erb:16 app/views/products/index.html.erb:37
+msgid "User rating"
+msgstr ""
+
+#: app/views/products/index.html.erb:23 app/views/products/index.html.erb:48
+msgid "&#8592; Previous"
+msgstr ""
+
+#: app/views/products/index.html.erb:24 app/views/products/index.html.erb:49
+msgid "Next &#8594;"
+msgstr ""
+
+#: app/views/products/index.html.erb:31
+msgid "Listing Products"
+msgstr ""
+
+#: app/views/products/index.html.erb:40
+msgid "Featured apps"
+msgstr ""
+
+#: app/views/products/_search.erb:4
+msgid "search"
+msgstr ""
+
+#: app/views/products/new.html.erb:2
+msgid "Add a product"
+msgstr ""
+
+#: app/views/products/_form.html.erb:5
+msgid "Validation errors prohibited this product from being saved"
+msgstr ""
+
+#: app/views/products/_form.html.erb:17
+msgid "Please fill in the following form."
+msgstr ""
+
+#: app/views/products/_form.html.erb:19
+msgid "Fields marked with asterisk (*) are compulsory"
+msgstr ""
+
+#: app/views/products/_form.html.erb:25
+msgid "Name of the product"
+msgstr ""
+
+#: app/views/products/_form.html.erb:49
+msgid "Choose a platform"
+msgstr ""
+
+#: app/views/products/_form.html.erb:61
+msgid "Choose a Photo"
+msgstr ""
+
+#: app/views/products/_form.html.erb:80
+msgid "Drag an image here!"
+msgstr ""

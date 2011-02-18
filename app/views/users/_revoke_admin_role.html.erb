@@ -8,5 +8,5 @@
 %>
 <%= form_for user, :html => attrs do |f| %>
   <%= f.hidden_field :is_admin, :value => false %>
-  <%= f.submit _('Revoke administrator role') %>
+  <%= f.submit _('Revoke administrator role'), :class => 'smallbutton' %>
 <% end %>

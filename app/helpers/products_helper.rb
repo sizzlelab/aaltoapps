@@ -5,7 +5,7 @@ module ProductsHelper
 
 	def approval_status product
 		if product.is_approved.nil?
-			_("waiting for approval")
+			_("waiting")
 		elsif product.is_approved == true
 			_("approved")
 		else

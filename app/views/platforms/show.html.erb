@@ -19,6 +19,6 @@
 
 
 <% if can? :edit, @platform %>
-  <%= button_to _('Edit'), edit_platform_path(@platform.id), :method => :get %>
-	<%= button_to _('List platforms'), platforms_path, :method => :get %>
+  <%= button_to _('Edit'), edit_platform_path(@platform.id), :method => :get, :class => 'smallbutton' %>
+	<%= button_to _('List platforms'), platforms_path, :method => :get, :class => 'smallbutton' %>
 <% end %>

@@ -23,7 +23,7 @@ msgstr "&#8592; Edellinen"
 
 #: app/views/comment/_list.html.erb:13
 msgid "(User has not rated this app)"
-msgstr "Käyttäjä ei ole arvostellut tätä sovellusta"
+msgstr "(Käyttäjä ei ole arvostellut tätä sovellusta)"
 
 #: app/views/layouts/application.html.erb:4
 msgid "Aalto Apps"
@@ -583,5 +583,5 @@ msgid "search"
 msgstr "etsi"
 
 #: app/helpers/products_helper.rb:8
-msgid "waiting for approval"
-msgstr "odottaa hyväksymistä"
+msgid "waiting"
+msgstr "odottaa"

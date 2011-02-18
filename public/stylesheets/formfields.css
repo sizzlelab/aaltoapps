@@ -52,7 +52,7 @@
 
 }
 
-.smallbutton, input[type="submit"] {
+.smallbutton {
 	background: none;
 	border: none;
 	text-decoration: none;
@@ -63,7 +63,7 @@
 	
 }
 
-.smallbutton:hover, input[type="submit"]:hover {
+.smallbutton:hover {
 	color: #FF6A00;
 	cursor: pointer;
   -webkit-transition: color 0.3s;

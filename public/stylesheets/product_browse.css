@@ -140,6 +140,6 @@ background-image: -moz-linear-gradient(
 }
 
 .product_admin * {
-  //display: inline;
+  display: inline;
   /*border: solid green;*/
 }

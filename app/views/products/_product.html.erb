@@ -22,7 +22,7 @@
         <% else %>
           <%= button_to(_("Request approval"), { :action => :request_approval, :id => product.id },
                         :method => :put, :class => 'smallbutton'
-                       ) if can? :request_approval, product %>
+                       ) if product.approval_state != 'pending' && can?(:request_approval, product) %>
           <%= button_to(_("Approve"), { :action => :approve, :id => product.id },
                         :method => :put, :class => 'smallbutton',
                         :confirm => _('Are you sure you want to approve this product? (Remember to delete any development comments from the application profile)')

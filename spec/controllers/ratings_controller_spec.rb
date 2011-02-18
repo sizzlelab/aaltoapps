@@ -52,11 +52,6 @@ describe RatingsController do
         post :create, :rating => {:rating => Rating::MIN.to_s}, :product_id => -1, :locale => "en"
       end
 
-      it "assigns a newly created but unsaved rating as @rating" do
-        assigns(:rating).rating.should eql(Rating::MIN.to_f)
-        assigns(:rating).user_id.should eql(@current_user_id)
-      end
-
       it "redirects to the page it got as referrer" do
         response.should redirect_to(@referrer_url)
       end

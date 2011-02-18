@@ -31,7 +31,7 @@ class RatingsController < ApplicationController
           @rating.errors.add :rating, _('can not be given by the publisher of the product')
           status = :forbidden
         end
-      rescue RecordNotFound
+      rescue ActiveRecord::RecordNotFound
         @rating.errors.add :rating, _('can not be given for nonexistent product')
         status = :unprocessable_entity
       end

@@ -256,7 +256,7 @@ msgstr "Olet kirjautunut sisään."
 
 #: app/views/users/_login_menu.html.erb:5
 msgid "Logged in as "
-msgstr "Kirjautuneena"
+msgstr "Kirjautuneena "
 
 #: app/views/users/_login_menu.html.erb:2 app/views/sessions/index.html.erb:11
 msgid "Login"

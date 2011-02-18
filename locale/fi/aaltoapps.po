@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-02-18 14:55+0200\n"
+"POT-Creation-Date: 2011-02-18 15:40+0200\n"
 "PO-Revision-Date: 2011-02-02 15:23+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,7 +53,9 @@ msgstr "Hyväksy"
 msgid ""
 "Are you sure you want to approve this product? (Remember to delete any "
 "development comments from the application profile)"
-msgstr "Oletko varma, että haluat tyväksyä tämän tuotteen? (Muista poistaa kaikki kehityskommentit tuotesivulta)"
+msgstr ""
+"Oletko varma, että haluat tyväksyä tämän tuotteen? (Muista poistaa kaikki "
+"kehityskommentit tuotesivulta)"
 
 #: app/views/products/_product.html.erb:20
 msgid "Are you sure you want to block this product?"
@@ -456,6 +458,10 @@ msgstr "Pyydä hyväksyntää"
 #: app/views/users/_revoke_admin_role.html.erb:11
 msgid "Revoke administrator role"
 msgstr "Poista admin-oikeudet"
+
+#: app/views/users/_form.html.erb:99
+msgid "Save"
+msgstr "Tallenna"
 
 #: app/views/ratings/edit.html.erb:5 app/views/ratings/index.html.erb:18
 #: app/views/categories/index.html.erb:16

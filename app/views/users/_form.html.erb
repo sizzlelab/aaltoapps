@@ -96,6 +96,6 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit _('Register'), :class => 'smallbutton' %>
+    <%= f.submit( @user.new_record? ? _('Register') : _('Save'), :class => 'smallbutton') %>
   </div>
 <% end %>

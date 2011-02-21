@@ -8,24 +8,24 @@ class Product < ActiveRecord::Base
   validates :approval_state, :inclusion => { :in => %w( submitted pending published blocked ) }
   has_many :ratings, :dependent => :destroy
   has_many :comments, :dependent => :destroy
-	has_attached_file :photo, :styles => { :thumb=> "75x75#",:small => "150x150>" },
-                  :url  => "/:class/:attachment/:id/:style_:basename.:extension",
-                  :default_url => "/images/:style_missing.png",
-                  :path => ":rails_root/public/:class/:attachment/:id/:style_:basename.:extension"
-#	validates_attachment_presence :photo
-	validates_attachment_size :photo, :less_than => 5.megabytes
-	validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+  has_attached_file :photo, :styles => { :thumb=> "75x75#",:small => "150x150>" },
+    :url  => "/:class/:attachment/:id/:style_:basename.:extension",
+    :default_url => "/images/:style_missing.png",
+    :path => ":rails_root/public/:class/:attachment/:id/:style_:basename.:extension"
+  #	validates_attachment_presence :photo
+  validates_attachment_size :photo, :less_than => 5.megabytes
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
-	attr_protected :approval_state
+  attr_protected :approval_state
 
-	def is_approved?
-		self.approval_state == 'published'
-	end
-	
-	def change_approval state
-		self.approval_state = state.to_s
-		self.approval_date = DateTime.now
-		self.save!	
-	end
+  def is_approved?
+    self.approval_state == 'published'
+  end
+
+  def change_approval state
+    self.approval_state = state.to_s
+    self.approval_date = DateTime.now
+    self.save!	
+  end
 
 end

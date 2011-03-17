@@ -42,7 +42,7 @@ namespace :vlad do
     Rake::Task['vlad:update'].invoke
     Rake::Task['vlad:bundle_install'].invoke
     Rake::Task['vlad:copy_config_files'].invoke
-    Rake::Task['vlad:link_phogos'].invoke
+    Rake::Task['vlad:link_photos'].invoke
     Rake::Task['vlad:migrate'].invoke
     Rake::Task['vlad:start_app'].invoke
   end

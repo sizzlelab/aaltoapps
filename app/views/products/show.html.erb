@@ -51,6 +51,15 @@
       <dd><%= link_to @product.url, "http://"+@product.url, :target => '_blank' %></dd>
     </dl>
 
+    <% if @product.downloads.present? && can?(:index, Download) %>
+      <dl id="product-downloads">
+        <dt><%= _("Downloads") %>:</dt>
+        <dd><%= render :partial => "downloads/list",
+                       :collection => @product.downloads, :as => :download,
+                       :locals => { :delete => true, :form => nil } %></dd>
+      </dl>
+    <% end %>
+
     <dl id="product-description">
       <dt><%= _("Description") %>:</dt>
       <dd><%= word_wrap(@product.description) %></dd>

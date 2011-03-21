@@ -8,6 +8,7 @@ class Ability
     can :read, [Comment, User, Platform]
     cannot :index, [User, Platform]
     can :read, Product, :approval_state => 'published'
+    can :read, Download, :product => { :approval_state => 'published' }
 
     if user  # logged in
       if user.is_admin?
@@ -26,6 +27,7 @@ class Ability
         can :read, Product, :publisher_id => user.id
         can :create, Product
         can [:update, :destroy, :add_platform, :request_approval], Product, :publisher_id => user.id
+        can :manage, Download, :product => { :publisher_id => user.id }
         can :create, Comment
         can [:update, :destroy], Comment, :commenter_id => user.id
         can [:show, :update, :destroy], User, :asi_id => user.asi_id

@@ -52,6 +52,10 @@
 
 }
 
+.inlinebuttons {
+  display: inline-block;
+}
+
 .smallbutton {
 	background: none;
 	border: none;

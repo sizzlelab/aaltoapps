@@ -16,6 +16,7 @@ AaltoApps::Application.routes.draw do
   resources :products do
     resources :platforms
     resources :comments
+    resources :downloads
     resources :ratings
 
 		put :block

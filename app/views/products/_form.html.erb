@@ -64,6 +64,28 @@
            <%= f.file_field :photo, :class => 'otherfield' %>
         </td>
     </tr>
+    <tr>
+        <td align="right">
+          <%= _('Downloads') %>
+        </td>
+        <td>
+          <%= render :partial => "downloads/list",
+                     :collection => @product.downloads, :as => :download,
+                     :locals => { :delete => true, :form => f } %>
+          <dl id="product_new_download">
+            <dt><%= _('Add a new download:') %></dt>
+            <dd>
+              <%= f.fields_for :downloads, @product.downloads.build do |d| %>
+                <%= d.label :title, _('Title') + ' :' %>
+                <%= d.text_field :title, :class => "textfield" %>
+                <br />
+                <%= d.label :file, _('File') + ' :' %>
+                <%= d.file_field :file, :class => 'otherfield' %>
+              <% end %>
+            </dd>
+          </dl>
+        </td>
+    </tr>
     
     <tr>
         <td>

@@ -1,14 +1,17 @@
 class ProductsController < ApplicationController
-  load_and_authorize_resource :only => [:index, :show, :new, :edit, :create, :update, :destroy, :block, :approve, :request_approval]
+  load_and_authorize_resource(
+    :only => [:mainpage, :index, :show, :new, :edit, :create,
+              :update, :destroy, :block, :approve, :request_approval],
+    :collection => [:mainpage] )
   before_filter :add_popularity, :only=>:show
 
   PRODUCTS_PER_PAGE = 6
   DEFAULT_SORT = "products.created_at DESC"
   ALLOWED_SORT_KEYS = %w(name created_at updated_at publisher avg_rating featured popularity) 
 
-  # GET /products
-  # GET /products.xml
-  def index
+private
+
+  def fetch_data_for_index(params)
     page = params[:page] ? params[:page].to_i : 1
     if params[:platform_id]
       @platform = Platform.find(params[:platform_id])
@@ -31,6 +34,21 @@ class ProductsController < ApplicationController
 
     @products = @products.all.paginate(:page => page,
                                        :per_page => PRODUCTS_PER_PAGE)
+  end
+
+public
+
+  def mainpage
+    fetch_data_for_index(params)
+    @show_welcome_info = true
+
+    render :action => 'index' # index.html.erb
+  end
+
+  # GET /products
+  # GET /products.xml
+  def index
+    fetch_data_for_index(params)
 
     respond_to do |format|
       format.html # index.html.erb

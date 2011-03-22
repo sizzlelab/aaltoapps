@@ -32,5 +32,5 @@ AaltoApps::Application.routes.draw do
   resources :comments, :belongs_to => :products
   
   match ':controller(/:action(/:id))'
-  root :to => "products#index"
+  root :to => "products#mainpage"
 end

@@ -9,3 +9,4 @@ config/aaltoapps_config.yml
 /Gemfile.lock
 tags
 public/products/*
+locale/*/*.mo

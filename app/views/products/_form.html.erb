@@ -81,9 +81,12 @@
           <%= _('Downloads') + ' :' %>
         </th>
         <td>
-          <%= render :partial => "downloads/list",
-                     :collection => @product.downloads, :as => :download,
-                     :locals => { :delete => true, :form => f } %>
+          <ul>
+            <%= render :partial => "downloads/formfields",
+                       :collection => @product.downloads.find_all(&:valid?),
+                       :as => :download,
+                       :locals => { :edit => true, :delete => true, :form => f } %>
+          </ul>
           <dl id="product_new_download">
             <dt><%= _('Add a new download:') %></dt>
             <dd>

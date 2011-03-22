@@ -1,17 +1,12 @@
 <div class="product-download">
   <%= link_to download.title, download.file.url %>
   (<%= number_to_human_size(download.file.size) %>)
+
   <% if defined?(delete) && delete && can?(:delete, download) %>
-    <% if defined?(form) && form %>
-      <%= form.fields_for :downloads, download do |f| %>
-        <%= f.check_box :_destroy %><%= f.label :_destroy, _('Delete') %>
-      <% end %>
-    <% else %>
-      <div class="inlinebuttons">
-        <%= button_to _('Delete'), [download.product, download], :method => :delete,
-                                   :class => "smallbutton",
-                                   :confirm => _('Are you sure?') %>
-      </div>
-    <% end %>
+    <div class="inlinebuttons">
+      <%= button_to _('Delete'), [download.product, download], :method => :delete,
+                                 :class => "smallbutton",
+                                 :confirm => _('Are you sure?') %>
+    </div>
   <% end %>
 </div>

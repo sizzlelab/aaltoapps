@@ -1,0 +1,27 @@
+<%
+  edit   = false unless defined? edit
+  delete = false unless defined? delete
+%>
+<%= form.fields_for :downloads, download do |form| %>
+  <li class="product-download">
+    <% if edit %>
+      <%= form.text_field :title, :class => "textfield" %>
+      (<%= link_to "file #{number_to_human_size(download.file.size)}",
+                   download.file.url,
+                   :target => '_blank' %>)
+    <% else %>
+      <%= link_to download.title, download.file.url %>
+      (<%= number_to_human_size(download.file.size) %>)
+    <% end %>
+
+    <% if delete && can?(:delete, download) %>
+      <%= form.check_box :_destroy %><%= form.label :_destroy, _('Delete') %>
+    <% end %>
+
+    <% if edit %>
+      <br />
+      <%= _('Replace with:') %>
+      <%= form.file_field :file, :class => 'otherfield' %>
+    <% end %>
+  </li>
+<% end %>

@@ -93,6 +93,9 @@ class ProductsController < ApplicationController
   # PUT /products/1
   # PUT /products/1.xml
   def update
+    # prevent deletion of new photo if delete photo checked when new photo uploaded
+    params[:product].delete(:delete_photo) if params[:product][:photo].present?
+
     respond_to do |format|
       if @product.update_attributes(params[:product])
         format.html { redirect_to(@product, :notice => _('Product was successfully updated.')) }

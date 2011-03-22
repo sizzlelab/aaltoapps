@@ -19,35 +19,35 @@
         <%= _("Fields marked with asterisk (*) are compulsory") %>.
     </p>
 </div>
-<table>
+<table id="product_form_table">
     <tr>
-        <td align="right">
+        <th>
             <%= f.label :name, _('Name of the product') + ' *:' %>
-        </td>
+        </th>
         <td>
             <%= f.text_field :name, :class => "textfield" %>
         </td>
     </tr>
     <tr>
-        <td align="right">
+        <th>
             <%= f.label :url,_('URL') + ' *:' %>
-        </td>
+        </th>
         <td>
             <%= f.text_field :url, :class => "textfield" %>
         </td>
     </tr>
     <tr>
-        <td align="right">
+        <th>
             <%= f.label :description, _('Description') + ' *:' %>
-        </td>
+        </th>
         <td >
             <%= f.text_area :description, :class => "textfield" %>
         </td>
     </tr>
     <tr>
-        <td align="right">
+        <th>
             <%= f.label :platforms, _('Choose a platform') + ' *:' %>
-        </td>
+        </th>
         <td>
            <%= f.collection_select :platforms, Platform.all, :id, :name,
                                    { :prompt => true,
@@ -57,17 +57,29 @@
         </td>
     </tr>
     <tr>
-        <td align="right">
-            <%= f.label :photo, _('Choose a Photo') + ' :' %>
-        </td>
+        <th>
+            <%= f.label :photo, (@product.photo? ? _('Change Photo') : _('Add Photo')) + ' :' %>
+        </th>
         <td>
-           <%= f.file_field :photo, :class => 'otherfield' %>
+            <% if @product.photo? %>
+                <%= _('Current photo:') %>
+                <%= link_to @product.photo.original_filename, @product.photo.url %>
+                (<%= number_to_human_size(@product.photo.size) %>)
+                (<%= @product.photo.styles.map { |stylename, _|
+                        link_to stylename, @product.photo.url(stylename)
+                    }.join(', ').html_safe
+                %>)
+                <%= f.check_box :delete_photo %><%= f.label :delete_photo, _('Delete') %>
+                <br />
+                <%= _('Replace with:') %>
+            <% end %>
+            <%= f.file_field :photo, :class => 'otherfield' %>
         </td>
     </tr>
     <tr>
-        <td align="right">
-          <%= _('Downloads') %>
-        </td>
+        <th>
+          <%= _('Downloads') + ' :' %>
+        </th>
         <td>
           <%= render :partial => "downloads/list",
                      :collection => @product.downloads, :as => :download,
@@ -97,7 +109,8 @@
     <% end %>
 </table>
 </div>
-<!--div id="left-column">
+<% if false %>
+<div id="left-column">
   <div id="image" style="border:groove;width:130px;height: 140px;">
     <%= _("Drag an image here!") %>
   </div>
@@ -106,6 +119,7 @@
       <%= f.file_field :photo %>
     <% end %>
   </div>
-</div-->
+</div>
+<% end %>
 <div id="space-div">
 </div>

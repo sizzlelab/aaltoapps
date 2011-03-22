@@ -15,19 +15,13 @@ class Product < ActiveRecord::Base
   #	validates_attachment_presence :photo
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+  attr_accessor :delete_photo
+  before_update :delete_photo_handler
   has_many :downloads, :dependent => :destroy
   accepts_nested_attributes_for :downloads, :allow_destroy => true,
     :reject_if => proc { |attrs| !attrs['file'] }
 
   attr_protected :approval_state
-
-#  def new_download
-#    self.downloads.build
-#  end
-#
-#  def new_download=(attrs)
-#    self.downloads.build(attrs) if attrs['file']
-#  end
 
   def is_approved?
     self.approval_state == 'published'
@@ -37,6 +31,10 @@ class Product < ActiveRecord::Base
     self.approval_state = state.to_s
     self.approval_date = DateTime.now
     self.save!	
+  end
+
+  def delete_photo_handler
+    self.photo = nil if self.delete_photo == '1'
   end
 
 end

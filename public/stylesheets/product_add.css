@@ -1,27 +1,30 @@
 #left-column{
-	float:left;
-	width:35%;
-	padding:10px;
-  
-	
+  float:left;
+  width:35%;
+  padding:10px;
 }
+
 #right-column{
-	float:left;
-	text-align: left;
-	width:60%;
-  
+  float:left;
+  text-align: left;
+  width:60%;
 }
+
+#product_form_table > tbody > tr > th {
+  text-align: right;
+  vertical-align: top;
+}
+
 #current-platform{
   float:left;
   text-align: left;
-  
   width:100%;
 }
+
 #space-div{
-	
-	clear:both;
-}
-#field{
-	text-align:right;
+  clear:both;
 }
 
+#field{
+  text-align:right;
+}

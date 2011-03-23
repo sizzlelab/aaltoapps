@@ -5,7 +5,6 @@ class Ability
     # Define abilities for the passed in user here.
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
-    can :mainpage, Product
     can :read, [Comment, User, Platform]
     cannot :index, [User, Platform]
     can :read, Product, :approval_state => 'published'

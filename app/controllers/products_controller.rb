@@ -1,8 +1,7 @@
 class ProductsController < ApplicationController
   load_and_authorize_resource(
-    :only => [:mainpage, :index, :show, :new, :edit, :create,
-              :update, :destroy, :block, :approve, :request_approval],
-    :collection => [:mainpage] )
+    :only => [:index, :show, :new, :edit, :create,
+              :update, :destroy, :block, :approve, :request_approval] )
   before_filter :add_popularity, :only=>:show
 
   PRODUCTS_PER_PAGE = 6
@@ -39,7 +38,10 @@ private
 public
 
   def mainpage
+    authorize! :index, Product
+    @products = Product.accessible_by(current_ability)
     fetch_data_for_index(params)
+
     @show_welcome_info = true
 
     render :action => 'index' # index.html.erb

@@ -1,7 +1,6 @@
 <% if @show_welcome_info %>
   <div id="welcome_msg" align="center">
-    <h1><%= raw t '.welcome_msg.title' %></h1>
-    <%= raw t '.welcome_msg.text' %>
+    <%= render :partial => '/welcome_message' %>
   </div>
 <%end%>
 <% if !@err_msg.blank? %>

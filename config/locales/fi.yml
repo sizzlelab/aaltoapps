@@ -183,23 +183,3 @@ fi:
       comment:
         product: Tuote
         commenter: Kommentoija
-
-  # translations used in specific views
-  products:
-    index:
-      welcome_msg:
-        # The messages here are HTML strings.
-        # HTML tags allowed; be careful with '<', '>', '&'.
-        title: Tervetuloa AaltoAppsiin
-        text: >
-          Tosiasia on, että yksikin kokonaisvaltaista kasvua kohti suunnattu
-          ehdotus kuvailee runsain määrin esiintyvää suurpiirteisyyttä sekä
-          rauhattomuutta.
-
-          Kaikesta huolimatta yleisesti suositeltava toimintamalli todistaa
-          oikeaksi erilaisissa laitoksissa tapahtuvaa valmistusta.
-
-          Ottaen huomioon oman tilanteensa, voi vain todeta, että
-          paradoksaalinen ajattelutapa järkeistää käsitystämme kyseisestä
-          asiakokonaisuudesta, mihin tavallaan liittyy myös laajentuvia
-          markkinoita ja uusia induktiivisia tuotantomenetelmiä.

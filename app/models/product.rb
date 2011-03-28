@@ -20,6 +20,8 @@ class Product < ActiveRecord::Base
   has_many :downloads, :dependent => :destroy
   accepts_nested_attributes_for :downloads, :allow_destroy => true,
     :reject_if => proc { |attrs| !attrs['file'] }
+  validates :terms, :acceptance => true
+  attr_accessor :terms
 
   attr_protected :approval_state
 

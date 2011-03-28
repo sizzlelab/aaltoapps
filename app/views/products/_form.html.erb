@@ -101,6 +101,21 @@
           </dl>
         </td>
     </tr>
+
+    <% if @product.new_record? %>
+        <tr>
+            <td><%= _('Terms and conditions') %></td>
+            <td>
+                <%= f.check_box :terms %>
+                <%= f.label :terms, (
+                        _('I accept the OtaSizzle %{link_begin}"Publisher Terms and Conditions"%{link_end}') % {
+                          :link_begin => '<a href="' + html_escape(url_for(:action => :publisher_terms)) + '" target="_blank">',
+                          :link_end   => '</a>'
+                        }
+                      ).html_safe %>
+            </td>
+        </tr>
+    <% end %>
     
     <tr>
         <td>

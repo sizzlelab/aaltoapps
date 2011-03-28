@@ -19,13 +19,18 @@ AaltoApps::Application.routes.draw do
     resources :downloads
     resources :ratings
 
-		put :block
-		put :approve
-   
+    member do
+      put :block
+      put :approve
+      put :request_approval
+    end
+
     collection do
       namespace 'platform' do
         get ':platform' => 'products#index'
       end
+
+      get :publisher_terms
     end
   end
 

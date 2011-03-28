@@ -153,6 +153,12 @@ public
 		redirect_to :back
 	end
 
+  def publisher_terms
+    respond_to do |format|
+      format.html { render :partial => 'publisher_terms' }
+    end
+  end
+
   private
 
   def add_popularity

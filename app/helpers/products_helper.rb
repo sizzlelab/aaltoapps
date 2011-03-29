@@ -1,6 +1,9 @@
 module ProductsHelper
-  def approval_status product
-    case product.approval_state
+
+  # returns localized approval status for given Product or status string
+  def approval_status(param)
+    param = param.approval_state if param.is_a?(Product)
+    case param
       when 'submitted' then _('submitted')
       when 'pending'   then _('waiting for approval')
       when 'published' then _('published')

@@ -22,7 +22,8 @@ private
     elsif params[:approval]
       # this authorization might not be necessary; the results would be empty for normal users
       authorize! :approve, Product
-      @products = @products.where(:approval_state => params[:approval])
+      @approval_state = params[:approval]
+      @products = @products.where(:approval_state => @approval_state)
       @view_type = :approval
     else
       @products = @products.where(:approval_state => 'published')

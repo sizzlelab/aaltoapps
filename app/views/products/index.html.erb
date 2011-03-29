@@ -3,57 +3,57 @@
     <%= render :partial => '/welcome_message' %>
   </div>
 <%end%>
-<% if !@err_msg.blank? %>
-<br/><br/>
-<div class="browse_search_err_msg" align="center">
-  <h1><%= @err_msg %></h1>
-</div>
-  <% end %>
-<% if params[:myapps] %>
-	<% if !@products.blank? %>
-   <div class="browse_products">
-    <h1><%= _("Listing My Products") %></h1>
-    <%unless @my_app_show%>
-  <%= link_to _('Publication date'), products_path_with_params(:sort => 'created_at') %>&nbsp;&nbsp;|
-  <%= link_to _('Popularity'), products_path_with_params(:sort => 'popularity') %>&nbsp;&nbsp;|
-  <%= link_to _('User rating'), products_path_with_params(:sort => 'avg_rating') %>
-<br><br>
-<%end%>
-  	<%=render :partial=>'product',:collection=>@products%>
-		</div>
-		<div class="browse_paginate">
-        <%= will_paginate @products,
-                          :previous_label => _('&#8592; Previous'),
-                          :next_label => _('Next &#8594;') %>
-		</div>
-	<%end%>
 
-<%else%>
- <% if !@products.blank? %>
-<div class="browse_products">
-    <h1><%=
-      if defined?(@platform)
-        _('%{platform} Products') % {:platform => @platform.name}
+<% unless @err_msg.blank? %>
+  <br/><br/>
+  <div class="browse_search_err_msg" align="center">
+    <h1><%= @err_msg %></h1>
+  </div>
+<%end%>
+
+<%
+  title = case @view_type
+    when :myapps
+      _("Listing my applications")
+    when :approval
+      _("Listing applications with status: %{status}") % {:status => approval_status(@approval_state)}
+    when :index
+      if @platform.present?
+        _("Listing %{platform} applications") % {:platform => @platform.name}
       else
-        _("Listing Products")
+        _("Listing all applications")
       end
-    %></h1>
-  <%unless @my_app_show%>
-  <%= link_to _('Publication date'), products_path_with_params(:sort => 'created_at') %>&nbsp;&nbsp;|
-  <%= link_to _('Popularity'), products_path_with_params(:sort => 'popularity') %>&nbsp;&nbsp;|
-  <%= link_to _('User rating'), products_path_with_params(:sort => 'avg_rating') %>
-<%unless params[:platform_id]%>
-&nbsp;&nbsp;|
-  <%= link_to _('Featured apps'), products_path_with_params(:sort => 'featured') %>&nbsp;&nbsp;
-<%end%>
-<br><br>
-<%end%>
-  <%=render :partial=>'product',:collection=>@products%>
-</div>
-<div class="browse_paginate">
-  <%= will_paginate @products,
-                    :previous_label => _('&#8592; Previous'),
-                    :next_label => _('Next &#8594;') %>
-</div>
-<%end%>
-<%end%>
+  end
+%>
+
+<% if @products.blank? %>
+  <div class="browse_products">
+    <h1><%= title %></h1>
+    <div class="no_products_msg"><%= _("No applications available.") %></div>
+  </div>
+<% else %>
+  <div class="browse_products">
+    <h1><%= title %></h1>
+
+    <%=
+      link_to(_('Publication date'), products_path_with_params(:sort => 'created_at')) + raw('&nbsp;&nbsp;|&nbsp;&nbsp;') +
+      link_to(_('Popularity'),       products_path_with_params(:sort => 'popularity')) + raw('&nbsp;&nbsp;|&nbsp;&nbsp;') +
+      link_to(_('User rating'),      products_path_with_params(:sort => 'avg_rating')) +
+      if @view_type == :index && @platform.blank?
+        raw('&nbsp;&nbsp;|&nbsp;&nbsp;') +
+        link_to(_('Featured apps'),  products_path_with_params(:sort => 'featured'))
+      else
+        ''
+      end
+    %>
+    <br /><br />
+
+    <%= render :partial=>'product', :collection => @products %>
+  </div>
+
+  <div class="browse_paginate">
+    <%= will_paginate @products,
+                      :previous_label => _('&#8592; Previous'),
+                      :next_label     => _('Next &#8594;') %>
+  </div>
+<% end %>

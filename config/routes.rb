@@ -7,6 +7,8 @@ AaltoApps::Application.routes.draw do
     resources :products
     resources :comments
     resources :ratings
+
+    get :terms, :on => :collection
   end
   
   resources :platforms do

@@ -6,7 +6,10 @@
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 
-  <script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+  <%# TODO: replace with local customized css: %>
+  <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/base/jquery-ui.css" />
   <script type="text/javascript">
     jQuery.noConflict();  // prevent conflicts with Prototype
     (function ($) {
@@ -59,21 +62,85 @@
           var text = $('<span class="commenttext"/>').text(form.find('.commentfield').val()).append('<br/>')
             .insertBefore(form);
           form.hide();
-          var editbutton = $('<button class="smallbutton">').text('<%= _('Edit') %>')
+          var editbutton = $('<button class="smallbutton">').text('<%= escape_javascript raw _('Edit') %>')
             .prependTo( form.parent().find('.product-comment-buttons') );
           editbutton.click(function () {
               editbutton.attr("disabled", true);
               text.hide();
               form.show();
             });
-          $('<button class="smallbutton">').text('<%= _('Cancel') %>')
+          $('<button class="smallbutton">').text('<%= escape_javascript raw _('Cancel') %>')
             .appendTo(form)
             .click(function () {
               editbutton.attr("disabled", false);
               text.show();
               form.hide();
-              return false; // don't submit form'
+              return false; // don't submit form
             });
+        });
+
+        // replace ordinary links with ajax popups
+        // using jQuery UI's dialog widget
+        $('.ajax-popup').each(function () {
+          var $this = $(this);
+          var url = this.href;
+
+          var checkbox = false;
+          var label = $this.parents('label')
+          if (label.length != 0) {
+            var label_for = label.attr('for');
+            if (label_for) {
+              checkbox = $('#' + label_for);
+            }
+            else {
+              checkbox = label.find('input:checkbox');
+            }
+          }
+
+          var dialog =
+            $('<div style="display:hidden"><%= escape_javascript raw _('loading...') %></div>')
+            .attr('title', $this.text())
+            .appendTo('body')
+            .dialog({
+              autoOpen: false,
+              modal: true,
+              width: '70%',
+              height: 0.9 * $(window).height(),
+              closeText: '<%= escape_javascript raw _('Close') %>',
+              buttons:
+                // If there is a checkbox associated with the element,
+                // add accept and decline buttons that check and uncheck it.
+                // Otherwise add a close button.
+                checkbox ? [
+                  { text: '<%= escape_javascript raw _('Accept') %>',
+                    click: function () { checkbox.val(['1']); $(this).dialog('close'); } },
+                  { text: '<%= escape_javascript raw _('Decline') %>',
+                    click: function () { checkbox.val([]);    $(this).dialog('close'); } }
+                ] : [
+                  { text: '<%= escape_javascript raw _('Close') %>',
+                    click: function () { $(this).dialog('close'); } }
+                ]});
+
+          $(this).click(function () {
+            if (! dialog.hasClass('ajax-popup-loaded')) {
+              dialog
+                .load(url, function () {
+                    // if there is a header in the returned content,
+                    // move it to dialog title bar
+                    var h1 = dialog.find('h1');
+                    if (h1.length != 0) {
+                      dialog.dialog('option', 'title', h1.text());
+                    }
+                    h1.remove();
+                  })
+                .addClass('ajax-popup-loaded');
+            }
+
+            dialog.dialog('open');
+
+            // prevent the browser from following the link
+            return false;
+          });
         });
       });
 

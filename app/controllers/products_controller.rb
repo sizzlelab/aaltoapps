@@ -155,7 +155,13 @@ public
 
   def publisher_terms
     respond_to do |format|
-      format.html { render :partial => 'publisher_terms' }
+      format.html do
+        if request.xhr?
+          render :partial => 'publisher_terms'
+        else
+          render :partial => 'publisher_terms', :layout => false
+        end
+      end
     end
   end
 

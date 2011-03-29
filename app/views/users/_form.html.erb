@@ -86,8 +86,8 @@
     <div class="field">
       <%= f.check_box :term %>
       <%= f.label :term, (
-              _('I accept the OtaSizzle %{link_begin}"Terms and Conditions"%{link_end}') % {
-                :link_begin => '<a href="http://www.sizzlelab.org/content/legal-information" target="_blank">',
+              _('I accept the OtaSizzle "%{link_begin}Terms and Conditions%{link_end}"') % {
+                :link_begin => '<a href="' + html_escape(url_for(:action => :terms)) + '" target="_blank" class="ajax-popup">',
                 :link_end   => '</a>'
               }
             ).html_safe %>

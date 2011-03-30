@@ -1,8 +1,35 @@
-.layout_whole {
-  //border: solid red;
-  min-width: 80em;
+#main_wrapper {
+    border: 2px solid #00BFFF;
+    border-radius: 15px;
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
 }
 
+.layout_logo {
+  float: left;
+  padding-top: 2em;
+  margin-top: 1em;
+  min-height: 4em;
+  font-size: 1.1em;
+  //border: solid red;
+}
+
+
+.layout_logo a, .layout_logo a:hover {
+  position: relative;
+  font-family: 'Harabara';
+  text-decoration: none;
+  font-size: 6em;
+  color: #00BFFF;
+  border: 1px solid green;
+}
+
+.layout_info {
+	float: right;
+}
+
+/*
 .wrapper_top {
   position:relative;
 	width: 60%;
@@ -125,3 +152,4 @@
 
 #menu .submenu_row a {text-align: center; padding-left: 1.0em; font-size: 0.8em; color: #00BFFF; font-family: 'Harabara'; font-size: 1em;}
  
+*/

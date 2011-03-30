@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
 
   PRODUCTS_PER_PAGE = 6
   DEFAULT_SORT = "products.created_at DESC"
+  DEFAULT_SORT_KEY = "created_at"
   ALLOWED_SORT_KEYS = %w(name created_at updated_at publisher avg_rating featured popularity) 
 
 private
@@ -43,7 +44,8 @@ private
       @search = params[:q]
     end
 
-    @products = @products.order(order_parameter(params[:sort]))
+    @sort = params[:sort] || DEFAULT_SORT_KEY
+    @products = @products.order(order_parameter(@sort))
 
     @products = @products.all.paginate(:page => page,
                                        :per_page => PRODUCTS_PER_PAGE)

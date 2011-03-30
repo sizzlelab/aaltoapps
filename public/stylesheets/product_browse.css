@@ -4,6 +4,10 @@
     font-size: 1em;
 }
 
+.browse_products .selected-sort-key {
+    color: gray;
+}
+
 .browse_product_left {
 padding-top:0.4em;
 background-image: -webkit-gradient(

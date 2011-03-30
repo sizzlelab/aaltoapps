@@ -51,9 +51,18 @@
     <h1><%= title %></h1>
 
     <%=
-      link_to(_('Publication date'), products_path_with_params(:sort => 'created_at')) + raw('&nbsp;&nbsp;|&nbsp;&nbsp;') +
-      link_to(_('Popularity'),       products_path_with_params(:sort => 'popularity')) + raw('&nbsp;&nbsp;|&nbsp;&nbsp;') +
-      link_to(_('User rating'),      products_path_with_params(:sort => 'avg_rating'))
+      # sort headers
+      raw [
+        ['created_at', _('Publication date')],
+        ['popularity', _('Popularity')],
+        ['avg_rating', _('User rating')],
+      ].map { |key, title|
+        if key == @sort
+          '<span class="selected-sort-key">' + html_escape(title) + '</span>'
+        else
+          link_to title, products_path_with_params(:sort => key)
+        end
+      }.join('&nbsp;&nbsp;|&nbsp;&nbsp;')
     %>
     <br /><br />
 

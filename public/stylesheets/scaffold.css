@@ -9,11 +9,15 @@
 }
 
 body {
-	background-color: #2E2E2E;
+	background: #82FFFF;
 	color: #00BFFF;
 	font-family: 'TB';
 	font-size: 1em;
 	line-height: 18px;
+}
+
+#main_wrapper {
+	background: #FFFFFF;
 }
 
 pre {
@@ -22,10 +26,10 @@ pre {
   font-size: 11px;
 }
 
-a { color: white; }
+a { color: black; }
 
 a:hover { 
-  color: #FF6A00; 
+  color: #003177; 
   -webkit-transition: color 0.3s;
 }
 
@@ -86,3 +90,4 @@ div.field, div.actions {
 	
 	list-style: none;
   //border: solid green;
+}

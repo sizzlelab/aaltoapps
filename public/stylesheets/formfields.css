@@ -60,17 +60,17 @@
 	background: none;
 	border: none;
 	text-decoration: none;
-	color: white;
-  font-size: 1em;
+	color: #00BFFF;
+	font-size: 1em;
 	font-family: 'Harabara';
 	text-transform: lowercase;
 	
 }
 
 .smallbutton:hover {
-	color: #FF6A00;
+	color: #003177;
 	cursor: pointer;
-  -webkit-transition: color 0.3s;
+	-webkit-transition: color 0.3s;
 }
 
 .bigbutton {
@@ -81,30 +81,22 @@
 	text-decoration: none;
 	font: 1em/100% Harabara;
 	padding: 0.5em 0.5em 0.5em;
-	text-shadow: 0 1px 1px rgba(0,0,0,.3);
 	-webkit-border-radius: .5em;
 	-moz-border-radius: .5em;
 	border-radius: .5em;
-	-moz-box-shadow: 0 0 7px black;
-	-webkit-box-shadow: 0 0 7px black;
-	box-shadow: 0 0 7px black;
-  color: #FF6A00;
-  width: 5em;
+	color: #ffffff;
+	width: 5em;
 	border: none;
-	background: #202020;
-	//background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
-	//background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
-	//filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+	background: #00BFFF;
 }
 
 .bigbutton:hover {
-  -webkit-transition: -webkit-box-shadow 0.5s;
+	-webkit-transition: -webkit-box-shadow 0.5s;
 	text-decoration: none;
-	color:#FF6A00;
-  -moz-box-shadow: 0 0 7px #FF6A00;
-	-webkit-box-shadow: 0 0 7px #FF6A00;
-	box-shadow: 0 0 7px #FF6A00;
-	
+	color: #003177;
+	-moz-box-shadow: 0 0 7px #003177;
+	-webkit-box-shadow: 0 0 7px #003177;
+	box-shadow: 0 0 7px #003177;
 }
 
 .pwfield {

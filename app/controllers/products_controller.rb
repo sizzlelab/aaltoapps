@@ -1,7 +1,8 @@
 class ProductsController < ApplicationController
   load_and_authorize_resource(
-    :only => [:index, :show, :new, :edit, :create,
-              :update, :destroy, :block, :approve, :request_approval] )
+    :only => [:index, :show, :new, :edit, :create, :update, :destroy,
+              :block, :approve, :request_approval,
+              :promote, :demote ] )
   before_filter :add_popularity, :only=>:show
 
   PRODUCTS_PER_PAGE = 6
@@ -12,10 +13,12 @@ private
 
   def fetch_data_for_index(params)
     page = params[:page] ? params[:page].to_i : 1
+
     if params[:platform_id]
       @platform = Platform.find(params[:platform_id])
       @products = @products.joins(:platforms).where(:platforms => {:id => @platform.id})
     end
+
     if params[:myapps]
       @products = @products.where(:publisher_id => current_user.id)
       @view_type = :myapps
@@ -29,7 +32,9 @@ private
       @products = @products.where(:approval_state => 'published')
       @view_type = :index
     end
+
     @products = @products.where("name ILIKE :input", {:input => "%#{params[:q]}%"}) if params[:q]
+
     @products = @products.order(order_parameter(params[:sort]))
 
     @products = @products.all.paginate(:page => page,
@@ -41,6 +46,9 @@ public
   def mainpage
     authorize! :index, Product
     @products = Product.accessible_by(current_ability)
+
+    @featured_products = @products.where(:featured => true)
+
     fetch_data_for_index(params)
 
     @show_welcome_info = true
@@ -95,7 +103,7 @@ public
   # POST /products.xml
   def create
     @product.publisher_id = current_user.id
-		if params[:cancel]
+    if params[:cancel]
       @product = Product.new
       render :action => 'new'
     else
@@ -139,20 +147,32 @@ public
     end
   end
 
-	def approve
-		@product.change_approval 'published'
-		redirect_to :back
-	end
+  def approve
+    @product.change_approval 'published'
+    redirect_to :back
+  end
 
-	def block
-		@product.change_approval 'blocked'
-		redirect_to :back	
-	end
+  def block
+    @product.change_approval 'blocked'
+    redirect_to :back
+  end
 
   def request_approval
-		@product.change_approval 'pending'
-		redirect_to :back
-	end
+    @product.change_approval 'pending'
+    redirect_to :back
+  end
+
+  def promote
+    @product.featured = true
+    @product.save!
+    redirect_to :back
+  end
+
+  def demote
+    @product.featured = false
+    @product.save!
+    redirect_to :back
+  end
 
   def publisher_terms
     respond_to do |format|
@@ -193,9 +213,9 @@ public
     return sort
   end
 
-	def require_admin
-		return if current_user && current_user.is_admin?
-		redirect_to root_path
-	end
+  def require_admin
+    return if current_user && current_user.is_admin?
+    redirect_to root_path
+  end
 
 end

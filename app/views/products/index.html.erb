@@ -11,6 +11,19 @@
   </div>
 <%end%>
 
+<% if @featured_products && !@featured_products.empty? %>
+  <div id="browse_featured_products">
+    <h1><%=
+      if @platform.present?
+        _("Listing featured %{platform} applications") % {:platform => @platform.name}
+      else
+        _("Listing featured applications")
+      end
+    %></h1>
+    <%= render :partial=>'product', :collection => @featured_products %>
+  </div>
+<% end %>
+
 <%
   title = case @view_type
     when :myapps
@@ -38,13 +51,7 @@
     <%=
       link_to(_('Publication date'), products_path_with_params(:sort => 'created_at')) + raw('&nbsp;&nbsp;|&nbsp;&nbsp;') +
       link_to(_('Popularity'),       products_path_with_params(:sort => 'popularity')) + raw('&nbsp;&nbsp;|&nbsp;&nbsp;') +
-      link_to(_('User rating'),      products_path_with_params(:sort => 'avg_rating')) +
-      if @view_type == :index && @platform.blank?
-        raw('&nbsp;&nbsp;|&nbsp;&nbsp;') +
-        link_to(_('Featured apps'),  products_path_with_params(:sort => 'featured'))
-      else
-        ''
-      end
+      link_to(_('User rating'),      products_path_with_params(:sort => 'avg_rating'))
     %>
     <br /><br />
 

@@ -65,16 +65,30 @@
       <dd><%= word_wrap(@product.description) %></dd>
     </dl>
 
-    <% if (can_edit, can_delete = can?(:edit, @product), can?(:delete, @product)).any? %>
+    <% if @product.featured %>
+      <dl id="product-featured">
+        <dt><%= _("Featured") %>:</dt>
+        <dd>✓</dd>
+      </dl>
+    <% end %>
+
+    <%
+      abilities = Set.new([:edit, :delete, :promote, :demote].find_all { |action| can? action, @product })
+      unless abilities.empty?
+    %>
       <dl id="product-admin">
         <dt><%= _("Admin") %>:</dt>
         <dd><%= button_to _('Edit'), edit_product_path(@product), :method => :get,
-                                     :class => "smallbutton" if can_edit %></dd>
+                                     :class => "smallbutton" if abilities.include? :edit %></dd>
         <dd><%= button_to _('Delete'), @product, :class=>"smallbutton", :method => :delete,
-                                       :confirm => _('Are you sure?') if can_delete %></dd>
+                                       :confirm => _('Are you sure?') if abilities.include? :delete %></dd>
+        <dd><%= button_to _("Make featured"), promote_product_path(@product), :method => :put,
+                                    :class => 'smallbutton' if abilities.include? :promote && !@product.featured %></dd>
+        <dd><%= button_to _("Remove from featured"), demote_product_path(@product), :method => :put,
+                                    :class => 'smallbutton' if abilities.include? :demote && @product.featured %></dd>
       </dl>
     <% end %>
-		<br>
+    <br />
     <%=button_to _('Report issue'), 'http://www.sizzlelab.org/contact', :class => 'smallbutton', :method => :get %>
   </div>
 </div>

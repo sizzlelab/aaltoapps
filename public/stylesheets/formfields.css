@@ -1,33 +1,18 @@
 .textfield {
-	background: #2E2E2E;
-  color: white;
 	-moz-border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
-  border-radius: 0.5em;
-	border: none;
-	padding: 0.2em;
-	
+	border-radius: 0.5em;
+	border: 1px solid #00BFFF;
+	padding: 0.7em;
+	margin-right: 0.5em;
+	color: #000000;
 }
 
-.searchfield {
-	background: #666;
-	color: white;
-	-moz-border-radius: 0.5em;
-	-webkit-border-radius: 0.5em;
-  border-radius: 0.5em;
-  border: none;
-  padding: 0.7em;
-  -moz-box-shadow: 0 0 7px black;
-	-webkit-box-shadow: 0 0 7px black;
-	box-shadow: 0 0 7px black;
-  margin-right: 0.5em;
-}
-
-.searchfield:active {
-  -moz-box-shadow: 0 0 7px #FF6A00;
-	-webkit-box-shadow: 0 0 7px #FF6A00;
-	box-shadow: 0 0 7px #FF6A00;
-  
+.textfield :active {
+	background: #82FFFF;
+	-moz-box-shadow: 0 0 7px #00BFFF;
+	-webkit-box-shadow: 0 0 7px #00BFFF;
+	box-shadow: 0 0 7px #00BFFF;
 }
 
 .commentfield {

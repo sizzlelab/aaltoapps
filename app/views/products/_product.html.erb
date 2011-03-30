@@ -40,6 +40,19 @@
       <% end %>
     </div>
 
+    <%
+      can_promote = can? :promote, product
+      can_demote  = can? :demote,  product
+      if can_promote || can_demote
+    %>
+      <div class="browse_row">
+        <%= button_to _("Make featured"), promote_product_path(product), :method => :put,
+                                    :class => 'smallbutton' if can_promote && !product.featured %>
+        <%= button_to _("Remove from featured"), demote_product_path(product), :method => :put,
+                                    :class => 'smallbutton' if can_demote && product.featured %>
+      </div>
+    <% end %>
+
   </div>
   <div class="browse_product_desc"><%= product.description %> </div>
 

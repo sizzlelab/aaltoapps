@@ -25,6 +25,8 @@ AaltoApps::Application.routes.draw do
       put :block
       put :approve
       put :request_approval
+      put :promote
+      put :demote
     end
 
     collection do
@@ -38,6 +40,6 @@ AaltoApps::Application.routes.draw do
 
   resources :comments, :belongs_to => :products
   
-  root :to => "products#mainpage"
+  root :to => "products#mainpage", :featured => true
   match ':controller(/:action(/:id))'
 end

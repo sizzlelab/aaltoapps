@@ -19,9 +19,17 @@
       _("Listing applications with status: %{status}") % {:status => approval_status(@approval_state)}
     when :index
       if @platform.present?
-        _("Listing %{platform} applications") % {:platform => @platform.name}
+        if @featured
+          _("Listing featured %{platform} applications") % {:platform => @platform.name}
+        else
+          _("Listing %{platform} applications") % {:platform => @platform.name}
+        end
       else
-        _("Listing all applications")
+        if @featured
+          _("Listing featured applications")
+        else
+          _("Listing all applications")
+        end
       end
   end
 %>
@@ -41,7 +49,7 @@
       link_to(_('User rating'),      products_path_with_params(:sort => 'avg_rating')) +
       if @view_type == :index && @platform.blank?
         raw('&nbsp;&nbsp;|&nbsp;&nbsp;') +
-        link_to(_('Featured apps'),  products_path_with_params(:sort => 'featured'))
+        link_to(_('Featured apps'),  products_path_with_params(:featured => true))
       else
         ''
       end

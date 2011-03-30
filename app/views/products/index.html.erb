@@ -30,8 +30,10 @@
       _("Listing my applications")
     when :approval
       _("Listing applications with status: %{status}") % {:status => approval_status(@approval_state)}
-    when :index
-      if @platform.present?
+    when :index then case
+      when @search
+        _("Search results")
+      when @platform.present?
         _("Listing %{platform} applications") % {:platform => @platform.name}
       else
         _("Listing all applications")

@@ -33,7 +33,15 @@ private
       @view_type = :index
     end
 
-    @products = @products.where("name ILIKE :input", {:input => "%#{params[:q]}%"}) if params[:q]
+    if params[:q]
+      # This SQL expression is database-specific. It works at least with
+      # PostgreSQL. With SQLite it almost works: non-ascii characters are
+      # compared case-sensitively.
+      @products = @products.where(
+        "lower(name) LIKE lower(:input) OR lower(description) LIKE lower(:input)",
+        {:input => "%#{params[:q]}%"} )
+      @search = params[:q]
+    end
 
     @products = @products.order(order_parameter(params[:sort]))
 

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-03-30 15:51+0300\n"
+"POT-Creation-Date: 2011-03-30 16:48+0300\n"
 "PO-Revision-Date: 2011-02-02 15:23+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: app/views/products/index.html.erb:63
+#: app/views/products/index.html.erb:65
 msgid "&#8592; Previous"
 msgstr ""
 
@@ -281,11 +281,11 @@ msgstr ""
 msgid "List platforms"
 msgstr ""
 
-#: app/views/products/index.html.erb:35
+#: app/views/products/index.html.erb:37
 msgid "Listing %{platform} applications"
 msgstr ""
 
-#: app/views/products/index.html.erb:37
+#: app/views/products/index.html.erb:39
 msgid "Listing all applications"
 msgstr ""
 
@@ -396,11 +396,11 @@ msgstr ""
 msgid "New rating"
 msgstr ""
 
-#: app/views/products/index.html.erb:64
+#: app/views/products/index.html.erb:66
 msgid "Next &#8594;"
 msgstr ""
 
-#: app/views/products/index.html.erb:45
+#: app/views/products/index.html.erb:47
 msgid "No applications available."
 msgstr ""
 
@@ -442,7 +442,7 @@ msgstr ""
 msgid "Please login to add comments"
 msgstr ""
 
-#: app/views/products/index.html.erb:53
+#: app/views/products/index.html.erb:55
 msgid "Popularity"
 msgstr ""
 
@@ -454,11 +454,11 @@ msgstr ""
 msgid "Product"
 msgstr ""
 
-#: app/controllers/products_controller.rb:112
+#: app/controllers/products_controller.rb:120
 msgid "Product was successfully created."
 msgstr ""
 
-#: app/controllers/products_controller.rb:130
+#: app/controllers/products_controller.rb:138
 msgid "Product was successfully updated."
 msgstr ""
 
@@ -470,7 +470,7 @@ msgstr ""
 msgid "Products pending approval"
 msgstr ""
 
-#: app/views/products/index.html.erb:52
+#: app/views/products/index.html.erb:54
 msgid "Publication date"
 msgstr ""
 
@@ -540,6 +540,10 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+#: app/views/products/index.html.erb:35
+msgid "Search results"
+msgstr ""
+
 #: app/views/platforms/index.html.erb:17 app/views/ratings/edit.html.erb:5
 #: app/views/ratings/index.html.erb:18 app/views/categories/index.html.erb:16
 #: app/views/users/edit.html.erb:5 app/views/users/index.html.erb:24
@@ -575,7 +579,7 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: app/views/products/index.html.erb:54
+#: app/views/products/index.html.erb:56
 msgid "User rating"
 msgstr ""
 

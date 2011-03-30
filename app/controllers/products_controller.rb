@@ -19,11 +19,6 @@ private
       @products = @products.joins(:platforms).where(:platforms => {:id => @platform.id})
     end
 
-    if params[:featured]
-      @featured = true
-      @products = @products.where(:featured => true)
-    end
-
     if params[:myapps]
       @products = @products.where(:publisher_id => current_user.id)
       @view_type = :myapps
@@ -51,6 +46,9 @@ public
   def mainpage
     authorize! :index, Product
     @products = Product.accessible_by(current_ability)
+
+    @featured_products = @products.where(:featured => true)
+
     fetch_data_for_index(params)
 
     @show_welcome_info = true
@@ -165,12 +163,14 @@ public
   end
 
   def promote
-    @product.update_attributes(:featured => true)
+    @product.featured = true
+    @product.save!
     redirect_to :back
   end
 
   def demote
-    @product.update_attributes(:featured => false)
+    @product.featured = false
+    @product.save!
     redirect_to :back
   end
 

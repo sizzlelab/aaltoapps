@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-03-30 14:35+0300\n"
+"POT-Creation-Date: 2011-03-30 15:51+0300\n"
 "PO-Revision-Date: 2011-02-02 15:23+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: app/views/products/index.html.erb:64
+#: app/views/products/index.html.erb:63
 msgid "&#8592; Previous"
 msgstr ""
 
@@ -224,10 +224,6 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#: app/views/products/index.html.erb:52
-msgid "Featured apps"
-msgstr ""
-
 #: app/views/users/_form.html.erb:41
 msgid "Female"
 msgstr ""
@@ -285,15 +281,15 @@ msgstr ""
 msgid "List platforms"
 msgstr ""
 
-#: app/views/products/index.html.erb:25
+#: app/views/products/index.html.erb:35
 msgid "Listing %{platform} applications"
 msgstr ""
 
-#: app/views/products/index.html.erb:31
+#: app/views/products/index.html.erb:37
 msgid "Listing all applications"
 msgstr ""
 
-#: app/views/products/index.html.erb:19
+#: app/views/products/index.html.erb:32
 msgid "Listing applications with status: %{status}"
 msgstr ""
 
@@ -301,15 +297,15 @@ msgstr ""
 msgid "Listing categories"
 msgstr ""
 
-#: app/views/products/index.html.erb:23
+#: app/views/products/index.html.erb:18
 msgid "Listing featured %{platform} applications"
 msgstr ""
 
-#: app/views/products/index.html.erb:29
+#: app/views/products/index.html.erb:20
 msgid "Listing featured applications"
 msgstr ""
 
-#: app/views/products/index.html.erb:17
+#: app/views/products/index.html.erb:30
 msgid "Listing my applications"
 msgstr ""
 
@@ -400,11 +396,11 @@ msgstr ""
 msgid "New rating"
 msgstr ""
 
-#: app/views/products/index.html.erb:65
+#: app/views/products/index.html.erb:64
 msgid "Next &#8594;"
 msgstr ""
 
-#: app/views/products/index.html.erb:40
+#: app/views/products/index.html.erb:45
 msgid "No applications available."
 msgstr ""
 
@@ -446,7 +442,7 @@ msgstr ""
 msgid "Please login to add comments"
 msgstr ""
 
-#: app/views/products/index.html.erb:48
+#: app/views/products/index.html.erb:53
 msgid "Popularity"
 msgstr ""
 
@@ -458,11 +454,11 @@ msgstr ""
 msgid "Product"
 msgstr ""
 
-#: app/controllers/products_controller.rb:114
+#: app/controllers/products_controller.rb:112
 msgid "Product was successfully created."
 msgstr ""
 
-#: app/controllers/products_controller.rb:132
+#: app/controllers/products_controller.rb:130
 msgid "Product was successfully updated."
 msgstr ""
 
@@ -474,7 +470,7 @@ msgstr ""
 msgid "Products pending approval"
 msgstr ""
 
-#: app/views/products/index.html.erb:47
+#: app/views/products/index.html.erb:52
 msgid "Publication date"
 msgstr ""
 
@@ -579,7 +575,7 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: app/views/products/index.html.erb:49
+#: app/views/products/index.html.erb:54
 msgid "User rating"
 msgstr ""
 

@@ -74,7 +74,7 @@
 
     <%
       abilities = Set.new(
-        [:edit, :delete, :promote, :demote, :block, :approve].
+        [:edit, :delete, :promote, :demote, :block, :approve, :request_approval].
           find_all { |action| can? action, @product } )
       unless abilities.empty?
     %>
@@ -90,11 +90,17 @@
                                          :class=>"smallbutton" %></dd>
         <% end %>
         <% case @product.approval_state %>
-          <% when 'pending', 'blocked' %>
+          <% when 'pending' %>
             <% if abilities.include? :approve %>
               <dd><%= button_to _("Approve"), approve_product_path(@product), :method => :put,
                                 :class=>"smallbutton",
                                 :confirm => _('Are you sure you want to approve this product? (Remember to delete any development comments from the application profile)')
+                  %></dd>
+            <% end %>
+          <% when 'submitted', 'blocked' %>
+            <% if abilities.include? :request_approval %>
+              <dd><%= button_to _("Request approval"), request_approval_product_path(@product), :method => :put,
+                                :class => 'smallbutton'
                   %></dd>
             <% end %>
           <% when 'published' %>
@@ -116,9 +122,6 @@
       </dl>
     <% end %>
     <br />
-    <%= button_to(_("Request approval"), request_approval_product_path(@product),
-                  :method => :put, :class => 'smallbutton'
-                 ) if %w(submitted blocked).member?(@product.approval_state) && can?(:request_approval, @product) %>
     <%= button_to _('Report issue'), 'http://www.sizzlelab.org/contact', :method => :get, :class => 'smallbutton' %>
   </div>
 </div>

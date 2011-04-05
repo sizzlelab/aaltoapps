@@ -128,6 +128,30 @@
 
 <div class="product_comment">
   <% if can? :show, Comment %>
+    <% if !@admin_comments.empty? || @new_admin_comment %>
+      <h2><%= _("Admin comments") %>:</h2>
+
+      <p>
+        <%= _("These comments are only shown to administrators and %{comments_shown_for}.") % {
+              :comments_shown_for =>
+                if @product.publisher == current_user
+                  s_("comments_shown_for|you")
+                else
+                  s_("comments_shown_for|the publisher of the product")
+                end } %>
+      </p>
+
+      <div id="product-admin-comment-list">
+        <%= render :partial => "comment/list", :collection => @admin_comments, :as => :comment %>
+      </div>
+
+      <% if @new_admin_comment %>
+        <p>
+          <%= render "comment/form", :comment => [@product, @new_admin_comment], :admin_comment => true %>
+        </p>
+      <% end %>
+    <% end %>
+
     <h2><%= _("Comments") %>:</h2>
     <div id="product-comment-list">
       <%= render :partial => "comment/list", :collection => @comments, :as => :comment %>

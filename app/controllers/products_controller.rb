@@ -88,7 +88,13 @@ public
       )
     end
 
-    @comments = @product.comments.accessible_by(current_ability)
+    comments = @product.comments.accessible_by(current_ability)
+    @comments = comments.where(:admin_comment => false)
+    @admin_comments = comments.where(:admin_comment => true)
+
+    @new_admin_comment = @product.comments.build(:commenter => current_user)
+    @new_admin_comment.admin_comment = true
+    @new_admin_comment = nil unless can? :new, @new_admin_comment
 
     respond_to do |format|
       format.html # show.html.erb

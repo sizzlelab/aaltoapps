@@ -5,6 +5,13 @@ class CommentsController < ApplicationController
     @comment.product = Product.find(params[:product_id])
     @comment.commenter = current_user
 
+    if params[:comment][:admin_comment]
+      @comment.admin_comment = params[:comment][:admin_comment]
+      # check the authorization using @comment with values set
+      # so that only authorized users can create admin comments
+      authorize! :create, @comment
+    end
+
     respond_to do |format|
       if @comment.save
         format.html { redirect_to(@comment.product, :notice => _('New comment created.')) }

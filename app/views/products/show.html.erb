@@ -73,23 +73,53 @@
     <% end %>
 
     <%
-      abilities = Set.new([:edit, :delete, :promote, :demote].find_all { |action| can? action, @product })
+      abilities = Set.new(
+        [:edit, :delete, :promote, :demote, :block, :approve].
+          find_all { |action| can? action, @product } )
       unless abilities.empty?
     %>
       <dl id="product-admin">
         <dt><%= _("Admin") %>:</dt>
-        <dd><%= button_to _('Edit'), edit_product_path(@product), :method => :get,
-                                     :class => "smallbutton" if abilities.include? :edit %></dd>
-        <dd><%= button_to _('Delete'), @product, :class=>"smallbutton", :method => :delete,
-                                       :confirm => _('Are you sure?') if abilities.include? :delete %></dd>
-        <dd><%= button_to _("Make featured"), promote_product_path(@product), :method => :put,
-                                    :class => 'smallbutton' if abilities.include? :promote && !@product.featured %></dd>
-        <dd><%= button_to _("Remove from featured"), demote_product_path(@product), :method => :put,
-                                    :class => 'smallbutton' if abilities.include? :demote && @product.featured %></dd>
+        <% if abilities.include? :edit %>
+          <dd><%= button_to _('Edit'), edit_product_path(@product), :method => :get,
+                                       :class => "smallbutton" %></dd>
+        <% end %>
+        <% if abilities.include? :delete %>
+          <dd><%= button_to _('Delete'), @product, :method => :delete,
+                                         :confirm => _('Are you sure?'),
+                                         :class=>"smallbutton" %></dd>
+        <% end %>
+        <% case @product.approval_state %>
+          <% when 'pending', 'blocked' %>
+            <% if abilities.include? :approve %>
+              <dd><%= button_to _("Approve"), approve_product_path(@product), :method => :put,
+                                :class=>"smallbutton",
+                                :confirm => _('Are you sure you want to approve this product? (Remember to delete any development comments from the application profile)')
+                  %></dd>
+            <% end %>
+          <% when 'published' %>
+            <% if abilities.include? :block %>
+              <dd><%= button_to _("Block"), block_product_path(@product), :method => :put,
+                                :class => 'smallbutton',
+                                :confirm => _('Are you sure you want to block this product?')
+                  %></dd>
+            <% end %>
+        <% end; debugger %>
+        <% if abilities.include?(:promote) && !@product.featured %>
+          <dd><%= button_to _("Make featured"), promote_product_path(@product), :method => :put,
+                                                :class => 'smallbutton' %></dd>
+        <% end %>
+        <% if abilities.include?(:demote) && @product.featured %>
+          <dd><%= button_to _("Remove from featured"), demote_product_path(@product), :method => :put,
+                                                       :class => 'smallbutton' %></dd>
+        <% end %>
       </dl>
     <% end %>
     <br />
-    <%=button_to _('Report issue'), 'http://www.sizzlelab.org/contact', :class => 'smallbutton', :method => :get %>
+    <%= button_to(_("Request approval"), request_approval_product_path(@product),
+                  :method => :put, :class => 'smallbutton'
+                 ) if %w(submitted blocked).member?(@product.approval_state) && can?(:request_approval, @product) %>
+    <%= button_to _('Report issue'), 'http://www.sizzlelab.org/contact', :method => :get, :class => 'smallbutton' %>
   </div>
 </div>
 

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-04-05 18:23+0300\n"
-"PO-Revision-Date: 2011-04-05 18:23+0200\n"
+"POT-Creation-Date: 2011-04-06 13:16+0300\n"
+"PO-Revision-Date: 2011-04-06 13:16+0200\n"
 "Last-Translator: Pekka Ekman <pekman@cc.hut.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
@@ -67,12 +67,8 @@ msgid "Approve"
 msgstr "Hyväksy"
 
 #: app/views/products/show.html.erb:97
-msgid ""
-"Are you sure you want to approve this product? (Remember to delete any "
-"development comments from the application profile)"
-msgstr ""
-"Oletko varma, että haluat tyväksyä tämän tuotteen? (Muista poistaa kaikki "
-"kehityskommentit tuotesivulta)"
+msgid "Are you sure you want to approve this product?"
+msgstr "Oletko varma, että haluat hyväksyä tämän tuotteen?"
 
 #: app/views/products/show.html.erb:110
 msgid "Are you sure you want to block this product?"
@@ -546,6 +542,10 @@ msgstr "Poista admin-oikeudet"
 #: app/views/users/_form.html.erb:99
 msgid "Save"
 msgstr "Tallenna"
+
+#: app/views/comment/_form.html.erb:5
+msgid "Save comment"
+msgstr "Tallenna kommentti"
 
 #: app/views/products/index.html.erb:35
 msgid "Search results"

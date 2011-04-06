@@ -1,7 +1,7 @@
 <div class="product-comment-line">
-  <%= form_for defined?(comment) ? comment :  [@product, @product.comments.build(:commenter => current_user)] do |f| %>
+  <%= form_for defined?(comment) ? comment : [@product, @product.comments.build(:commenter => current_user)] do |f| %>
     <%= f.text_area :body, :class => 'commentfield', :size => '60x5' %><br />
     <%= f.hidden_field :admin_comment, :value => 1 if defined?(admin_comment) && admin_comment %>
-    <%= f.submit _('Create comment'), :class => 'smallbutton' %>
+    <%= f.submit( (f.object.new_record? ? _('Create comment') : _('Save comment')), :class => 'smallbutton') %>
   <% end %>
 </div>

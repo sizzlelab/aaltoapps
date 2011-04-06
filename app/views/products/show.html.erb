@@ -94,7 +94,7 @@
             <% if abilities.include? :approve %>
               <dd><%= button_to _("Approve"), approve_product_path(@product), :method => :put,
                                 :class=>"smallbutton",
-                                :confirm => _('Are you sure you want to approve this product? (Remember to delete any development comments from the application profile)')
+                                :confirm => _('Are you sure you want to approve this product?')
                   %></dd>
             <% end %>
           <% when 'submitted', 'blocked' %>

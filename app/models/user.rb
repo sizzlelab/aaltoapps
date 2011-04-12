@@ -2,19 +2,102 @@ class User < ActiveRecord::Base
   has_many :ratings, :dependent => :destroy
   has_many :published, :class_name => "Product", :foreign_key => "publisher_id"
   has_many :comments
-  attr_accessor :guid, :password, :password2, :username, :email, :form_username,
-                :form_given_name, :form_family_name, :form_password, 
-                :form_password2, :form_email, :consent,
-                :birthdate, :gender, :website, :term
   attr_protected :is_admin
   validates :asi_id, :presence => true
+  validates :password, :confirmation => true
+  # terms == the language of the accepted terms and conditions
+  validates :terms, :acceptance => { :accept => I18n.locale }
+  attr_accessor :terms
   
   PERSON_HASH_CACHE_EXPIRE_TIME = 0#15  #ALSO THIS CACHE TEMPORARILY OFF TO TEST PERFORMANCE WIHTOUT IT
   PERSON_NAME_CACHE_EXPIRE_TIME = 3.hours  ## THE CACHE IS TEMPORARILY OFF BECAUSE CAUSED PROBLEMS ON ALPHA: SEE ALSO COMMENTING OUT AT THE PLACE WHER CACHE IS USED!
-  
+
+  # supported ASI attributes:
+
+  # read-only
+  ASI_RO_ATTRIBUTES = [:username, :updated_at]
+
+  # read/write
+  ASI_RW_ATTRIBUTES = [:name, :address, :phone_number, :email,
+                       :description, :gender, :birthdate,
+                       :website, :phone_number, :irc_nick, :msn_nick]
+
+  # write-only
+  ASI_WO_ATTRIBUTES = [:password, :consent]
+
+  # nested read/write attributes
+  # these are accessed using the innermost name
+  ASI_RW_NESTED_ATTRIBUTES = {
+    :name => [:family_name, :given_name],
+    :address => [:postal_code, :street_address, :locality],
+  }
+
+  # attributes that cannot be unset
+  ASI_NONUNSETTABLE_ATTRIBUTES = Set.new [:password, :email, :gender]
+
+  # make getters for readable ASI attributes
+  (ASI_RO_ATTRIBUTES + ASI_RW_ATTRIBUTES).each do |attr|
+    define_method attr do
+      asi_attributes[attr] ||= begin
+        p = get_person_hash
+        p && p[attr.to_s]
+      end
+    end
+  end
+
+  # make setters for writable ASI attributes
+  (ASI_WO_ATTRIBUTES + ASI_RW_ATTRIBUTES).each do |attr|
+    define_method "#{attr}=" do |val|
+      val = nil if val == ''
+      # Set value. If nil and the attribute is non-unsettable, don't change the value.
+      asi_attributes[attr.to_s] = val unless val.nil? && ASI_NONUNSETTABLE_ATTRIBUTES.member?(attr)
+    end
+  end
+
+  # make getters and setters for nested attributes
+  ASI_RW_NESTED_ATTRIBUTES.each do |attr, subattrs|
+    subattrs = [subattrs] unless subattrs.is_a? Enumerable
+    attr_s = attr.to_s
+    subattrs.each do |subattr|
+      define_method subattr do
+        a = self.send(attr)
+        a && a[subattr.to_s]
+      end
+
+      define_method "#{subattr}=" do |val|
+        val = nil if val == ''
+        asi_attributes[attr_s] ||= Hash.new
+        asi_attributes[attr_s][subattr.to_s] = val
+      end
+    end
+  end
+
+  # reader for locally set password
+  attr_reader :password
+
+  # readers for special nested unstructured fields:
+
+  def unstructured_name
+    n = name
+    n && n['unstructured']
+  end
+
+  def unstructured_address
+    a = name
+    a && a['unstructured']
+  end
+
+  attr_writer :asi_cookie
+  def asi_cookie
+    @asi_cookie || Session.aaltoapps_cookie
+  end
+
   def self.create_to_asi(params, cookie)
     # Try to create the person to ASI
-    person_hash = {:person => params.slice(:username, :password, :email).merge!({:consent => "FI1"}) }
+    person_hash = {
+      :person => params.slice(:username, :password, :email).
+                        merge!(:consent => APP_CONFIG.consent_versions[I18n.locale])
+    }
     response = UserConnection.create_person(person_hash, cookie)
 
     # Pick id from the response (same id in kassi and ASI DBs)
@@ -37,213 +120,60 @@ class User < ActiveRecord::Base
   def self.create(params)
     super(:asi_id => params[:asi_id])
   end
-  
-  def username(cookie=nil)
-    username_from_person_hash(cookie)
-    # No expire time, because username doesn't change (at least not yet)
-    #Rails.cache.fetch("person_username/#{self.id}") {username_from_person_hash(cookie)}  
-  end
-  
-  def username_from_person_hash(cookie=nil)
-    if new_record?
-      return form_username ? form_username : ""
-    end
-    person_hash = get_person_hash(cookie)
-    return "Person not found!" if person_hash.nil?
-    return person_hash["username"]
-  end
-  
-  def given_name_or_username(cookie=nil)
-    person_hash = get_person_hash(cookie)
-    return "Not found!" if person_hash.nil?
-    if person_hash["name"].nil? || person_hash["name"]["given_name"].blank?
-      return person_hash["username"]
-    end
-    return person_hash["name"]["given_name"]
-  end
-  
-  def given_name(cookie=nil)
-    if new_record?
-      return form_given_name ? form_given_name : ""
-    end
-    # We rather return the username than blank if no given name is set
-    return Rails.cache.fetch("given_name/#{self.id}", :expires_in => PERSON_NAME_CACHE_EXPIRE_TIME) {given_name_or_username(cookie)}
-    #given_name_or_username(cookie) 
-  end
-  
-  def set_given_name(name, cookie)
-    update_attributes({:name => {:given_name => name } }, cookie)
-  end
-  
-  def family_name(cookie=nil)
-    if new_record?
-      return form_family_name ? form_family_name : ""
-    end
-    person_hash = get_person_hash(cookie)
-    return "Not found!" if person_hash.nil?
-    return "" if person_hash["name"].nil?
-    return person_hash["name"]["family_name"]
-  end
-  
-  def set_family_name(name, cookie)
-    update_attributes({:name => {:family_name => name } }, cookie)
-  end
-  
-  def street_address(cookie=nil)
-    person_hash = get_person_hash(cookie)
-    return "Not found!" if person_hash.nil?
-    return "" if person_hash["address"].nil?
-    return person_hash["address"]["street_address"]
-  end
-  
-  def set_street_address(street_address, cookie)
-    update_attributes({:address => {:street_address => street_address } }, cookie)
-  end
-  
-  def postal_code(cookie=nil)
-    person_hash = get_person_hash(cookie)
-    return "Not found!" if person_hash.nil?
-    return "" if person_hash["address"].nil?
-    return person_hash["address"]["postal_code"]
-  end
-  
-  def set_postal_code(postal_code, cookie)
-    update_attributes({:address => {:postal_code => postal_code } }, cookie)
-  end
-  
-  def locality(cookie=nil)
-    person_hash = get_person_hash(cookie)
-    return "Not found!" if person_hash.nil?
-    return "" if person_hash["address"].nil?
-    return person_hash["address"]["locality"]
-  end
-  
-  def set_locality(locality, cookie)
-    update_attributes({:address => {:locality => locality } }, cookie)
-  end
-  
-  def unstructured_address(cookie=nil)
-    person_hash = get_person_hash(cookie)
-    return "Not found!" if person_hash.nil?
-    return "" if person_hash["address"].nil?
-    return person_hash["address"]["unstructured"]
-  end
-  
-  def phone_number(cookie=nil)
-    person_hash = get_person_hash(cookie)
-    return "Person not found!" if person_hash.nil?
-    
-    return person_hash["phone_number"]
-  end
-  
-  def set_phone_number(number, cookie)
-    update_attributes({:phone_number => number}, cookie)
-  end
-  
-  def email(cookie=nil)
-    if new_record?
-      return form_email ? form_email : ""
-    end
-    person_hash = get_person_hash(cookie)
-    return "Person not found!" if person_hash.nil?
-    
-    return person_hash["email"]
-  end
-  
-  def set_email(email, cookie)
-    update_attributes({:email => email}, cookie)
-  end
-  
-  def password(cookie = nil)
-    if new_record?
-      return form_password ? form_password : ""
-    end
-    person_hash = get_person_hash(cookie)
-    return "Person not found!" if person_hash.nil?
-    
-    return person_hash["password"]
-  end
-  
-  def set_password(password, cookie)
-    update_attributes({:password => password}, cookie)
-  end
-  
-  def description(cookie=nil)
-    person_hash = get_person_hash(cookie)
-    return "Person not found!" if person_hash.nil?
-    
-    return person_hash["description"]
-  end
-  
-  def set_description(description, cookie)
-    update_attributes({:description => description}, cookie)
-  end
-  
-  def update_attributes(params, cookie=nil)
-    if params[:preferences]
-      super(params)
-    else
-      # save is_admin to local database
-      if params.has_key?(:is_admin)
-        is_admin = params[:is_admin]
-        save!
-        params.delete :is_admin
-      end
 
-      # change empty strings to nil
-      params.each { |k,v| params[k] = nil if v == '' }
-      # ASI doesn't allow these fields to be unset
-      params.delete :email if params[:email].nil?
-      params.delete :gender if params[:gender].nil?
-
-      if !params.empty?
-        #Handle name part parameters also if they are in hash root level
-        User.remove_root_level_fields(params, "name", ["given_name", "family_name"])
-        User.remove_root_level_fields(params, "address", ["street_address", "postal_code", "locality"])
-
-        if params["name"] || params[:name]
-          # If name is going to be changed, expire name cache
-          Rails.cache.delete("person_name/#{self.id}")
-          Rails.cache.delete("given_name/#{self.id}")
-        end
-        UserConnection.put_attributes(params.except("password2"), asi_id, cookie)
-      else
-        true
-      end
-    end
-  end
-  
-  def get_person_hash(cookie=nil)
-    cookie = Session.aaltoapps_cookie if cookie.nil?
-    
-    begin
-      person_hash = User.cache_fetch(asi_id,cookie)
-    rescue RestClient::ResourceNotFound => e
-      #Could not find person with that id in ASI Database!
-      return nil
-    end
-    
-    return person_hash["entry"]
-  end
-  
   def is_admin?
     is_admin
   end
+
+  def save(*)
+    save_asi_data
+    super
+  end
+
+  # clear changed ASI attributes on reload
+  def reload
+    @asi_attributes.clear
+    super
+  end
+
+
+  private
 
   def self.cache_fetch(id,cookie)
     # FIXME: CACHING DISABLED DUE PROBLEMS AT ALPHA SERVER
     UserConnection.get_person(id, cookie)  # A line to skip the cache temporarily
     #Rails.cache.fetch(cache_key(id,cookie), :expires_in => PERSON_HASH_CACHE_EXPIRE_TIME) {PersonConnection.get_person(id, cookie)}
   end
-  
-  def self.remove_root_level_fields(params, field_type, fields)
-    fields.each do |field|
-      if params.has_key?(field) && (!params.has_key?(field_type) || !params[field_type].has_key?(field))
-        params.update({field_type => Hash.new}) unless params.has_key?(field_type)
-        params[field_type].update({field => params[field]})
-        params.delete(field)
+
+
+  def asi_attributes
+    @asi_attributes ||= Hash.new
+  end
+
+  def save_asi_data
+    if !@asi_attributes.empty?
+      params = @asi_attributes.dup
+
+      if params["name"] || params[:name]
+        # If name is going to be changed, expire name cache
+        Rails.cache.delete("person_name/#{self.id}")
+        Rails.cache.delete("given_name/#{self.id}")
       end
+      UserConnection.put_attributes(params, asi_id, asi_cookie)
     end
+
+    true
+  end
+
+  def get_person_hash
+    begin
+      person_hash = User.cache_fetch(asi_id, asi_cookie)
+    rescue RestClient::ResourceNotFound => e
+      #Could not find person with that id in ASI Database!
+      return nil
+    end
+
+    return person_hash["entry"]
   end
 
 end

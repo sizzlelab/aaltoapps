@@ -110,7 +110,7 @@
                                 :confirm => _('Are you sure you want to block this product?')
                   %></dd>
             <% end %>
-        <% end; debugger %>
+        <% end %>
         <% if abilities.include?(:promote) && !@product.featured %>
           <dd><%= button_to _("Make featured"), promote_product_path(@product), :method => :put,
                                                 :class => 'smallbutton' %></dd>

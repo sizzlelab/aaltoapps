@@ -4,8 +4,8 @@ class SessionsController < ApplicationController
   def create
     session[:form_username] = params[:username]
     begin
-      @session = Session.create({ :username => params[:username], 
-                                  :password => params[:password] })
+      @new_session = Session.create({ :username => params[:username],
+                                      :password => params[:password] })
                                                           
     rescue RestClient::Unauthorized => e
       flash[:error] = "Login failed"
@@ -14,19 +14,19 @@ class SessionsController < ApplicationController
 
     session[:form_username] = nil
 
-    if @session.person_id  # if not app-only-session and person found in cos
-      user = User.find_by_asi_id(@session.person_id)
+    if @new_session.person_id  # if not app-only-session and person found in cos
+      user = User.find_by_asi_id(@new_session.person_id)
       if !user
         # TODO: Redirect to terms path
-        User.create(:asi_id => @session.person_id)
+        User.create(:asi_id => @new_session.person_id)
       end
-      session[:current_user_id] = User.find_by_asi_id(@session.person_id).id
+      session[:current_user_id] = User.find_by_asi_id(@new_session.person_id).id
       
-      redirect_to root_path and return
+#      redirect_to root_path and return
     end
     
-    session[:cookie] = @session.cookie
-    session[:person_id] = @session.person_id
+    session[:cookie] = @new_session.cookie
+    session[:person_id] = @new_session.person_id
       
     flash[:notice] = [:login_successful, (current_user.given_name + "!").to_s, user_path(current_user)]
     if session[:return_to]

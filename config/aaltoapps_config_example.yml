@@ -8,6 +8,11 @@ development: &non_production_settings
   asi_app_name: aaltoapps
   asi_app_password: insert_password_here  
 
+  consent_versions:
+    fi: FI1
+    en: EN1.5
+    se: SE4
+
 test:
   <<: *non_production_settings
 

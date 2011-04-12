@@ -1,5 +1,5 @@
 <%= form_for @user do |f| %>
-	<% if flash[:error] %>
+  <% if flash[:error] %>
     <div id="error_explanation">
       <h2><%= _("Validation errors prohibited this user from being saved") %>:</h2>
 
@@ -11,10 +11,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label _('Username')+ ' *' %><br />
-    <%= f.text_field :username, :class=>'textfield' %>
-  </div>
+  <% if @user.new_record? %>
+    <div class="field">
+      <%= f.label _('Username')+ ' *' %><br />
+      <%= f.text_field :username, :class=>'textfield' %>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= f.label _('Password')+ ' *' %><br />
@@ -22,7 +24,7 @@
   </div>
   <div class="field">
     <%= f.label _('password again')+ ' *' %><br />
-    <%= f.password_field :password2, :class=>'pwfield' %>
+    <%= f.password_field :password_confirmation, :class=>'pwfield' %>
   </div>
 
   <div class="field">
@@ -84,8 +86,8 @@
   <% else %>
 
     <div class="field">
-      <%= f.check_box :term %>
-      <%= f.label :term, (
+      <%= f.check_box :terms, {}, I18n.locale %>
+      <%= f.label :terms, (
               _('I accept the OtaSizzle "%{link_begin}Terms and Conditions%{link_end}"') % {
                 :link_begin => '<a href="' + html_escape(url_for(:action => :terms)) + '" target="_blank" class="ajax-popup">',
                 :link_end   => '</a>'

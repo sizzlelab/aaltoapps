@@ -75,8 +75,9 @@ class UsersController < ApplicationController
       authorize! :revoke_admin_role, @user if was_admin && !@user.is_admin?
     end
 
+    @user.asi_cookie = session[:cookie]
     respond_to do |format|
-      if @user.update_attributes(params[:user], session[:cookie])
+      if @user.update_attributes(params[:user])
         format.html { redirect_to(:back, :notice => _('User was successfully updated.')) }
         format.xml  { head :ok }
       else

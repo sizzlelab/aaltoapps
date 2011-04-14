@@ -1,9 +1,17 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource :except => [:create, :terms]
+  load_and_authorize_resource :except => [:index, :create, :terms]
 
   # GET /users
   # GET /users.xml
   def index
+    if params[:all].present?
+      authorize! :asi_index, User
+      @users = User.asi_find(params.except(:all))
+    else
+      authorize! :index, User
+      @users = User.accessible_by(current_ability)
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }

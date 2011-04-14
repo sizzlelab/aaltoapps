@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates :password, :confirmation => true
   # terms == the language of the accepted terms and conditions
   validates :terms, :acceptance => { :accept => I18n.locale }
-  attr_accessor :terms
+  attr_accessor :terms, :no_asi_fetch
   
   PERSON_HASH_CACHE_EXPIRE_TIME = 0#15  #ALSO THIS CACHE TEMPORARILY OFF TO TEST PERFORMANCE WIHTOUT IT
   PERSON_NAME_CACHE_EXPIRE_TIME = 3.hours  ## THE CACHE IS TEMPORARILY OFF BECAUSE CAUSED PROBLEMS ON ALPHA: SEE ALSO COMMENTING OUT AT THE PLACE WHER CACHE IS USED!
@@ -35,12 +35,43 @@ class User < ActiveRecord::Base
   # attributes that cannot be unset
   ASI_NONUNSETTABLE_ATTRIBUTES = Set.new [:password, :email, :gender]
 
+  def initialize(attr_values={})
+    asi_id = attr_values.delete(:asi_id) || attr_values.delete('asi_id')
+    @no_asi_fetch = attr_values.delete(:no_asi_fetch) || attr_values.delete('no_asi_fetch')
+
+    # set nested attributes if given as nested hash entries
+    ASI_RW_NESTED_ATTRIBUTES.each do |attr, subattrs|
+      subattr_values = attr_values.delete(attr) || attr_values.delete(attr.to_s)
+      if subattr_values
+        subattrs = [subattrs] unless subattrs.is_a? Enumerable
+        subattrs.each do |subattr|
+          self.send("#{subattr}=", subattr_values[subattr] || subattr_values[subattr.to_s])
+        end
+      end
+    end
+
+    # set nested attributes if given as flat hash entries
+    ASI_RW_NESTED_ATTRIBUTES.values.flatten.each do |attr|
+      value = attr_values.delete(attr) || attr_values.delete(attr.to_s)
+      self.send("#{attr}=", value)  if value
+    end
+
+    # set all other values
+    attr_values.each do |attr, value|
+      asi_attributes[attr.to_s] = value
+    end
+
+    super(:asi_id => asi_id)
+  end
+
   # make getters for readable ASI attributes
   (ASI_RO_ATTRIBUTES + ASI_RW_ATTRIBUTES).each do |attr|
     define_method attr do
-      asi_attributes[attr] ||= begin
+      if asi_attributes.has_key? attr.to_s
+        asi_attributes[attr.to_s]
+      elsif not no_asi_fetch
         p = get_person_hash
-        p && p[attr.to_s]
+        asi_attributes[attr.to_s] = p[attr.to_s]
       end
     end
   end
@@ -119,6 +150,23 @@ class User < ActiveRecord::Base
   
   def self.create(params)
     super(:asi_id => params[:asi_id])
+  end
+
+  # Search users from ASI with given parameters. Returns User records.
+  # If prevent_asi_fetch is true, the User records have no_asi_fetch set,
+  # which means that the record will not try to fetch missing data from ASI
+  # server.
+  def self.asi_find(params={}, prevent_asi_fetch=true)
+    response = UserConnection.find_people(params, Session.aaltoapps_cookie)
+    if response && response['entry'].present?
+      response['entry'].map do |entry|
+        entry[:asi_id] = entry.delete 'id'
+        entry[:no_asi_fetch] = prevent_asi_fetch
+        User.new(entry)
+      end
+    else
+      []
+    end
   end
 
   def is_admin?

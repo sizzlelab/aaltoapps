@@ -7,7 +7,6 @@
     <th><%= _("Firstname") %></th>
     <th><%= _("Lastname") %></th>
     <th><%= _("Type") %></th>
-    <th><%= _("E-mail") %></th>
     <th></th>
     <th></th>
     <th></th>
@@ -19,18 +18,29 @@
     <td><%= user.username %></td>
     <td><%= user.given_name %></td>
     <td><%= user.family_name %></td>
-    <td><%= user.is_admin? ? _('administrator') : _('normal user') %></td>
-    <td><%= user.email %></td>
-    <td><%= button_to _('Show'), user_path(user), :method => :get, :class => 'smallbutton' if can? :show, user %></td>
-    <td><%= button_to _('Edit'), edit_user_path(user), :method => :get, :class => 'smallbutton' if can? :edit, user %></td>
-    <td><%= button_to _('Destroy'), user, :confirm => _('Are you sure?'), :method => :delete, :class => 'smallbutton' if can? :delete, user %></td>
-    <td>
-      <% if user.is_admin? && can?(:revoke_admin_role, user) %>
-        <%= render :partial => '/users/revoke_admin_role', :object => user %>
-      <% elsif !user.is_admin? && can?(:grant_admin_role, user) %>
-        <%= render :partial => '/users/grant_admin_role', :object => user %>
-      <% end %>
-    </td>
+    <td><%= case
+            when user.is_admin? then  _('administrator')
+            when user.persisted? then _('normal user')
+            else                      _('non-local user')
+            end
+        %></td>
+    <% if user.persisted? %>
+      <td><%= button_to _('Show'), user_path(user), :method => :get, :class => 'smallbutton' if can? :show, user %></td>
+      <td><%= button_to _('Edit'), edit_user_path(user), :method => :get, :class => 'smallbutton' if can? :edit, user %></td>
+      <td><%= button_to _('Destroy'), user, :confirm => _('Are you sure?'), :method => :delete, :class => 'smallbutton' if can? :delete, user %></td>
+      <td>
+        <% if user.is_admin? && can?(:revoke_admin_role, user) %>
+          <%= render :partial => '/users/revoke_admin_role', :object => user %>
+        <% elsif !user.is_admin? && can?(:grant_admin_role, user) %>
+          <%= render :partial => '/users/grant_admin_role', :object => user %>
+        <% end %>
+      </td>
+    <% else %>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

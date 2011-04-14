@@ -199,7 +199,7 @@ class User < ActiveRecord::Base
   end
 
   def save_asi_data
-    if !@asi_attributes.empty?
+    if @asi_attributes.present?
       params = @asi_attributes.dup
 
       if params["name"] || params[:name]

@@ -1,10 +1,10 @@
 <%= form_for @user do |f| %>
-  <% if flash[:error] %>
+  <% if flash[:error] || @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= _("Validation errors prohibited this user from being saved") %>:</h2>
 
       <ul>
-      <% flash[:error].each do |msg| %>
+      <% ((flash[:error] || []) + @user.errors.full_messages).each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -86,7 +86,7 @@
   <% else %>
 
     <div class="field">
-      <%= f.check_box :terms, {}, I18n.locale %>
+      <%= f.check_box :terms %>
       <%= f.label :terms, (
               _('I accept the OtaSizzle "%{link_begin}Terms and Conditions%{link_end}"') % {
                 :link_begin => '<a href="' + html_escape(url_for(:action => :terms)) + '" target="_blank" class="ajax-popup">',

@@ -3,10 +3,10 @@ class User < ActiveRecord::Base
   has_many :published, :class_name => "Product", :foreign_key => "publisher_id"
   has_many :comments
   attr_protected :is_admin
-  validates :asi_id, :presence => true
-  validates :password, :confirmation => true
+  validates :username, :password, :email, :presence => { :if => Proc.new { |user| user.asi_id.blank? } }
+  validates :password, :confirmation => { :if => Proc.new { |user| user.password.present? } }
   # terms == the language of the accepted terms and conditions
-  validates :terms, :acceptance => { :accept => I18n.locale }
+  validates :terms, :acceptance => true
   attr_accessor :terms, :no_asi_fetch
   
   PERSON_HASH_CACHE_EXPIRE_TIME = 0#15  #ALSO THIS CACHE TEMPORARILY OFF TO TEST PERFORMANCE WIHTOUT IT
@@ -36,8 +36,10 @@ class User < ActiveRecord::Base
   ASI_NONUNSETTABLE_ATTRIBUTES = Set.new [:password, :email, :gender]
 
   def initialize(attr_values={})
-    asi_id = attr_values.delete(:asi_id) || attr_values.delete('asi_id')
-    @no_asi_fetch = attr_values.delete(:no_asi_fetch) || attr_values.delete('no_asi_fetch')
+    _asi_id, self.asi_cookie, self.terms, self.password_confirmation, self.no_asi_fetch =
+      [:asi_id, :asi_cookie, :terms, :password_confirmation, :no_asi_fetch].map { |attr|
+        attr_values.delete(attr) || attr_values.delete(attr.to_s)
+      }
 
     # set nested attributes if given as nested hash entries
     ASI_RW_NESTED_ATTRIBUTES.each do |attr, subattrs|
@@ -61,7 +63,7 @@ class User < ActiveRecord::Base
       asi_attributes[attr.to_s] = value
     end
 
-    super(:asi_id => asi_id)
+    super(:asi_id => _asi_id)
   end
 
   # make getters for readable ASI attributes
@@ -69,10 +71,17 @@ class User < ActiveRecord::Base
     define_method attr do
       if asi_attributes.has_key? attr.to_s
         asi_attributes[attr.to_s]
-      elsif not no_asi_fetch
+      elsif asi_id && !no_asi_fetch
         p = get_person_hash
         asi_attributes[attr.to_s] = p[attr.to_s]
       end
+    end
+  end
+
+  # make getters for locally set values of write-only attributes
+  ASI_WO_ATTRIBUTES.each do |attr|
+    define_method attr do
+      asi_attributes[attr.to_s]
     end
   end
 
@@ -103,9 +112,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  # reader for locally set password
-  attr_reader :password
-
   # readers for special nested unstructured fields:
 
   def unstructured_name
@@ -121,35 +127,6 @@ class User < ActiveRecord::Base
   attr_writer :asi_cookie
   def asi_cookie
     @asi_cookie || Session.aaltoapps_cookie
-  end
-
-  def self.create_to_asi(params, cookie)
-    # Try to create the person to ASI
-    person_hash = {
-      :person => params.slice(:username, :password, :email).
-                        merge!(:consent => APP_CONFIG.consent_versions[I18n.locale])
-    }
-    response = UserConnection.create_person(person_hash, cookie)
-
-    # Pick id from the response (same id in kassi and ASI DBs)
-    params[:id] = response["entry"]["id"]
-    
-    # Because ASI now associates the used cookie to a session for the newly created user
-    # Change the cookie to nil if it was used (because now it is no more an app-only cookie) 
-    Session.update_aaltoapps_cookie   if  (cookie == Session.aaltoapps_cookie)    
-    
-    # Add name information for the person to ASI 
-    #params["given_name"] = params["given_name"].slice(0, 28)
-    #params["family_name"] = params["family_name"].slice(0, 28)
-    
-    #UserConnection.put_attributes(params.except(:username, :email, :password, :password2, :locale, :terms, :id), params[:id], cookie)
-    
-    # Create locally with less attributes 
-    User.create(:asi_id => params[:id])
-  end
-  
-  def self.create(params)
-    super(:asi_id => params[:asi_id])
   end
 
   # Search users from ASI with given parameters. Returns User records.
@@ -173,11 +150,6 @@ class User < ActiveRecord::Base
     is_admin
   end
 
-  def save(*)
-    save_asi_data
-    super
-  end
-
   # clear changed ASI attributes on reload
   def reload
     @asi_attributes.clear
@@ -186,6 +158,43 @@ class User < ActiveRecord::Base
 
 
   private
+
+  # called by save, save!, update_attributes etc.
+  def create_or_update(*)
+    return false unless valid?
+
+    if asi_id
+      # update user information in ASI
+      if @asi_attributes.present?
+        params = @asi_attributes.dup
+
+        if params["name"] || params[:name]
+          # If name is going to be changed, expire name cache
+          Rails.cache.delete("person_name/#{self.id}")
+          Rails.cache.delete("given_name/#{self.id}")
+        end
+        UserConnection.put_attributes(params, asi_id, asi_cookie)
+      end
+
+    else
+
+      # If no asi_id, try to create a new person to ASI
+      person_hash = {
+        :person => asi_attributes.slice(*%w(username password email)).
+                                  merge!(:consent => APP_CONFIG.consent_versions[I18n.locale])
+      }
+      response = UserConnection.create_person(person_hash, asi_cookie)
+
+      # Because ASI now associates the used cookie to a session for the newly created user
+      # Change the cookie to nil if it was used (because now it is no more an app-only cookie)
+      Session.update_aaltoapps_cookie  if asi_cookie == Session.aaltoapps_cookie
+
+      # Pick id from the response
+      self.asi_id = response["entry"]["id"]
+    end
+
+    super
+  end
 
   def self.cache_fetch(id,cookie)
     # FIXME: CACHING DISABLED DUE PROBLEMS AT ALPHA SERVER
@@ -196,21 +205,6 @@ class User < ActiveRecord::Base
 
   def asi_attributes
     @asi_attributes ||= Hash.new
-  end
-
-  def save_asi_data
-    if @asi_attributes.present?
-      params = @asi_attributes.dup
-
-      if params["name"] || params[:name]
-        # If name is going to be changed, expire name cache
-        Rails.cache.delete("person_name/#{self.id}")
-        Rails.cache.delete("given_name/#{self.id}")
-      end
-      UserConnection.put_attributes(params, asi_id, asi_cookie)
-    end
-
-    true
   end
 
   def get_person_hash

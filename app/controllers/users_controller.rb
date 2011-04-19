@@ -51,18 +51,20 @@ class UsersController < ApplicationController
       flash.now[:error] = [_('In order to register, you must accept the OtaSizzle "Terms and Conditions".')]
       render :action => "new" and return
     end
+
     authorize! :create, User
-    @session = Session.create
-    session[:cookie] = @session.cookie
+    @new_session = Session.create
+    session[:cookie] = @new_session.cookie
+    @user = User.new(params[:user].merge(:asi_cookie => @new_session.cookie))
+    authorize! :grant_admin_role, @user if @user.is_admin?
     begin
-      @user = User.create_to_asi(params[:user], session[:cookie]) 
+      @user.save!
+    rescue ActiveRecord::RecordInvalid
+      render :action => "new" and return
     rescue RestClient::RequestFailed => e
       flash.now[:error] = JSON.parse(e.response.body)["messages"]
-      @user = User.new  
       render :action => "new" and return
     end
-
-    authorize! :grant_admin_role, @user if @user.is_admin?
 
     session[:current_user_id] = @user.id
 

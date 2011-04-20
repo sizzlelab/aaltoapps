@@ -30,6 +30,7 @@ class Ability
         can [:update, :destroy, :add_platform, :request_approval], Product, :publisher_id => user.id
         can :manage, Download, :product => { :publisher_id => user.id }
         can [:show, :update, :destroy], User, :asi_id => user.asi_id
+        can :view_email_address, User, :asi_id => user.asi_id
 
         # these create permissions need to be explicitly checked in the
         # controller code with an object that has the relevant values set

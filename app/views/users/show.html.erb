@@ -26,10 +26,12 @@
   <% end %>
 </p>
 
-<p>
-  <b><%= _("Email") %>:</b>
-  <%= @user.email %>
-</p>
+<% if can? :view_email_address, @user %>
+  <p>
+    <b><%= _("Email") %>:</b>
+    <%= @user.email %>
+  </p>
+<% end %>
 
 <p>
   <b><%= _("Published Products") %>:</b>

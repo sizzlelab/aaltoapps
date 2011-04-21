@@ -13,10 +13,29 @@ development: &non_production_settings
     en: EN1.5
     se: SE4
 
+  email_from_address: "noreply@nowhere.test"
+
+  # set or override Rails configuration
+  rails_config:
+    action_mailer:
+      default_url_options:
+        # options for generating urls in e-mail messages
+        locale: en
+        host: host_name
+        # port: port_number_if_not_default
+        # protocol: https  # uncomment if using https
+
+      delivery_method: :smtp
+      smtp_settings:
+        address: smtp_server_address
+
+
 test:
   <<: *non_production_settings
 
 production:
+  <<: *non_production_settings
+
   asi_url: "http://cos.alpha.sizl.org"
   ssl_asi_url: "https://cos.alpha.sizl.org"  # Can be same as asi_url if no https in use
   asi_app_name: aaltoapps

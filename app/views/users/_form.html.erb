@@ -4,7 +4,12 @@
       <h2><%= _("Validation errors prohibited this user from being saved") %>:</h2>
 
       <ul>
-      <% ((flash[:error] || []) + @user.errors.full_messages).each do |msg| %>
+      <%
+        ( (@user.errors[:terms] ? [_('In order to register, you must accept the OtaSizzle "Terms and Conditions".')] : []) +
+          (flash[:error] || []) +
+          @user.errors.except(:terms).full_messages
+        ).each do |msg|
+      %>
         <li><%= msg %></li>
       <% end %>
       </ul>

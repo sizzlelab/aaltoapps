@@ -43,15 +43,6 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    #check user accept the term
-    if params[:user][:term] == "0"
-      @user = User.new
-      # TODO: make storing temporary values to User and reading them possible
-      # @user.attributes = params[:user]
-      flash.now[:error] = [_('In order to register, you must accept the OtaSizzle "Terms and Conditions".')]
-      render :action => "new" and return
-    end
-
     authorize! :create, User
     @new_session = Session.create
     session[:cookie] = @new_session.cookie

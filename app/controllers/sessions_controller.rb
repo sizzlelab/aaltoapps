@@ -14,15 +14,11 @@ class SessionsController < ApplicationController
 
     session[:form_username] = nil
 
-    if @new_session.person_id  # if not app-only-session and person found in cos
-      user = User.find_by_asi_id(@new_session.person_id)
-      if !user
-        # TODO: Redirect to terms path
-        User.create(:asi_id => @new_session.person_id)
-      end
-      session[:current_user_id] = User.find_by_asi_id(@new_session.person_id).id
-      
-#      redirect_to root_path and return
+    if @new_session.person_id  # if not app-only-session and person found in ASI
+      # Find user record from local database. In not found, create a new record
+      user = User.find_by_asi_id(@new_session.person_id) ||
+             User.create(:asi_id => @new_session.person_id)
+      session[:current_user_id] = user.id
     end
     
     session[:cookie] = @new_session.cookie

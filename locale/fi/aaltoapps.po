@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-04-06 13:16+0300\n"
+"POT-Creation-Date: 2011-04-26 15:49+0300\n"
 "PO-Revision-Date: 2011-04-06 13:16+0200\n"
 "Last-Translator: Pekka Ekman <pekman@cc.hut.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,7 +81,7 @@ msgstr "Oletko varma että haluat poistaa itseltäsi admin-oikeudet?"
 #: app/views/downloads/_list.html.erb:9 app/views/products/show.html.erb:89
 #: app/views/platforms/index.html.erb:20 app/views/comment/_list.html.erb:20
 #: app/views/ratings/index.html.erb:20 app/views/categories/index.html.erb:18
-#: app/views/users/index.html.erb:26
+#: app/views/users/index.html.erb:30
 msgid "Are you sure?"
 msgstr "Oletko varma?"
 
@@ -90,7 +90,7 @@ msgstr "Oletko varma?"
 #: app/views/platforms/edit.html.erb:5 app/views/ratings/new.html.erb:5
 #: app/views/ratings/edit.html.erb:6 app/views/ratings/show.html.erb:20
 #: app/views/categories/show.html.erb:22 app/views/users/new.html.erb:5
-#: app/views/users/edit.html.erb:6 app/views/users/show.html.erb:45
+#: app/views/users/edit.html.erb:6 app/views/users/show.html.erb:47
 msgid "Back"
 msgstr "Takaisin"
 
@@ -171,7 +171,7 @@ msgid "Description"
 msgstr "Kuvaus"
 
 #: app/views/platforms/index.html.erb:19 app/views/ratings/index.html.erb:20
-#: app/views/categories/index.html.erb:18 app/views/users/index.html.erb:26
+#: app/views/categories/index.html.erb:18 app/views/users/index.html.erb:30
 msgid "Destroy"
 msgstr "Tuhoa"
 
@@ -187,7 +187,7 @@ msgstr "Ladattavat tiedostot"
 msgid "Drag an image here!"
 msgstr "Siirrä kuva tähän!"
 
-#: app/views/users/_form.html.erb:29 app/views/users/index.html.erb:10
+#: app/views/users/_form.html.erb:36
 msgid "E-mail"
 msgstr "Sähköposti"
 
@@ -196,8 +196,8 @@ msgstr "Sähköposti"
 #: app/views/layouts/application.html.erb:68
 #: app/views/ratings/show.html.erb:19 app/views/ratings/index.html.erb:19
 #: app/views/categories/show.html.erb:21
-#: app/views/categories/index.html.erb:17 app/views/users/show.html.erb:43
-#: app/views/users/index.html.erb:25
+#: app/views/categories/index.html.erb:17 app/views/users/show.html.erb:45
+#: app/views/users/index.html.erb:29
 msgid "Edit"
 msgstr "Muokkaa"
 
@@ -217,7 +217,7 @@ msgstr "Arvion muokkaus"
 msgid "Editing user"
 msgstr "Käyttäjän muokkaus"
 
-#: app/views/users/show.html.erb:30
+#: app/views/users/show.html.erb:31
 msgid "Email"
 msgstr "Sähköposti"
 
@@ -225,7 +225,7 @@ msgstr "Sähköposti"
 msgid "Featured"
 msgstr "Suositeltu"
 
-#: app/views/users/_form.html.erb:41
+#: app/views/users/_form.html.erb:48
 msgid "Female"
 msgstr "Nainen"
 
@@ -256,7 +256,7 @@ msgid ""
 msgstr ""
 "Hyväksyn OtaSizzlen \"%{link_begin}julkaisijan käyttäjäehdot{link_end}\""
 
-#: app/views/users/_form.html.erb:89
+#: app/views/users/_form.html.erb:96
 msgid "I accept the OtaSizzle \"%{link_begin}Terms and Conditions%{link_end}\""
 msgstr "Hyväksyn OtaSizzlen \"%{link_begin}käyttäjäehdot%{link_end}\""
 
@@ -270,7 +270,7 @@ msgstr "Kuvan URL"
 msgid "Image url"
 msgstr "Kuvan url"
 
-#: app/controllers/users_controller.rb:43
+#: app/views/users/_form.html.erb:8
 msgid ""
 "In order to register, you must accept the OtaSizzle \"Terms and Conditions\"."
 msgstr ""
@@ -324,7 +324,7 @@ msgstr "Arviot"
 msgid "Listing users"
 msgstr "Käyttäjät"
 
-#: app/controllers/users_controller.rb:62
+#: app/controllers/users_controller.rb:63
 msgid "Logged in"
 msgstr "Olet kirjautunut sisään."
 
@@ -340,7 +340,7 @@ msgstr "Kirjaudu sisään"
 msgid "Logout"
 msgstr "Kirjaudu ulos"
 
-#: app/controllers/sessions_controller.rb:44
+#: app/controllers/sessions_controller.rb:40
 msgid "Logout successful."
 msgstr "Olet kirjautunut ulos."
 
@@ -348,7 +348,7 @@ msgstr "Olet kirjautunut ulos."
 msgid "Make featured"
 msgstr "Tee suositeltu"
 
-#: app/views/users/_form.html.erb:41
+#: app/views/users/_form.html.erb:48
 msgid "Male"
 msgstr "Mies"
 
@@ -383,7 +383,7 @@ msgstr "Uusi alusta"
 msgid "New Rating"
 msgstr "Uusi arvio"
 
-#: app/views/users/index.html.erb:40
+#: app/views/users/index.html.erb:50
 msgid "New User"
 msgstr "Uusi käyttäjä"
 
@@ -411,7 +411,7 @@ msgstr "Ei sovelluksia."
 msgid "Number of views"
 msgstr "Katselukerrat"
 
-#: app/views/sessions/index.html.erb:9 app/views/users/_form.html.erb:20
+#: app/views/sessions/index.html.erb:9 app/views/users/_form.html.erb:27
 msgid "Password"
 msgstr "Salasana"
 
@@ -457,11 +457,11 @@ msgstr "Katselukerrat: "
 msgid "Product"
 msgstr "Sovellus"
 
-#: app/controllers/products_controller.rb:128
+#: app/controllers/products_controller.rb:130
 msgid "Product was successfully created."
 msgstr "Sovellus luotiin onnistuneesti"
 
-#: app/controllers/products_controller.rb:146
+#: app/controllers/products_controller.rb:148
 msgid "Product was successfully updated."
 msgstr "Sovellus päivitettiin onnistuneesti."
 
@@ -481,7 +481,7 @@ msgstr "Julkaisupäivä"
 msgid "Published"
 msgstr "Julkaistu"
 
-#: app/views/users/show.html.erb:35
+#: app/views/users/show.html.erb:37
 msgid "Published Products"
 msgstr "Julkaistut sovellukset"
 
@@ -510,7 +510,7 @@ msgstr "Arviota ei luotu/päivitetty"
 msgid "Rating was successfully created/updated."
 msgstr "Arvio luotiin/päivitettiin onnistuneesti."
 
-#: app/views/users/_form.html.erb:99 app/views/users/_login_menu.html.erb:3
+#: app/views/users/_form.html.erb:106 app/views/users/_login_menu.html.erb:3
 msgid "Register"
 msgstr "Rekisteröidy"
 
@@ -539,7 +539,7 @@ msgstr "Pyydä hyväksyntää"
 msgid "Revoke administrator role"
 msgstr "Poista admin-oikeudet"
 
-#: app/views/users/_form.html.erb:99
+#: app/views/users/_form.html.erb:106
 msgid "Save"
 msgstr "Tallenna"
 
@@ -553,7 +553,7 @@ msgstr "Hakutulokset"
 
 #: app/views/platforms/index.html.erb:17 app/views/ratings/edit.html.erb:5
 #: app/views/ratings/index.html.erb:18 app/views/categories/index.html.erb:16
-#: app/views/users/edit.html.erb:5 app/views/users/index.html.erb:24
+#: app/views/users/edit.html.erb:5 app/views/users/index.html.erb:28
 msgid "Show"
 msgstr "Näytä"
 
@@ -587,7 +587,7 @@ msgstr "Tyyppi"
 msgid "URL"
 msgstr "URL"
 
-#: app/views/users/_form.html.erb:41
+#: app/views/users/_form.html.erb:48
 msgid "Unspecified"
 msgstr "Määrittelemätön"
 
@@ -599,11 +599,11 @@ msgstr "Käyttäjä"
 msgid "User rating"
 msgstr "Käyttäjän arvio"
 
-#: app/controllers/users_controller.rb:80
+#: app/controllers/users_controller.rb:82
 msgid "User was successfully updated."
 msgstr "Käyttäjä päivitettiin onnistuneesti."
 
-#: app/views/sessions/index.html.erb:7 app/views/users/_form.html.erb:15
+#: app/views/sessions/index.html.erb:7 app/views/users/_form.html.erb:21
 #: app/views/users/show.html.erb:4 app/views/users/index.html.erb:6
 msgid "Username"
 msgstr "Käyttäjänimi"
@@ -697,7 +697,11 @@ msgstr "kirjaudu ulos"
 msgid "no rating"
 msgstr "ei arviota"
 
-#: app/views/users/show.html.erb:24 app/views/users/index.html.erb:22
+#: app/views/users/index.html.erb:24
+msgid "non-local user"
+msgstr "ei-paikallinen käyttäjä"
+
+#: app/views/users/show.html.erb:24 app/views/users/index.html.erb:23
 msgid "normal user"
 msgstr "normaali käyttäjä"
 
@@ -705,7 +709,7 @@ msgstr "normaali käyttäjä"
 msgid "not yet rated"
 msgstr "ei vielä arvioitu"
 
-#: app/views/users/_form.html.erb:24
+#: app/views/users/_form.html.erb:31
 msgid "password again"
 msgstr "salasana uudestaan"
 

@@ -13,6 +13,8 @@ development: &non_production_settings
     en: EN1.5
     se: SE4
 
+  session_expiration: 240 # in minutes
+
   email_from_address: "noreply@nowhere.test"
 
   # set or override Rails configuration

@@ -1,46 +1,36 @@
-<div class="<%= cycle("browse_product_left", "browse_product_right", :name=>'browse_products') -%>">
-  <div class="browse_product_picture">
-    <%= link_to( image_tag(product.photo.url(:thumb), :size => "75x75", :border => 0), product ) %>
-  </div>
-  <div class="browse_product_info">
-    <div class="browse_row"><%= link_to product.name, product %></div>
-    <div class="browse_row"><%= _("Publisher:") %> <%= link_to product.publisher.username, product.publisher %></div>
-    <div class="browse_row"><%= _("Popularity: ") %><%= product.popularity %></div>
-    <div class="browse_row"><%= _("Rating") %>:
-      <%= render :partial =>'ratings/rating',
-                 :object => product.avg_rating,
-                 :locals => { :empty_message => '' } %>
-    </div>
+<div id='product-<%= product.id %>' class="product">
+
+    <%= link_to( image_tag(product.photo.url(:thumb), :size => "100x100", :border => 0), product ) %>
+    <br/>
+    <span id='product-name'><%= link_to product.name, product %></span>
+    <%= _("Publisher:") %> <%= link_to product.publisher.username, product.publisher %>
 
     <% if [:myapps, :approval].include?(@view_type) || (logged_in? && current_user.is_admin?) %>
-      <span class="product_admin"><%= approval_status product %>
+      <span class="product_admin"> Status <%= approval_status product %>
         <% if product.is_approved? %>
           <%= button_to(_("Block"), { :action => :block, :id => product.id },
-                        :method => :put, :class => 'smallbutton',
+                        :method => :put,
                         :confirm => _('Are you sure you want to block this product?')
                        ) if can? :block, product %>
         <% else %>
           <%= button_to(_("Request approval"), { :action => :request_approval, :id => product.id },
-                        :method => :put, :class => 'smallbutton'
+                        :method => :put,
                        ) if product.approval_state != 'pending' && can?(:request_approval, product) %>
           <%= button_to(_("Approve"), { :action => :approve, :id => product.id },
-                        :method => :put, :class => 'smallbutton',
+                        :method => :put,
                         :confirm => _('Are you sure you want to approve this product? (Remember to delete any development comments from the application profile)')
                        ) if can? :approve, product %>
         <% end %>
       </span>
     <% end %>
 
-    <div class="browse_row">
-      <% if @view_type == :myapps %>
-        <%= button_to _("Edit"), edit_product_path(product), :method => :get,
-                                 :class => 'smallbutton' if can? :edit, product %>
-        <%= button_to _('Delete'), product, :class => 'smallbutton', :method => :delete,
-                                   :confirm => _('Are you sure?') if can? :delete, product %>
-      <% end %>
-    </div>
+  <div class='product-description'><%= product.description.slice(0,120) %> </div>
 
-  </div>
-  <div class="browse_product_desc"><%= product.description %> </div>
+	<script type='text/javascript'>
+		jQuery('#product-<%= product.id %>').hover( function() {
+			jQuery(this).toggleClass('product-mouseover');
+			jQuery(this).find('.product-description').toggle();
+		} );
+	</script>
 
 </div>

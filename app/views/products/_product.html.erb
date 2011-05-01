@@ -2,8 +2,11 @@
 
     <%= link_to( image_tag(product.photo.url(:thumb), :size => "100x100", :border => 0), product ) %>
     <br/>
-    <span id='product-name'><%= link_to product.name, product %></span>
-    <%= _("Publisher:") %> <%= link_to product.publisher.username, product.publisher %>
+
+    <div id='product-detail'>
+	<span id='product-name'><%= link_to product.name, product %></span>
+	<%= _("Publisher:") %> <%= link_to product.publisher.username, product.publisher %>
+    </div>
 
     <% if [:myapps, :approval].include?(@view_type) || (logged_in? && current_user.is_admin?) %>
       <span class="product_admin"> Status <%= approval_status product %>
@@ -24,12 +27,16 @@
       </span>
     <% end %>
 
-  <div class='product-description'><%= product.description.slice(0,120) %> </div>
+  <div class='product-description'>
+	<span id='product-name'><%= link_to product.name, product %></span>
+	<%= product.description.slice(0,120) %>
+  </div>
 
 	<script type='text/javascript'>
 		jQuery('#product-<%= product.id %>').hover( function() {
 			jQuery(this).toggleClass('product-mouseover');
 			jQuery(this).find('.product-description').toggle();
+			jQuery(this).find('#product-detail').toggle();
 		} );
 	</script>
 

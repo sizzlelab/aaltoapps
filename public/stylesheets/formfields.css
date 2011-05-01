@@ -83,14 +83,3 @@
 	-webkit-box-shadow: 0 0 7px #003177;
 	box-shadow: 0 0 7px #003177;
 }
-
-.pwfield {
-	background: #2E2E2E;
-	color: white; 
-	border: none;
-	padding: 0.2em;
-	-moz-border-radius: 0.5em;
-	-webkit-border-radius: 0.5em;
-  border-radius: 0.5em;
-	
-}

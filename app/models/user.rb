@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   # supported ASI attributes:
 
   # read-only
-  ASI_RO_ATTRIBUTES = [:username, :updated_at]
+  ASI_RO_ATTRIBUTES = [:username]
 
   # read/write
   ASI_RW_ATTRIBUTES = [:name, :address, :phone_number, :email,
@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
         asi_attributes[attr.to_s]
       elsif asi_id && !no_asi_fetch
         p = get_person_hash
-        asi_attributes[attr.to_s] = p[attr.to_s]
+        p && p[attr.to_s]
       end
     end
   end
@@ -124,6 +124,24 @@ class User < ActiveRecord::Base
     a && a['unstructured']
   end
 
+  # special reader for ASI's updated_at to prevent name collision with local updated_at
+  def asi_updated_at
+    asi_attributes['updated_at'] ||
+      if asi_id && !no_asi_fetch
+        get_person_hash['updated_at']
+      else
+        nil
+      end
+  end
+
+  # return ASI attributes as hash
+  def asi_data(include_email = false)
+    hash = asi_attributes
+    hash.reverse_merge!(get_person_hash)  if asi_id && !no_asi_fetch
+    hash.delete('email')  unless include_email
+    hash
+  end
+
   attr_writer :asi_cookie
   def asi_cookie
     @asi_cookie || Session.aaltoapps_cookie
@@ -154,6 +172,24 @@ class User < ActiveRecord::Base
   def reload
     @asi_attributes.clear
     super
+  end
+
+  def to_xml(options = {}, &block)
+    options[:only] = Array.wrap(options[:only])
+    options[:except] = Array.wrap(options[:except])
+    options[:methods] = Array.wrap(options[:methods])
+
+    if  (options[:only].empty? || options[:only].member?('asi_data') || options[:only].member?(:asi_data)) &&
+        ! (options[:except].member?('asi_data') || options[:except].member?(:asi_data))
+      options[:methods] |= [ :asi_data ]
+    end
+    if options[:only].empty?
+      options[:only] = attributes.keys - options[:except].map(&:to_s)
+    else
+      options[:only] &= attributes.keys + attributes.keys.map(&:to_sym)
+    end
+
+    super(options, &block)
   end
 
 

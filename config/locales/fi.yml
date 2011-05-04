@@ -168,7 +168,26 @@ fi:
 
     attributes:
       user:
-        # TODO: täydennä
+        username: Käyttäjätunnus
+        password: Salasana
+        password_confirmation: Salasana uudestaan
+        email: Sähköposti
+
+        name: Nimi
+        given_name: Etunimi
+        family_name: Sukunimi
+
+        address: Osoite
+        street_address: Katuosoite
+        postal_code: Postinumero
+        locality: Paikkakunta
+
+        birthdate: Syntymäpäivä
+        gender: Sukupuoli
+        phone_number: Puhelinnumero
+        website: WWW-sivu
+        description: Kuvaus
+
       product:
         name: Tuotteen nimi
         description: Kuvaus

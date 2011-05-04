@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :ratings, :dependent => :destroy
   has_many :published, :class_name => "Product", :foreign_key => "publisher_id"
   has_many :comments
-  attr_protected :is_admin
+  attr_protected :is_admin, :receive_admin_email
   validates :username, :password, :email, :presence => { :if => Proc.new { |user| user.asi_id.blank? } }
   validates :password, :confirmation => { :if => Proc.new { |user| user.password.present? } }
   # terms == the language of the accepted terms and conditions

@@ -18,22 +18,22 @@
 
   <% if @user.new_record? %>
     <div class="field">
-      <%= f.label _('Username')+ ' *' %><br />
+      <%= f.label :username %> *<br />
       <%= f.text_field :username, :class=>'textfield' %>
     </div>
   <% end %>
 
   <div class="field">
-    <%= f.label _('Password')+ ' *' %><br />
+    <%= f.label :password %><% if @user.new_record? %> *<% end %><br />
     <%= f.password_field :password, :class=>'pwfield' %>
   </div>
   <div class="field">
-    <%= f.label _('password again')+ ' *' %><br />
+    <%= f.label :password_confirmation %><% if @user.new_record? %> *<% end %><br />
     <%= f.password_field :password_confirmation, :class=>'pwfield' %>
   </div>
 
   <div class="field">
-    <%= f.label _('E-mail')+ ' *' %><br />
+    <%= f.label :email %> *<br />
     <%= f.text_field :email, :class=>'textfield' %>
   </div>
 
@@ -87,6 +87,14 @@
       <%= f.label :locality %><br />
       <%= f.text_field :locality, :class => 'textfield' %>
     </div>
+
+    <% if (@user.receive_admin_email && can?(:unset_receive_admin_email, @user)) ||
+          (!@user.receive_admin_email && can?(:set_receive_admin_email, @user)) %>
+      <div class="field">
+        <%= f.label :receive_admin_email, _('Receive admin e-mail') %><br />
+        <%= f.check_box :receive_admin_email %>
+      </div>
+    <% end %>
 
   <% else %>
 

@@ -186,6 +186,11 @@ en:
       full_messages:
         format: "%{attribute}%{message}"
 
-      attributes:
+    attributes:
+      user:
+        email: E-mail
+        password_confirmation: Password again
+
+      product:
         name: Name of the product
         platforms: Platform

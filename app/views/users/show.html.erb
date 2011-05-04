@@ -30,6 +30,9 @@
   <p>
     <b><%= _("Email") %>:</b>
     <%= @user.email %>
+    <% if @user.receive_admin_email %>
+      (<%= _("receives admin email") %>)
+    <% end %>
   </p>
 <% end %>
 

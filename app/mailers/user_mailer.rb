@@ -2,15 +2,15 @@ class UserMailer < ActionMailer::Base
   default :from => APP_CONFIG.email_from_address
 
   def new_product(product)
-    # send mail to all administrators
-    @recipients = User.where(:is_admin => true)
+    # send mail to administrators
+    @recipients = User.where(:receive_admin_email => true)
     @product = product
     mail :to => @recipients.map(&:email)
   end
 
   def product_approval_request(product)
-    # send mail to all administrators
-    @recipients = User.where(:is_admin => true)
+    # send mail to administrators
+    @recipients = User.where(:receive_admin_email => true)
     @product = product
     mail :to => @recipients.map(&:email)
   end

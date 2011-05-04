@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-04-26 15:49+0300\n"
+"POT-Creation-Date: 2011-05-02 18:14+0300\n"
 "PO-Revision-Date: 2011-02-02 15:23+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,7 +89,7 @@ msgstr ""
 #: app/views/platforms/edit.html.erb:5 app/views/ratings/new.html.erb:5
 #: app/views/ratings/edit.html.erb:6 app/views/ratings/show.html.erb:20
 #: app/views/categories/show.html.erb:22 app/views/users/new.html.erb:5
-#: app/views/users/edit.html.erb:6 app/views/users/show.html.erb:47
+#: app/views/users/edit.html.erb:6 app/views/users/show.html.erb:50
 msgid "Back"
 msgstr ""
 
@@ -186,16 +186,12 @@ msgstr ""
 msgid "Drag an image here!"
 msgstr ""
 
-#: app/views/users/_form.html.erb:36
-msgid "E-mail"
-msgstr ""
-
 #: app/views/products/show.html.erb:84 app/views/platforms/show.html.erb:22
 #: app/views/platforms/index.html.erb:18
 #: app/views/layouts/application.html.erb:68
 #: app/views/ratings/show.html.erb:19 app/views/ratings/index.html.erb:19
 #: app/views/categories/show.html.erb:21
-#: app/views/categories/index.html.erb:17 app/views/users/show.html.erb:45
+#: app/views/categories/index.html.erb:17 app/views/users/show.html.erb:48
 #: app/views/users/index.html.erb:29
 msgid "Edit"
 msgstr ""
@@ -254,7 +250,7 @@ msgid ""
 "%{link_end}\""
 msgstr ""
 
-#: app/views/users/_form.html.erb:96
+#: app/views/users/_form.html.erb:104
 msgid "I accept the OtaSizzle \"%{link_begin}Terms and Conditions%{link_end}\""
 msgstr ""
 
@@ -337,7 +333,7 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: app/controllers/sessions_controller.rb:40
+#: app/controllers/sessions_controller.rb:41
 msgid "Logout successful."
 msgstr ""
 
@@ -408,7 +404,7 @@ msgstr ""
 msgid "Number of views"
 msgstr ""
 
-#: app/views/sessions/index.html.erb:9 app/views/users/_form.html.erb:27
+#: app/views/sessions/index.html.erb:9
 msgid "Password"
 msgstr ""
 
@@ -478,7 +474,7 @@ msgstr ""
 msgid "Published"
 msgstr ""
 
-#: app/views/users/show.html.erb:37
+#: app/views/users/show.html.erb:40
 msgid "Published Products"
 msgstr ""
 
@@ -507,7 +503,11 @@ msgstr ""
 msgid "Rating was successfully created/updated."
 msgstr ""
 
-#: app/views/users/_form.html.erb:106 app/views/users/_login_menu.html.erb:3
+#: app/views/users/_form.html.erb:94
+msgid "Receive admin e-mail"
+msgstr ""
+
+#: app/views/users/_form.html.erb:114 app/views/users/_login_menu.html.erb:3
 msgid "Register"
 msgstr ""
 
@@ -536,7 +536,7 @@ msgstr ""
 msgid "Revoke administrator role"
 msgstr ""
 
-#: app/views/users/_form.html.erb:106
+#: app/views/users/_form.html.erb:114
 msgid "Save"
 msgstr ""
 
@@ -596,12 +596,12 @@ msgstr ""
 msgid "User rating"
 msgstr ""
 
-#: app/controllers/users_controller.rb:82
+#: app/controllers/users_controller.rb:89
 msgid "User was successfully updated."
 msgstr ""
 
-#: app/views/sessions/index.html.erb:7 app/views/users/_form.html.erb:21
-#: app/views/users/show.html.erb:4 app/views/users/index.html.erb:6
+#: app/views/sessions/index.html.erb:7 app/views/users/show.html.erb:4
+#: app/views/users/index.html.erb:6
 msgid "Username"
 msgstr ""
 
@@ -706,16 +706,16 @@ msgstr ""
 msgid "not yet rated"
 msgstr ""
 
-#: app/views/users/_form.html.erb:31
-msgid "password again"
-msgstr ""
-
 #: app/views/layouts/application.html.erb:231
 msgid "publish"
 msgstr ""
 
 #: app/helpers/products_helper.rb:9
 msgid "published"
+msgstr ""
+
+#: app/views/users/show.html.erb:34
+msgid "receives admin email"
 msgstr ""
 
 #: app/views/platforms/_login_menu.html.erb:3

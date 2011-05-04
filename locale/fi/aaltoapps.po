@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-04-26 15:49+0300\n"
+"POT-Creation-Date: 2011-05-02 18:14+0300\n"
 "PO-Revision-Date: 2011-04-06 13:16+0200\n"
 "Last-Translator: Pekka Ekman <pekman@cc.hut.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,7 +90,7 @@ msgstr "Oletko varma?"
 #: app/views/platforms/edit.html.erb:5 app/views/ratings/new.html.erb:5
 #: app/views/ratings/edit.html.erb:6 app/views/ratings/show.html.erb:20
 #: app/views/categories/show.html.erb:22 app/views/users/new.html.erb:5
-#: app/views/users/edit.html.erb:6 app/views/users/show.html.erb:47
+#: app/views/users/edit.html.erb:6 app/views/users/show.html.erb:50
 msgid "Back"
 msgstr "Takaisin"
 
@@ -187,16 +187,12 @@ msgstr "Ladattavat tiedostot"
 msgid "Drag an image here!"
 msgstr "Siirrä kuva tähän!"
 
-#: app/views/users/_form.html.erb:36
-msgid "E-mail"
-msgstr "Sähköposti"
-
 #: app/views/products/show.html.erb:84 app/views/platforms/show.html.erb:22
 #: app/views/platforms/index.html.erb:18
 #: app/views/layouts/application.html.erb:68
 #: app/views/ratings/show.html.erb:19 app/views/ratings/index.html.erb:19
 #: app/views/categories/show.html.erb:21
-#: app/views/categories/index.html.erb:17 app/views/users/show.html.erb:45
+#: app/views/categories/index.html.erb:17 app/views/users/show.html.erb:48
 #: app/views/users/index.html.erb:29
 msgid "Edit"
 msgstr "Muokkaa"
@@ -256,7 +252,7 @@ msgid ""
 msgstr ""
 "Hyväksyn OtaSizzlen \"%{link_begin}julkaisijan käyttäjäehdot{link_end}\""
 
-#: app/views/users/_form.html.erb:96
+#: app/views/users/_form.html.erb:104
 msgid "I accept the OtaSizzle \"%{link_begin}Terms and Conditions%{link_end}\""
 msgstr "Hyväksyn OtaSizzlen \"%{link_begin}käyttäjäehdot%{link_end}\""
 
@@ -340,7 +336,7 @@ msgstr "Kirjaudu sisään"
 msgid "Logout"
 msgstr "Kirjaudu ulos"
 
-#: app/controllers/sessions_controller.rb:40
+#: app/controllers/sessions_controller.rb:41
 msgid "Logout successful."
 msgstr "Olet kirjautunut ulos."
 
@@ -411,7 +407,7 @@ msgstr "Ei sovelluksia."
 msgid "Number of views"
 msgstr "Katselukerrat"
 
-#: app/views/sessions/index.html.erb:9 app/views/users/_form.html.erb:27
+#: app/views/sessions/index.html.erb:9
 msgid "Password"
 msgstr "Salasana"
 
@@ -481,7 +477,7 @@ msgstr "Julkaisupäivä"
 msgid "Published"
 msgstr "Julkaistu"
 
-#: app/views/users/show.html.erb:37
+#: app/views/users/show.html.erb:40
 msgid "Published Products"
 msgstr "Julkaistut sovellukset"
 
@@ -510,7 +506,11 @@ msgstr "Arviota ei luotu/päivitetty"
 msgid "Rating was successfully created/updated."
 msgstr "Arvio luotiin/päivitettiin onnistuneesti."
 
-#: app/views/users/_form.html.erb:106 app/views/users/_login_menu.html.erb:3
+#: app/views/users/_form.html.erb:94
+msgid "Receive admin e-mail"
+msgstr "Vastaanota ylläpidon sähköpostia"
+
+#: app/views/users/_form.html.erb:114 app/views/users/_login_menu.html.erb:3
 msgid "Register"
 msgstr "Rekisteröidy"
 
@@ -539,7 +539,7 @@ msgstr "Pyydä hyväksyntää"
 msgid "Revoke administrator role"
 msgstr "Poista admin-oikeudet"
 
-#: app/views/users/_form.html.erb:106
+#: app/views/users/_form.html.erb:114
 msgid "Save"
 msgstr "Tallenna"
 
@@ -599,14 +599,14 @@ msgstr "Käyttäjä"
 msgid "User rating"
 msgstr "Käyttäjän arvio"
 
-#: app/controllers/users_controller.rb:82
+#: app/controllers/users_controller.rb:89
 msgid "User was successfully updated."
 msgstr "Käyttäjä päivitettiin onnistuneesti."
 
-#: app/views/sessions/index.html.erb:7 app/views/users/_form.html.erb:21
-#: app/views/users/show.html.erb:4 app/views/users/index.html.erb:6
+#: app/views/sessions/index.html.erb:7 app/views/users/show.html.erb:4
+#: app/views/users/index.html.erb:6
 msgid "Username"
-msgstr "Käyttäjänimi"
+msgstr "Käyttäjätunnus"
 
 #: app/views/layouts/application.html.erb:262
 msgid "Users"
@@ -709,10 +709,6 @@ msgstr "normaali käyttäjä"
 msgid "not yet rated"
 msgstr "ei vielä arvioitu"
 
-#: app/views/users/_form.html.erb:31
-msgid "password again"
-msgstr "salasana uudestaan"
-
 #: app/views/layouts/application.html.erb:231
 msgid "publish"
 msgstr "julkaise"
@@ -720,6 +716,10 @@ msgstr "julkaise"
 #: app/helpers/products_helper.rb:9
 msgid "published"
 msgstr "julkaistu"
+
+#: app/views/users/show.html.erb:34
+msgid "receives admin email"
+msgstr "vastaanottaa ylläpidon sähköpostia"
 
 #: app/views/platforms/_login_menu.html.erb:3
 msgid "register"

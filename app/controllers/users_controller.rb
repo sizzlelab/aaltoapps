@@ -71,9 +71,16 @@ class UsersController < ApplicationController
     # if admin status changes, check authorization for the change
     if params[:user].has_key?(:is_admin)
       was_admin = @user.is_admin?
-      @user.is_admin = params[:user][:is_admin]
+      @user.is_admin = params[:user].delete :is_admin
       authorize! :grant_admin_role, @user if !was_admin && @user.is_admin?
       authorize! :revoke_admin_role, @user if was_admin && !@user.is_admin?
+    end
+
+    if params[:user].has_key?(:receive_admin_email)
+      prev_val = @user.receive_admin_email
+      @user.receive_admin_email = params[:user].delete :receive_admin_email
+      authorize! :set_receive_admin_email, @user if !prev_val && @user.receive_admin_email
+      authorize! :unset_receive_admin_email, @user if prev_val && !@user.receive_admin_email
     end
 
     @user.asi_cookie = session[:cookie]

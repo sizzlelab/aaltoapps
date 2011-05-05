@@ -1,4 +1,4 @@
 <% message.subject = 'Aalto Apps: approval request' %>
 User <%= @product.publisher.username %> requests approval for this product:
   name: <%= @product.name %>
-  url: <%= product_url @product %>
+  url: <%= product_url @product, :locale => @locale %>

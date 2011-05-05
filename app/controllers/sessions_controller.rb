@@ -25,11 +25,14 @@ class SessionsController < ApplicationController
     session[:person_id] = @new_session.person_id
       
     flash[:notice] = [:login_successful, ((current_user.given_name || current_user.username) + "!").to_s, user_path(current_user)]
+
+    # redirect using user's preferred locale, if possible
     if session[:return_to]
+      session[:return_to].merge!(:locale => current_user.language)  if session.is_a? Hash
       redirect_to session[:return_to]
       session[:return_to] = nil
     else
-      redirect_to root_path
+      redirect_to root_path(:locale => current_user.language)
     end
   end
   

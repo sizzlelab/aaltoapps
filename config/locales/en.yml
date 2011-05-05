@@ -190,6 +190,7 @@ en:
       user:
         email: E-mail
         password_confirmation: Password again
+        language: Preferred language
 
       product:
         name: Name of the product

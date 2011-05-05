@@ -45,7 +45,7 @@ protected
     elsif request.fullpath == '/'
       # redirect main page url without a locale string
       # to an url with a proper locale string
-      locale = FastGettext.best_locale_in(request.env['HTTP_ACCEPT_LANGUAGE']) || 'en'
+      locale = FastGettext.best_locale_in(request.env['HTTP_ACCEPT_LANGUAGE']) || APP_CONFIG.fallback_locale || 'en'
       redirect_to("/#{locale}")
     else
       raise ActionController::RoutingError.new('No locale in path')

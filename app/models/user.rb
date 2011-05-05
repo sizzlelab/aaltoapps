@@ -229,6 +229,9 @@ class User < ActiveRecord::Base
       self.asi_id = response["entry"]["id"]
     end
 
+    # if language not set, set it to fallback value
+    language ||= APP_CONFIG.fallback_locale
+
     super
   end
 

@@ -172,6 +172,7 @@ fi:
         password: Salasana
         password_confirmation: Salasana uudestaan
         email: Sähköposti
+        language: Ensisijainen kieli
 
         name: Nimi
         given_name: Etunimi

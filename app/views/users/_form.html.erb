@@ -33,6 +33,13 @@
   </div>
 
   <div class="field">
+    <%= f.label :language %> *<br />
+    <%= f.select :language, @available_locales.map { |l| [l[:name], l[:id]] },
+                            { :selected => @user.language || I18n.locale.to_s },
+                            { :class => 'otherfield' } %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %> *<br />
     <%= f.text_field :email, :class=>'textfield' %>
   </div>

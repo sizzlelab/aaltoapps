@@ -35,18 +35,13 @@
   <div class="browse_products">
     <h1><%= title %></h1>
 
-    <%=
-      link_to(_('Publication date'), products_path_with_params(:sort => 'created_at')) + raw('&nbsp;&nbsp;|&nbsp;&nbsp;') +
-      link_to(_('Popularity'),       products_path_with_params(:sort => 'popularity')) + raw('&nbsp;&nbsp;|&nbsp;&nbsp;') +
-      link_to(_('User rating'),      products_path_with_params(:sort => 'avg_rating')) +
-      if @view_type == :index && @platform.blank?
-        raw('&nbsp;&nbsp;|&nbsp;&nbsp;') +
-        link_to(_('Featured apps'),  products_path_with_params(:sort => 'featured'))
-      else
-        ''
-      end
-    %>
-    <br /><br />
+	<ul id='product_selection_bar'>
+	<li><%= link_to(_('Publication date'), products_path_with_params(:sort => 'created_at')) %></li>
+	<li><%= link_to(_('Popularity'),       products_path_with_params(:sort => 'popularity')) %></li>
+	<li><%= link_to(_('User rating'),      products_path_with_params(:sort => 'avg_rating')) %></li>
+      	<% if @view_type == :index && @platform.blank? %>
+       		<li><%= link_to(_('Featured apps'),  products_path_with_params(:sort => 'featured')) %></li>
+	<% end %>
 
     <%= render :partial=>'product', :collection => @products %>
   </div>

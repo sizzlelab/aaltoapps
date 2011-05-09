@@ -38,7 +38,7 @@ class UserMailer < ActionMailer::Base
   def mail_with_locale(recipients, locale=nil)
     locale = recipients.language || APP_CONFIG.fallback_locale  if !locale && recipients.respond_to?(:language)
     @locale = locale
-    mail :to => Array.wrap(recipients).map(&:email),
-         :template_name => "#{action_name}.#{locale}"
+    @product_url = product_url(@product, :locale => locale)  if @product
+    mail :to => Array.wrap(recipients).map(&:email)
   end
 end

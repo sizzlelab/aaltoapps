@@ -97,3 +97,12 @@ div.field, div.actions {
 	font-size: 60%;
 	text-align: center;
 }
+
+#product_selection_bar li {
+	float: left;
+	list-style: none;
+	margin-right: 10px;
+	padding: 5px;
+	border: 1px solid black;
+	border-radius: 5px;
+}

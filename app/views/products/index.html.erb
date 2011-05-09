@@ -43,6 +43,8 @@
        		<li><%= link_to(_('Featured apps'),  products_path_with_params(:sort => 'featured')) %></li>
 	<% end %>
 
+<div class="clear"></div>
+
     <%= render :partial=>'product', :collection => @products %>
   </div>
 

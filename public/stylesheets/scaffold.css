@@ -91,3 +91,9 @@ div.field, div.actions {
 	list-style: none;
   //border: solid green;
 }
+
+.footer_text {
+	margin-top: 10px;
+	font-size: 60%;
+	margin-left: 50px;
+}

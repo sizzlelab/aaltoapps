@@ -65,22 +65,93 @@
       <dd><%= word_wrap(@product.description) %></dd>
     </dl>
 
-    <% if (can_edit, can_delete = can?(:edit, @product), can?(:delete, @product)).any? %>
-      <dl id="product-admin">
-        <dt><%= _("Admin") %>:</dt>
-        <dd><%= button_to _('Edit'), edit_product_path(@product), :method => :get,
-                                     :class => "smallbutton" if can_edit %></dd>
-        <dd><%= button_to _('Delete'), @product, :class=>"smallbutton", :method => :delete,
-                                       :confirm => _('Are you sure?') if can_delete %></dd>
+    <% if @product.featured %>
+      <dl id="product-featured">
+        <dt><%= _("Featured") %>:</dt>
+        <dd>✓</dd>
       </dl>
     <% end %>
-		<br>
-    <%=button_to _('Report issue'), 'http://www.sizzlelab.org/contact', :class => 'smallbutton', :method => :get %>
+
+    <%
+      abilities = Set.new(
+        [:edit, :delete, :promote, :demote, :block, :approve, :request_approval].
+          find_all { |action| can? action, @product } )
+      unless abilities.empty?
+    %>
+      <dl id="product-admin">
+        <dt><%= _("Admin") %>:</dt>
+        <% if abilities.include? :edit %>
+          <dd><%= button_to _('Edit'), edit_product_path(@product), :method => :get,
+                                       :class => "smallbutton" %></dd>
+        <% end %>
+        <% if abilities.include? :delete %>
+          <dd><%= button_to _('Delete'), @product, :method => :delete,
+                                         :confirm => _('Are you sure?'),
+                                         :class=>"smallbutton" %></dd>
+        <% end %>
+        <% case @product.approval_state %>
+          <% when 'pending' %>
+            <% if abilities.include? :approve %>
+              <dd><%= button_to _("Approve"), approve_product_path(@product), :method => :put,
+                                :class=>"smallbutton",
+                                :confirm => _('Are you sure you want to approve this product?')
+                  %></dd>
+            <% end %>
+          <% when 'submitted', 'blocked' %>
+            <% if abilities.include? :request_approval %>
+              <dd><%= button_to _("Request approval"), request_approval_product_path(@product), :method => :put,
+                                :class => 'smallbutton'
+                  %></dd>
+            <% end %>
+          <% when 'published' %>
+            <% if abilities.include? :block %>
+              <dd><%= button_to _("Block"), block_product_path(@product), :method => :put,
+                                :class => 'smallbutton',
+                                :confirm => _('Are you sure you want to block this product?')
+                  %></dd>
+            <% end %>
+        <% end %>
+        <% if abilities.include?(:promote) && !@product.featured %>
+          <dd><%= button_to _("Make featured"), promote_product_path(@product), :method => :put,
+                                                :class => 'smallbutton' %></dd>
+        <% end %>
+        <% if abilities.include?(:demote) && @product.featured %>
+          <dd><%= button_to _("Remove from featured"), demote_product_path(@product), :method => :put,
+                                                       :class => 'smallbutton' %></dd>
+        <% end %>
+      </dl>
+    <% end %>
+    <br />
+    <%= button_to _('Report issue'), 'http://www.sizzlelab.org/contact', :method => :get, :class => 'smallbutton' %>
   </div>
 </div>
 
 <div class="product_comment">
   <% if can? :show, Comment %>
+    <% if !@admin_comments.empty? || @new_admin_comment %>
+      <h2><%= _("Admin comments") %>:</h2>
+
+      <p>
+        <%= _("These comments are only shown to administrators and %{comments_shown_for}.") % {
+              :comments_shown_for =>
+                if @product.publisher == current_user
+                  s_("comments_shown_for|you")
+                else
+                  s_("comments_shown_for|the publisher of the product")
+                end } %>
+      </p>
+
+      <div id="product-admin-comment-list">
+        <%= render :partial => "comment/list", :collection => @admin_comments, :as => :comment %>
+      </div>
+
+      <% if @new_admin_comment %>
+        <p>
+          <%= render "comment/form", :comment => [@product, @new_admin_comment], :admin_comment => true %>
+        </p>
+      <% end %>
+    <% end %>
+
     <h2><%= _("Comments") %>:</h2>
     <div id="product-comment-list">
       <%= render :partial => "comment/list", :collection => @comments, :as => :comment %>

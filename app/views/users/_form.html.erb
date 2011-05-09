@@ -1,32 +1,46 @@
 <%= form_for @user do |f| %>
-	<% if flash[:error] %>
+  <% if flash[:error] || @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= _("Validation errors prohibited this user from being saved") %>:</h2>
 
       <ul>
-      <% flash[:error].each do |msg| %>
+      <%
+        ( (@user.errors[:terms] ? [_('In order to register, you must accept the OtaSizzle "Terms and Conditions".')] : []) +
+          (flash[:error] || []) +
+          @user.errors.except(:terms).full_messages
+        ).each do |msg|
+      %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label _('Username')+ ' *' %><br />
-    <%= f.text_field :username, :class=>'textfield' %>
-  </div>
+  <% if @user.new_record? %>
+    <div class="field">
+      <%= f.label :username %> *<br />
+      <%= f.text_field :username, :class=>'textfield' %>
+    </div>
+  <% end %>
 
   <div class="field">
-    <%= f.label _('Password')+ ' *' %><br />
+    <%= f.label :password %><% if @user.new_record? %> *<% end %><br />
     <%= f.password_field :password, :class=>'textfield' %>
   </div>
   <div class="field">
-    <%= f.label _('password again')+ ' *' %><br />
-    <%= f.password_field :password2, :class=>'textfield' %>
+    <%= f.label :password_confirmation %><% if @user.new_record? %> *<% end %><br />
+    <%= f.password_field :password_confirmation, :class=>'textfield' %>
   </div>
 
   <div class="field">
-    <%= f.label _('E-mail')+ ' *' %><br />
+    <%= f.label :language %> *<br />
+    <%= f.select :language, @available_locales.map { |l| [l[:name], l[:id]] },
+                            { :selected => @user.language || I18n.locale.to_s },
+                            { :class => 'otherfield' } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %> *<br />
     <%= f.text_field :email, :class=>'textfield' %>
   </div>
 
@@ -81,11 +95,19 @@
       <%= f.text_field :locality, :class => 'textfield' %>
     </div>
 
+    <% if (@user.receive_admin_email && can?(:unset_receive_admin_email, @user)) ||
+          (!@user.receive_admin_email && can?(:set_receive_admin_email, @user)) %>
+      <div class="field">
+        <%= f.label :receive_admin_email, _('Receive admin e-mail') %><br />
+        <%= f.check_box :receive_admin_email %>
+      </div>
+    <% end %>
+
   <% else %>
 
     <div class="field">
-      <%= f.check_box :term %>
-      <%= f.label :term, (
+      <%= f.check_box :terms %>
+      <%= f.label :terms, (
               _('I accept the OtaSizzle "%{link_begin}Terms and Conditions%{link_end}"') % {
                 :link_begin => '<a href="' + html_escape(url_for(:action => :terms)) + '" target="_blank" class="ajax-popup">',
                 :link_end   => '</a>'

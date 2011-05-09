@@ -1,21 +1,25 @@
 class ProductsController < ApplicationController
   load_and_authorize_resource(
-    :only => [:index, :show, :new, :edit, :create,
-              :update, :destroy, :block, :approve, :request_approval] )
+    :only => [:index, :show, :new, :edit, :create, :update, :destroy,
+              :block, :approve, :request_approval,
+              :promote, :demote ] )
   before_filter :add_popularity, :only=>:show
 
   PRODUCTS_PER_PAGE = 6
   DEFAULT_SORT = "products.created_at DESC"
+  DEFAULT_SORT_KEY = "created_at"
   ALLOWED_SORT_KEYS = %w(name created_at updated_at publisher avg_rating featured popularity) 
 
 private
 
   def fetch_data_for_index(params)
     page = params[:page] ? params[:page].to_i : 1
+
     if params[:platform_id]
       @platform = Platform.find(params[:platform_id])
       @products = @products.joins(:platforms).where(:platforms => {:id => @platform.id})
     end
+
     if params[:myapps]
       @products = @products.where(:publisher_id => current_user.id)
       @view_type = :myapps
@@ -29,8 +33,19 @@ private
       @products = @products.where(:approval_state => 'published')
       @view_type = :index
     end
-    @products = @products.where("name ILIKE :input", {:input => "%#{params[:q]}%"}) if params[:q]
-    @products = @products.order(order_parameter(params[:sort]))
+
+    if params[:q]
+      # This SQL expression is database-specific. It works at least with
+      # PostgreSQL. With SQLite it almost works: non-ascii characters are
+      # compared case-sensitively.
+      @products = @products.where(
+        "lower(name) LIKE lower(:input) OR lower(description) LIKE lower(:input)",
+        {:input => "%#{params[:q]}%"} )
+      @search = params[:q]
+    end
+
+    @sort = params[:sort] || DEFAULT_SORT_KEY
+    @products = @products.order(order_parameter(@sort))
 
     @products = @products.all.paginate(:page => page,
                                        :per_page => PRODUCTS_PER_PAGE)
@@ -41,6 +56,9 @@ public
   def mainpage
     authorize! :index, Product
     @products = Product.accessible_by(current_ability)
+
+    @featured_products = @products.where(:featured => true)
+
     fetch_data_for_index(params)
 
     @show_welcome_info = true
@@ -70,7 +88,13 @@ public
       )
     end
 
-    @comments = @product.comments.accessible_by(current_ability)
+    comments = @product.comments.accessible_by(current_ability)
+    @comments = comments.where(:admin_comment => false)
+    @admin_comments = comments.where(:admin_comment => true)
+
+    @new_admin_comment = @product.comments.build(:commenter => current_user)
+    @new_admin_comment.admin_comment = true
+    @new_admin_comment = nil unless can? :new, @new_admin_comment
 
     respond_to do |format|
       format.html # show.html.erb
@@ -95,12 +119,14 @@ public
   # POST /products.xml
   def create
     @product.publisher_id = current_user.id
-		if params[:cancel]
+    if params[:cancel]
       @product = Product.new
       render :action => 'new'
     else
       respond_to do |format|
-        if @product.save        
+        if @product.save
+          UserMailer.new_product(@product).deliver
+
           format.html { redirect_to(@product, :notice => _('Product was successfully created.')) }
           format.xml  { render :xml => @product, :status => :created, :location => @product }
         else
@@ -139,20 +165,35 @@ public
     end
   end
 
-	def approve
-		@product.change_approval 'published'
-		redirect_to :back
-	end
+  def approve
+    @product.change_approval 'published'
+    UserMailer.product_approved(@product, current_user).deliver
+    redirect_to :back
+  end
 
-	def block
-		@product.change_approval 'blocked'
-		redirect_to :back	
-	end
+  def block
+    @product.change_approval 'blocked'
+    UserMailer.product_blocked(@product, current_user).deliver
+    redirect_to :back
+  end
 
   def request_approval
-		@product.change_approval 'pending'
-		redirect_to :back
-	end
+    @product.change_approval 'pending'
+    UserMailer.product_approval_request(@product).deliver
+    redirect_to :back
+  end
+
+  def promote
+    @product.featured = true
+    @product.save!
+    redirect_to :back
+  end
+
+  def demote
+    @product.featured = false
+    @product.save!
+    redirect_to :back
+  end
 
   def publisher_terms
     respond_to do |format|
@@ -193,9 +234,9 @@ public
     return sort
   end
 
-	def require_admin
-		return if current_user && current_user.is_admin?
-		redirect_to root_path
-	end
+  def require_admin
+    return if current_user && current_user.is_admin?
+    redirect_to root_path
+  end
 
 end

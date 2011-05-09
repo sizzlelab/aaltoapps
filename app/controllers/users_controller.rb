@@ -1,9 +1,17 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource :except => [:create, :terms]
+  load_and_authorize_resource :except => [:index, :create, :terms]
 
   # GET /users
   # GET /users.xml
   def index
+    if params[:all].present?
+      authorize! :asi_index, User
+      @users = User.asi_find(params.except(:all))
+    else
+      authorize! :index, User
+      @users = User.accessible_by(current_ability)
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
@@ -35,26 +43,19 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    #check user accept the term
-    if params[:user][:term] == "0"
-      @user = User.new
-      # TODO: make storing temporary values to User and reading them possible
-      # @user.attributes = params[:user]
-      flash.now[:error] = [_('In order to register, you must accept the OtaSizzle "Terms and Conditions".')]
-      render :action => "new" and return
-    end
     authorize! :create, User
-    @session = Session.create
-    session[:cookie] = @session.cookie
+    @new_session = Session.create
+    session[:cookie] = @new_session.cookie
+    @user = User.new(params[:user].merge(:asi_cookie => @new_session.cookie))
+    authorize! :grant_admin_role, @user if @user.is_admin?
     begin
-      @user = User.create_to_asi(params[:user], session[:cookie]) 
+      @user.save!
+    rescue ActiveRecord::RecordInvalid
+      render :action => "new" and return
     rescue RestClient::RequestFailed => e
       flash.now[:error] = JSON.parse(e.response.body)["messages"]
-      @user = User.new  
       render :action => "new" and return
     end
-
-    authorize! :grant_admin_role, @user if @user.is_admin?
 
     session[:current_user_id] = @user.id
 
@@ -70,13 +71,21 @@ class UsersController < ApplicationController
     # if admin status changes, check authorization for the change
     if params[:user].has_key?(:is_admin)
       was_admin = @user.is_admin?
-      @user.is_admin = params[:user][:is_admin]
+      @user.is_admin = params[:user].delete :is_admin
       authorize! :grant_admin_role, @user if !was_admin && @user.is_admin?
       authorize! :revoke_admin_role, @user if was_admin && !@user.is_admin?
     end
 
+    if params[:user].has_key?(:receive_admin_email)
+      prev_val = @user.receive_admin_email
+      @user.receive_admin_email = params[:user].delete :receive_admin_email
+      authorize! :set_receive_admin_email, @user if !prev_val && @user.receive_admin_email
+      authorize! :unset_receive_admin_email, @user if prev_val && !@user.receive_admin_email
+    end
+
+    @user.asi_cookie = session[:cookie]
     respond_to do |format|
-      if @user.update_attributes(params[:user], session[:cookie])
+      if @user.update_attributes(params[:user])
         format.html { redirect_to(:back, :notice => _('User was successfully updated.')) }
         format.xml  { head :ok }
       else

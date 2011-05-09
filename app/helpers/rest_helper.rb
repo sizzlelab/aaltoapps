@@ -36,17 +36,23 @@ module RestHelper
     end
     
     raise ArgumentError.new("Unrecognized method #{method} for rest call") unless ([:get, :post, :delete, :put].include?(method))
-    
+
     begin
-      response = call(method, url, params, headers)
+      begin
+        response = call(method, url, params, headers)
+
+      rescue RestClient::RequestTimeout => e
+        # In case of timeout, try once again
+        Rails.logger.error { "Rest-client reported a timeout when calling #{method} for #{url} with params #{params}. Trying again..." }
+        response = call(method, url, params, headers)
+      end
     
-    rescue RestClient::RequestTimeout => e
-      # In case of timeout, try once again
-      Rails.logger.error { "Rest-client reported a timeout when calling #{method} for #{url} with params #{params}. Trying again..." }
-      response = call(method, url, params, headers)
-    
-    rescue RestClient::Unauthorized => u
-      Rails.logger.error { "Rest-client unauthorized when calling #{method} for #{url}."}
+    rescue RestClient::Unauthorized, RestClient::Forbidden => e
+      error = case e
+        when RestClient::Unauthorized then 'unauthorized'
+        when RestClient::Forbidden    then 'forbidden'
+      end
+      Rails.logger.error { "Rest-client #{error} when calling #{method} for #{url}."}
 
       # if the call was made with AaltoApps-cookie, try renewing it      
       if (cookie_used_for_call == Session.aaltoapps_cookie)
@@ -62,7 +68,7 @@ module RestHelper
         # Logged in as user, but the session has expired or is otherwise unvalid
         # this is handled in application_controller
         Rails.logger.info "Expired cookie (unauthorized) was for user-session. Logging out and redirecting to root_path"
-        raise u
+        raise e
       end
     end
     

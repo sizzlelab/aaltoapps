@@ -15,6 +15,15 @@ class UserConnection
     return RestHelper.make_request(:get, "#{APP_CONFIG.asi_url}/people/#{id}/@self", {:cookies => cookie})
   end
 
+  def self.find_people(params, cookie)
+    q = case params
+      when Hash then '?' + params.map { |k,v| CGI::escape(k.to_s) + '=' + CGI::escape(v.to_s) }.join('&')
+      when String then params
+      else ''
+    end
+    return RestHelper.make_request(:get, "#{APP_CONFIG.asi_url}/people#{q}", {:cookies => cookie} )
+  end
+
   def self.get_pending_friend_requests(id, cookie)
     return RestHelper.make_request(:get, "#{APP_CONFIG.asi_url}/people/#{id}/@pending_friend_requests", {:cookies => cookie})
   end

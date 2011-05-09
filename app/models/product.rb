@@ -23,7 +23,7 @@ class Product < ActiveRecord::Base
   validates :terms, :acceptance => true
   attr_accessor :terms
 
-  attr_protected :approval_state
+  attr_protected :publisher_id, :approval_state, :approval_date, :featured, :popularity
 
   def is_approved?
     self.approval_state == 'published'

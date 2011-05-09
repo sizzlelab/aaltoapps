@@ -9,21 +9,8 @@
     </div>
 
     <% if [:myapps, :approval].include?(@view_type) || (logged_in? && current_user.is_admin?) %>
-      <span class="product_admin"> Status <%= approval_status product %>
-        <% if product.is_approved? %>
-          <%= button_to(_("Block"), { :action => :block, :id => product.id },
-                        :method => :put,
-                        :confirm => _('Are you sure you want to block this product?')
-                       ) if can? :block, product %>
-        <% else %>
-          <%= button_to(_("Request approval"), { :action => :request_approval, :id => product.id },
-                        :method => :put,
-                       ) if product.approval_state != 'pending' && can?(:request_approval, product) %>
-          <%= button_to(_("Approve"), { :action => :approve, :id => product.id },
-                        :method => :put,
-                        :confirm => _('Are you sure you want to approve this product? (Remember to delete any development comments from the application profile)')
-                       ) if can? :approve, product %>
-        <% end %>
+      <span class="product_admin">
+        <%= _("Status %{approval_status}") % {:approval_status => approval_status(product)} %>
       </span>
     <% end %>
 

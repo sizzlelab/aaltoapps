@@ -11,14 +11,29 @@
   </div>
 <%end%>
 
+<% if @featured_products && !@featured_products.empty? %>
+  <div id="browse_featured_products" class="browse_products">
+    <h1><%=
+      if @platform.present?
+        _("Listing featured %{platform} applications") % {:platform => @platform.name}
+      else
+        _("Listing featured applications")
+      end
+    %></h1>
+    <%= render :partial=>'product', :collection => @featured_products %>
+  </div>
+<% end %>
+
 <%
   title = case @view_type
     when :myapps
       _("Listing my applications")
     when :approval
       _("Listing applications with status: %{status}") % {:status => approval_status(@approval_state)}
-    when :index
-      if @platform.present?
+    when :index then case
+      when @search
+        _("Search results")
+      when @platform.present?
         _("Listing %{platform} applications") % {:platform => @platform.name}
       else
         _("Listing all applications")
@@ -35,13 +50,22 @@
   <div class="browse_products">
     <h1><%= title %></h1>
 
-	<ul id='product_selection_bar'>
-	<li><%= link_to(_('Publication date'), products_path_with_params(:sort => 'created_at')) %></li>
-	<li><%= link_to(_('Popularity'),       products_path_with_params(:sort => 'popularity')) %></li>
-	<li><%= link_to(_('User rating'),      products_path_with_params(:sort => 'avg_rating')) %></li>
-      	<% if @view_type == :index && @platform.blank? %>
-       		<li><%= link_to(_('Featured apps'),  products_path_with_params(:sort => 'featured')) %></li>
-	<% end %>
+    <ul id='product_selection_bar'>
+      <%
+        # sort headers
+        [ ['created_at', _('Publication date')],
+          ['popularity', _('Popularity')],
+          ['avg_rating', _('User rating')],
+        ].each do |key, title|
+      %>
+        <% if key == @sort %>
+          <li class="selected-sort-key"><%= title %></li>
+        <% else %>
+          <li><%= link_to title, products_path_with_params(:sort => key) %></li>
+        <% end %>
+      <% end %>
+    </ul>
+    <br /><br />
 
 <div class="clear"></div>
 

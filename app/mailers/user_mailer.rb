@@ -29,9 +29,16 @@ class UserMailer < ActionMailer::Base
   # send mail to administrators
   def send_to_admins
     @all_recipients = User.where(:receive_admin_email => true)
-    @all_recipients.group_by(&:language).each do |lang, users|
-      @recipients = users
-      mail_with_locale users, lang
+    if @all_recipients.empty?
+      # if no recipients, return a dummy message with no recipients
+      mail :to => [] do |format|
+        format.text { render :text => '' }
+      end
+    else
+      @all_recipients.group_by(&:language).each do |lang, users|
+        @recipients = users
+        mail_with_locale users, lang
+      end
     end
   end
 

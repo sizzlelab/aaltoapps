@@ -4,6 +4,18 @@ set :deploy_to, "/mnt/app/aaltoapps/"
 set :repository, 'git://github.com/sizzlelab/aaltoapps.git'
 set :rake_cmd, 'source /usr/local/lib/rvm ; rake'
 
+# alternate settings for deploying different branches from repository
+set :branch_config, {
+  'demo' => {
+    :deploy_to => "/mnt/app/aaltoapps-demo",
+    :revision => "origin/demo",
+  },
+  'uidev' => {
+    :deploy_to => "/mnt/app/aaltoapps-uidev",
+    :revision => "origin/uidev",
+  },
+}
+
 # config/deploy.rb
 # ...&nbsp;
 set :config_files, ['database.yml', 'aaltoapps_config.yml']
@@ -17,7 +29,7 @@ namespace :vlad do
 
   desc "Link product photos"
   remote_task :link_photos, :roles => :app do
-    run "ln -s #{shared_path}/system/products /mnt/app/aaltoapps/current/public/products"
+    run "ln -s #{shared_path}/system/products #{release_path}/public/products"
   end
 
   desc "Bubble gum for bundler and rvm, hope this gets a gem from the bundle/rvm folks"
@@ -38,6 +50,10 @@ namespace :vlad do
 
   desc "Run all tasks needed for a deployment"
   task :deploy do
+    (branch_config[ENV['branch']] || {}).each do |key,val|
+      set key, val
+    end
+
     Rake::Task['vlad:setup'].invoke
     Rake::Task['vlad:update'].invoke
     Rake::Task['vlad:bundle_install'].invoke
@@ -48,4 +64,3 @@ namespace :vlad do
   end
 
 end
-

@@ -50,9 +50,8 @@ namespace :vlad do
 
   desc "Run all tasks needed for a deployment"
   task :deploy do
-    (branch_config[ENV['branch']] || {}).each do |key,val|
-      set key, val
-    end
+    # if branch specified and there are custom values for the branch, use them
+    (branch_config[ENV['branch']] || {}).each { |key,val| set key, val }
 
     Rake::Task['vlad:setup'].invoke
     Rake::Task['vlad:update'].invoke

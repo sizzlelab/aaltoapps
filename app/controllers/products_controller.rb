@@ -125,7 +125,7 @@ public
     else
       respond_to do |format|
         if @product.save
-          UserMailer.new_product(@product).deliver rescue UserMailer::NoRecipients
+          UserMailer.new_product(@product).deliver rescue nil
 
           format.html { redirect_to(@product, :notice => _('Product was successfully created.')) }
           format.xml  { render :xml => @product, :status => :created, :location => @product }
@@ -167,19 +167,19 @@ public
 
   def approve
     @product.change_approval 'published'
-    UserMailer.product_approved(@product, current_user).deliver rescue UserMailer::NoRecipients
+    UserMailer.product_approved(@product, current_user).deliver rescue nil
     redirect_to :back
   end
 
   def block
     @product.change_approval 'blocked'
-    UserMailer.product_blocked(@product, current_user).deliver rescue UserMailer::NoRecipients
+    UserMailer.product_blocked(@product, current_user).deliver rescue nil
     redirect_to :back
   end
 
   def request_approval
     @product.change_approval 'pending'
-    UserMailer.product_approval_request(@product).deliver rescue UserMailer::NoRecipients
+    UserMailer.product_approval_request(@product).deliver rescue nil
     redirect_to :back
   end
 

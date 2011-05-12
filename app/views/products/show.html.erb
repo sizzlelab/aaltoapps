@@ -10,6 +10,21 @@
   </div>
 
   <div id="product-details">
+
+    <% if @product.name =~ /AaltoLunch/i %>
+      <div style="float: right">
+        <%=
+          link_to 'https://github.com/sizzlelab/aaltolunch' do
+            image_tag 'demo/github.png', :size => '79x40'
+          end
+        %>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <%= image_tag 'demo/facebook.png', :size => '116x40' %>
+        <%#= image_tag 'demo/paypal.png' %>
+      </div>
+    <% end %>
+
+
     <dl id="product-publisher">
       <dt><%= _("Publisher") %>:</dt>
       <dd><%= link_to @product.publisher.username, @product.publisher %></dd>

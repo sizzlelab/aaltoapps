@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-05-09 13:50+0300\n"
+"POT-Creation-Date: 2011-05-17 14:39+0300\n"
 "PO-Revision-Date: 2011-02-02 15:23+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,17 +79,15 @@ msgstr ""
 
 #: app/views/downloads/_list.html.erb:9 app/views/products/show.html.erb:89
 #: app/views/platforms/index.html.erb:20 app/views/comment/_list.html.erb:20
-#: app/views/ratings/index.html.erb:20 app/views/categories/index.html.erb:18
-#: app/views/users/index.html.erb:30
+#: app/views/categories/index.html.erb:18 app/views/users/index.html.erb:30
 msgid "Are you sure?"
 msgstr ""
 
 #: app/views/products/new.html.erb:6 app/views/products/edit.html.erb:6
 #: app/views/products/show.html.erb:169 app/views/platforms/new.html.erb:5
-#: app/views/platforms/edit.html.erb:5 app/views/ratings/new.html.erb:5
-#: app/views/ratings/edit.html.erb:6 app/views/ratings/show.html.erb:20
-#: app/views/categories/show.html.erb:22 app/views/users/new.html.erb:5
-#: app/views/users/edit.html.erb:6 app/views/users/show.html.erb:50
+#: app/views/platforms/edit.html.erb:5 app/views/categories/show.html.erb:22
+#: app/views/users/new.html.erb:5 app/views/users/edit.html.erb:6
+#: app/views/users/show.html.erb:50
 msgid "Back"
 msgstr ""
 
@@ -169,7 +167,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: app/views/platforms/index.html.erb:19 app/views/ratings/index.html.erb:20
+#: app/views/platforms/index.html.erb:19
 #: app/views/categories/index.html.erb:18 app/views/users/index.html.erb:30
 msgid "Destroy"
 msgstr ""
@@ -189,7 +187,6 @@ msgstr ""
 #: app/views/products/show.html.erb:84 app/views/platforms/show.html.erb:22
 #: app/views/platforms/index.html.erb:18
 #: app/views/layouts/application.html.erb:68
-#: app/views/ratings/show.html.erb:19 app/views/ratings/index.html.erb:19
 #: app/views/categories/show.html.erb:21
 #: app/views/categories/index.html.erb:17 app/views/users/show.html.erb:48
 #: app/views/users/index.html.erb:29
@@ -202,10 +199,6 @@ msgstr ""
 
 #: app/views/products/edit.html.erb:2
 msgid "Editing product"
-msgstr ""
-
-#: app/views/ratings/edit.html.erb:1
-msgid "Editing rating"
 msgstr ""
 
 #: app/views/users/edit.html.erb:1
@@ -309,10 +302,6 @@ msgstr ""
 msgid "Listing platforms"
 msgstr ""
 
-#: app/views/ratings/index.html.erb:1
-msgid "Listing ratings"
-msgstr ""
-
 #: app/views/users/index.html.erb:2
 msgid "Listing users"
 msgstr ""
@@ -329,12 +318,20 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
+#: app/controllers/sessions_controller.rb:11
+msgid "Login failed"
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:27
+msgid "Login successful"
+msgstr ""
+
 #: app/views/users/_login_menu.html.erb:6
 msgid "Logout"
 msgstr ""
 
 #: app/controllers/sessions_controller.rb:44
-msgid "Logout successful."
+msgid "Logout successful"
 msgstr ""
 
 #: app/views/products/show.html.erb:115
@@ -372,10 +369,6 @@ msgstr ""
 msgid "New Platform"
 msgstr ""
 
-#: app/views/ratings/index.html.erb:27
-msgid "New Rating"
-msgstr ""
-
 #: app/views/users/index.html.erb:50
 msgid "New User"
 msgstr ""
@@ -386,10 +379,6 @@ msgstr ""
 
 #: app/views/layouts/application.html.erb:251
 msgid "New products"
-msgstr ""
-
-#: app/views/ratings/new.html.erb:1
-msgid "New rating"
 msgstr ""
 
 #: app/views/products/index.html.erb:75
@@ -446,10 +435,6 @@ msgstr ""
 msgid "Popularity: "
 msgstr ""
 
-#: app/views/ratings/show.html.erb:9 app/views/ratings/index.html.erb:6
-msgid "Product"
-msgstr ""
-
 #: app/controllers/products_controller.rb:130
 msgid "Product was successfully created."
 msgstr ""
@@ -491,7 +476,6 @@ msgid "Rate"
 msgstr ""
 
 #: app/views/products/show.html.erb:36 app/views/products/_product.html.erb:9
-#: app/views/ratings/show.html.erb:14 app/views/ratings/index.html.erb:7
 msgid "Rating"
 msgstr ""
 
@@ -548,9 +532,9 @@ msgstr ""
 msgid "Search results"
 msgstr ""
 
-#: app/views/platforms/index.html.erb:17 app/views/ratings/edit.html.erb:5
-#: app/views/ratings/index.html.erb:18 app/views/categories/index.html.erb:16
-#: app/views/users/edit.html.erb:5 app/views/users/index.html.erb:28
+#: app/views/platforms/index.html.erb:17
+#: app/views/categories/index.html.erb:16 app/views/users/edit.html.erb:5
+#: app/views/users/index.html.erb:28
 msgid "Show"
 msgstr ""
 
@@ -586,10 +570,6 @@ msgstr ""
 
 #: app/views/users/_form.html.erb:55
 msgid "Unspecified"
-msgstr ""
-
-#: app/views/ratings/show.html.erb:4 app/views/ratings/index.html.erb:5
-msgid "User"
 msgstr ""
 
 #: app/views/products/index.html.erb:58

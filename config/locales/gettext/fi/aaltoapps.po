@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-05-09 13:50+0300\n"
+"POT-Creation-Date: 2011-05-17 14:39+0300\n"
 "PO-Revision-Date: 2011-04-06 13:16+0200\n"
 "Last-Translator: Pekka Ekman <pekman@cc.hut.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,17 +80,15 @@ msgstr "Oletko varma että haluat poistaa itseltäsi admin-oikeudet?"
 
 #: app/views/downloads/_list.html.erb:9 app/views/products/show.html.erb:89
 #: app/views/platforms/index.html.erb:20 app/views/comment/_list.html.erb:20
-#: app/views/ratings/index.html.erb:20 app/views/categories/index.html.erb:18
-#: app/views/users/index.html.erb:30
+#: app/views/categories/index.html.erb:18 app/views/users/index.html.erb:30
 msgid "Are you sure?"
 msgstr "Oletko varma?"
 
 #: app/views/products/new.html.erb:6 app/views/products/edit.html.erb:6
 #: app/views/products/show.html.erb:169 app/views/platforms/new.html.erb:5
-#: app/views/platforms/edit.html.erb:5 app/views/ratings/new.html.erb:5
-#: app/views/ratings/edit.html.erb:6 app/views/ratings/show.html.erb:20
-#: app/views/categories/show.html.erb:22 app/views/users/new.html.erb:5
-#: app/views/users/edit.html.erb:6 app/views/users/show.html.erb:50
+#: app/views/platforms/edit.html.erb:5 app/views/categories/show.html.erb:22
+#: app/views/users/new.html.erb:5 app/views/users/edit.html.erb:6
+#: app/views/users/show.html.erb:50
 msgid "Back"
 msgstr "Takaisin"
 
@@ -170,7 +168,7 @@ msgstr "Poista"
 msgid "Description"
 msgstr "Kuvaus"
 
-#: app/views/platforms/index.html.erb:19 app/views/ratings/index.html.erb:20
+#: app/views/platforms/index.html.erb:19
 #: app/views/categories/index.html.erb:18 app/views/users/index.html.erb:30
 msgid "Destroy"
 msgstr "Tuhoa"
@@ -190,7 +188,6 @@ msgstr "Siirrä kuva tähän!"
 #: app/views/products/show.html.erb:84 app/views/platforms/show.html.erb:22
 #: app/views/platforms/index.html.erb:18
 #: app/views/layouts/application.html.erb:68
-#: app/views/ratings/show.html.erb:19 app/views/ratings/index.html.erb:19
 #: app/views/categories/show.html.erb:21
 #: app/views/categories/index.html.erb:17 app/views/users/show.html.erb:48
 #: app/views/users/index.html.erb:29
@@ -204,10 +201,6 @@ msgstr "Alustan muokkaus"
 #: app/views/products/edit.html.erb:2
 msgid "Editing product"
 msgstr "Tuotteen muokkaus"
-
-#: app/views/ratings/edit.html.erb:1
-msgid "Editing rating"
-msgstr "Arvion muokkaus"
 
 #: app/views/users/edit.html.erb:1
 msgid "Editing user"
@@ -312,10 +305,6 @@ msgstr "Omat sovellukseni"
 msgid "Listing platforms"
 msgstr "Alustat"
 
-#: app/views/ratings/index.html.erb:1
-msgid "Listing ratings"
-msgstr "Arviot"
-
 #: app/views/users/index.html.erb:2
 msgid "Listing users"
 msgstr "Käyttäjät"
@@ -332,13 +321,21 @@ msgstr "Kirjautuneena "
 msgid "Login"
 msgstr "Kirjaudu sisään"
 
+#: app/controllers/sessions_controller.rb:11
+msgid "Login failed"
+msgstr "Sisäänkirjautuminen epäonnistui"
+
+#: app/controllers/sessions_controller.rb:27
+msgid "Login successful"
+msgstr "Olet kirjautunut sisään"
+
 #: app/views/users/_login_menu.html.erb:6
 msgid "Logout"
 msgstr "Kirjaudu ulos"
 
 #: app/controllers/sessions_controller.rb:44
-msgid "Logout successful."
-msgstr "Olet kirjautunut ulos."
+msgid "Logout successful"
+msgstr "Olet kirjautunut ulos"
 
 #: app/views/products/show.html.erb:115
 msgid "Make featured"
@@ -375,10 +372,6 @@ msgstr "Uusi kategoria"
 msgid "New Platform"
 msgstr "Uusi alusta"
 
-#: app/views/ratings/index.html.erb:27
-msgid "New Rating"
-msgstr "Uusi arvio"
-
 #: app/views/users/index.html.erb:50
 msgid "New User"
 msgstr "Uusi käyttäjä"
@@ -390,10 +383,6 @@ msgstr "Kommentti luotu."
 #: app/views/layouts/application.html.erb:251
 msgid "New products"
 msgstr "Uudet sovellukset"
-
-#: app/views/ratings/new.html.erb:1
-msgid "New rating"
-msgstr "Uusi arvio"
 
 #: app/views/products/index.html.erb:75
 msgid "Next &#8594;"
@@ -449,10 +438,6 @@ msgstr "Katselukerrat"
 msgid "Popularity: "
 msgstr "Katselukerrat: "
 
-#: app/views/ratings/show.html.erb:9 app/views/ratings/index.html.erb:6
-msgid "Product"
-msgstr "Sovellus"
-
 #: app/controllers/products_controller.rb:130
 msgid "Product was successfully created."
 msgstr "Sovellus luotiin onnistuneesti"
@@ -494,7 +479,6 @@ msgid "Rate"
 msgstr "Arvostele"
 
 #: app/views/products/show.html.erb:36 app/views/products/_product.html.erb:9
-#: app/views/ratings/show.html.erb:14 app/views/ratings/index.html.erb:7
 msgid "Rating"
 msgstr "Arvio"
 
@@ -551,9 +535,9 @@ msgstr "Tallenna kommentti"
 msgid "Search results"
 msgstr "Hakutulokset"
 
-#: app/views/platforms/index.html.erb:17 app/views/ratings/edit.html.erb:5
-#: app/views/ratings/index.html.erb:18 app/views/categories/index.html.erb:16
-#: app/views/users/edit.html.erb:5 app/views/users/index.html.erb:28
+#: app/views/platforms/index.html.erb:17
+#: app/views/categories/index.html.erb:16 app/views/users/edit.html.erb:5
+#: app/views/users/index.html.erb:28
 msgid "Show"
 msgstr "Näytä"
 
@@ -590,10 +574,6 @@ msgstr "URL"
 #: app/views/users/_form.html.erb:55
 msgid "Unspecified"
 msgstr "Määrittelemätön"
-
-#: app/views/ratings/show.html.erb:4 app/views/ratings/index.html.erb:5
-msgid "User"
-msgstr "Käyttäjä"
 
 #: app/views/products/index.html.erb:58
 msgid "User rating"

@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
                                       :password => params[:password] })
                                                           
     rescue RestClient::Unauthorized => e
-      flash[:error] = "Login failed"
+      flash[:error] = _("Login failed")
       redirect_to :controller => "sessions", :action => "index" and return
     end
 
@@ -23,8 +23,8 @@ class SessionsController < ApplicationController
     
     session[:cookie] = @new_session.cookie
     session[:person_id] = @new_session.person_id
-      
-    flash[:notice] = [:login_successful, ((current_user.given_name || current_user.username) + "!").to_s, user_path(current_user)]
+
+    flash[:notice] = _("Login successful")
 
     # redirect using user's preferred locale, if possible
     if session[:return_to]
@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
     session[:cookie] = nil
     session[:current_user_id] = nil
     session[:person_id] = nil
-    flash[:notice] = _("Logout successful.")
+    flash[:notice] = _("Logout successful")
     redirect_to root_path
   end
   

@@ -20,6 +20,11 @@ private
       @products = @products.joins(:platforms).where(:platforms => {:id => @platform.id})
     end
 
+    if params[:tags]
+      @tags = ActsAsTaggableOn::TagList.from(params[:tags])
+      @products = @products.tagged_with(params[:tags], :any => true)
+    end
+
     if params[:myapps]
       @products = @products.where(:publisher_id => current_user.id)
       @view_type = :myapps
@@ -62,6 +67,7 @@ public
     fetch_data_for_index(params)
 
     @show_welcome_info = true
+    @show_tag_cloud = true
 
     render :action => 'index' # index.html.erb
   end

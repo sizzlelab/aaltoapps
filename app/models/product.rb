@@ -2,26 +2,31 @@ class Product < ActiveRecord::Base
   belongs_to :publisher, :class_name => "User", :foreign_key => "publisher_id"
   belongs_to :category
   has_and_belongs_to_many :platforms, :uniq => true
-  validates :name, :description, :url, :platforms, :presence => true
-  validates :name, :length => { :minimum => 3 }
-  validates :url, :length => { :minimum => 12 } # http://ab.cd
-  validates :approval_state, :inclusion => { :in => %w( submitted pending published blocked ) }
   has_many :ratings, :dependent => :destroy
   has_many :comments, :dependent => :destroy
+  has_many :downloads, :dependent => :destroy
   has_attached_file :photo, :styles => { :thumb=> "75x75#",:small => "150x150>" },
     :url  => "/:class/:attachment/:id/:style_:basename.:extension",
     :default_url => "/images/:style_missing.png",
     :path => ":rails_root/public/:class/:attachment/:id/:style_:basename.:extension"
-  #	validates_attachment_presence :photo
+  acts_as_taggable
+  acts_as_taggable_on :tags
+
+  validates :name, :description, :url, :platforms, :presence => true
+  validates :name, :length => { :minimum => 3 }
+  validates :url, :length => { :minimum => 12 } # http://ab.cd
+  validates :approval_state, :inclusion => { :in => %w( submitted pending published blocked ) }
+  validates :terms, :acceptance => true
+
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+  #	validates_attachment_presence :photo
+
+  attr_accessor :terms
   attr_accessor :delete_photo
   before_update :delete_photo_handler
-  has_many :downloads, :dependent => :destroy
   accepts_nested_attributes_for :downloads, :allow_destroy => true,
     :reject_if => proc { |attrs| !attrs['file'] }
-  validates :terms, :acceptance => true
-  attr_accessor :terms
 
   attr_protected :publisher_id, :approval_state, :approval_date, :featured, :popularity
 

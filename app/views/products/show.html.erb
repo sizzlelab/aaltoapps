@@ -51,6 +51,11 @@
       <dd><%= link_to @product.url, "http://"+@product.url, :target => '_blank' %></dd>
     </dl>
 
+    <dl id="product-tags">
+      <dt><%= _("Tags") %>:</dt>
+      <dd><%= raw @product.tags.map {|tag| tag_link tag }.join(', ') %></dd>
+    </dl>
+
     <% if @product.downloads.present? && can?(:index, Download) %>
       <dl id="product-downloads">
         <dt><%= _("Downloads") %>:</dt>

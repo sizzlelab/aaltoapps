@@ -34,6 +34,8 @@ AaltoApps::Application.routes.draw do
         get ':platform' => 'products#index'
       end
 
+      get 'tag/:tags' => 'products#index', :as => :tag
+
       get :publisher_terms
     end
   end

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.1'
+gem 'rails', '~> 3.0.1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -16,6 +16,7 @@ gem 'fast_gettext'
 gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git"
 gem 'routing-filter'
 gem 'cancan'
+gem 'acts-as-taggable-on'
 
 # these are used to extract translatable strings from code
 gem 'gettext_i18n_rails', :require => false, :group => :development

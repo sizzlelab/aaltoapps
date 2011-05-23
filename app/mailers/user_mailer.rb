@@ -1,4 +1,6 @@
 class UserMailer < ActionMailer::Base
+  class NoRecipients < StandardError; end
+
   default :from => APP_CONFIG.email_from_address
 
   def new_product(product)
@@ -29,6 +31,7 @@ class UserMailer < ActionMailer::Base
   # send mail to administrators
   def send_to_admins
     @all_recipients = User.where(:receive_admin_email => true)
+    raise NoRecipients  if @all_recipients.blank?
     @all_recipients.group_by(&:language).each do |lang, users|
       @recipients = users
       mail_with_locale users, lang

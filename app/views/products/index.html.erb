@@ -11,6 +11,13 @@
   </div>
 <%end%>
 
+<% if @show_tag_cloud %>
+  <div id="browse_tags">
+    <h1><%= _('Tags') %></h1>
+    <%= render 'tag_cloud' %>
+  </div>
+<% end %>
+
 <% if @featured_products && !@featured_products.empty? %>
   <div id="browse_featured_products">
     <h1><%=
@@ -33,6 +40,16 @@
     when :index then case
       when @search
         _("Search results")
+      when @platform.present? && @tags.present?
+        n_("Listing %{platform} applictions with the tag %{tags}",
+           "Listing %{platform} applictions with tags %{tags}",
+           @tags.count
+          ) % {:tags => @tags.to_sentence(:two_words_connector => _(' or '), :last_word_connector => _(', or '))}
+      when @tags.present?
+        n_("Listing applictions with the tag %{tags}",
+           "Listing applictions with tags %{tags}",
+           @tags.count
+          ) % {:tags => @tags.to_sentence(:two_words_connector => _(' or '), :last_word_connector => _(', or '))}
       when @platform.present?
         _("Listing %{platform} applications") % {:platform => @platform.name}
       else

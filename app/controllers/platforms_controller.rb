@@ -37,7 +37,7 @@ class PlatformsController < ApplicationController
   def create
     if @platform.save
       respond_to do |format|
-        format.html { redirect_to :action => "show", :id => @platform.id, :notice => _("Platform was successfully created")}
+        format.html { redirect_to({:action => "show", :id => @platform.id}, :notice => _("Platform was successfully created"))}
         format.xml { render :xml => @platform, :status => :created, :location => @loatform}
       end
     else
@@ -53,7 +53,7 @@ class PlatformsController < ApplicationController
   def update
     respond_to do |format|
       if @platform.update_attributes(params[:platform])
-        format.html { redirect_to(:action => "show", :id => @platform.id, :notice => _('Platform was successfully updated.')) }
+        format.html { redirect_to({:action => "show", :id => @platform.id}, :notice => _('Platform was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -65,11 +65,22 @@ class PlatformsController < ApplicationController
   # DELETE /platforms/1
   # DELETE /platforms/1.xml
   def destroy
-    @platform.destroy
-
     respond_to do |format|
-      format.html { redirect_to(:action => "index", :notice => _("Platform was successufully deleted.")) }
-      format.xml  { head :ok }
+      begin
+        @platform.destroy
+      rescue ActiveRecord::ActiveRecordError => e
+        errmsg = if e.is_a? ActiveRecord::DeleteRestrictionError
+          _('Cannot delete platform that has products')
+        else
+          e.to_s
+        end
+
+        format.html { redirect_to({:action => "index"}, :alert => errmsg) }
+        format.xml  { render :xml => {:error => errmsg}.to_xml(:root => :errors), :status => :conflict }
+      else
+        format.html { redirect_to({:action => "index"}, :notice => _("Platform was successufully deleted.")) }
+        format.xml  { head :ok }
+      end
     end
   end
 

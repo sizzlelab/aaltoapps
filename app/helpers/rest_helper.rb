@@ -29,10 +29,14 @@ module RestHelper
 
   def self.make_request(method, url, params=nil, headers=nil, return_full_response=false)
     cookie_used_for_call = nil #this is used if getting unauthorized response
-    if method.to_sym == :post || method.to_sym == :put
-      cookie_used_for_call = headers[:cookies] if headers
-    else # with get and delete the headers are the third param here (params)
-       cookie_used_for_call = params[:cookies] if params
+    ((method.to_sym == :post || method.to_sym == :put) ? headers : params).tap do |hdr|
+      if hdr
+        cookie_used_for_call = hdr[:cookies]
+        
+        # workaround for rest_client's broken cookie handling:
+        cookies = hdr.delete(:cookies)
+        hdr['Cookie'] = cookies.map { |k,v| "#{k}=#{v}" }.join(';') if cookies
+      end
     end
     
     raise ArgumentError.new("Unrecognized method #{method} for rest call") unless ([:get, :post, :delete, :put].include?(method))

@@ -2,7 +2,7 @@ set :application, "aaltoapps"
 set :domain, "aaltoapps@79.125.124.244"
 set :deploy_to, "/mnt/app/aaltoapps/"
 set :repository, 'git://github.com/sizzlelab/aaltoapps.git'
-set :rake_cmd, 'source /usr/local/lib/rvm ; rake'
+set :rake_cmd, %q(bash -c 'source /usr/local/lib/rvm ; bundle exec rake "$@"')
 
 # alternate settings for deploying different branches from repository
 set :branch_config, {
@@ -42,24 +42,34 @@ namespace :vlad do
     goto_app_root = "cd #{release_path}"
 
     # run bundle install with explicit path and without test dependencies
-    bundle_install = "bundle install --without test"
+    bundle_install = "bundle install --without development test"
 
     # actually run all of the commands via ssh on the server
-    run "#{init_rvm} && #{goto_app_root} && #{bundle_install}"
+    run "bash -c '#{init_rvm} && #{goto_app_root} && #{bundle_install}'"
   end
 
-  desc "Run all tasks needed for a deployment"
+  desc "Run all tasks needed for a deployment." +
+       " Specify git branch with BRANCH (default: master)." +
+       " Skip tasks with EXCEPT=task1,task2,..."
   task :deploy do
     # if branch specified and there are custom values for the branch, use them
-    (branch_config[ENV['branch']] || {}).each { |key,val| set key, val }
+    (branch_config[ENV['BRANCH']] || {}).each { |key,val| set key, val }
 
-    Rake::Task['vlad:setup'].invoke
-    Rake::Task['vlad:update'].invoke
-    Rake::Task['vlad:bundle_install'].invoke
-    Rake::Task['vlad:copy_config_files'].invoke
-    Rake::Task['vlad:link_photos'].invoke
-    Rake::Task['vlad:migrate'].invoke
-    Rake::Task['vlad:start_app'].invoke
+    # list of tasks to skip
+    except = (ENV['EXCEPT'] || '').split(/[\s,]+/)
+
+    tasks = %w[
+      vlad:setup
+      vlad:update
+      vlad:bundle_install
+      vlad:copy_config_files
+      vlad:link_photos
+      vlad:migrate
+      vlad:start_app
+    ]
+    (tasks - except).each do |name|
+      Rake::Task[name].invoke
+    end
   end
 
 end

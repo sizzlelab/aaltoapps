@@ -145,6 +145,44 @@
             return false;
           });
         });
+
+        // enable autocompletion in products' tag fields
+        $('#product_tag_list')
+          // don't navigate away from the field on tab when selecting an item
+          .bind("keydown", function(event) {
+            if (event.keyCode === $.ui.keyCode.TAB && $(this).data("autocomplete").menu.active) {
+              event.preventDefault();
+            }
+          })
+          .autocomplete({
+            minLength: 0,
+            source: function(request, response) {
+              // extract last term
+              var lastTerm = /(?:^|,)\s*([^,]*|"[^"]*"?|'[^']*'?)\s*$/.exec(request.term)[1];
+              lastTerm = lastTerm.replace(/^(?:"(.*?)"?|'(.*?)'?)$/, '$1$2');  // remove quotes
+
+              $.getJSON( this.element.data('autocompleteUrl'),
+                { term: lastTerm },
+                response );
+            },
+            focus: function() {
+              // prevent value inserted on focus
+              return false;
+            },
+            select: function(event, ui) {
+              // add quotes around value if it contains commas
+              var value = ui.item.value;
+              if (value.indexOf(',') != -1) {
+                value = '"' + value + '"';
+              }
+
+              // replace the last term with new value
+              var lastTerm = /(?:^|,)\s*(?:[^,]*|"[^"]*"?|'[^']*'?)\s*$/.exec(this.value);
+              this.value = this.value.slice(0, lastTerm.index) + ', ' + value + ', ';
+
+              return false;
+            }
+          });
       });
 
     })(jQuery);

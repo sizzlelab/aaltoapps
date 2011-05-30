@@ -9,7 +9,6 @@ class Product < ActiveRecord::Base
     :url  => "/:class/:attachment/:id/:style_:basename.:extension",
     :default_url => "/images/:style_missing.png",
     :path => ":rails_root/public/:class/:attachment/:id/:style_:basename.:extension"
-  acts_as_taggable
   acts_as_taggable_on :tags
 
   validates :name, :description, :url, :platforms, :presence => true

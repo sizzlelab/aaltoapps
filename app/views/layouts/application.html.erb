@@ -230,7 +230,7 @@
             <div class="layout_master">
               <div id="notice"><%= notice %></div>
               <div id="alert"><%= alert %></div>
-              <%= yield %>
+              <%= content_for?(:content) ? yield(:content) : yield %>
             </div>
 
 

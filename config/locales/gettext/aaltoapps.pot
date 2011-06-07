@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-05-18 18:35+0300\n"
+"POT-Creation-Date: 2011-06-07 16:20+0300\n"
 "PO-Revision-Date: 2011-02-02 15:23+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgstr ""
 msgid "Add Photo"
 msgstr ""
 
-#: app/views/products/_form.html.erb:99
+#: app/views/products/_form.html.erb:100
 msgid "Add a new download:"
 msgstr ""
 
@@ -65,7 +65,7 @@ msgstr ""
 msgid "Admin comments"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:222
+#: app/views/layouts/application.html.erb:260
 msgid "All"
 msgstr ""
 
@@ -103,11 +103,11 @@ msgstr ""
 msgid "Block"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:257
+#: app/views/layouts/application.html.erb:295
 msgid "Blocked products"
 msgstr ""
 
-#: app/views/products/_form.html.erb:132
+#: app/views/products/_form.html.erb:133
 #: app/views/layouts/application.html.erb:75
 msgid "Cancel"
 msgstr ""
@@ -136,7 +136,7 @@ msgstr ""
 msgid "Choose a platform"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:160
+#: app/views/layouts/application.html.erb:198
 msgid "Choose language:"
 msgstr ""
 
@@ -188,11 +188,11 @@ msgstr ""
 msgid "Detailed view"
 msgstr ""
 
-#: app/views/products/_form.html.erb:89 app/views/products/show.html.erb:61
+#: app/views/products/_form.html.erb:90 app/views/products/show.html.erb:61
 msgid "Downloads"
 msgstr ""
 
-#: app/views/products/_form.html.erb:141
+#: app/views/products/_form.html.erb:142
 msgid "Drag an image here!"
 msgstr ""
 
@@ -225,7 +225,7 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#: app/views/users/_form.html.erb:55
+#: app/views/users/_form.html.erb:57
 msgid "Female"
 msgstr ""
 
@@ -233,7 +233,7 @@ msgstr ""
 msgid "Fields marked with asterisk (*) are compulsory"
 msgstr ""
 
-#: app/views/products/_form.html.erb:105
+#: app/views/products/_form.html.erb:106
 msgid "File"
 msgstr ""
 
@@ -249,13 +249,13 @@ msgstr ""
 msgid "Grant administrator role"
 msgstr ""
 
-#: app/views/products/_form.html.erb:119
+#: app/views/products/_form.html.erb:120
 msgid ""
 "I accept the OtaSizzle \"%{link_begin}Publisher Terms and Conditions"
 "%{link_end}\""
 msgstr ""
 
-#: app/views/users/_form.html.erb:111
+#: app/views/users/_form.html.erb:113
 msgid "I accept the OtaSizzle \"%{link_begin}Terms and Conditions%{link_end}\""
 msgstr ""
 
@@ -269,7 +269,7 @@ msgstr ""
 msgid "Image url"
 msgstr ""
 
-#: app/views/users/_form.html.erb:8
+#: app/views/users/_form.html.erb:9
 msgid ""
 "In order to register, you must accept the OtaSizzle \"Terms and Conditions\"."
 msgstr ""
@@ -338,7 +338,7 @@ msgstr ""
 msgid "Logged in as "
 msgstr ""
 
-#: app/views/sessions/index.html.erb:11 app/views/users/_login_menu.html.erb:2
+#: app/views/sessions/index.html.erb:12 app/views/users/_login_menu.html.erb:2
 msgid "Login"
 msgstr ""
 
@@ -354,7 +354,7 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: app/controllers/sessions_controller.rb:44
+#: app/controllers/sessions_controller.rb:62
 msgid "Logout successful"
 msgstr ""
 
@@ -362,11 +362,11 @@ msgstr ""
 msgid "Make featured"
 msgstr ""
 
-#: app/views/users/_form.html.erb:55
+#: app/views/users/_form.html.erb:57
 msgid "Male"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:234
+#: app/views/layouts/application.html.erb:272
 msgid "My Apps"
 msgstr ""
 
@@ -381,7 +381,7 @@ msgstr ""
 msgid "Name of the product"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:235
+#: app/views/layouts/application.html.erb:273
 msgid "New App"
 msgstr ""
 
@@ -401,7 +401,7 @@ msgstr ""
 msgid "New comment created."
 msgstr ""
 
-#: app/views/layouts/application.html.erb:251
+#: app/views/layouts/application.html.erb:289
 msgid "New products"
 msgstr ""
 
@@ -417,7 +417,7 @@ msgstr ""
 msgid "Number of views"
 msgstr ""
 
-#: app/views/sessions/index.html.erb:9
+#: app/views/sessions/index.html.erb:10
 msgid "Password"
 msgstr ""
 
@@ -439,7 +439,7 @@ msgstr ""
 msgid "Platform was successufully deleted."
 msgstr ""
 
-#: app/views/layouts/application.html.erb:265
+#: app/views/layouts/application.html.erb:303
 msgid "Platforms"
 msgstr ""
 
@@ -459,11 +459,11 @@ msgstr ""
 msgid "Popularity: "
 msgstr ""
 
-#: app/controllers/products_controller.rb:136
+#: app/controllers/products_controller.rb:137
 msgid "Product was successfully created."
 msgstr ""
 
-#: app/controllers/products_controller.rb:154
+#: app/controllers/products_controller.rb:155
 msgid "Product was successfully updated."
 msgstr ""
 
@@ -471,7 +471,7 @@ msgstr ""
 msgid "Products"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:254
+#: app/views/layouts/application.html.erb:292
 msgid "Products pending approval"
 msgstr ""
 
@@ -511,11 +511,11 @@ msgstr ""
 msgid "Rating was successfully created/updated."
 msgstr ""
 
-#: app/views/users/_form.html.erb:101
+#: app/views/users/_form.html.erb:103
 msgid "Receive admin e-mail"
 msgstr ""
 
-#: app/views/users/_form.html.erb:121 app/views/users/_login_menu.html.erb:3
+#: app/views/users/_form.html.erb:123 app/views/users/_login_menu.html.erb:3
 msgid "Register"
 msgstr ""
 
@@ -544,7 +544,7 @@ msgstr ""
 msgid "Revoke administrator role"
 msgstr ""
 
-#: app/views/users/_form.html.erb:121
+#: app/views/users/_form.html.erb:123
 msgid "Save"
 msgstr ""
 
@@ -566,7 +566,7 @@ msgstr ""
 msgid "State:"
 msgstr ""
 
-#: app/views/products/_form.html.erb:132 app/views/platforms/_form.html.erb:25
+#: app/views/products/_form.html.erb:133 app/views/platforms/_form.html.erb:25
 #: app/views/categories/new.html.erb:25 app/views/categories/edit.html.erb:25
 msgid "Submit"
 msgstr ""
@@ -576,7 +576,7 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
-#: app/views/products/_form.html.erb:115
+#: app/views/products/_form.html.erb:116
 msgid "Terms and conditions"
 msgstr ""
 
@@ -585,7 +585,7 @@ msgid ""
 "These comments are only shown to administrators and %{comments_shown_for}."
 msgstr ""
 
-#: app/views/products/_form.html.erb:102
+#: app/views/products/_form.html.erb:103
 msgid "Title"
 msgstr ""
 
@@ -597,7 +597,7 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
-#: app/views/users/_form.html.erb:55
+#: app/views/users/_form.html.erb:57
 msgid "Unspecified"
 msgstr ""
 
@@ -609,12 +609,12 @@ msgstr ""
 msgid "User was successfully updated."
 msgstr ""
 
-#: app/views/sessions/index.html.erb:7 app/views/users/show.html.erb:4
+#: app/views/sessions/index.html.erb:8 app/views/users/show.html.erb:4
 #: app/views/users/index.html.erb:6
 msgid "Username"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:262
+#: app/views/layouts/application.html.erb:300
 msgid "Users"
 msgstr ""
 
@@ -631,8 +631,11 @@ msgid "Validation errors prohibited this rating from being saved"
 msgstr ""
 
 #: app/views/categories/new.html.erb:4 app/views/categories/edit.html.erb:4
-#: app/views/users/_form.html.erb:4
 msgid "Validation errors prohibited this user from being saved"
+msgstr ""
+
+#: app/views/users/_form.html.erb:4
+msgid "Validation errors prohibited user information from being saved"
 msgstr ""
 
 #: app/controllers/comments_controller.rb:41
@@ -647,7 +650,7 @@ msgstr ""
 msgid "Your rating:"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:247
+#: app/views/layouts/application.html.erb:285
 msgid "admin"
 msgstr ""
 
@@ -659,7 +662,7 @@ msgstr ""
 msgid "blocked"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:219
+#: app/views/layouts/application.html.erb:257
 msgid "browse"
 msgstr ""
 
@@ -683,7 +686,7 @@ msgstr ""
 msgid "comments_shown_for|you"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:218
+#: app/views/layouts/application.html.erb:256
 msgid "home"
 msgstr ""
 
@@ -715,7 +718,7 @@ msgstr ""
 msgid "not yet rated"
 msgstr ""
 
-#: app/views/layouts/application.html.erb:231
+#: app/views/layouts/application.html.erb:269
 msgid "publish"
 msgstr ""
 

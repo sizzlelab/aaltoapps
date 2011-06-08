@@ -89,6 +89,10 @@ GEM
       activesupport (= 3.0.7)
       bundler (~> 1.0)
       railties (= 3.0.7)
+    rails-i18n-updater (1.0.1)
+      actionpack
+      activesupport
+      rails
     railties (3.0.7)
       actionpack (= 3.0.7)
       activesupport (= 3.0.7)
@@ -159,6 +163,7 @@ DEPENDENCIES
   pg
   railroady
   rails (~> 3.0.1)
+  rails-i18n-updater
   rest-client
   routing-filter
   rspec-rails (>= 2.1.0)

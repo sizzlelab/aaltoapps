@@ -13,6 +13,7 @@ gem "will_paginate", "~> 3.0.pre2"
 gem 'vlad'
 gem 'vlad-git'
 gem 'fast_gettext'
+gem 'rails-i18n-updater'
 gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git"
 gem 'routing-filter'
 gem 'cancan'

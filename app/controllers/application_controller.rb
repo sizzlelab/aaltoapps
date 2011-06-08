@@ -4,14 +4,11 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   helper_method :current_user, :logged_in?
 
-  rescue_from CanCan::AccessDenied do |exception|
-    respond_to do |format|
-      format.html { render :file => "#{Rails.root}/public/403.html",
-                           :layout => false,
-                           :status => :forbidden }
-      format.xml  { head :forbidden }
-    end
-  end
+  rescue_from( ActionController::RoutingError,
+               ActionController::UnknownAction,
+               ActiveRecord::RecordNotFound
+             ) { |e| render_error_page e, 404 }
+  rescue_from(CanCan::AccessDenied) { |e| render_error_page e, 403 }
 
   def current_user
     @_current_user ||= session[:current_user_id] && User.find(session[:current_user_id])
@@ -22,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
 protected
-  
+
   def set_locale
     FastGettext.available_locales = I18n.available_locales
 
@@ -49,6 +46,28 @@ protected
       redirect_to("/#{locale}")
     else
       raise ActionController::RoutingError.new('No locale in path')
+    end
+  end
+
+  def render_error_page(exception, errorcode)
+    if request.format.nil?
+      # unrecognized format (format.any below doesn't work in this case)
+      render :text => "error #{errorcode}: #{exception.to_s}", :status => errorcode
+    else
+      respond_to do |format|
+        format.html do
+          @exception = exception
+          render :layout => 'error',
+                 :template => "errors/#{errorcode}",
+                 :status => errorcode
+        end
+        format.any(:xml, :json) do
+          render request.format.to_sym => {'error' => exception.to_s}, :status => errorcode
+        end
+        format.any do
+          render :text => "error #{errorcode}: #{exception.to_s}", :status => errorcode
+        end
+      end
     end
   end
 end

@@ -1,11 +1,13 @@
 <%= form_for @user do |f| %>
   <% if flash[:error] || @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= _("Validation errors prohibited this user from being saved") %>:</h2>
+      <h2><%= _("Validation errors prohibited user information from being saved") %>:</h2>
 
       <ul>
       <%
-        ( (@user.errors[:terms] ? [_('In order to register, you must accept the OtaSizzle "Terms and Conditions".')] : []) +
+        ( (@user.errors[:terms].present? ?
+              [_('In order to register, you must accept the OtaSizzle "Terms and Conditions".')] :
+              [] ) +
           (flash[:error] || []) +
           @user.errors.except(:terms).full_messages
         ).each do |msg|

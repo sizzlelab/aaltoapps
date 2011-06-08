@@ -3,10 +3,10 @@ class User < ActiveRecord::Base
   has_many :published, :class_name => "Product", :foreign_key => "publisher_id"
   has_many :comments
   attr_protected :is_admin, :receive_admin_email
-  validates :username, :password, :email, :presence => { :if => Proc.new { |user| user.asi_id.blank? } }
+  validates :username, :password, :presence => { :on => :create }
+  validates :terms, :acceptance => { :on => :create }
   validates :password, :confirmation => { :if => Proc.new { |user| user.password.present? } }
-  # terms == the language of the accepted terms and conditions
-  validates :terms, :acceptance => true
+  validates :email, :presence => true
   attr_accessor :terms, :no_asi_fetch
   
   PERSON_HASH_CACHE_EXPIRE_TIME = 0#15  #ALSO THIS CACHE TEMPORARILY OFF TO TEST PERFORMANCE WIHTOUT IT
@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   }
 
   # attributes that cannot be unset
-  ASI_NONUNSETTABLE_ATTRIBUTES = Set.new [:password, :email, :gender]
+  ASI_NONUNSETTABLE_ATTRIBUTES = Set.new [:password, :gender]
 
   def initialize(attr_values={})
     _asi_id, self.asi_cookie, self.terms, self.password_confirmation, self.no_asi_fetch =

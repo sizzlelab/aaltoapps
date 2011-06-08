@@ -8,7 +8,8 @@ class ProductsController < ApplicationController
   PRODUCTS_PER_PAGE = 6
   DEFAULT_SORT = "products.created_at DESC"
   DEFAULT_SORT_KEY = "created_at"
-  ALLOWED_SORT_KEYS = %w(name created_at updated_at publisher avg_rating featured popularity) 
+  ALLOWED_SORT_KEYS = %w(name created_at updated_at publisher avg_rating featured popularity)
+  TAG_AUTOCOMPLETE_LIMIT = 20
 
 private
 
@@ -213,7 +214,22 @@ public
     end
   end
 
-  private
+  def autocomplete_tags
+    pattern = params[:term]
+    if pattern
+      pattern.gsub!(/[%_]/, '\\\\\1')
+      render :json =>
+        Product.tag_counts.
+          where('lower(tags.name) LIKE lower(?)', "#{pattern}%").
+          order('lower(tags.name) ASC').
+          limit(TAG_AUTOCOMPLETE_LIMIT).
+          map(&:name)
+    else
+      render :json => []
+    end
+  end
+
+private
 
   def add_popularity
     @product = Product.find(params[:id])

@@ -1,0 +1,14 @@
+.error-message {
+    width: 25em;
+    padding: 0 4em;
+    margin: 4em auto 4em auto;
+    border: 1px solid #ccc;
+    border-right-color: #999;
+    border-bottom-color: #999;
+}
+
+.error-message > h1 {
+    font-size: 125%;
+    color: #f44;
+    line-height: 1.5em;
+}

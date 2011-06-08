@@ -37,6 +37,7 @@ AaltoApps::Application.routes.draw do
       get 'tag/:tags' => 'products#index', :as => :tag
 
       get :publisher_terms
+      get :autocomplete_tags
     end
   end
 

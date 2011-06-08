@@ -81,7 +81,8 @@
             <%= f.label :tag_list, _('Tags') + ' :' %>
         </th>
         <td>
-            <%= f.text_field :tag_list, :class => "textfield" %>
+            <%= f.text_field :tag_list, :class => "textfield",
+                             'data-autocomplete-url' => url_for(:action => :autocomplete_tags, :format => :json) %>
         </td>
     </tr>
     <tr>

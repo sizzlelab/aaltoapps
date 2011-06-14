@@ -12,7 +12,7 @@
   <div id="product-details">
     <dl id="product-publisher">
       <dt><%= _("Publisher") %>:</dt>
-      <dd><%= link_to @product.publisher.username, @product.publisher %></dd>
+      <dd><%= user_link @product.publisher %></dd>
     </dl>
 
     <dl id="product-platform">

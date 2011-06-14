@@ -2,6 +2,6 @@
 <%= button_to _("Login"), { :controller => "sessions" }, :class => 'smallbutton', :method => :get %>
 <%= button_to _("Register"), { :controller => "users", :action => "new" }, :class => 'smallbutton', :method => :get %>
 <% else %>
-<%=_("Logged in as ")%><%= link_to current_user.username,current_user %>
+<%= raw _("Logged in as %{username}") % {:username => user_link(current_user)} %>
 <%= button_to _("Logout"), { :controller => "sessions", :action => "delete" }, :method => :delete, :class=> 'smallbutton' %>
 <% end %>

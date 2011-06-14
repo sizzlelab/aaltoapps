@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-06-07 16:20+0300\n"
+"POT-Creation-Date: 2011-06-14 15:43+0300\n"
 "PO-Revision-Date: 2011-04-06 13:16+0200\n"
 "Last-Translator: Pekka Ekman <pekman@cc.hut.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -338,8 +338,8 @@ msgid "Logged in"
 msgstr "Olet kirjautunut sisään."
 
 #: app/views/users/_login_menu.html.erb:5
-msgid "Logged in as "
-msgstr "Kirjautuneena "
+msgid "Logged in as %{username}"
+msgstr "Kirjautuneena: %{username}"
 
 #: app/views/sessions/index.html.erb:12 app/views/users/_login_menu.html.erb:2
 msgid "Login"
@@ -744,6 +744,14 @@ msgstr "etsi"
 #: app/helpers/products_helper.rb:7
 msgid "submitted"
 msgstr "lähetetty"
+
+#: app/helpers/users_helper.rb:12
+msgid "user_link|error!"
+msgstr "virhe!"
+
+#: app/helpers/users_helper.rb:8
+msgid "user_link|unknown"
+msgstr "tuntematon"
 
 #: app/helpers/products_helper.rb:8
 msgid "waiting for approval"

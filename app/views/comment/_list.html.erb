@@ -1,5 +1,5 @@
 <div class="product-comment-current"> 
-  <span id="product-comment-name"><%= link_to comment.commenter.username, comment.commenter%> </span>
+  <span id="product-comment-name"><%= user_link comment.commenter %> </span>
   <% if can? :edit, comment %>
     <%= render 'comment/form', :comment => comment %>
   <% else %>

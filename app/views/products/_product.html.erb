@@ -4,7 +4,7 @@
   </div>
   <div class="browse_product_info">
     <div class="browse_row"><%= link_to product.name, product %></div>
-    <div class="browse_row"><%= _("Publisher:") %> <%= link_to product.publisher.username, product.publisher %></div>
+    <div class="browse_row"><%= _("Publisher:") %> <%= user_link product.publisher %></div>
     <div class="browse_row"><%= _("Popularity: ") %><%= product.popularity %></div>
     <div class="browse_row"><%= _("Rating") %>:
       <%= render :partial =>'ratings/rating',

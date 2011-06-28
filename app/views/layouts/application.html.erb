@@ -62,7 +62,8 @@
           .parents('.product-comment-line')
           .each(function () {
             var form = $(this);
-            var text = $('<span class="commenttext"/>').text(form.find('.commentfield').val()).append('<br/>')
+            var text = $('<div class="commenttext markdown-content"/>')
+              .html(form.find('.commentfield').data('html'))
               .insertBefore(form);
             form.hide();
             var editbutton = $('<button class="smallbutton">').text('<%= escape_javascript raw _('Edit') %>')

@@ -3,7 +3,7 @@
   <% if can? :edit, comment %>
     <%= render 'comment/form', :comment => comment %>
   <% else %>
-    <%= comment.body %><br />
+    <div class="markdown-content"><%= comment.body_html %></div>
   <% end %>
   <span id="product-comment-time">  <%= comment.created_at%> </span>
   <span id="product-comment-rating">

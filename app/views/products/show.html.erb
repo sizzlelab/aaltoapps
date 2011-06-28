@@ -67,7 +67,7 @@
 
     <dl id="product-description">
       <dt><%= _("Description") %>:</dt>
-      <dd><%= word_wrap(@product.description) %></dd>
+      <dd class="markdown-content"><%= @product.description_html %></dd>
     </dl>
 
     <% if @product.featured %>

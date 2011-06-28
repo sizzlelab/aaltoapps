@@ -18,6 +18,7 @@ gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git"
 gem 'routing-filter'
 gem 'cancan'
 gem 'acts-as-taggable-on'
+gem 'redcarpet'
 
 # these are used to extract translatable strings from code
 gem 'gettext_i18n_rails', :require => false, :group => :development

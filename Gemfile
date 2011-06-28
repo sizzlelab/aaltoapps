@@ -23,6 +23,9 @@ gem 'acts-as-taggable-on'
 gem 'gettext_i18n_rails', :require => false, :group => :development
 gem 'gettext', :require => false, :group => :development
 
+# enable Wirble in rails console if installed
+gem 'wirble', :require => false, :group => :development
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

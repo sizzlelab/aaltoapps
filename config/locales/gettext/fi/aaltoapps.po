@@ -255,7 +255,7 @@ msgid ""
 "I accept the OtaSizzle \"%{link_begin}Publisher Terms and Conditions"
 "%{link_end}\""
 msgstr ""
-"Hyväksyn OtaSizzlen \"%{link_begin}julkaisijan käyttäjäehdot{link_end}\""
+"Hyväksyn OtaSizzlen \"%{link_begin}julkaisijan käyttäjäehdot%{link_end}\""
 
 #: app/views/users/_form.html.erb:113
 msgid "I accept the OtaSizzle \"%{link_begin}Terms and Conditions%{link_end}\""

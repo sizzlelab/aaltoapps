@@ -112,7 +112,7 @@ class UsersController < ApplicationController
         if request.xhr?
           render :partial => 'terms'
         else
-          render :partial => 'terms', :layout => false
+          render :inline => '<%= render :partial => "terms" %>', :layout => true
         end
       end
     end

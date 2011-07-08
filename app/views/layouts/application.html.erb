@@ -125,25 +125,29 @@
                     click: function () { $(this).dialog('close'); } }
                 ]});
 
-          $(this).click(function () {
-            if (! dialog.hasClass('ajax-popup-loaded')) {
-              dialog
-                .load(url, function () {
-                    // if there is a header in the returned content,
-                    // move it to dialog title bar
-                    var h1 = dialog.find('h1');
-                    if (h1.length != 0) {
-                      dialog.dialog('option', 'title', h1.text());
-                    }
-                    h1.remove();
-                  })
-                .addClass('ajax-popup-loaded');
+          $(this).click(function (e) {
+            // open popup only on left click with no modifier keys down
+            if (e.which == 1 && !(e.shiftKey || e.ctrlKey || e.altKey || e.metaKey)) {
+              // load popup contents if not already loaded
+              if (! dialog.hasClass('ajax-popup-loaded')) {
+                dialog
+                  .load(url, function () {
+                      // if there is a header in the returned content,
+                      // move it to dialog title bar
+                      var h1 = dialog.find('h1');
+                      if (h1.length != 0) {
+                        dialog.dialog('option', 'title', h1.text());
+                      }
+                      h1.remove();
+                    })
+                  .addClass('ajax-popup-loaded');
+              }
+
+              dialog.dialog('open');
+
+              // prevent the browser from following the link
+              return false;
             }
-
-            dialog.dialog('open');
-
-            // prevent the browser from following the link
-            return false;
           });
         });
 

@@ -208,7 +208,7 @@ public
         if request.xhr?
           render :partial => 'publisher_terms'
         else
-          render :partial => 'publisher_terms', :layout => false
+          render :inline => '<%= render :partial => "publisher_terms" %>', :layout => true
         end
       end
     end

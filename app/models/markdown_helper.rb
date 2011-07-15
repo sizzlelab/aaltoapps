@@ -19,7 +19,7 @@ module MarkdownHelper
 
   def markdown_field_as_html(field)
     markdown = send field
-    if markdown.empty?
+    if markdown.blank?
       nil
     else
       Redcarpet.new(markdown, *REDCARPET_OPTIONS).to_html.html_safe

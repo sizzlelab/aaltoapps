@@ -7,8 +7,6 @@ AaltoApps::Application.routes.draw do
     resources :products
     resources :comments
     resources :ratings
-
-    get :terms, :on => :collection
   end
   
   resources :platforms do
@@ -36,13 +34,14 @@ AaltoApps::Application.routes.draw do
 
       get 'tag/:tags' => 'products#index', :as => :tag
 
-      get :publisher_terms
       get :autocomplete_tags
     end
   end
 
   resources :comments, :belongs_to => :products
-  
+
+  resources :pages, :only => :show
+
   root :to => "products#mainpage"
   match ':controller(/:action(/:id))'
 end

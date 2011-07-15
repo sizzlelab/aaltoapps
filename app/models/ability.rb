@@ -10,6 +10,7 @@ class Ability
     can :read, Comment, :admin_comment => false
     can :read, Product, :approval_state => 'published'
     can :read, Download, :product => { :approval_state => 'published' }
+    can :show_page, :all   # everyone can view all static pages
 
     if user  # logged in
       if user.is_admin?

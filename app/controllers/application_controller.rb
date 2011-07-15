@@ -4,9 +4,14 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   helper_method :current_user, :logged_in?
 
+  # exception that controllers can raise to show the 404 error page
+  class PageNotFound < StandardError; end
+
   rescue_from( ActionController::RoutingError,
+               ActionController::UnknownController,
                ActionController::UnknownAction,
-               ActiveRecord::RecordNotFound
+               ActiveRecord::RecordNotFound,
+               PageNotFound
              ) { |e| render_error_page e, 404 }
   rescue_from(CanCan::AccessDenied) { |e| render_error_page e, 403 }
 

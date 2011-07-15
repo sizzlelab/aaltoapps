@@ -202,18 +202,6 @@ public
     redirect_to :back
   end
 
-  def publisher_terms
-    respond_to do |format|
-      format.html do
-        if request.xhr?
-          render :partial => 'publisher_terms'
-        else
-          render :inline => '<%= render :partial => "publisher_terms" %>', :layout => true
-        end
-      end
-    end
-  end
-
   def autocomplete_tags
     pattern = params[:term]
     if pattern

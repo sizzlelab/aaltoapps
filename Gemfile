@@ -5,6 +5,7 @@ gem 'rails', '~> 3.0.1'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'haml'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'pg'
 gem 'ruby-debug19'
@@ -21,8 +22,11 @@ gem 'acts-as-taggable-on'
 gem 'redcarpet'
 
 # these are used to extract translatable strings from code
-gem 'gettext_i18n_rails', :require => false, :group => :development
-gem 'gettext', :require => false, :group => :development
+group :development, :test do
+  gem 'gettext_i18n_rails', :require => false
+  gem 'gettext', :require => false
+  gem 'ruby_parser', :require => false
+end
 
 # enable Wirble in rails console if installed
 gem 'wirble', :require => false, :group => :development

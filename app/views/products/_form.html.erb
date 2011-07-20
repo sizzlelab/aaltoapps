@@ -116,12 +116,13 @@
             <td><%= _('Terms and conditions') %></td>
             <td>
                 <%= f.check_box :terms %>
-                <%= f.label :terms, (
-                        _('I accept the OtaSizzle "%{link_begin}Publisher Terms and Conditions%{link_end}"') % {
-                          :link_begin => '<a href="' + html_escape(page_path(:publisher_terms)) + '" target="_blank" class="ajax-popup">',
-                          :link_end   => '</a>'
-                        }
-                      ).html_safe %>
+                <%=
+                  f.label :terms,
+                          substitute_links(
+                            _('I accept the OtaSizzle [[Publisher Terms and Conditions]]'),
+                            page_path(:publisher_terms),
+                            :target => '_blank', :class => 'ajax-popup' )
+                %>
             </td>
         </tr>
     <% end %>

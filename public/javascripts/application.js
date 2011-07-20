@@ -95,7 +95,7 @@ jQuery.noConflict();  // prevent conflicts with Prototype
         .appendTo('body')
         .dialog({
           autoOpen: false,
-          modal: true,
+          modal: false,
           width: '70%',
           height: 0.9 * $(window).height(),
           closeText: translations.close,

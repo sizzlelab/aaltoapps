@@ -10,7 +10,8 @@
   = s_('markdown_help|An empty line starts a new paragraph.')
   = s_('markdown_help|Newlines are preserved.')
   = s_('markdown_help|HTML tags are not allowed.')
-  = s_('markdown_help|<, >, & and " need to be escaped (\<, \>, \&, \").')
+  -# %-formatting used because of gettext parser doesn't like \-escapes
+  = s_('markdown_help|<, >, & and " need to be escaped (%s, %s, %s, %s).') % ['\<','\>','\&','\"']
 
 %dl
 

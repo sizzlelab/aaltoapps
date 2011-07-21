@@ -1,0 +1,76 @@
+%h1 Markdown Cheat Sheet
+
+%p
+  = substitute_links                                                  |
+      s_('markdown_help|This site uses a variant of [[Markdown]].'),  |
+      'http://daringfireball.net/projects/markdown/syntax',           |
+      :target => '_blank'                                             |
+
+%p
+  = s_('markdown_help|An empty line starts a new paragraph.')
+  = s_('markdown_help|Newlines are preserved.')
+  = s_('markdown_help|HTML tags are not allowed.')
+  = s_('markdown_help|<, >, & and " need to be escaped (\<, \>, \&, \").')
+
+%dl
+
+  %dt= s_('markdown_help|Links')
+  %dd
+    %pre
+      %code
+        = preserve do
+          &lt;http://example.com/&gt;
+          [#{s_('markdown_help|an example link')}](http://example.com/)
+
+  %dt= s_('markdown_help|Code')
+  %dd
+    %pre
+      %code
+        = preserve do
+          `#{s_('markdown_help|inline code')}`
+          \
+          ```
+          #{s_('markdown_help|code block')}
+          ```
+          \
+          \   #{s_('markdown_help|code block')}
+          \   #{s_('markdown_help|(line indented with 4 or more spaces)')}
+    = s_("markdown_help|There's no need to escape special characters in the code.")
+
+  %dt= s_('markdown_help|Headers')
+  %dd
+    %pre
+      %code
+        = preserve do
+          \# #{s_('markdown_help|header')}
+          \## #{s_('markdown_help|subheader')}
+          \###### #{s_('markdown_help|6th level header')}
+
+  %dt= s_('markdown_help|Text style')
+  %dd
+    %pre
+      %code
+        = preserve do
+          *#{s_('markdown_help|italic')}*
+          **#{s_('markdown_help|bold')}**
+
+  %dt= s_('markdown_help|Unordered lists')
+  %dd
+    %pre
+      %code
+        = preserve do
+          * #{s_('markdown_help|Item %s') % 1}
+          * #{s_('markdown_help|Item %s') % 2}
+          \  * #{s_('markdown_help|Subitem %s') % '2.1'}
+          \  * #{s_('markdown_help|Subitem %s') % '2.2'}
+          * #{s_('markdown_help|Item %s') % 3}
+
+  %dt= s_('markdown_help|Ordered lists')
+  %dd
+    %pre
+      %code
+        = preserve do
+          1. #{s_('markdown_help|Item %s') % 1}
+          2. #{s_('markdown_help|Item %s') % 2}
+          3. #{s_('markdown_help|Item %s') % 3}
+    #{s_("markdown_help|The numbers don't need to be in order. The list will be automatically renumbered.")}

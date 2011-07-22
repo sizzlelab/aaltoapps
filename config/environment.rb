@@ -13,3 +13,6 @@ FastGettext.add_text_domain('frontend', :path => 'config/locales/gettext', :type
     prepend_view_path Rails.root + 'config/locales/partials'
   end
 end
+
+# set sass/scss compiler output directory
+Sass::Plugin.options[:css_location] = Rails.root + 'public/stylesheets/generated'

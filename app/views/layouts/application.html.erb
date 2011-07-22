@@ -32,17 +32,10 @@
       <div class="layout_info">
         <div class="layout_menuitem">
           <%= _("Choose language:") %>
-          <span class="locale_selector">
-            <%=
-              @available_locales.map { |l|
-                if l[:current?]
-                  content_tag(:span, l[:name], :class => 'current_locale')
-                else
-                  link_to l[:name], params.merge(:locale => l[:id])
-                end
-              }.join(', ').html_safe
-            %>
-          </span>
+          <%= render :partial => '/layouts/locale_selector' %>
+        </div>
+        <div class="layout_menuitem">
+          <%= render :partial => '/layouts/mobile_version_selector' %>
         </div>
         <div class="layout_menuitem">
           <%= render :partial => "/users/login_menu" %>

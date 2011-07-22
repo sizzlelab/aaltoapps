@@ -1,0 +1,5 @@
+%span.mobile_version_selector
+  - if mobile_device?
+    = link_to _("Switch to standard version"), :mobile => '0'
+  - else
+    = link_to _("Switch to mobile version"), :mobile => '1'

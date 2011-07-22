@@ -1,0 +1,4 @@
+= content_for :content do
+  .error-message= yield
+
+= render :file => "layouts/#{mobile_device? ? 'mobile_application' : 'application'}"

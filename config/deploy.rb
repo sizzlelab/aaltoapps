@@ -2,7 +2,8 @@ set :application, "aaltoapps"
 set :domain, "aaltoapps@79.125.124.244"
 set :deploy_to, "/mnt/app/aaltoapps/"
 set :repository, 'git://github.com/sizzlelab/aaltoapps.git'
-set :rake_cmd, %q(bash -c 'source /usr/local/lib/rvm ; bundle exec rake "$@"')
+set :bundle_cmd, %q(bash -c 'source /usr/local/lib/rvm ; bundle exec "$@"' "bundle exec (vlad:deploy)")
+set :rake_cmd, "#{bundle_cmd} rake"
 
 # alternate settings for deploying different branches from repository
 set :branch_config, {
@@ -30,6 +31,11 @@ namespace :vlad do
   desc "Link product photos"
   remote_task :link_photos, :roles => :app do
     run "ln -s #{shared_path}/system/products #{release_path}/public/products"
+  end
+
+  desc "Compile sass/scss files"
+  remote_task :compile_sass, :roles => :app do
+    run "cd #{release_path}; #{bundle_cmd} sass --update public/stylesheets/sass:public/stylesheets/generated"
   end
 
   desc "Bubble gum for bundler and rvm, hope this gets a gem from the bundle/rvm folks"
@@ -64,6 +70,7 @@ namespace :vlad do
       vlad:bundle_install
       vlad:copy_config_files
       vlad:link_photos
+      vlad:compile_sass
       vlad:migrate
       vlad:start_app
     ]

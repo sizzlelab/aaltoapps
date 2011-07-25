@@ -42,7 +42,7 @@ module AaltoApps
         end
       end
     end
-    app_conf[:rails_config].each do |key, value|
+    app_conf[:rails_config].andand.each do |key, value|
       merge_config.call(config.send(key), value)
     end
   end

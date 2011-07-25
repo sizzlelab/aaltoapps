@@ -7,6 +7,7 @@ gem 'rails', '~> 3.0.1'
 
 gem 'haml'
 gem 'sass'
+gem 'andand'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'pg'
 gem 'ruby-debug19'

@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
 
   def mobile_device?
     # TODO: better mobile device detection
-    session[:mobile_device] || request.user_agent =~ /Mobile|webOS/
+    session[:mobile_device] || request.user_agent =~ /Mobile|webOS|\bMIDP\b/
   end
 
 protected

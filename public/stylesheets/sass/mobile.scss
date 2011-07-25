@@ -3,10 +3,13 @@ $content_background: #202020;
 $product_background: #2B292B;
 
 $text_color: #00BFFF;
+$highlight_color: #FF6A00;
+$link_color: white;
 
 @import "../tag_cloud.css";
-@import "../formfields.css";
+//@import "../formfields.css";
 @import "../markdown.css";
+@import "formfields";
 
 body {
   background: $background;
@@ -14,8 +17,8 @@ body {
   font-family: sans-serif;
 }
 
-a:link, a:visited { color: white; }
-a:hover, a:active { color: #FF6A00; }
+a:link, a:visited { color: $link_color; }
+a:hover, a:active { color: $highlight_color; }
 
 .layout_logo a {
   font-size: 4em;
@@ -33,6 +36,12 @@ a:hover, a:active { color: #FF6A00; }
   background: $product_background;
   padding: 0.4em;
   margin-bottom: 1em;
+  -moz-box-shadow: 0 0 7px black;
+  -webkit-box-shadow: 0 0 7px black;
+  box-shadow: 0 0 7px black;
+  border-radius: 0.5em 0.2em 0.2em 0.5em;
+  -moz-border-radius: 0.5em 0.2em 0.2em 0.5em;
+  -webkit-border-radius: 0.5em 0.2em 0.2em 0.5em;;
 
   .browse_product_picture {
     float: right;
@@ -73,4 +82,14 @@ a:hover, a:active { color: #FF6A00; }
     margin-top: 0.5em;
     margin-left: 0.5em;
   }
+
+  #product-admin > dd {
+    display: inline-block;
+  }
+}
+
+// edit product
+#product_form_table > tbody > tr > th {
+  text-align: right;
+  vertical-align: top;
 }

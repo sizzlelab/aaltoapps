@@ -15,6 +15,10 @@
 
         .layout_info
           .layout_menuitem
+            = link_to _("home"), root_path
+            = link_to _("browse"), '#menu-browse'
+            = link_to _("main menu"), '#menu'
+          .layout_menuitem
             = _("Choose language:")
             = render :partial => '/layouts/locale_selector'
           .layout_menuitem= render :partial => '/layouts/mobile_version_selector'

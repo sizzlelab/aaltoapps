@@ -1,6 +1,15 @@
 <div class="<%= cycle("browse_product_left", "browse_product_right", :name=>'browse_products') -%>">
   <div class="browse_product_picture">
-    <%= link_to( image_tag(product.photo.url(:thumb), :size => "75x75", :border => 0), product ) %>
+    <%=
+      link_to(
+        if mobile_device?
+          # TODO: create a thumbnail style for the actual image
+          image_tag(product.photo.url(:thumb), :size => "40x40", :border => 0)
+        else
+          image_tag(product.photo.url(:thumb), :size => "75x75", :border => 0)
+        end,
+        product )
+    %>
   </div>
   <div class="browse_product_info">
     <div class="browse_row"><%= link_to product.name, product %></div>

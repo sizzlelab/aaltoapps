@@ -68,62 +68,6 @@
     </div>
   </div>
 
-  <div id="menu">
-    <div class="navmenu">
-      <li><div class="menusingle"><%= link_to _("home"), root_path %></div></li>
-      <li id="menu-browse"><div class="menutop"><%= link_to _("browse") %> </div>
-        <ul>
-          <div class="submenu">
-            <li class="submenu_row"><%=link_to _("All"), products_path %> </li>
-            <% Platform.all.each do |platform|%>
-              <li class="submenu_row"><%=link_to platform.name, platforms_path+"/%{p_id}/products/" % {:p_id => platform.id} %> </li>
-             <%end%>
-          </div>
-        </ul>
-      </li>
-      <% if logged_in? %>
-        <li id="menu-publish">
-          <div class="menutop"><%= link_to _("publish") %></div>
-            <ul>
-              <div class="submenu">
-                <li class="submenu_row"><%=link_to _("My Apps"), products_path(:myapps=>true) %> </li>
-                <li class="submenu_row"><%=link_to _("New App"), new_product_path %> </li>
-              </div>
-            </ul>
-        </li>
-      <% end %>
-
-      <% if (can_approve, can_i_users, can_i_platforms =
-               can?(:approve, Product), can?(:index, User), can?(:index, Platform)
-            ).any?
-      %>
-        <li id="menu-admin">
-          <div class="menutop"><%= link_to _("admin") %></div>
-          <ul>
-            <div class="submenu">
-              <% if can_approve %>
-                <li class="submenu_row"><%= link_to _('New products'),
-                                                    products_path(:approval => 'submitted')
-                                        %></li>
-                <li class="submenu_row"><%= link_to _('Products pending approval'),
-                                                    products_path(:approval => 'pending')
-                                        %></li>
-                <li class="submenu_row"><%= link_to _('Blocked products'),
-                                                    products_path(:approval => 'blocked')
-                                        %></li>
-              <% end %>
-              <% if can_i_users %>
-                <li class="submenu_row"><%= link_to _('Users'), users_path %></li>
-              <% end %>
-              <% if can_i_platforms %>
-                <li class="submenu_row"><%= link_to _('Platforms'), platforms_path %></li>
-              <% end %>
-            </div>
-          </ul>
-        </li>
-      <% end %>
-
-    </div>
-  </div>
+  <%= render :partial => '/layouts/menu' %>
 </body>
 </html>

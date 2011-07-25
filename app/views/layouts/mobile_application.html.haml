@@ -16,14 +16,17 @@
         .layout_info
           .layout_menuitem
             = link_to _("home"), root_path
+            \|
             = link_to _("browse"), '#menu-browse'
+            \|
             = link_to _("main menu"), '#menu'
+            \|
+            = link_to _("search"), '#search'
           .layout_menuitem
             = _("Choose language:")
             = render :partial => '/layouts/locale_selector'
           .layout_menuitem= render :partial => '/layouts/mobile_version_selector'
           .layout_menuitem= render :partial => "/users/login_menu"
-          .layout_menuitem= render :partial => "/products/search"
 
       .layout_frame
         .layout_master
@@ -32,6 +35,9 @@
           - if alert
             #alert= alert
           = content_for?(:content) ? yield(:content) : yield
+
+        = render :partial => '/layouts/menu'
+        = render :partial => "/products/search"
 
         .footer_text
           %a(target="_blank" href="http://www.sizzlelab.org") Sizzlelab.org
@@ -45,52 +51,3 @@
           %a(target="_blank" href="http://www.sizzlelab.org/content/howto") HOWTOs
           \|
           %a(target="_blank" href="http://www.sizzlelab.org/contact") Feedback
-
-
-    -# The menu structure is copied from application.html.erb
-    -# and contains invalid HTML (e.g. <div> inside <ul>).
-    -# It might be possible to move this into a partial to share it with
-    -# the standard layout.
-
-    :ruby
-      # determine which menus to show
-      abilities = can?(:approve, Product), can?(:index, User), can?(:index, Platform)
-      can_approve, can_index_users, can_index_platforms = abilities
-      show_admin_menu = abilities.any?
-
-    #menu
-      .navmenu
-        %li
-          .menusingle
-            = link_to _("home"), root_path
-        %li#menu-browse
-          .menutop= link_to _("browse")
-          %ul
-            .submenu
-              %li.submenu_row= link_to _("All"), products_path
-              - Platform.all.each do |platform|
-                %li.submenu_row
-                  = link_to platform.name, platform_products_path(platform)
-        - if logged_in?
-          %li#menu-publish
-            .menutop= link_to _("publish")
-            %ul
-              .submenu
-                %li.submenu_row= link_to _("My Apps"), products_path(:myapps=>true)
-                %li.submenu_row= link_to _("New App"), new_product_path
-        - if show_admin_menu
-          %li#menu-admin
-            .menutop= link_to _("admin")
-            %ul
-              .submenu
-                - if can_approve
-                  %li.submenu_row
-                    = link_to _('New products'), products_path(:approval => 'submitted')
-                  %li.submenu_row
-                    = link_to _('Products pending approval'), products_path(:approval => 'pending')
-                  %li.submenu_row
-                    = link_to _('Blocked products'), products_path(:approval => 'blocked')
-                - if can_index_users
-                  %li.submenu_row= link_to _('Users'), users_path
-                - if can_index_platforms
-                  %li.submenu_row= link_to _('Platforms'), platforms_path

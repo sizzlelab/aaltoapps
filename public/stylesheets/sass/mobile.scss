@@ -31,6 +31,75 @@ a:hover, a:active { color: $highlight_color; }
   padding: 0.5em;
 }
 
+#login-menu {
+  form, form > div { display: inline; }
+}
+
+#search {
+  margin-bottom: 1em;
+}
+
+// menu
+#menu {
+  font-family: sans-serif;
+  // font-weight: bold;
+  // background: $content_background;
+/*  -moz-box-shadow: 0 0 7px black;
+  -webkit-box-shadow: 0 0 7px black;
+  box-shadow: 0 0 7px black;
+  -moz-border-radius: 0.7em 0.1em 0.7em 0.1em;
+  border-radius: 0.7em 0.1em 0.7em 0.1em;
+  padding-bottom: 0.5em;
+  display: inline-block; */
+  margin: {
+    top: 1em;
+    bottom: 1em;
+    left: 0.5em;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .menusingle, .menutop {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    // cursor: pointer;
+    padding: {
+      left: 0.7em;
+      right: 0.3em;
+      bottom: 0.3em;
+    }
+    // overflow:hidden;
+  }
+  .menutop    { padding-top: 0.3em; }
+  .menusingle { padding-top: 0.7em; }
+
+  .navmenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .submenu_row {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-left: 2.0em;
+
+    a {
+      text-align: center;
+      // padding-left: 1.0em;
+      font-size: 0.8em;
+      color: $text_color;
+      // font-family: 'Harabara';
+      font-size: 1em;
+    }
+  }
+}
+
 // product list items
 .browse_product_left, .browse_product_right {
   background: $product_background;

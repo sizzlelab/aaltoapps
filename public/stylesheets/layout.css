@@ -111,15 +111,26 @@
 
 }
 	
-#menu a {text-decoration: none; font-size: 1.5em; }
+#menu a {
+  text-decoration: none;
+  color: inherit;
+}
 
-#menu .navmenu li ul {list-style: none; padding: 0; margin: 0; }
+#menu .menusingle,
+#menu .menutop {
+  font-size: 1.5em;
+  color: white;
+  cursor: pointer;
+  padding-left: 0.7em;
+  padding-right: 0.3em;
+  padding-bottom: 0.3em;
+  overflow:hidden;
+}
 
-#menu .menutop {padding:0.3em; padding-left: 0.7em; font-size: 1em; overflow:hidden; }
+#menu .menutop { padding-top: 0.3em; }
+#menu .menusingle { padding-top: 0.7em; }
 
-#menu .menusingle {padding:0.3em; padding-top:0.7em; padding-left: 0.7em; font-size: 1em;overflow:hidden;}
-
-#menu .navmenu li div ul {margin:none; padding: none;}
+#menu .navmenu ul {list-style: none; padding: 0; margin: 0; }
 
 #menu .submenu_row {overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
 

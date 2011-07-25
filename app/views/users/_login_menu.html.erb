@@ -1,7 +1,9 @@
-<% if !logged_in? %>
-<%= button_to _("Login"), { :controller => "sessions" }, :class => 'smallbutton', :method => :get %>
-<%= button_to _("Register"), { :controller => "users", :action => "new" }, :class => 'smallbutton', :method => :get %>
-<% else %>
-<%= raw _("Logged in as %{username}") % {:username => user_link(current_user)} %>
-<%= button_to _("Logout"), { :controller => "sessions", :action => "delete" }, :method => :delete, :class=> 'smallbutton' %>
-<% end %>
+<div id="login-menu">
+  <% if !logged_in? %>
+    <%= button_to _("Login"), { :controller => "sessions" }, :class => 'smallbutton', :method => :get %>
+    <%= button_to _("Register"), { :controller => "users", :action => "new" }, :class => 'smallbutton', :method => :get %>
+  <% else %>
+    <%= raw _("Logged in as %{username}") % {:username => user_link(current_user)} %>
+    <%= button_to _("Logout"), { :controller => "sessions", :action => "delete" }, :method => :delete, :class=> 'smallbutton' %>
+  <% end %>
+</div>

@@ -1,0 +1,39 @@
+:ruby
+  # determine which menus to show
+  abilities = can?(:approve, Product), can?(:index, User), can?(:index, Platform)
+  can_approve, can_index_users, can_index_platforms = abilities
+  show_admin_menu = abilities.any?
+
+#menu
+  .navmenu
+    #menu-home
+      .menusingle
+        = link_to _("home"), root_path
+    #menu-browse
+      .menutop= _("browse")
+      %ul
+        %li.submenu_row= link_to _("All"), products_path
+        - Platform.all.each do |platform|
+          %li.submenu_row
+            = link_to platform.name, platform_products_path(platform)
+    - if logged_in?
+      #menu-publish
+        .menutop= _("publish")
+        %ul
+          %li.submenu_row= link_to _("My Apps"), products_path(:myapps=>true)
+          %li.submenu_row= link_to _("New App"), new_product_path
+    - if show_admin_menu
+      #menu-admin
+        .menutop= _("admin")
+        %ul
+          - if can_approve
+            %li.submenu_row
+              = link_to _('New products'), products_path(:approval => 'submitted')
+            %li.submenu_row
+              = link_to _('Products pending approval'), products_path(:approval => 'pending')
+            %li.submenu_row
+              = link_to _('Blocked products'), products_path(:approval => 'blocked')
+          - if can_index_users
+            %li.submenu_row= link_to _('Users'), users_path
+          - if can_index_platforms
+            %li.submenu_row= link_to _('Platforms'), platforms_path

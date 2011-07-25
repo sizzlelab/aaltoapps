@@ -4,11 +4,11 @@ jQuery.noConflict();  // prevent conflicts with Prototype
 
   function submenuOpen(j) {
     j .parent('.menutop') .removeClass('menutop-closed') .addClass('menutop-open');
-    j .removeClass('menutop-closed') .addClass('menutop-open') .parents('li') .children('ul') .slideDown(250);
+    j .removeClass('menutop-closed') .addClass('menutop-open') .siblings('ul') .slideDown(250);
   }
 
   function submenuClose(j) {
-    j .removeClass('menutop-open') .addClass('menutop-closed')  .parents    ('li') .children('ul') .slideUp(250);
+    j .removeClass('menutop-open') .addClass('menutop-closed')  .siblings('ul') .slideUp(250);
     j .parent('.menutop') .removeClass('menutop-open') .addClass('menutop-closed');
   }
 
@@ -23,7 +23,7 @@ jQuery.noConflict();  // prevent conflicts with Prototype
       }
     });
 
-    $('.menutop:not(.menutop-open)') .addClass('menutop-closed') .parents('li') .children('ul') .hide();
+    $('.menutop:not(.menutop-open)') .addClass('menutop-closed') .siblings('ul') .hide();
 
     $('#menu .menutop') .click(function() {
 

@@ -1,0 +1,164 @@
+$background: #2E2E2E;
+$content_background: #202020;
+$product_background: #2B292B;
+
+$text_color: #00BFFF;
+$highlight_color: #FF6A00;
+$link_color: white;
+
+@import "../tag_cloud.css";
+//@import "../formfields.css";
+@import "../markdown.css";
+@import "formfields";
+
+body {
+  background: $background;
+  color: $text_color;
+  font-family: sans-serif;
+}
+
+a:link, a:visited { color: $link_color; }
+a:hover, a:active { color: $highlight_color; }
+
+.layout_logo a {
+  font-size: 4em;
+  color: $text_color;
+  text-decoration: none;
+}
+
+.layout_master {
+  background: $content_background;
+  padding: 0.5em;
+}
+
+#login-menu {
+  form, form > div { display: inline; }
+}
+
+#search {
+  margin-bottom: 1em;
+}
+
+// menu
+#menu {
+  font-family: sans-serif;
+  // font-weight: bold;
+  // background: $content_background;
+/*  -moz-box-shadow: 0 0 7px black;
+  -webkit-box-shadow: 0 0 7px black;
+  box-shadow: 0 0 7px black;
+  -moz-border-radius: 0.7em 0.1em 0.7em 0.1em;
+  border-radius: 0.7em 0.1em 0.7em 0.1em;
+  padding-bottom: 0.5em;
+  display: inline-block; */
+  margin: {
+    top: 1em;
+    bottom: 1em;
+    left: 0.5em;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .menusingle, .menutop {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    // cursor: pointer;
+    padding: {
+      left: 0.7em;
+      right: 0.3em;
+      bottom: 0.3em;
+    }
+    // overflow:hidden;
+  }
+  .menutop    { padding-top: 0.3em; }
+  .menusingle { padding-top: 0.7em; }
+
+  .navmenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .submenu_row {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-left: 2.0em;
+
+    a {
+      text-align: center;
+      // padding-left: 1.0em;
+      font-size: 0.8em;
+      color: $text_color;
+      // font-family: 'Harabara';
+      font-size: 1em;
+    }
+  }
+}
+
+// product list items
+.browse_product_left, .browse_product_right {
+  background: $product_background;
+  padding: 0.4em;
+  margin-bottom: 1em;
+  -moz-box-shadow: 0 0 7px black;
+  -webkit-box-shadow: 0 0 7px black;
+  box-shadow: 0 0 7px black;
+  border-radius: 0.5em 0.2em 0.2em 0.5em;
+  -moz-border-radius: 0.5em 0.2em 0.2em 0.5em;
+  -webkit-border-radius: 0.5em 0.2em 0.2em 0.5em;;
+
+  .browse_product_picture {
+    float: right;
+  }
+  .browse_product_desc {
+    max-height: 4.5em;
+    overflow: hidden;
+    text-overflow-ellipsis: hidden;
+  }
+}
+
+// product details
+#product-details {
+  & > dl {
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+    margin-left: 0;
+    margin-right: 0;
+
+    & > dt {
+      min-width: 7em;
+      display: inline;
+      //float: left;
+    }
+    & > dd {
+      //float: left;
+      margin-left: 1em;
+      display: inline;
+
+      & > * {
+        vertical-align: top;
+      }
+    }
+  }
+
+  #product-description > dd {
+    display: block;
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+  }
+
+  #product-admin > dd {
+    display: inline-block;
+  }
+}
+
+// edit product
+#product_form_table > tbody > tr > th {
+  text-align: right;
+  vertical-align: top;
+}

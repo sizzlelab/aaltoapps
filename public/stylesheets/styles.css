@@ -33,4 +33,6 @@
     clear: both;
 }	
 
-
+.user-link-error {
+    color: #ff7777;
+}

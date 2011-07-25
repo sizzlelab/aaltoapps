@@ -1,0 +1,53 @@
+!!! 5
+%html
+  %head
+    %title= _("Aalto Apps")
+    = stylesheet_link_tag 'generated/mobile'
+    -#= javascript_include_tag :defaults
+    = csrf_meta_tag
+
+  %body{:lang => I18n.locale}
+    .layout_whole
+      .wrapper_top
+        .layout_logo
+          = link_to root_path do
+            aalto apps
+
+        .layout_info
+          .layout_menuitem
+            = link_to _("home"), root_path
+            \|
+            = link_to _("browse"), '#menu-browse'
+            \|
+            = link_to _("main menu"), '#menu'
+            \|
+            = link_to _("search"), '#search'
+          .layout_menuitem
+            = _("Choose language:")
+            = render :partial => '/layouts/locale_selector'
+          .layout_menuitem= render :partial => '/layouts/mobile_version_selector'
+          .layout_menuitem= render :partial => "/users/login_menu"
+
+      .layout_frame
+        .layout_master
+          - if notice
+            #notice= notice
+          - if alert
+            #alert= alert
+          = content_for?(:content) ? yield(:content) : yield
+
+        = render :partial => '/layouts/menu'
+        = render :partial => "/products/search"
+
+        .footer_text
+          %a(target="_blank" href="http://www.sizzlelab.org") Sizzlelab.org
+          \|
+          %a(target="_blank" href="http://otasizzle.wordpress.com") OtaSizzle blog
+          \|
+          %a(target="_blank" href="http://www.sizzlelab.org/content/legal-information") Legal Information
+          \|
+          %a(target="_blank" href="http://www.sizzlelab.org/content/frequently-asked-questions-faq") FAQ
+          \|
+          %a(target="_blank" href="http://www.sizzlelab.org/content/howto") HOWTOs
+          \|
+          %a(target="_blank" href="http://www.sizzlelab.org/contact") Feedback

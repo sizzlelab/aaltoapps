@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-06-07 16:20+0300\n"
+"POT-Creation-Date: 2011-07-21 14:33+0300\n"
 "PO-Revision-Date: 2011-04-06 13:16+0200\n"
 "Last-Translator: Pekka Ekman <pekman@cc.hut.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,15 +38,15 @@ msgstr " tai "
 msgid "Aalto Apps"
 msgstr "Aalto Apps"
 
-#: app/views/layouts/application.html.erb:118
+#: app/views/layouts/application.html.erb:13
 msgid "Accept"
 msgstr "Hyväksy"
 
-#: app/views/products/_form.html.erb:61
+#: app/views/products/_form.html.erb:66
 msgid "Add Photo"
 msgstr "Lisää kuva"
 
-#: app/views/products/_form.html.erb:100
+#: app/views/products/_form.html.erb:105
 msgid "Add a new download:"
 msgstr "Lisää uusi tiedosto:"
 
@@ -66,7 +66,7 @@ msgstr "Admin"
 msgid "Admin comments"
 msgstr "Ylläpitäjän kommentit"
 
-#: app/views/layouts/application.html.erb:260
+#: app/views/layouts/application.html.erb:83
 msgid "All"
 msgstr "Kaikki"
 
@@ -104,12 +104,12 @@ msgstr "Takaisin"
 msgid "Block"
 msgstr "Estä"
 
-#: app/views/layouts/application.html.erb:295
+#: app/views/layouts/application.html.erb:117
 msgid "Blocked products"
 msgstr "Estetyt sovellukset"
 
-#: app/views/products/_form.html.erb:133
-#: app/views/layouts/application.html.erb:75
+#: app/views/products/_form.html.erb:139
+#: app/views/layouts/application.html.erb:10
 msgid "Cancel"
 msgstr "Peruuta"
 
@@ -129,20 +129,19 @@ msgstr "Kategoria luotiin onnistuneesti."
 msgid "Category was successfully updated."
 msgstr "Kategoriaa päivitettiin onnistuneesti"
 
-#: app/views/products/_form.html.erb:61
+#: app/views/products/_form.html.erb:66
 msgid "Change Photo"
 msgstr "Vaihda kuva"
 
-#: app/views/products/_form.html.erb:49
+#: app/views/products/_form.html.erb:54
 msgid "Choose a platform"
 msgstr "Valitse alusta"
 
-#: app/views/layouts/application.html.erb:198
+#: app/views/layouts/application.html.erb:33
 msgid "Choose language:"
 msgstr "Valitse kieli:"
 
-#: app/views/layouts/application.html.erb:112
-#: app/views/layouts/application.html.erb:123
+#: app/views/layouts/application.html.erb:12
 msgid "Close"
 msgstr "Sulje"
 
@@ -158,20 +157,20 @@ msgstr "Kommenttia ei luotu."
 msgid "Comments"
 msgstr "Kommentit"
 
-#: app/views/comment/_form.html.erb:5
+#: app/views/comment/_form.html.erb:10
 msgid "Create comment"
 msgstr "Luo kommentti"
 
-#: app/views/products/_form.html.erb:65
+#: app/views/products/_form.html.erb:70
 msgid "Current photo:"
 msgstr "Nykyinen kuva:"
 
-#: app/views/layouts/application.html.erb:120
+#: app/views/layouts/application.html.erb:14
 msgid "Decline"
 msgstr "Kieltäydy"
 
 #: app/views/downloads/_formfields.html.erb:18
-#: app/views/downloads/_list.html.erb:7 app/views/products/_form.html.erb:72
+#: app/views/downloads/_list.html.erb:7 app/views/products/_form.html.erb:77
 #: app/views/products/show.html.erb:93 app/views/comment/_list.html.erb:20
 msgid "Delete"
 msgstr "Poista"
@@ -189,17 +188,17 @@ msgstr "Tuhoa"
 msgid "Detailed view"
 msgstr "Yksityiskohdat"
 
-#: app/views/products/_form.html.erb:90 app/views/products/show.html.erb:61
+#: app/views/products/_form.html.erb:95 app/views/products/show.html.erb:61
 msgid "Downloads"
 msgstr "Ladattavat tiedostot"
 
-#: app/views/products/_form.html.erb:142
+#: app/views/products/_form.html.erb:148
 msgid "Drag an image here!"
 msgstr "Siirrä kuva tähän!"
 
 #: app/views/products/show.html.erb:89 app/views/platforms/show.html.erb:22
 #: app/views/platforms/index.html.erb:18
-#: app/views/layouts/application.html.erb:68
+#: app/views/layouts/application.html.erb:9
 #: app/views/categories/show.html.erb:21
 #: app/views/categories/index.html.erb:17 app/views/users/show.html.erb:48
 #: app/views/users/index.html.erb:29
@@ -234,7 +233,7 @@ msgstr "Nainen"
 msgid "Fields marked with asterisk (*) are compulsory"
 msgstr "Kentät, jotka ovat merkitty (*) ovat pakollisia"
 
-#: app/views/products/_form.html.erb:106
+#: app/views/products/_form.html.erb:111
 msgid "File"
 msgstr "Tiedosto"
 
@@ -250,16 +249,13 @@ msgstr "Etunimi"
 msgid "Grant administrator role"
 msgstr "Anna admin-oikeudet"
 
-#: app/views/products/_form.html.erb:120
-msgid ""
-"I accept the OtaSizzle \"%{link_begin}Publisher Terms and Conditions"
-"%{link_end}\""
-msgstr ""
-"Hyväksyn OtaSizzlen \"%{link_begin}julkaisijan käyttäjäehdot{link_end}\""
+#: app/views/products/_form.html.erb:127
+msgid "I accept the OtaSizzle [[Publisher Terms and Conditions]]"
+msgstr "Hyväksyn OtaSizzlen [[julkaisijan käyttäjäehdot]]"
 
-#: app/views/users/_form.html.erb:113
-msgid "I accept the OtaSizzle \"%{link_begin}Terms and Conditions%{link_end}\""
-msgstr "Hyväksyn OtaSizzlen \"%{link_begin}käyttäjäehdot%{link_end}\""
+#: app/views/users/_form.html.erb:115
+msgid "I accept the OtaSizzle [[Terms and Conditions]]"
+msgstr "Hyväksyn OtaSizzlen [[käyttäjäehdot]]"
 
 #: app/views/platforms/show.html.erb:9 app/views/categories/new.html.erb:20
 #: app/views/categories/edit.html.erb:20 app/views/categories/show.html.erb:9
@@ -338,8 +334,8 @@ msgid "Logged in"
 msgstr "Olet kirjautunut sisään."
 
 #: app/views/users/_login_menu.html.erb:5
-msgid "Logged in as "
-msgstr "Kirjautuneena "
+msgid "Logged in as %{username}"
+msgstr "Kirjautuneena: %{username}"
 
 #: app/views/sessions/index.html.erb:12 app/views/users/_login_menu.html.erb:2
 msgid "Login"
@@ -369,7 +365,7 @@ msgstr "Tee suositeltu"
 msgid "Male"
 msgstr "Mies"
 
-#: app/views/layouts/application.html.erb:272
+#: app/views/layouts/application.html.erb:95
 msgid "My Apps"
 msgstr "Omat sovellukseni"
 
@@ -384,7 +380,7 @@ msgstr "Nimi"
 msgid "Name of the product"
 msgstr "Tuotteen nimi"
 
-#: app/views/layouts/application.html.erb:273
+#: app/views/layouts/application.html.erb:96
 msgid "New App"
 msgstr "Uusi sovellus"
 
@@ -404,7 +400,7 @@ msgstr "Uusi käyttäjä"
 msgid "New comment created."
 msgstr "Kommentti luotu."
 
-#: app/views/layouts/application.html.erb:289
+#: app/views/layouts/application.html.erb:111
 msgid "New products"
 msgstr "Uudet sovellukset"
 
@@ -442,7 +438,7 @@ msgstr "Alusta päivitetty onnistuneesti."
 msgid "Platform was successufully deleted."
 msgstr "Alusta poistettu."
 
-#: app/views/layouts/application.html.erb:303
+#: app/views/layouts/application.html.erb:125
 msgid "Platforms"
 msgstr "Alustat"
 
@@ -474,7 +470,7 @@ msgstr "Sovellus päivitettiin onnistuneesti."
 msgid "Products"
 msgstr "Sovellukset"
 
-#: app/views/layouts/application.html.erb:292
+#: app/views/layouts/application.html.erb:114
 msgid "Products pending approval"
 msgstr "Hyväksyntää odottavat tuotteet"
 
@@ -518,7 +514,7 @@ msgstr "Arvio luotiin/päivitettiin onnistuneesti."
 msgid "Receive admin e-mail"
 msgstr "Vastaanota ylläpidon sähköpostia"
 
-#: app/views/users/_form.html.erb:123 app/views/users/_login_menu.html.erb:3
+#: app/views/users/_form.html.erb:124 app/views/users/_login_menu.html.erb:3
 msgid "Register"
 msgstr "Rekisteröidy"
 
@@ -531,7 +527,7 @@ msgid "Remove from featured"
 msgstr "Poista suositelluista"
 
 #: app/views/downloads/_formfields.html.erb:23
-#: app/views/products/_form.html.erb:74
+#: app/views/products/_form.html.erb:79
 msgid "Replace with:"
 msgstr "Korvaa tällä:"
 
@@ -547,11 +543,11 @@ msgstr "Pyydä hyväksyntää"
 msgid "Revoke administrator role"
 msgstr "Poista admin-oikeudet"
 
-#: app/views/users/_form.html.erb:123
+#: app/views/users/_form.html.erb:124
 msgid "Save"
 msgstr "Tallenna"
 
-#: app/views/comment/_form.html.erb:5
+#: app/views/comment/_form.html.erb:10
 msgid "Save comment"
 msgstr "Tallenna kommentti"
 
@@ -569,17 +565,17 @@ msgstr "Näytä"
 msgid "State:"
 msgstr "Tila:"
 
-#: app/views/products/_form.html.erb:133 app/views/platforms/_form.html.erb:25
+#: app/views/products/_form.html.erb:139 app/views/platforms/_form.html.erb:25
 #: app/views/categories/new.html.erb:25 app/views/categories/edit.html.erb:25
 msgid "Submit"
 msgstr "Hyväksy"
 
-#: app/views/products/_form.html.erb:81 app/views/products/show.html.erb:55
+#: app/views/products/_form.html.erb:86 app/views/products/show.html.erb:55
 #: app/views/products/index.html.erb:16
 msgid "Tags"
 msgstr "Tagit"
 
-#: app/views/products/_form.html.erb:116
+#: app/views/products/_form.html.erb:121
 msgid "Terms and conditions"
 msgstr "Käyttäjäehdot"
 
@@ -588,7 +584,11 @@ msgid ""
 "These comments are only shown to administrators and %{comments_shown_for}."
 msgstr "Nämä kommentit näkyvät vain ylläpitäjille ja %{comments_shown_for}."
 
-#: app/views/products/_form.html.erb:103
+#: app/views/products/_form.html.erb:45 app/views/comment/_form.html.erb:4
+msgid "This field supports Markdown formatting ([[more information]])"
+msgstr "Tämä kenttä tukee Markdown-muotoilua ([[lisätietoja]])"
+
+#: app/views/products/_form.html.erb:108
 msgid "Title"
 msgstr "Otsikko"
 
@@ -617,7 +617,7 @@ msgstr "Käyttäjä päivitettiin onnistuneesti."
 msgid "Username"
 msgstr "Käyttäjätunnus"
 
-#: app/views/layouts/application.html.erb:300
+#: app/views/layouts/application.html.erb:122
 msgid "Users"
 msgstr "Käyttäjät"
 
@@ -653,7 +653,7 @@ msgstr "Kommenttisi päivitettiin onnistuneesti."
 msgid "Your rating:"
 msgstr "Sinun arviosi:"
 
-#: app/views/layouts/application.html.erb:285
+#: app/views/layouts/application.html.erb:107
 msgid "admin"
 msgstr "admin"
 
@@ -665,7 +665,7 @@ msgstr "adminstrator"
 msgid "blocked"
 msgstr "estetty"
 
-#: app/views/layouts/application.html.erb:257
+#: app/views/layouts/application.html.erb:80
 msgid "browse"
 msgstr "selaa"
 
@@ -689,11 +689,11 @@ msgstr "sovelluksen julkaisijalle"
 msgid "comments_shown_for|you"
 msgstr "sinulle"
 
-#: app/views/layouts/application.html.erb:256
+#: app/views/layouts/application.html.erb:79
 msgid "home"
 msgstr "etusivu"
 
-#: app/views/layouts/application.html.erb:104
+#: app/views/layouts/application.html.erb:11
 msgid "loading..."
 msgstr "ladataan..."
 
@@ -704,6 +704,111 @@ msgstr "kirjaudu sisään"
 #: app/views/platforms/_login_menu.html.erb:5
 msgid "logout"
 msgstr "kirjaudu ulos"
+
+#: app/views/pages/markdown_help.html.haml:38
+msgid "markdown_help|(line indented with 4 or more spaces)"
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:48
+msgid "markdown_help|6th level header"
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:14
+msgid "markdown_help|<, >, & and \" need to be escaped (%s, %s, %s, %s)."
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:10
+msgid "markdown_help|An empty line starts a new paragraph."
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:27
+msgid "markdown_help|Code"
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:12
+msgid "markdown_help|HTML tags are not allowed."
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:42
+msgid "markdown_help|Headers"
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:63
+#: app/views/pages/markdown_help.html.haml:64
+#: app/views/pages/markdown_help.html.haml:67
+#: app/views/pages/markdown_help.html.haml:74
+#: app/views/pages/markdown_help.html.haml:75
+#: app/views/pages/markdown_help.html.haml:76
+msgid "markdown_help|Item %s"
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:18
+msgid "markdown_help|Links"
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:11
+msgid "markdown_help|Newlines are preserved."
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:70
+msgid "markdown_help|Ordered lists"
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:65
+#: app/views/pages/markdown_help.html.haml:66
+msgid "markdown_help|Subitem %s"
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:51
+msgid "markdown_help|Text style"
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:79
+msgid ""
+"markdown_help|The numbers don't need to be in order. The list will be "
+"automatically renumbered."
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:41
+msgid "markdown_help|There's no need to escape special characters in the code."
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:4
+msgid "markdown_help|This site uses a variant of [[Markdown]]."
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:59
+msgid "markdown_help|Unordered lists"
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:24
+msgid "markdown_help|an example link"
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:56
+msgid "markdown_help|bold"
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:34
+#: app/views/pages/markdown_help.html.haml:37
+msgid "markdown_help|code block"
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:46
+msgid "markdown_help|header"
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:31
+msgid "markdown_help|inline code"
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:55
+msgid "markdown_help|italic"
+msgstr ""
+
+#: app/views/pages/markdown_help.html.haml:47
+msgid "markdown_help|subheader"
+msgstr ""
 
 #: app/views/ratings/_form.html.erb:17
 msgid "no rating"
@@ -721,7 +826,7 @@ msgstr "normaali käyttäjä"
 msgid "not yet rated"
 msgstr "ei vielä arvioitu"
 
-#: app/views/layouts/application.html.erb:269
+#: app/views/layouts/application.html.erb:92
 msgid "publish"
 msgstr "julkaise"
 
@@ -744,6 +849,14 @@ msgstr "etsi"
 #: app/helpers/products_helper.rb:7
 msgid "submitted"
 msgstr "lähetetty"
+
+#: app/helpers/users_helper.rb:12
+msgid "user_link|error!"
+msgstr "virhe!"
+
+#: app/helpers/users_helper.rb:8
+msgid "user_link|unknown"
+msgstr "tuntematon"
 
 #: app/helpers/products_helper.rb:8
 msgid "waiting for approval"

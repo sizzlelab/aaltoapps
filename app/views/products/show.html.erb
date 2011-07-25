@@ -27,7 +27,7 @@
 
     <dl id="product-publisher">
       <dt><%= _("Publisher") %>:</dt>
-      <dd><%= link_to @product.publisher.username, @product.publisher %></dd>
+      <dd><%= user_link @product.publisher %></dd>
     </dl>
 
     <dl id="product-platform">
@@ -82,7 +82,7 @@
 
     <dl id="product-description">
       <dt><%= _("Description") %>:</dt>
-      <dd><%= word_wrap(@product.description) %></dd>
+      <dd class="markdown-content"><%= @product.description_html %></dd>
     </dl>
 
     <% if @product.featured %>

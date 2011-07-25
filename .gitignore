@@ -14,3 +14,6 @@ config/locales/gettext/*/*.mo
 # except en-US, which is included in Rails
 /vendor/rails-locales/**
 !/vendor/rails-locales/fi.*
+
+# exclude css files generated from sass/scss
+/public/stylesheets/generated/*.css

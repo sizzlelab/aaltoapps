@@ -5,6 +5,9 @@ class Comment < ActiveRecord::Base
   validates :commenter, :product, :presence => true
   validates :body, :length => { :minimum => 3 }
 
+  include MarkdownHelper
+  markdown_fields :body
+
   attr_protected :admin_comment
 
   def commenter_rating

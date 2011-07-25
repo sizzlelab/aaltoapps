@@ -1,12 +1,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include FastGettext::Translation
-  before_filter :set_locale
-  helper_method :current_user, :logged_in?
+  before_filter :set_mobile_device, :set_locale
+  helper_method :current_user, :logged_in?, :mobile_device?
+  layout :select_layout
+
+  # exception that controllers can raise to show the 404 error page
+  class PageNotFound < StandardError; end
 
   rescue_from( ActionController::RoutingError,
+               ActionController::UnknownController,
                ActionController::UnknownAction,
-               ActiveRecord::RecordNotFound
+               ActiveRecord::RecordNotFound,
+               PageNotFound
              ) { |e| render_error_page e, 404 }
   rescue_from(CanCan::AccessDenied) { |e| render_error_page e, 403 }
 
@@ -18,7 +24,21 @@ class ApplicationController < ActionController::Base
     !current_user.nil?
   end
 
+  def mobile_device?
+    # TODO: better mobile device detection
+    session[:mobile_device] || request.user_agent =~ /Mobile|webOS/
+  end
+
 protected
+
+  def select_layout
+    mobile_device? ? 'mobile_application' : 'application'
+  end
+
+  def set_mobile_device
+    session[:mobile_device] = parse_boolean(params[:mobile]) if params.has_key?(:mobile)
+#    request.format = :mobile if request.format == :html && mobile_device?
+  end
 
   def set_locale
     FastGettext.available_locales = I18n.available_locales
@@ -70,4 +90,9 @@ protected
       end
     end
   end
+
+  def parse_boolean(val)
+    val.present? && val.to_s !~ /^(?:false|f|no|n|off|0+)$/i
+  end
+
 end

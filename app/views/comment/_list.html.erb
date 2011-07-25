@@ -1,9 +1,9 @@
 <div class="product-comment-current"> 
-  <span id="product-comment-name"><%= link_to comment.commenter.username, comment.commenter%> </span>
+  <span id="product-comment-name"><%= user_link comment.commenter %> </span>
   <% if can? :edit, comment %>
     <%= render 'comment/form', :comment => comment %>
   <% else %>
-    <%= comment.body %><br />
+    <div class="markdown-content"><%= comment.body_html %></div>
   <% end %>
   <span id="product-comment-time">  <%= comment.created_at%> </span>
   <span id="product-comment-rating">

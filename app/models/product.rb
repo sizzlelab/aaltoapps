@@ -27,6 +27,9 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :downloads, :allow_destroy => true,
     :reject_if => proc { |attrs| !attrs['file'] }
 
+  include MarkdownHelper
+  markdown_fields :description
+
   attr_protected :publisher_id, :approval_state, :approval_date, :featured, :popularity
 
   def is_approved?

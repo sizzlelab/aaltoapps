@@ -105,16 +105,4 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
-
-  def terms
-    respond_to do |format|
-      format.html do
-        if request.xhr?
-          render :partial => 'terms'
-        else
-          render :partial => 'terms', :layout => false
-        end
-      end
-    end
-  end
 end

@@ -17,9 +17,10 @@ body {
 }
 
 pre {
-  background-color: #eee;
+  background-color: #171717;
   padding: 10px;
   font-size: 11px;
+  text-align: left;
 }
 
 a { color: white; }

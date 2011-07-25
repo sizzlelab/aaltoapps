@@ -1,0 +1,75 @@
+.smallbutton {
+  background: none;
+  border: none;
+  text-decoration: none;
+  color: $link_color;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-transform: lowercase;
+
+  &:hover, &:active {
+    color: $highlight_color;
+    cursor: pointer;
+  }
+}
+
+.bigbutton {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  padding: 0.5em 0.5em 0.5em;
+  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  -webkit-border-radius: .5em;
+  -moz-border-radius: .5em;
+  border-radius: .5em;
+  -moz-box-shadow: 0 0 7px black;
+  -webkit-box-shadow: 0 0 7px black;
+  box-shadow: 0 0 7px black;
+  border: none;
+  color: $highlight_color;
+  background: $content_background;
+
+  &:hover, &:active {
+    -moz-box-shadow: 0 0 7px $highlight_color;
+    -webkit-box-shadow: 0 0 7px $highlight_color;
+    box-shadow: 0 0 7px $highlight_color;
+  }
+}
+
+.inlinebuttons {
+  display: inline-block;
+}
+
+@mixin formfield($field_background: $background) {
+  background: $field_background;
+  color: white;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  border-radius: 0.5em;
+  border: none;
+}
+
+.textfield, .commentfield {
+  @include formfield;
+  padding: 0.2em;
+}
+
+.searchfield {
+  @include formfield(#666);
+  padding: 0.7em;
+
+  &:active {
+    -moz-box-shadow: 0 0 7px $highlight_color;
+    -webkit-box-shadow: 0 0 7px $highlight_color;
+    box-shadow: 0 0 7px $highlight_color;
+  }
+}
+
+.otherfield, .pwfield {
+  @include formfield;
+  padding: 0.5em;
+}

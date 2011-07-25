@@ -16,6 +16,17 @@ module AaltoApps
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
+    # Markdown parsing and rendering options
+    # (see http://rdoc.info/github/tanoku/redcarpet/master/Redcarpet#instance_attr_details)
+    ::REDCARPET_OPTIONS = [
+      :autolink,    # automatically convert URLs to links
+      :filter_html, # no raw HTML allowed
+      :fenced_code, # allow ```-syntax for code blocks
+      :hard_wrap,   # convert line breaks to <br> (since we don't allow raw HTML)
+      :no_image,    # no inline images
+      :safelink,    # no unknown URL types allowed
+    ]
+
     # load local config file
     app_conf = YAML.load_file("#{Rails.root}/config/aaltoapps_config.yml")[Rails.env].symbolize_keys
     APP_CONFIG = OpenStruct.new(app_conf.except(:rails_config))
@@ -31,7 +42,7 @@ module AaltoApps
         end
       end
     end
-    app_conf[:rails_config].each do |key, value|
+    app_conf[:rails_config].andand.each do |key, value|
       merge_config.call(config.send(key), value)
     end
   end

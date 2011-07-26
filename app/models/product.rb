@@ -5,7 +5,7 @@ class Product < ActiveRecord::Base
   has_many :ratings, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :downloads, :dependent => :destroy
-  has_attached_file :photo, :styles => { :thumb=> "75x75#",:small => "150x150>" },
+  has_attached_file :photo, :styles => { :mobile_thumb => "40x40#", :thumb => "75x75#", :small => "150x150>" },
     :url  => "/:class/:attachment/:id/:style_:basename.:extension",
     :default_url => "/images/:style_missing.png",
     :path => ":rails_root/public/:class/:attachment/:id/:style_:basename.:extension"

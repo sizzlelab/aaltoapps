@@ -3,8 +3,7 @@
     <%=
       link_to(
         if mobile_device?
-          # TODO: create a thumbnail style for the actual image
-          image_tag(product.photo.url(:thumb), :size => "40x40", :border => 0)
+          image_tag(product.photo.url(:mobile_thumb), :size => "40x40", :border => 0)
         else
           image_tag(product.photo.url(:thumb), :size => "75x75", :border => 0)
         end,

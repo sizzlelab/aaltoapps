@@ -65,12 +65,9 @@ public
 
     @featured_products = @products.where(:featured => true)
 
-    fetch_data_for_index(params)
-
-    @show_welcome_info = true
-    @show_tag_cloud = true
-
-    render :action => 'index' # index.html.erb
+    # no need to load the product list for mobile site, because it won't
+    # be shown on the mobile main page
+    fetch_data_for_index(params) unless mobile_device?
   end
 
   # GET /products

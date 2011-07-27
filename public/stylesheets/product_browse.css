@@ -1,10 +1,10 @@
-.browse_products {
+#browse_products {
     display:inline-block;
     width:100%; 
     font-size: 1em;
 }
 
-.browse_products .selected-sort-key {
+#browse_products .selected-sort-key {
     color: gray;
 }
 

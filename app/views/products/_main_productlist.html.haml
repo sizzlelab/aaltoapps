@@ -1,0 +1,60 @@
+-# Shows the main product list including the header and paginator
+
+:ruby
+  # determine which title to use
+  title = case @view_type
+    when :myapps
+      _("Listing my applications")
+    when :approval
+      _("Listing applications with status: %{status}") % {:status => approval_status(@approval_state)}
+    when :index then case
+      when @search
+        _("Search results")
+      when @platform.present? && @tags.present?
+        n_("Listing %{platform} applictions with the tag %{tags}",
+           "Listing %{platform} applictions with tags %{tags}",
+           @tags.count
+          ) % {:tags => @tags.to_sentence(:two_words_connector => _(' or '), :last_word_connector => _(', or '))}
+      when @tags.present?
+        n_("Listing applictions with the tag %{tags}",
+           "Listing applictions with tags %{tags}",
+           @tags.count
+          ) % {:tags => @tags.to_sentence(:two_words_connector => _(' or '), :last_word_connector => _(', or '))}
+      when @platform.present?
+        _("Listing %{platform} applications") % {:platform => @platform.name}
+      else
+        _("Listing all applications")
+      end
+  end
+
+- if @products.blank?
+  #browse_products
+    %h1= title
+    #no_products_msg= _("No applications available.")
+
+- else
+  #browse_products
+    %h1= title
+
+    -# list of sort headers separated by "|"
+    :ruby
+      sort_headers = [
+        ['created_at', _('Publication date')],
+        ['popularity', _('Popularity')],
+        ['avg_rating', _('User rating')],
+      ]
+    - sort_headers.each_with_index do |(key, title), index|
+      - if index != 0
+        \|
+      - if key == @sort
+        %span.selected-sort-key= title
+      - else
+        = link_to title, products_path_with_params(:sort => key)
+    %br
+    %br
+    = render :partial => 'products', :object => @products
+
+  #browse_paginate
+    = will_paginate @products,
+                    :previous_label => _('&#8592; Previous'),
+                    :next_label     => _('Next &#8594;')

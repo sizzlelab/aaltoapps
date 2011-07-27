@@ -19,6 +19,19 @@ module ProductsHelper
              merge(_params) )
   end
 
+  # returns image tag for a Product's photo
+  def product_photo(product, style = product.photo.default_style, img_options = {})
+    # add width and height attributes if the style has constant image dimensions
+    img_options.reverse_merge! case style
+      when :thumb        then {:size => '75x75'}
+      when :mobile_thumb then {:size => '40x40'}
+      else {}
+    end
+    img_options.reverse_merge! :border => 0
+
+    image_tag product.photo.url(style), img_options
+  end
+
   def published_products_tag_cloud(css_class_list, &block)
     tag_cloud( Product.accessible_by(current_ability)
                  .where(:products => {:approval_state => 'published'})

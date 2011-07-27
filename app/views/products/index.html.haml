@@ -1,0 +1,7 @@
+- unless @err_msg.blank?
+  %br
+  %br
+  #browse_search_err_msg(align="center")
+    %h1= @err_msg
+
+= render :partial => 'main_productlist'

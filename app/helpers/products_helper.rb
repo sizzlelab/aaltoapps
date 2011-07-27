@@ -18,4 +18,11 @@ module ProductsHelper
              merge(:controller => 'products', :action => 'index').
              merge(_params) )
   end
+
+  def published_products_tag_cloud(css_class_list, &block)
+    tag_cloud( Product.accessible_by(current_ability)
+                 .where(:products => {:approval_state => 'published'})
+                 .top_tags(),
+               css_class_list, &block )
+  end
 end

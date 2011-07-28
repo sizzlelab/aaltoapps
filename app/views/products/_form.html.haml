@@ -50,7 +50,8 @@
             = surround '(', ')' do
               = capture_each_join @product.photo.styles do |stylename, _|
                 = link_to stylename, @product.photo.url(stylename)
-            = f.check_box(:delete_photo) + f.label(:delete_photo, _('Delete'))
+            %span#product_edit_delete_photo
+              = f.check_box(:delete_photo) + f.label(:delete_photo, _('Delete'))
             %br
             = f.label :photo, _('Replace with:')
           = f.file_field :photo, :class => 'otherfield'

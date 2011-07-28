@@ -18,6 +18,11 @@
     }
   }
 
+  // prevent line break between checkbox and label
+  #product_edit_delete_photo {
+    display: inline-block;
+  }
+
   // don't let the margins of block elements increase row height
   #product_edit_downloads > dd {
     & > *:first-child { margin-top: 0; }

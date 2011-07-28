@@ -152,7 +152,27 @@ a:hover, a:active { color: $highlight_color; }
 }
 
 // edit product
-#product_form_table > tbody > tr > th {
-  text-align: right;
-  vertical-align: top;
+#product_edit {
+  dl > dd {
+    // decrease indent for dd elements
+    // so that they fit better to narrow screens
+    margin-left: 1.5em;
+  }
+  li {
+    margin-left: -1em;
+  }
+
+  // prevent line break between checkbox and label
+  #product_edit_delete_photo {
+    display: inline-block;
+  }
+
+  // kludges to prevent some fields from making the page wider than the screen
+  input, textarea {
+    max-width: 99.99%;
+  }
+  input[type="file"] {
+    overflow: hidden;
+    width: 99.99%;
+  }
 }

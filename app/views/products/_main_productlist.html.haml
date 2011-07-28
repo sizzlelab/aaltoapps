@@ -36,16 +36,14 @@
   #browse_products
     %h1= title
 
-    -# list of sort headers separated by "|"
+    -# make a list of sort headers separated by "|"
     :ruby
       sort_headers = [
         ['created_at', _('Publication date')],
         ['popularity', _('Popularity')],
         ['avg_rating', _('User rating')],
       ]
-    - sort_headers.each_with_index do |(key, title), index|
-      - if index != 0
-        \|
+    = capture_each_join sort_headers, ' | ' do |key, title|
       - if key == @sort
         %span.selected-sort-key= title
       - else

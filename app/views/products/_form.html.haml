@@ -1,0 +1,96 @@
+#product_edit
+  = form_for @product, :html => { :multipart => true } do |f|
+
+    - if @product.errors.any?
+      #error_explanation
+        = _("Validation errors prohibited this product from being saved")
+        %ul
+          = @product.errors.full_messages.each do |msg|
+            %li= msg
+
+    %p
+      = _("Please fill in the following form.")
+      %br
+      = _("Fields marked with asterisk (*) are compulsory")
+
+    #product_edit_fields
+      %dl
+        %dt= f.label :name, _('Name of the product') + ' *:'
+        %dd= f.text_field :name, :class => "textfield"
+
+      %dl
+        %dt= f.label :url,_('URL') + ' *:'
+        %dd= f.text_field :url, :class => "textfield"
+
+      %dl
+        %dt= f.label :description, _('Description') + ' *:'
+        %dd
+          = substitute_links _('This field supports Markdown formatting ([[more information]])'),
+                             page_path(:markdown_help),
+                             :target => '_blank', :class => 'ajax-popup'
+          %br
+          = f.text_area :description, :class => "textfield"
+
+      %dl
+        %dt= f.label :platforms, _('Choose a platform') + ' *:'
+        %dd
+          = f.collection_select :platforms, Platform.all, :id, :name,
+                                { :prompt => true,
+                                  :selected => @product.platform_ids },
+                                { :class => 'otherfield',
+                                  :name => 'product[platform_ids][]' }
+
+      %dl
+        %dt= f.label :photo, (@product.photo? ? _('Change Photo') : _('Add Photo')) + ' :'
+        %dd
+          - if @product.photo?
+            = _('Current photo:')
+            = link_to @product.photo.original_filename, @product.photo.url
+            (#{number_to_human_size(@product.photo.size)})
+            = surround '(', ')' do
+              = capture_each_join @product.photo.styles do |stylename, _|
+                = link_to stylename, @product.photo.url(stylename)
+            = f.check_box(:delete_photo) + f.label(:delete_photo, _('Delete'))
+            %br
+            = f.label :photo, _('Replace with:')
+          = f.file_field :photo, :class => 'otherfield'
+
+      %dl
+        %dt= f.label :tag_list, _('Tags') + ' :'
+        %dd= f.text_field :tag_list, :class => "textfield",
+                          'data-autocomplete-url' => url_for(:action => :autocomplete_tags, :format => :json)
+
+      %dl#product_edit_downloads
+        %dt= _('Downloads') + ' :'
+        %dd
+          %ul#product_edit_download_list
+            = render :partial => "downloads/formfields",
+                     :collection => @product.downloads.find_all(&:valid?),
+                     :as => :download,
+                     :locals => { :edit => true, :delete => true, :form => f }
+          %dl#product_new_download
+            %dt= _('Add a new download:')
+            %dd
+              = f.fields_for :downloads, @product.downloads.build do |d|
+                = d.label :title, _('Title') + ' :'
+                = d.text_field :title, :class => "textfield"
+                %br
+                = d.label :file, _('File') + ' :'
+                = d.file_field :file, :class => 'otherfield'
+
+      - if @product.new_record?
+        %dl
+          %dt= _('Terms and conditions')
+          %dd
+            = f.check_box :terms
+            = f.label :terms,
+                substitute_links( _('I accept the OtaSizzle [[Publisher Terms and Conditions]]'),
+                                  page_path(:publisher_terms),
+                                  :target => '_blank', :class => 'ajax-popup' )
+
+      %dl
+        %dt
+        %dd
+          = f.submit _('Submit'), :class => 'smallbutton'
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          = f.submit _('Cancel'), :name => 'cancel', :class => 'smallbutton'

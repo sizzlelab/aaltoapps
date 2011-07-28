@@ -88,7 +88,7 @@
     <% if @product.featured %>
       <dl id="product-featured">
         <dt><%= _("Featured") %>:</dt>
-        <dd>✓</dd>
+        <dd><%= mobile_device? ? s_('is_featured|yes') : '✓' %></dd>
       </dl>
     <% end %>
 

@@ -1,0 +1,20 @@
+#welcome_msg(align="center")
+  = render :partial => '/welcome_message'
+
+#browse_tags
+  %h1= _('Tags')
+  = render 'tag_cloud'
+
+- if @featured_products.present?
+  #browse_featured_products
+    %h1
+      - if @platform.present?
+        = _("Listing featured %{platform} applications") % {:platform => @platform.name}
+      - else
+        = _("Listing featured applications")
+    = render :partial=>'products', :object => @featured_products
+
+- if mobile_device?
+  %h2= link_to _("Browse all applications"), products_path
+- else
+  = render :partial => 'main_productlist'

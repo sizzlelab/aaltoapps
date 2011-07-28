@@ -55,7 +55,7 @@
   border: none;
 }
 
-.textfield, .commentfield {
+.textfield, .commentfield, .pwfield {
   @include formfield;
   padding: 0.2em;
 }
@@ -71,7 +71,7 @@
   }
 }
 
-.otherfield, .pwfield {
+.otherfield {
   @include formfield;
   padding: 0.5em;
 }

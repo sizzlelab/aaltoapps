@@ -21,6 +21,7 @@
       when 0.875 ... 1     then stars += 1; ''
     end
 
-    ('★' * stars) + suffix
+    # use * in mobile devices, because some of them can't display ★
+    ((mobile_device? ? '*' : '★') * stars) + suffix
   end
 %></span>

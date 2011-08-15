@@ -1,0 +1,3 @@
+.tag-cloud
+  - published_products_tag_cloud((1..6).map {|i| "tag-cloud-tag-size#{i}"}) do |tag, css_class|
+    %span.tag-cloud-tag{:class => css_class}= tag_link tag

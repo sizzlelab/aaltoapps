@@ -1,0 +1,19 @@
+.product-comment-current
+  %span#product-comment-name= user_link comment.commenter
+  - if can? :edit, comment
+    = render 'comment/form', :comment => comment
+  - else
+    .markdown-content= comment.body_html
+  %span#product-comment-time= comment.created_at
+  %span#product-comment-rating
+    - if !comment.commenter_rating.nil?
+      = render :partial => 'ratings/rating', :object => comment.commenter_rating
+    - else
+      = _("(User has not rated this app)")
+
+  .product-comment-buttons
+    - if can? :delete, comment
+      = button_to _('Delete'), comment,
+                 :confirm => _('Are you sure?'),
+                 :method => :delete,
+                 :class => 'smallbutton'

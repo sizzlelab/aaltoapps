@@ -37,7 +37,6 @@ protected
 
   def set_mobile_device
     session[:mobile_device] = parse_boolean(params[:mobile]) if params.has_key?(:mobile)
-#    request.format = :mobile if request.format == :html && mobile_device?
   end
 
   def set_locale

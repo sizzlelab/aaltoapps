@@ -8,7 +8,7 @@ gem 'rails', '~> 3.0.1'
 gem 'haml'
 gem 'sass'
 gem 'andand'
-gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'sqlite3-ruby', :require => 'sqlite3', :group => :development
 gem 'pg'
 gem 'ruby-debug19'
 gem 'rest-client'

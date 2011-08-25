@@ -1,0 +1,4 @@
+.product_new
+  %h1= _("Add a product")
+  = render 'form'
+  = button_to _('Back'), products_path, :class => 'smallbutton', :method => :get

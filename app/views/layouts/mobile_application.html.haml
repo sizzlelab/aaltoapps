@@ -1,7 +1,17 @@
-!!! 5
-%html
+!!! XML
+!!! Basic
+%html(xmlns="http://www.w3.org/1999/xhtml")
   %head
     %title= _("Aalto Apps")
+
+    -# viewport scaling settings for mobile browsers:
+    -# - no unnecessary horizontal scrolling
+    -# - sane initial zoom level
+    -# - allow zooming out
+    -#<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5" />
+    %meta(name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=0.5")
+
     = stylesheet_link_tag 'generated/mobile'
     -#= javascript_include_tag :defaults
     = csrf_meta_tag

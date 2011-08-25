@@ -1,9 +1,11 @@
 set :application, "aaltoapps"
-set :domain, "aaltoapps@79.125.124.244"
+set :domain, "aaltoapps@aaltoapps.com"
 set :deploy_to, "/mnt/app/aaltoapps/"
 set :repository, 'git://github.com/sizzlelab/aaltoapps.git'
-set :bundle_cmd, %q(bash -c 'source /usr/local/lib/rvm ; bundle exec "$@"' "bundle exec (vlad:deploy)")
-set :rake_cmd, "#{bundle_cmd} rake"
+
+set :rbenv_path, "~/.rbenv/bin:~/.rbenv/shims"
+set :rake_cmd, %Q(PATH="#{rbenv_path}:$PATH" rake)
+set :bundle_cmd, %Q(PATH="#{rbenv_path}:$PATH" bundle)
 
 # alternate settings for deploying different branches from repository
 set :branch_config, {
@@ -16,6 +18,8 @@ set :branch_config, {
     :revision => "origin/uidev",
   },
 }
+
+require "bundler/vlad"
 
 # config/deploy.rb
 # ...&nbsp;
@@ -30,28 +34,12 @@ namespace :vlad do
 
   desc "Link product photos"
   remote_task :link_photos, :roles => :app do
-    run "ln -s #{shared_path}/system/products #{release_path}/public/products"
+    run "mkdir -p #{shared_path}/system/products; ln -s #{shared_path}/system/products #{release_path}/public/products"
   end
 
   desc "Compile sass/scss files"
   remote_task :compile_sass, :roles => :app do
-    run "cd #{release_path}; #{bundle_cmd} sass --update public/stylesheets/sass:public/stylesheets/generated"
-  end
-
-  desc "Bubble gum for bundler and rvm, hope this gets a gem from the bundle/rvm folks"
-  remote_task :bundle_install do
-    # loads RVM, which initializes environment and paths
-    init_rvm = "source /usr/local/lib/rvm"
-
-    # ya know, get to where we need to go
-    # ex. /var/www/my_app/releases/12345
-    goto_app_root = "cd #{release_path}"
-
-    # run bundle install with explicit path and without test dependencies
-    bundle_install = "bundle install --without development test"
-
-    # actually run all of the commands via ssh on the server
-    run "bash -c '#{init_rvm} && #{goto_app_root} && #{bundle_install}'"
+    run "cd #{release_path} && #{bundle_cmd} exec sass --style compressed --update public/stylesheets/sass:public/stylesheets/generated"
   end
 
   desc "Run all tasks needed for a deployment." +
@@ -67,7 +55,7 @@ namespace :vlad do
     tasks = %w[
       vlad:setup
       vlad:update
-      vlad:bundle_install
+      vlad:bundle:install
       vlad:copy_config_files
       vlad:link_photos
       vlad:compile_sass

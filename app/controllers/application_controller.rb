@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
 
   def mobile_device?
     # TODO: better mobile device detection
-    session[:mobile_device] || request.user_agent =~ /Mobile|webOS|\bMIDP\b/
+    session[:mobile_device] || request.user_agent =~ /Mobile|webOS|\bMIDP|Windows CE\b/
   end
 
 protected
@@ -37,6 +37,8 @@ protected
 
   def set_mobile_device
     session[:mobile_device] = parse_boolean(params[:mobile]) if params.has_key?(:mobile)
+    Rails.logger.debug "User-Agent: #{request.user_agent}"
+    Rails.logger.debug "  (mobile_device? = #{mobile_device? ? 'true' : 'false'})" unless params.has_key?(:mobile)
   end
 
   def set_locale

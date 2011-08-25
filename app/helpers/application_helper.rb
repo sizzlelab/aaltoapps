@@ -11,7 +11,7 @@ module ApplicationHelper
   # Replace occurrences of [[...]] with html links to the specified location.
   # Used with localizable strings.
   def substitute_links(text, *link_to_args)
-    html_escape(text).
+    raw html_escape(text).
       gsub(/\[\[(.*?)\]\]/) { link_to $1, *link_to_args }
   end
 
@@ -32,7 +32,7 @@ module ApplicationHelper
   def capture_each_join(*args, &block)
     if respond_to?(:is_haml?) && is_haml?
       # don't let haml insert unwanted whitespaces
-      each_join(*args) {|item| capture(item, &block).to_s.chomp }
+      each_join(*args) {|item| raw capture(item, &block).to_s.chomp }
     else
       each_join(*args) {|item| capture item, &block }
     end

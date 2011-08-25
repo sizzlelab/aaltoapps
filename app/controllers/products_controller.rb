@@ -53,8 +53,8 @@ private
     @sort = params[:sort] || DEFAULT_SORT_KEY
     @products = @products.order(order_parameter(@sort))
 
-    @products = @products.all.paginate(:page => page,
-                                       :per_page => PRODUCTS_PER_PAGE)
+    @products = @products.paginate(:page => page,
+                                   :per_page => PRODUCTS_PER_PAGE)
   end
 
 public

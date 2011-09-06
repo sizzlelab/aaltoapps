@@ -14,9 +14,6 @@ FastGettext.add_text_domain('frontend', :path => 'config/locales/gettext', :type
   end
 end
 
-# set sass/scss compiler output directory
-Sass::Plugin.options[:css_location] = Rails.root + 'public/stylesheets/generated'
-
 # Set Haml output format to xhtml.
 # XHTML is used in the mobile site, but Haml doesn't allow setting this on a
 # per-request basis, so we'll just have to use it on the regular site as well.

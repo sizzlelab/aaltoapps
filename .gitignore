@@ -3,17 +3,16 @@
 db/*.sqlite3
 db/schema.rb
 log/*.log
-tmp/**/*
+tmp/
+.sass-cache/
 config/database.yml
 config/aaltoapps_config.yml
 tags
 public/products/*
+public/assets/*
 config/locales/gettext/*/*.mo
 
 # only include the locales that are used,
 # except en-US, which is included in Rails
 /vendor/rails-locales/**
 !/vendor/rails-locales/fi.*
-
-# exclude css files generated from sass/scss
-/public/stylesheets/generated/*.css

@@ -16,15 +16,12 @@
     };
   </script>
 
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
   <%# TODO: replace with local customized css: %>
-  <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/base/jquery-ui.css" />
+  <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/<%= Jquery::Rails::JQUERY_UI_VERSION %>/themes/base/jquery-ui.css" />
 
-  <%= stylesheet_link_tag :all %>
-  <%= stylesheet_link_tag 'generated/product_edit' %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag    'application' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
 
 </head>
 <body lang="<%= I18n.locale %>">

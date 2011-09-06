@@ -4,8 +4,8 @@ set :deploy_to, "/mnt/app/aaltoapps/"
 set :repository, 'git://github.com/sizzlelab/aaltoapps.git'
 
 set :rbenv_path, "~/.rbenv/bin:~/.rbenv/shims"
-set :rake_cmd, %Q(PATH="#{rbenv_path}:$PATH" rake)
 set :bundle_cmd, %Q(PATH="#{rbenv_path}:$PATH" bundle)
+set :rake_cmd, "#{bundle_cmd} exec rake"
 
 # alternate settings for deploying different branches from repository
 set :branch_config, {
@@ -37,9 +37,9 @@ namespace :vlad do
     run "mkdir -p #{shared_path}/system/products; ln -s #{shared_path}/system/products #{release_path}/public/products"
   end
 
-  desc "Compile sass/scss files"
-  remote_task :compile_sass, :roles => :app do
-    run "cd #{release_path} && #{bundle_cmd} exec sass --style compressed --update public/stylesheets/sass:public/stylesheets/generated"
+  desc "Precompile assets"
+  remote_task :compile_assets, :roles => :app do
+    run "cd #{release_path} && RAILS_ENV=#{rails_env} #{rake_cmd} assets:precompile"
   end
 
   desc "Run all tasks needed for a deployment." +
@@ -58,7 +58,7 @@ namespace :vlad do
       vlad:bundle:install
       vlad:copy_config_files
       vlad:link_photos
-      vlad:compile_sass
+      vlad:compile_assets
       vlad:migrate
       vlad:start_app
     ]

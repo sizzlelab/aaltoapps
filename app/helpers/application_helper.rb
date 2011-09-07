@@ -12,6 +12,7 @@ module ApplicationHelper
   # Used with localizable strings.
   def substitute_links(text, *link_to_args)
     raw html_escape(text).
+      to_str.  # convert SafeBuffer to String so that gsub works
       gsub(/\[\[(.*?)\]\]/) { link_to $1, *link_to_args }
   end
 
@@ -32,7 +33,7 @@ module ApplicationHelper
   def capture_each_join(*args, &block)
     if respond_to?(:is_haml?) && is_haml?
       # don't let haml insert unwanted whitespaces
-      each_join(*args) {|item| raw capture(item, &block).to_s.chomp }
+      each_join(*args) {|item| raw capture(item, &block).chomp }
     else
       each_join(*args) {|item| capture item, &block }
     end

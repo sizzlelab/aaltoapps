@@ -3,10 +3,6 @@ set :domain, "aaltoapps@aaltoapps.com"
 set :deploy_to, "/mnt/app/aaltoapps/"
 set :repository, 'git://github.com/sizzlelab/aaltoapps.git'
 
-set :rbenv_path, "~/.rbenv/bin:~/.rbenv/shims"
-set :bundle_cmd, %Q(PATH="#{rbenv_path}:$PATH" bundle)
-set :rake_cmd, "#{bundle_cmd} exec rake"
-
 # alternate settings for deploying different branches from repository
 set :branch_config, {
   'demo' => {
@@ -19,11 +15,20 @@ set :branch_config, {
   },
 }
 
+set :rbenv_path, "~/.rbenv/bin:~/.rbenv/shims"
+set :bundle_cmd, %Q(PATH="#{rbenv_path}:$PATH" bundle)
+set :rake_cmd, "#{bundle_cmd} exec rake"
+
+set :shared_paths, shared_paths
+  .except('system')
+  .merge({
+    'system/products' => 'public/products',
+    'system/assets'   => 'public/assets',
+  })
+set :config_files, ['database.yml', 'aaltoapps_config.yml']
+
 require "bundler/vlad"
 
-# config/deploy.rb
-# ...&nbsp;
-set :config_files, ['database.yml', 'aaltoapps_config.yml']
 namespace :vlad do
   desc "Copy config files from shared/config to release dir"
   remote_task :copy_config_files, :roles => :app do
@@ -32,14 +37,9 @@ namespace :vlad do
     end
   end
 
-  desc "Link product photos"
-  remote_task :link_photos, :roles => :app do
-    run "mkdir -p #{shared_path}/system/products; ln -s #{shared_path}/system/products #{release_path}/public/products"
-  end
-
   desc "Precompile assets"
   remote_task :compile_assets, :roles => :app do
-    run "cd #{release_path} && RAILS_ENV=#{rails_env} #{rake_cmd} assets:precompile"
+    run "cd #{release_path} && #{rake_cmd} RAILS_ENV=#{rails_env} assets:precompile"
   end
 
   desc "Run all tasks needed for a deployment." +
@@ -57,7 +57,6 @@ namespace :vlad do
       vlad:update
       vlad:bundle:install
       vlad:copy_config_files
-      vlad:link_photos
       vlad:compile_assets
       vlad:migrate
       vlad:start_app

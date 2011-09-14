@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'Harabara';
-  src: font-url('Harabara.ttf');
+  src: url('/fonts/Harabara.ttf');
 }
 
 @font-face {
   font-family: 'TB';
-  src: font-url('Qlassik_TB-webfont.ttf');
+  src: url('/fonts/Qlassik_TB-webfont.ttf');
 }
 
 body {

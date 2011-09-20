@@ -42,28 +42,46 @@ namespace :vlad do
     run "cd #{release_path} && #{rake_cmd} RAILS_ENV=#{rails_env} assets:precompile"
   end
 
-  desc "Run all tasks needed for a deployment." +
-       " Specify git branch with BRANCH (default: master)." +
-       " Skip tasks with EXCEPT=task1,task2,..."
+  desc "Clean up asset directory and precompile assets locally"
+  task :compile_assets_locally => %w[assets:clean assets:precompile]
+
+  desc "Upload locally compiled assets"
+  remote_task :upload_assets, :roles => :app do
+    rsync 'public/assets', "#{target_host}:#{release_path}/public/assets"
+  end
+
+  multitask :concurrent_tasks => %w[
+    vlad:remote_tasks
+    vlad:compile_assets_locally
+  ]
+
+  task :remote_tasks => %w[
+    vlad:setup
+    vlad:update
+    vlad:bundle:install
+    vlad:copy_config_files
+    vlad:migrate
+  ]
+
+  desc "Run all tasks needed for a deployment.
+       Specify git branch with BRANCH (default: master).
+       To compile assets concurrently on local computer,
+       set COMPILE_ASSETS=local and make sure that the local copy
+       of the application is at the same version as the one
+       that is to be deployed.".cleanup
   task :deploy do
     # if branch specified and there are custom values for the branch, use them
     (branch_config[ENV['BRANCH']] || {}).each { |key,val| set key, val }
 
-    # list of tasks to skip
-    except = (ENV['EXCEPT'] || '').split(/[\s,]+/)
-
-    tasks = %w[
-      vlad:setup
-      vlad:update
-      vlad:bundle:install
-      vlad:copy_config_files
-      vlad:compile_assets
-      vlad:migrate
-      vlad:start_app
-    ]
-    (tasks - except).each do |name|
-      Rake::Task[name].invoke
+    if ENV['COMPILE_ASSETS'] =~ /^local/i
+      Rake::Task['vlad:concurrent_tasks'].invoke
+      Rake::Task['vlad:upload_assets'].invoke
+    else
+      Rake::Task['vlad:remote_tasks'].invoke
+      Rake::Task['vlad:compile_assets'].invoke
     end
+
+    Rake::Task['vlad:start_app'].invoke
   end
 
 end

@@ -1,28 +1,34 @@
 - reset_cycle 'browse_products'
 .product_list
   - products.each do |product|
-    .browse_product{:class => cycle("browse_product_left", "browse_product_right", :name=>'browse_products')}
-      .browse_product_picture
-        = link_to product_photo(product, (mobile_device? ? :mobile_thumb : :thumb)), product
+    -# Using a block-level link, which is allowed in HTML5 but not in
+    -# XHTML Basic. In practice all browsers support it, but we'll add
+    -# 'style="display: block"' just to be safe.
+    = link_to(product, :style => 'display: block') do
+      .browse_product{:class => cycle("browse_product_left", "browse_product_right", :name=>'browse_products')}
+        .browse_product_picture
+          = product_photo(product, (mobile_device? ? :mobile_thumb : :thumb))
 
-      .browse_product_info
-        .browse_row= link_to product.name, product
-        .browse_row
-          = _("Publisher:")
-          = user_link product.publisher
-        .browse_row
-          = _("Popularity: ")
-          = product.popularity
-        .browse_row
-          = _("Rating") + ':'
-          = render :partial =>'ratings/rating',
-                   :object => product.avg_rating,
-                   :locals => { :empty_message => '' }
-
-        - if [:myapps, :approval].include?(@view_type) || (logged_in? && current_user.is_admin?)
+        .browse_product_info
+          .browse_row.product_name= product.name
           .browse_row
-            = _("State:")
-            = approval_status product
+            = _("Publisher:")
+            = product.publisher.username
+          .browse_row
+            = _("Popularity: ")
+            = product.popularity
+          .browse_row
+            = _("Rating") + ':'
+            = render :partial =>'ratings/rating',
+                     :object => product.avg_rating,
+                     :locals => { :empty_message => '' }
 
-      .browse_product_desc.markdown-content
-        = product.description_html
+          - if [:myapps, :approval].include?(@view_type) || (logged_in? && current_user.is_admin?)
+            .browse_row
+              = _("State:")
+              = approval_status product
+
+        .browse_product_desc.markdown-content
+          -# :no_links is needed, because we're inside a block-level link
+          -# and nested links are not allowed
+          = product.description_html(:no_links, :no_image)

@@ -1,3 +1,7 @@
+.product_list > a {
+  text-decoration: inherit;
+}
+
 #browse_products {
     display:inline-block;
     width:100%; 

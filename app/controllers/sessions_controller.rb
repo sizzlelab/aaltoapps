@@ -1,12 +1,34 @@
 require 'rest_client'
 
-class SessionsController < ApplicationController  
+class SessionsController < ApplicationController
+
+  before_filter :only => :create do
+    RubyCAS::Filter.filter(self) if params[:cas]
+  end
+
   def create
     session[:form_username] = params[:username]
     begin
-      @new_session = Session.create({ :username => params[:username],
-                                      :password => params[:password] })
-                                                          
+      @new_session = if params[:cas]
+        proxy_granting_ticket = session[:cas_pgt]
+        Rails.logger.info "PGT: " + proxy_granting_ticket.inspect
+        proxy_ticket = RubyCAS::Filter.client.request_proxy_ticket(
+                         proxy_granting_ticket, APP_CONFIG.asi_url
+                       ).ticket
+        Rails.logger.info "PT: " + proxy_ticket.inspect
+        Session.create({ :username => session[:cas_user],
+                         :proxy_ticket => proxy_ticket },
+                       cas_session_url(:consent_ok => '1'),
+                       page_url(:login_failed) )
+        # TODO: add login_failed page and handle consent_ok
+      else
+        Session.create({ :username => params[:username],
+                         :password => params[:password] })
+      end
+
+    rescue Session::NewUserRedirect => e
+      # redirect to consent form page
+      redirect_to e.url and return
     rescue RestClient::Unauthorized => e
       flash[:error] = _("Login failed")
       redirect_to :controller => "sessions", :action => "index" and return
@@ -47,10 +69,12 @@ class SessionsController < ApplicationController
     rescue
       nil
     end
+
+    lang = current_user.andand.language || APP_CONFIG.fallback_locale
     if return_to
-      redirect_to return_to.merge(:locale => current_user.language)
+      redirect_to return_to.merge(:locale => lang)
     else
-      redirect_to root_path(:locale => current_user.language)
+      redirect_to root_path(:locale => lang)
     end
   end
   

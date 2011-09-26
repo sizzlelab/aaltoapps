@@ -27,7 +27,7 @@ module RestHelper
     make_request(:put, url, params, headers)
   end
 
-  def self.make_request(method, url, params=nil, headers=nil, return_full_response=false)
+  def self.make_request(method, url, params=nil, headers=nil, return_full_response=false, no_redirects=false)
     cookie_used_for_call = nil #this is used if getting unauthorized response
     ((method.to_sym == :post || method.to_sym == :put) ? headers : params).tap do |hdr|
       if hdr
@@ -43,12 +43,12 @@ module RestHelper
 
     begin
       begin
-        response = call(method, url, params, headers)
+        response = call(method, url, params, headers, no_redirects)
 
       rescue RestClient::RequestTimeout => e
         # In case of timeout, try once again
         Rails.logger.error { "Rest-client reported a timeout when calling #{method} for #{url} with params #{params}. Trying again..." }
-        response = call(method, url, params, headers)
+        response = call(method, url, params, headers, no_redirects)
       end
     
     rescue RestClient::Unauthorized, RestClient::Forbidden => e
@@ -67,7 +67,7 @@ module RestHelper
          else
            headers.merge!({:cookies => new_cookie})
          end
-         response = call(method, url, params, headers)
+         response = call(method, url, params, headers, no_redirects)
       else
         # Logged in as user, but the session has expired or is otherwise unvalid
         # this is handled in application_controller
@@ -85,8 +85,17 @@ module RestHelper
   
   private 
   
-  def self.call(method, url, params=nil, headers=nil)
-    
+  def self.call(method, url, params=nil, headers=nil, no_redirects=false)
+    handle_result = if no_redirects
+      Proc.new do |response, request, result, &block|
+        if (300...400).include? response.code
+          response  # return the result without processing it any further
+        else
+          response.return!(request, result, &block)  # continue processing normally
+        end
+      end
+    end
+
     response = nil
     time = Benchmark.realtime do
       response = case method    
@@ -99,12 +108,12 @@ module RestHelper
             end
             url += addition
           end
-          RestClient.try(method, url, params)
+          RestClient.try(method, url, params, &handle_result)
         when :post, :put
           if (event_id)
             params.merge!(:event_id => event_id)
           end
-          RestClient.try(method, url, params, headers) 
+          RestClient.try(method, url, params, headers, &handle_result)
       end
     end
     Rails.logger.info "ASI Call: (#{(time*1000).round}ms) #{method} #{url} (#{Time.now})"

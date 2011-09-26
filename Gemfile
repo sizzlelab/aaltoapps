@@ -29,6 +29,7 @@ gem 'routing-filter'
 gem 'cancan'
 gem 'acts-as-taggable-on'
 gem 'redcarpet'
+gem 'rubycas-client-rails', :require => false
 
 # these are used to extract translatable strings from code
 group :development, :test do

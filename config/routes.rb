@@ -2,7 +2,9 @@ AaltoApps::Application.routes.draw do
   # prefix all urls with language (e.g. /en/rest_of_url)
   filter :locale
 
+  get 'sessions/cas' => 'sessions#create', :cas => true, :as => :cas_session
   resources :sessions
+
   resources :users do
     resources :products
     resources :comments
@@ -41,6 +43,12 @@ AaltoApps::Application.routes.draw do
   resources :comments, :belongs_to => :products
 
   resources :pages, :only => :show
+
+  # Receives proxy-granting ticket from CAS server.
+  # This must be called using HTTPS or from localhost for security reasons.
+  get 'receive_pgt' => 'cas_proxy_callback#receive_pgt'
+  # used internally for retrieving PGTs
+  get 'retrieve_pgt' => 'cas_proxy_callback#retrieve_pgt'
 
   root :to => "products#mainpage"
   match ':controller(/:action(/:id))'

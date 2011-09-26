@@ -16,6 +16,10 @@ module ApplicationHelper
       gsub(/\[\[(.*?)\]\]/) { link_to $1, *link_to_args }
   end
 
+  def cas_enabled?
+    !! AaltoApps::Application.config.try(:rubycas).try(:cas_base_url)
+  end
+
   # Passes each member of list to block and returns the concatenated results
   # with the given separators between items.
   def each_join(list, separator = ', ', last_separator = separator, &block)

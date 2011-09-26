@@ -84,4 +84,13 @@ namespace :vlad do
     Rake::Task['vlad:start_app'].invoke
   end
 
+  task :deploy_using_local_asi do
+    remote_task :copy_config_files do
+      asi_url = 'http://localhost:3000'
+      run %Q|sed -i -e 's/^\\( *\\(ssl_\\)\\?asi_url:\\) *"http.*"/\\1 "#{asi_url}"/' #{release_path}/config/#{filename}|
+    end
+
+    Rake::Task['vlad:deploy'].invoke
+  end
+
 end

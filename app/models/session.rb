@@ -59,7 +59,6 @@ class Session
       redirect_url = resp[0]['entry']['uri'] +
         "&redirect=#{URI.escape(success_url)}" +
         "&fallback=#{URI.escape(failure_url)}"
-      # TODO: actually add the login_failed page
       raise NewUserRedirect.new(redirect_url, self)
     end
 

@@ -7,26 +7,34 @@ class SessionsController < ApplicationController
   end
 
   def create
-    session[:form_username] = params[:username]
     begin
       @new_session = if params[:cas]
+        # delete flash error message if coming from consent form page
+        flash.delete(:error) if params[:consent_ok]
+
         proxy_granting_ticket = session[:cas_pgt]
         Rails.logger.info "PGT: " + proxy_granting_ticket.inspect
         proxy_ticket = RubyCAS::Filter.client.request_proxy_ticket(
                          proxy_granting_ticket, APP_CONFIG.asi_url
                        ).ticket
         Rails.logger.info "PT: " + proxy_ticket.inspect
+
+        success_url = cas_session_url(:consent_ok => '1') # new CAS login on success
+        failure_url = sessions_url
+
         Session.create({ :username => session[:cas_user],
                          :proxy_ticket => proxy_ticket },
-                       cas_session_url(:consent_ok => '1'),
-                       page_url(:login_failed) )
-        # TODO: add login_failed page and handle consent_ok
+                       success_url, failure_url )
       else
+        session[:form_username] = params[:username]
         Session.create({ :username => params[:username],
                          :password => params[:password] })
       end
 
     rescue Session::NewUserRedirect => e
+      # Add an error message. If the login succeeds, the message will
+      # be removed before it's rendered.
+      flash[:error] = _("Login failed")
       # redirect to consent form page
       redirect_to e.url and return
     rescue RestClient::Unauthorized => e

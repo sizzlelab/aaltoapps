@@ -13,7 +13,7 @@
           .browse_row.product_name= product.name
           .browse_row
             = _("Publisher:")
-            = product.publisher.username
+            = user_link product.publisher, :nolink
           .browse_row
             = _("Popularity: ")
             = product.popularity

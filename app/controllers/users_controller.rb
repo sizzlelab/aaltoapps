@@ -46,8 +46,8 @@ class UsersController < ApplicationController
     authorize! :create, User
     @new_session = Session.create
     session[:cookie] = @new_session.cookie
-    @user = User.new(params[:user].merge(:asi_cookie => @new_session.cookie))
-    authorize! :grant_admin_role, @user if @user.is_admin?
+    @user = User.new(params[:user])
+    @user.asi_cookie = @new_session.cookie
     begin
       @user.save!
     rescue ActiveRecord::RecordInvalid

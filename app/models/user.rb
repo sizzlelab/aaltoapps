@@ -2,12 +2,14 @@ class User < ActiveRecord::Base
   has_many :ratings, :dependent => :destroy
   has_many :published, :class_name => "Product", :foreign_key => "publisher_id"
   has_many :comments
-  attr_protected :is_admin, :receive_admin_email
-  validates :username, :password, :presence => { :on => :create }
+  attr_protected :is_admin, :receive_admin_email, :asi_id,
+                 :terms, :no_asi_fetch, :cas_user
+  validates :username, :password, :presence => { :on => :create, :unless => :cas_user }
   validates :terms, :acceptance => { :on => :create }
   validates :password, :confirmation => { :if => Proc.new { |user| user.password.present? } }
   validates :email, :presence => true
-  attr_accessor :terms, :no_asi_fetch
+  attr_accessor :terms, :no_asi_fetch, :cas_user
+  before_save :update_data_before_save
   
   PERSON_HASH_CACHE_EXPIRE_TIME = 0#15  #ALSO THIS CACHE TEMPORARILY OFF TO TEST PERFORMANCE WIHTOUT IT
   PERSON_NAME_CACHE_EXPIRE_TIME = 3.hours  ## THE CACHE IS TEMPORARILY OFF BECAUSE CAUSED PROBLEMS ON ALPHA: SEE ALSO COMMENTING OUT AT THE PLACE WHER CACHE IS USED!
@@ -35,35 +37,21 @@ class User < ActiveRecord::Base
   # attributes that cannot be unset
   ASI_NONUNSETTABLE_ATTRIBUTES = Set.new [:password, :gender]
 
-  def initialize(attr_values={})
-    _asi_id, self.asi_cookie, self.terms, self.password_confirmation, self.no_asi_fetch =
-      [:asi_id, :asi_cookie, :terms, :password_confirmation, :no_asi_fetch].map { |attr|
-        attr_values.delete(attr) || attr_values.delete(attr.to_s)
-      }
+  def assign_attributes(new_attributes, *args)
+    new_attributes = new_attributes.with_indifferent_access  # allow both string and symbol keys
 
-    # set nested attributes if given as nested hash entries
-    ASI_RW_NESTED_ATTRIBUTES.each do |attr, subattrs|
-      subattr_values = attr_values.delete(attr) || attr_values.delete(attr.to_s)
-      if subattr_values
-        subattrs = [subattrs] unless subattrs.is_a? Enumerable
-        subattrs.each do |subattr|
-          self.send("#{subattr}=", subattr_values[subattr] || subattr_values[subattr.to_s])
-        end
+    # extract nested ASI attributes given as nested hash entries
+    nested = new_attributes.slice(*ASI_RW_NESTED_ATTRIBUTES.keys)
+      .select { |attr, value| value.is_a? Hash }
+    nested.each do |attr, subattrs|
+      if subattrs.is_a? Hash
+        new_attributes.delete attr
+        new_attributes.merge! subattrs
       end
     end
 
-    # set nested attributes if given as flat hash entries
-    ASI_RW_NESTED_ATTRIBUTES.values.flatten.each do |attr|
-      value = attr_values.delete(attr) || attr_values.delete(attr.to_s)
-      self.send("#{attr}=", value)  if value
-    end
-
-    # set all other values
-    attr_values.each do |attr, value|
-      asi_attributes[attr.to_s] = value
-    end
-
-    super(:asi_id => _asi_id)
+    # this will call the setter methods for normal and ASI attributes
+    super(new_attributes, *args)
   end
 
   # make getters for readable ASI attributes
@@ -195,10 +183,7 @@ class User < ActiveRecord::Base
 
   private
 
-  # called by save, save!, update_attributes etc.
-  def create_or_update(*)
-    return false unless valid?
-
+  def update_data_before_save
     if asi_id
       # update user information in ASI
       if @asi_attributes.present?
@@ -230,9 +215,7 @@ class User < ActiveRecord::Base
     end
 
     # if language not set, set it to fallback value
-    language ||= APP_CONFIG.fallback_locale
-
-    super
+    self.language ||= APP_CONFIG.fallback_locale
   end
 
   def self.cache_fetch(id,cookie)

@@ -7,8 +7,9 @@ class SessionsController < ApplicationController
   end
 
   def create
+    cas = !!params[:cas]
     begin
-      @new_session = if params[:cas]
+      @new_session = if cas
         # delete flash error message if coming from consent form page
         flash.delete(:error) if params[:consent_ok]
 
@@ -47,14 +48,14 @@ class SessionsController < ApplicationController
     if @new_session.person_id  # if not app-only-session and person found in ASI
       # Find user record from local database. In not found, create a new record
       user = User.find_by_asi_id(@new_session.person_id) ||
-             User.create(:asi_id => @new_session.person_id)
+             User.create({ :asi_id => @new_session.person_id, :cas_user => cas },
+                         :without_protection => true)
       session[:current_user_id] = user.id
+      flash[:notice] = _("Login successful")
     end
     
     session[:cookie] = @new_session.cookie
     session[:person_id] = @new_session.person_id
-
-    flash[:notice] = _("Login successful")
 
     # Redirect to return_to using the user's preferred locale
     #

@@ -34,9 +34,9 @@ class ApplicationController < ActionController::Base
   # Overrides ActionController::reset_session.
   # Only remove session objects not in @@protected_session_variables
   def reset_session
-    session.each_key do |key|
-      session[key] = nil unless @@protected_session_variables.include? key
-    end
+    protected_vars = session.with_indifferent_access.slice(*@@protected_session_variables)
+    super
+    session.update(protected_vars)
   end
 
 protected

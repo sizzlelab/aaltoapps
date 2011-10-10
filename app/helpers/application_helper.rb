@@ -17,7 +17,7 @@ module ApplicationHelper
   end
 
   def cas_enabled?
-    !! AaltoApps::Application.config.try(:rubycas).try(:cas_base_url)
+    AaltoApps::Application::CAS_ENABLED
   end
 
   # Passes each member of list to block and returns the concatenated results

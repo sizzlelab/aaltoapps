@@ -41,7 +41,8 @@ module AaltoApps
     APP_CONFIG = OpenStruct.new(app_conf.except(:rails_config))
 
     # load cas client library if needed
-    require 'rubycas-client-rails' if app_conf[:rails_config].andand['rubycas']
+    CAS_ENABLED = !! app_conf[:rails_config].andand['rubycas']
+    require 'rubycas-client-rails' if CAS_ENABLED
 
     # merge local config values into Rails configuration
     merge_config = lambda do |app_config, data|

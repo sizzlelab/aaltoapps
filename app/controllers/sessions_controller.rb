@@ -51,6 +51,7 @@ class SessionsController < ApplicationController
              User.create({ :asi_id => @new_session.person_id, :cas_user => cas },
                          :without_protection => true)
       session[:current_user_id] = user.id
+      session[:cas_session] = cas
       flash[:notice] = _("Login successful")
     end
     
@@ -89,11 +90,14 @@ class SessionsController < ApplicationController
   
   def destroy
     Session.destroy(session[:cookie]) if session[:cookie]
-    session[:cookie] = nil
-    session[:current_user_id] = nil
-    session[:person_id] = nil
-    flash[:notice] = _("Logout successful")
-    redirect_to root_path
+    if session[:cas_session]
+      RubyCAS::Filter.client.logout_return_url = root_url
+      RubyCAS::Filter.logout(self)
+    else
+      flash[:notice] = _("Logout successful")
+      redirect_to root_path
+      reset_session
+    end
   end
   
   def index
@@ -109,5 +113,5 @@ class SessionsController < ApplicationController
     end
     redirect_to new_session_path
   end
-  
+
 end

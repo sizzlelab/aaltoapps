@@ -1,12 +1,43 @@
 require 'rest_client'
 
-class SessionsController < ApplicationController  
+class SessionsController < ApplicationController
+
+  before_filter :only => :create do
+    RubyCAS::Filter.filter(self) if params[:cas]
+  end
+
   def create
-    session[:form_username] = params[:username]
+    cas = !!params[:cas]
     begin
-      @new_session = Session.create({ :username => params[:username],
-                                      :password => params[:password] })
-                                                          
+      @new_session = if cas
+        # delete flash error message if coming from consent form page
+        flash.delete(:error) if params[:consent_ok]
+
+        proxy_granting_ticket = session[:cas_pgt]
+        Rails.logger.info "PGT: " + proxy_granting_ticket.inspect
+        proxy_ticket = RubyCAS::Filter.client.request_proxy_ticket(
+                         proxy_granting_ticket, APP_CONFIG.asi_url
+                       ).ticket
+        Rails.logger.info "PT: " + proxy_ticket.inspect
+
+        success_url = cas_session_url(:consent_ok => '1') # new CAS login on success
+        failure_url = sessions_url
+
+        Session.create({ :username => session[:cas_user],
+                         :proxy_ticket => proxy_ticket },
+                       success_url, failure_url )
+      else
+        session[:form_username] = params[:username]
+        Session.create({ :username => params[:username],
+                         :password => params[:password] })
+      end
+
+    rescue Session::NewUserRedirect => e
+      # Add an error message. If the login succeeds, the message will
+      # be removed before it's rendered.
+      flash[:error] = _("Login failed")
+      # redirect to consent form page
+      redirect_to e.url and return
     rescue RestClient::Unauthorized => e
       flash[:error] = _("Login failed")
       redirect_to :controller => "sessions", :action => "index" and return
@@ -17,14 +48,15 @@ class SessionsController < ApplicationController
     if @new_session.person_id  # if not app-only-session and person found in ASI
       # Find user record from local database. In not found, create a new record
       user = User.find_by_asi_id(@new_session.person_id) ||
-             User.create(:asi_id => @new_session.person_id)
+             User.create({ :asi_id => @new_session.person_id, :cas_user => cas },
+                         :without_protection => true)
       session[:current_user_id] = user.id
+      session[:cas_session] = cas
+      flash[:notice] = _("Login successful")
     end
     
     session[:cookie] = @new_session.cookie
     session[:person_id] = @new_session.person_id
-
-    flash[:notice] = _("Login successful")
 
     # Redirect to return_to using the user's preferred locale
     #
@@ -47,20 +79,25 @@ class SessionsController < ApplicationController
     rescue
       nil
     end
+
+    lang = current_user.andand.language || APP_CONFIG.fallback_locale
     if return_to
-      redirect_to return_to.merge(:locale => current_user.language)
+      redirect_to return_to.merge(:locale => lang)
     else
-      redirect_to root_path(:locale => current_user.language)
+      redirect_to root_path(:locale => lang)
     end
   end
   
   def destroy
     Session.destroy(session[:cookie]) if session[:cookie]
-    session[:cookie] = nil
-    session[:current_user_id] = nil
-    session[:person_id] = nil
-    flash[:notice] = _("Logout successful")
-    redirect_to root_path
+    if session[:cas_session]
+      RubyCAS::Filter.client.logout_return_url = root_url
+      RubyCAS::Filter.logout(self)
+    else
+      flash[:notice] = _("Logout successful")
+      redirect_to root_path
+      reset_session
+    end
   end
   
   def index
@@ -76,5 +113,5 @@ class SessionsController < ApplicationController
     end
     redirect_to new_session_path
   end
-  
+
 end

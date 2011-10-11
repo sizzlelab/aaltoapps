@@ -21,6 +21,13 @@ development: &non_production_settings
 
   # set or override Rails configuration
   rails_config:
+
+    # delete or comment out these to disable CAS support
+    rubycas:
+      cas_base_url: "http://your.cas.server.example"
+      proxy_callback_url: "https://callback.url.example"
+      proxy_retrieval_url: "http://localhost/retrieve_pgt"
+
     action_mailer:
       default_url_options:
         # options for generating urls in e-mail messages

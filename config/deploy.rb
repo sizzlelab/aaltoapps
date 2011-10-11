@@ -5,6 +5,11 @@ set :repository, 'git://github.com/sizzlelab/aaltoapps.git'
 
 # alternate settings for deploying different branches from repository
 set :branch_config, {
+  'cas' => {
+    :deploy_to => "/mnt/app/aaltoapps-cas",
+    :revision => "origin/cas",
+    :config_files => ['database.yml', {'aaltoapps_config_local_asi.yml' => 'aaltoapps_config.yml'}]
+  },
   'demo' => {
     :deploy_to => "/mnt/app/aaltoapps-demo",
     :revision => "origin/demo",
@@ -33,8 +38,13 @@ require "bundler/vlad"
 namespace :vlad do
   desc "Copy config files from shared/config to release dir"
   remote_task :copy_config_files, :roles => :app do
-    config_files.each do |filename|
-      run "cp #{shared_path}/config/#{filename} #{release_path}/config/#{filename}"
+    config_files.each do |file|
+      src_filename, dst_filename = case file
+        when Hash then [file.keys.first, file.values.first]
+        when Array then file
+        else [file, file]
+      end
+      run "cp #{shared_path}/config/#{src_filename} #{release_path}/config/#{dst_filename}"
     end
   end
 

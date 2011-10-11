@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?, :mobile_device?
   layout :select_layout
 
+  @@protected_session_variables = Set[:mobile_device]
+
   # exception that controllers can raise to show the 404 error page
   class PageNotFound < StandardError; end
 
@@ -27,6 +29,14 @@ class ApplicationController < ActionController::Base
   def mobile_device?
     # TODO: better mobile device detection
     session[:mobile_device] || request.user_agent =~ /Mobile|webOS|\bMIDP|Windows CE\b/
+  end
+
+  # Overrides ActionController::reset_session.
+  # Only remove session objects not in @@protected_session_variables
+  def reset_session
+    protected_vars = session.with_indifferent_access.slice(*@@protected_session_variables)
+    super
+    session.update(protected_vars)
   end
 
 protected

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.1.0'
+gem 'rails', '~> 3.1.1.rc1' # >3.1.1.rc1 needed because of rails issue #1339
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -29,6 +29,7 @@ gem 'routing-filter'
 gem 'cancan'
 gem 'acts-as-taggable-on'
 gem 'redcarpet'
+gem 'rubycas-client-rails', :require => false
 
 # these are used to extract translatable strings from code
 group :development, :test do

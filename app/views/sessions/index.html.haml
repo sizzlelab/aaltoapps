@@ -18,3 +18,6 @@
   %br
 
   = submit_tag _("Login"), :class => 'smallbutton'
+
+- if cas_enabled?
+  %p= link_to _("Login with CAS"), cas_session_path, :class => [:button]

@@ -3,6 +3,7 @@ require 'json'
 class Session
   attr_accessor :username
   attr_writer   :password
+  attr_writer   :proxy_ticket
   attr_accessor :app_name
   attr_writer   :app_password
   attr_accessor :cookie
@@ -11,38 +12,58 @@ class Session
   @@aaltoapps_cookie = nil # a cookie stored for a general App-only session for AaltoApps
   @@session_uri = "#{APP_CONFIG.ssl_asi_url}/session"
   AALTOAPPS_COOKIE_CACHE_KEY = "aaltoapps_cookie"
-  
+
+  class NewUserRedirect < Exception
+    attr_reader :url, :session
+    def initialize(url, session)
+      @url = url
+      @session = session
+    end
+  end
+
   # Creates a session and logs it in to Aalto Social Interface (ASI)
-  def self.create(params={})
+  def self.create(params={}, success_url=nil, failure_url=nil)
     session = Session.new(params)
-    session.login
+    session.login({}, success_url, failure_url)
     return session
   end
 
   def initialize(params={})
     self.username = params[:username]
     self.password = params[:password]
+    self.proxy_ticket = params[:proxy_ticket]
     self.app_name = params[:app_name] || APP_CONFIG.asi_app_name
     self.app_password = params[:app_password] || APP_CONFIG.asi_app_password
   end
   
   #Logs in to Aalto Social Interface (ASI)
-  def login(params={})
+  def login(params={}, success_url=nil, failure_url=nil)
     params = {:session => {}}
     
-    # if both username and password given as parameters or instance variables
-    if ((@username && @password) || (params[:username] && params[:password]))
-      params[:session][:username] = params[:username] || @username
-      params[:session][:password] = params[:password] || @password
+    if un = (@username || params[:username])
+      params[:session][:username] = un
+      if pw = (@password || params[:password])
+        params[:session][:password] = pw
+      elsif pt = (params[:proxy_ticket] || @proxy_ticket)
+        params[:session][:proxy_ticket] = pt
+      end
     end
-    params[:session][:app_name] = @app_name || APP_CONFIG.asi_app_name
-    params[:session][:app_password] = @app_password || APP_CONFIG.asi_app_password
+    params[:session][:app_name] = @app_name
+    params[:session][:app_password] = @app_password
 
-    resp = RestHelper.make_request(:post, @@session_uri, params , nil, true)
+    resp = RestHelper.make_request(:post, @@session_uri, params, nil, true, true)
+    Rails.logger.debug "ASI response (#{resp[1].code}): #{resp[1].body}"
 
-    #@headers["Cookie"] = resp[1].headers[:set_cookie].to_
-    @cookie = resp[1].cookies
+    if resp[1].code == 303 # see other
+      Rails.logger.debug "ASI redirect: #{resp[0]['entry']['uri']}"
+      redirect_url = resp[0]['entry']['uri'] +
+        "&redirect=#{URI.escape(success_url)}" +
+        "&fallback=#{URI.escape(failure_url)}"
+      raise NewUserRedirect.new(redirect_url, self)
+    end
+
     @person_id = resp[0]["entry"]["user_id"]
+    @cookie = resp[1].cookies
   end
   
   # A class method for destroying a session based on cookie

@@ -12,7 +12,7 @@ module UsersHelper
       # unknown user (e.g. user deleted)
       content_tag :span, s_('user_link|unknown'), :class => 'user-link user-link-undefined user-link-unknown'
     end
-  rescue SystemCallError
+  rescue SystemCallError, RestClient::Exception
     # error in ASI connection
     content_tag :span, s_('user_link|error!'), :class => 'user-link user-link-undefined user-link-error'
   end

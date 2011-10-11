@@ -18,6 +18,7 @@ set :branch_config, {
 set :rbenv_path, "~/.rbenv/bin:~/.rbenv/shims"
 set :bundle_cmd, %Q(PATH="#{rbenv_path}:$PATH" bundle)
 set :rake_cmd, "#{bundle_cmd} exec rake"
+set :rsync_flags, %w[-azP]  # no --delete flag; we want to keep old assets
 
 set :shared_paths, shared_paths
   .except('system')
@@ -47,7 +48,7 @@ namespace :vlad do
 
   desc "Upload locally compiled assets"
   remote_task :upload_assets, :roles => :app do
-    rsync 'public/assets', "#{target_host}:#{release_path}/public/assets"
+    rsync 'public/assets/', "#{target_host}:#{release_path}/public/assets"
   end
 
   multitask :concurrent_tasks => %w[

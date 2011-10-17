@@ -7,7 +7,6 @@ set :repository, 'git://github.com/sizzlelab/aaltoapps.git'
 set :branch_config, {
   'cas' => {
     :deploy_to => "/mnt/app/aaltoapps-cas",
-    :revision => "origin/cas",
     :config_files => ['database.yml', {'aaltoapps_config_local_asi.yml' => 'aaltoapps_config.yml'}]
   },
   'demo' => {

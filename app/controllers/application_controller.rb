@@ -54,6 +54,7 @@ protected
   def set_locale
     FastGettext.available_locales = I18n.available_locales
 
+    # locale given in URL
     if params[:locale]
 
       I18n.locale = FastGettext.set_locale(params['locale'])
@@ -70,11 +71,13 @@ protected
       end
       @available_locales.sort! { |a, b| a[:name].casecmp(b[:name]) }
 
-    elsif request.fullpath == '/'
-      # redirect main page url without a locale string
-      # to an url with a proper locale string
+    # root path with or without a query string
+    elsif /^\/(?<query_string>\?.*)?$/ =~ request.fullpath
+      # Redirect main page url without a locale string to an url with a
+      # proper locale string. If the URL contains a query string,
+      # preserve it.
       locale = FastGettext.best_locale_in(request.env['HTTP_ACCEPT_LANGUAGE']) || APP_CONFIG.fallback_locale || 'en'
-      redirect_to("/#{locale}")
+      redirect_to("/#{locale}#{query_string}")
     else
       raise ActionController::RoutingError.new('No locale in path')
     end

@@ -27,7 +27,10 @@ a:hover, a:active { color: $highlight_color; }
 }
 
 // menu
+@import "../menu_common";
 #menu {
+  @include menu;
+
   font-family: sans-serif;
   // font-weight: bold;
   // background: $content_background;
@@ -44,46 +47,8 @@ a:hover, a:active { color: $highlight_color; }
     left: 0.5em;
   }
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .menusingle, .menutop {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: white;
-    // cursor: pointer;
-    padding: {
-      left: 0.7em;
-      right: 0.3em;
-      bottom: 0.3em;
-    }
-    // overflow:hidden;
-  }
-  .menutop    { padding-top: 0.3em; }
-  .menusingle { padding-top: 0.7em; }
-
-  .navmenu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
   .submenu_row {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     padding-left: 2.0em;
-
-    a {
-      text-align: center;
-      // padding-left: 1.0em;
-      font-size: 0.8em;
-      color: $text_color;
-      // font-family: 'Harabara';
-      font-size: 1em;
-    }
   }
 }
 

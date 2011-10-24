@@ -1,0 +1,38 @@
+@import "menu_common";
+#menu {
+  @include menu;
+
+  font-family: 'Harabara';
+
+  .navmenu {
+    float: right;
+    margin: {
+      right: 2em;
+      top: 2em;
+    }
+    width: 10em;
+    list-style: none;
+    background-color: $content_background;
+    @include box-shadow(0 0 7px black);
+    @include border-radius(0.7em 0.1em 0.7em 0.1em);
+    padding: {
+      top: 0.5em;
+      bottom: 0.5em;
+    }
+  }
+
+  .menusingle, .menutop, .submenu_row a {
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+
+    &:hover, &:active {
+      color: $highlight_color;
+      -webkit-transition: color 0.3s;
+    }
+  }
+
+  .submenu_row a {
+    padding-left: 1.0em;
+  }
+}

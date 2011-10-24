@@ -7,8 +7,7 @@
 #menu
   .navmenu
     #menu-home
-      .menusingle
-        = link_to _("home"), root_path
+      = link_to _("home"), root_path, :class => 'menusingle'
     #menu-browse
       .menutop= _("browse")
       %ul

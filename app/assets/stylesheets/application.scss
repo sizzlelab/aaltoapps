@@ -15,4 +15,12 @@
  *= require styles
  *= require tag_cloud
  *= require product_edit
+ *= depend_on settings
+ *= depend_on helpers
+ *= depend_on menu_common
+ *= depend_on menu
 */
+
+@import "settings";
+@import "helpers";
+@import "menu";

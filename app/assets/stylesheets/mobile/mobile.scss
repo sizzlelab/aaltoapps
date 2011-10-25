@@ -82,16 +82,12 @@ a:hover, a:active { color: $highlight_color; }
 #menu {
   @include menu;
 
+  & > .navmenu {
+    display: inline-block;
+    min-width: 10em;
+  }
+
   font-family: sans-serif;
-  // font-weight: bold;
-  // background: $content_background;
-/*  -moz-box-shadow: 0 0 7px black;
-  -webkit-box-shadow: 0 0 7px black;
-  box-shadow: 0 0 7px black;
-  -moz-border-radius: 0.7em 0.1em 0.7em 0.1em;
-  border-radius: 0.7em 0.1em 0.7em 0.1em;
-  padding-bottom: 0.5em;
-  display: inline-block; */
   margin: {
     top: 1em;
     bottom: 1em;

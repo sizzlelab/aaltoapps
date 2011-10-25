@@ -34,4 +34,15 @@
       font-size: 1em;
     }
   }
+
+  .menusingle, .menutop, .submenu_row a {
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+
+    &:hover, &:active {
+      color: $highlight_color;
+      -webkit-transition: color 0.3s;
+    }
+  }
 }

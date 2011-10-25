@@ -21,17 +21,6 @@
     }
   }
 
-  .menusingle, .menutop, .submenu_row a {
-    cursor: pointer;
-    display: block;
-    overflow: hidden;
-
-    &:hover, &:active {
-      color: $highlight_color;
-      -webkit-transition: color 0.3s;
-    }
-  }
-
   .submenu_row a {
     padding-left: 1.0em;
   }

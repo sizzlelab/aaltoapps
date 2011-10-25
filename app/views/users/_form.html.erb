@@ -1,4 +1,4 @@
-<%= form_for @user do |f| %>
+<%= form_for @user, :html => {:id => 'user_form'} do |f| %>
   <% if flash[:error] || @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= _("Validation errors prohibited user information from being saved") %>:</h2>

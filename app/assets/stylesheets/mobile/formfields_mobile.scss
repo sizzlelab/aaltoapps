@@ -1,5 +1,12 @@
 .smallbutton {
-  background: none;
+  @include buttonize;
+
+  margin: {
+    left: 0.25em;
+    right: 0.25em;
+  }
+
+//  background: none;
   border: none;
   text-decoration: none;
   color: $link_color;
@@ -34,9 +41,7 @@
   background: $content_background;
 
   &:hover, &:active {
-    -moz-box-shadow: 0 0 7px $highlight_color;
-    -webkit-box-shadow: 0 0 7px $highlight_color;
-    box-shadow: 0 0 7px $highlight_color;
+    @include box-shadow(0 0 7px $highlight_color);
   }
 }
 
@@ -47,9 +52,7 @@
 @mixin formfield($field_background: $background) {
   background: $field_background;
   color: white;
-  -moz-border-radius: 0.5em;
-  -webkit-border-radius: 0.5em;
-  border-radius: 0.5em;
+  @include border-radius(0.5em);
   border: none;
 }
 
@@ -62,14 +65,22 @@
   @include formfield(#666);
   padding: 0.7em;
 
-  &:active {
-    -moz-box-shadow: 0 0 7px $highlight_color;
-    -webkit-box-shadow: 0 0 7px $highlight_color;
-    box-shadow: 0 0 7px $highlight_color;
+  &:hover, &:active {
+    @include box-shadow(0 0 7px $highlight_color, true);
   }
 }
 
 .otherfield {
   @include formfield;
   padding: 0.5em;
+}
+
+// add margins to user form fields
+#user_form .field {
+  margin-bottom: 1em;
+}
+
+// make links inside user and product forms taller
+#user_form, #product_edit {
+  a { @include tall-link; }
 }

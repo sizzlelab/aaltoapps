@@ -1,3 +1,35 @@
+// Add padding to link or other element so that it can be used
+// more easily in mobile devices with touch screen.
+@mixin buttonize($background: true) {
+  vertical-align: middle;
+  display: inline-block;
+  padding: 0.5em;
+  margin: {
+    top: 0.1em;
+    bottom: 0.1em;
+  }
+
+  @if $background {
+    @include border-radius(0.5em);
+    background-color: $content_background;
+    .layout_master & {
+      background-color: $product_background;
+    }
+  } @else {
+    background: none;
+  }
+}
+
+// Make inline element taller so that it's easier to click on touch screen.
+@mixin tall-link {
+  line-height: 200%;
+  padding: {
+    top: 0.5em;
+    bottom: 0.5em;
+  }
+}
+
+
 body {
   background: $background;
   color: $text_color;
@@ -12,6 +44,25 @@ a:hover, a:active { color: $highlight_color; }
   color: $text_color;
   text-decoration: none;
 }
+
+// menu and other items in top of the page
+.layout_info {
+  margin-bottom: 0.5em;
+
+  #top_menu, .mobile_version_selector {
+    // buttonize links without background
+    a { @include buttonize(false); }
+  }
+  // increase height of locale selector items
+  .locale_selector {
+    a, .current_locale { @include tall-link; }
+  }
+  // and link to current user's page
+  #login-menu .user-link-normal { @include tall-link; }
+}
+
+// links at the bottom of the page
+.footer_text a { @include buttonize(false); }
 
 .layout_master {
   background: $content_background;
@@ -50,6 +101,9 @@ a:hover, a:active { color: $highlight_color; }
   .submenu_row {
     padding-left: 2.0em;
   }
+
+  // buttonize links without background
+  a { @include buttonize(false); }
 }
 
 // product list items
@@ -62,12 +116,8 @@ a:hover, a:active { color: $highlight_color; }
     background: $product_background;
     padding: 0.4em;
     margin-bottom: 1em;
-    -moz-box-shadow: 0 0 7px black;
-    -webkit-box-shadow: 0 0 7px black;
-    box-shadow: 0 0 7px black;
-    border-radius: 0.5em 0.2em 0.2em 0.5em;
-    -moz-border-radius: 0.5em 0.2em 0.2em 0.5em;
-    -webkit-border-radius: 0.5em 0.2em 0.2em 0.5em;;
+    @include box-shadow(0 0 7px black);
+    @include border-radius(0.5em 0.2em 0.2em 0.5em);
 
     .browse_product_picture {
       float: right;
@@ -79,6 +129,8 @@ a:hover, a:active { color: $highlight_color; }
     }
   }
 }
+
+.tag-cloud a { @include buttonize; }
 
 // product details
 #product-details {
@@ -112,6 +164,10 @@ a:hover, a:active { color: $highlight_color; }
 
   #product-admin > dd {
     display: inline-block;
+  }
+
+  #product-publisher, #product-url, #product-tags {
+    a { @include buttonize; }
   }
 }
 

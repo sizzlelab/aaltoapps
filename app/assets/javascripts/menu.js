@@ -21,8 +21,10 @@
       }
     });
 
+    // hide menus that were not marked as open in the cookie
     $('.menutop:not(.menutop-open)') .addClass('menutop-closed') .siblings('ul') .hide();
 
+    // add click handlers that open and close the menus
     $('#menu .menutop') .click(function() {
 
       if ($(this) .hasClass('menutop-open')) {
@@ -40,5 +42,22 @@
 
       return false;
     });
+
+    // fix a graphical glitch in IE (occurs at least in IE 9.0.8112.16421)
+    // caused by box-shadow and slideUp effect
+    if (navigator.appName == 'Microsoft Internet Explorer') {
+      // create a transparent div that covers the bottom part of the
+      // menu's box-shadow
+      $('#menu .navmenu')
+        .css({'position': 'relative'})
+        .append(
+          $('<div>').css({
+            'position': 'absolute',
+            'bottom': '-7px',
+            'left':   '-7px',
+            'right':  '-7px',
+            'height': '7px'
+          }));
+    }
   });
 })(jQuery);

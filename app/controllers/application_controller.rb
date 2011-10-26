@@ -27,8 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def mobile_device?
-    # TODO: better mobile device detection
-    session[:mobile_device] || request.user_agent =~ /Mobile|webOS|\bMIDP|Windows CE\b/
+    session[:mobile_device]
   end
 
   # Overrides ActionController::reset_session.
@@ -46,7 +45,12 @@ protected
   end
 
   def set_mobile_device
-    session[:mobile_device] = parse_boolean(params[:mobile]) if params.has_key?(:mobile)
+    if params.has_key?(:mobile)
+      session[:mobile_device] = parse_boolean(params[:mobile])
+    elsif session[:mobile_device].nil?
+      # TODO: better mobile device detection
+      session[:mobile_device] = !!(request.user_agent =~ /Mobile|webOS|\bMIDP|Windows CE\b/)
+    end
     Rails.logger.debug "User-Agent: #{request.user_agent}"
     Rails.logger.debug "  (mobile_device? = #{mobile_device? ? 'true' : 'false'})" unless params.has_key?(:mobile)
   end
@@ -106,7 +110,7 @@ protected
   end
 
   def parse_boolean(val)
-    val.present? && val.to_s !~ /^(?:false|f|no|n|off|0+)$/i
+    val.present? && !!(val.to_s !~ /^(?:false|f|no|n|off|0+)$/i)
   end
 
 end

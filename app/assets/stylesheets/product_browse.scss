@@ -1,0 +1,98 @@
+.product_list > a {
+  text-decoration: inherit;
+}
+
+#browse_products {
+  display: inline-block;
+  width: 100%;
+  font-size: 1em;
+
+  .selected-sort-key {
+    color: gray;
+  }
+}
+
+.product_list {
+  .browse_product {
+    background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0.36, $product_background_gradient1),
+      color-stop(0.58, $product_background_gradient2),
+      color-stop(0.84, $product_background_gradient3)
+    );
+    @each $prefix in "", -moz-, -ms-, -o-, -webkit- {
+      background-image: #{$prefix}linear-gradient(
+        center bottom,
+        $product_background_gradient1 36%,
+        $product_background_gradient2 58%,
+        $product_background_gradient3 84%
+      );
+    }
+    background-color: $product_background;
+
+    padding-top: 0.4em;
+    margin-bottom: 1em;
+    width: 49%;
+    position: relative;
+    @include box-shadow(0 0 7px black);
+
+    &:hover {
+      @include box-shadow(0 0 7px $highlight_color, true);
+    }
+
+    .browse_product_picture {
+      //background: inherit;
+      float: left;
+      width: 22%;
+      overflow: hidden;
+      max-height: 7em;
+    }
+
+    .browse_product_info {
+      background: none;
+      float: left;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 32%;
+      min-width: 5em;
+      text-align: left;
+
+      .browse_row {
+        white-space: nowrap;
+      }
+    }
+
+    .browse_product_desc {
+      background: none;
+      margin-left: 0.5em;
+      float: left;
+      width: 43%;
+      max-height: 4.5em;
+      overflow: hidden;
+      text-overflow-ellipsis: hidden;
+      text-align: left;
+    }
+  }
+
+  .browse_product_left {
+    @include border-radius(0.5em 0.2em 0.2em 0.5em);
+    float:left;
+  }
+  .browse_product_right {
+    @include border-radius(0.2em 0.5em 0.5em 0.2em);
+    float:right;
+  }
+}
+
+.browse_search_err_msg{
+  border: thin solid red;
+  color: red;
+  font: bold;
+}
+
+.clear{
+  clear: both;
+}

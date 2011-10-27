@@ -56,7 +56,11 @@ module AaltoApps
       end
     end
     app_conf[:rails_config].andand.each do |key, value|
-      merge_config.call(config.send(key), value)
+      if value.is_a? Hash
+        merge_config.call(config.send(key), value)
+      else
+        config.send("#{key}=", value)
+      end
     end
   end
 end

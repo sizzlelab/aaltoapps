@@ -1,0 +1,11 @@
+.error-message {
+  color: $error_text_color;
+  padding: 0 1em;
+  border: thick solid $error_border_color;
+
+  & > h1 {
+    font-size: 125%;
+    color: $error_title_color;
+    line-height: 1.5em;
+  }
+}

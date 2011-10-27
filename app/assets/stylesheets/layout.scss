@@ -1,0 +1,78 @@
+.layout_whole {
+  min-width: 80em;
+}
+
+.wrapper_top {
+  position: relative;
+  width: 60%;
+  min-width: 55em;
+  padding-bottom: 1em;
+  margin-bottom: 0.5em;
+  margin-top: 2em;
+  margin-right: 17%;
+  float: right;
+}
+
+.layout_frame {
+  width: 60%;
+  float: right;
+  min-width: 50em;
+  margin-right: 17%;
+  @include box-shadow(0 0 7px black);
+  margin-bottom: 5em;
+}
+
+.layout_master {
+  padding: 0.5em;
+  text-align: center;
+  background-color: $content_background;
+  overflow: hidden;
+}
+
+.layout_logo {
+  float: left;
+  padding-top: 2em;
+  padding-left: 5em;
+  margin-top: 1em;
+  width: 50%;
+  min-height: 4em;
+  font-size: 1.1em; 
+
+  a, a:hover {
+    font-family: 'Harabara';
+    text-decoration: none;
+    font-size: 6em;
+    color: $text_color;
+    text-shadow: 0.1em 0.1em 0.1em #000;
+  }
+}
+
+.layout_info {
+  float: right;
+  width: 30%;
+  padding-top: 2em;
+}
+
+.layout_menuitem {
+  text-align: right;
+  padding: 0.2em;
+  margin: 0.2em;
+
+  form, div {
+    display: inline;
+  }
+}
+
+.footer_text {
+  background-color: $content_background;
+  padding: 0.5em;
+  text-align: center;
+}
+
+.clear {
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;    
+  clear: both;
+}

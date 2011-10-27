@@ -11,9 +11,11 @@
  *= depend_on menu_common
  *= depend_on mobile/mobile
  *= depend_on mobile/formfields_mobile
+ *= depend_on mobile/errors
 */
 
 @import "settings";
 @import "helpers";
 @import "mobile/mobile";
 @import "mobile/formfields_mobile";
+@import "mobile/errors";

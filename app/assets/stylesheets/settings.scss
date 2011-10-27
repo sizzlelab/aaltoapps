@@ -1,10 +1,17 @@
 $background: #2E2E2E;
 $content_background: #202020;
+
 $product_background: #2B292B;
 $product_background_gradient1: $content_background;
 $product_background_gradient2: $product_background;
 $product_background_gradient3: #333033;
 
+$searchfield_background: #666;
+
 $text_color: #00BFFF;
 $highlight_color: #FF6A00;
 $link_color: white;
+
+$error_title_color: #f44;
+$error_text_color: inherit;
+$error_border_color: #f44;

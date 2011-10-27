@@ -4,9 +4,6 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require errors
- *= require formfields
- *= require layout
  *= require markdown
  *= require product_show
  *= require scaffold
@@ -16,11 +13,17 @@
  *= depend_on settings
  *= depend_on helpers
  *= depend_on menu_common
+ *= depend_on layout
  *= depend_on menu
+ *= depend_on errors
+ *= depend_on formfields
  *= depend_on product_browse
 */
 
 @import "settings";
 @import "helpers";
+@import "layout";
 @import "menu";
+@import "errors";
+@import "formfields";
 @import "product_browse";

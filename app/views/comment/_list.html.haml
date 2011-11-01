@@ -1,4 +1,4 @@
-.product-comment-current
+.product-comment
   %span#product-comment-name= user_link comment.commenter
   - if can? :edit, comment
     = render 'comment/form', :comment => comment

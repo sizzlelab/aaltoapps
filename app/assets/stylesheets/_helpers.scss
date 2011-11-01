@@ -1,3 +1,11 @@
+@mixin clearfix($clear: both) {
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;    
+  clear: $clear;
+}
+
 @mixin border-radius($value) {
   border-radius: $value;
   -moz-border-radius: $value;

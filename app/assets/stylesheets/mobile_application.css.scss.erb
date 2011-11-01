@@ -1,0 +1,28 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require markdown
+ *= require tag_cloud
+ *= depend_on _settings
+ *= depend_on _helpers
+ *= depend_on _menu_common
+ *= depend_on _error_messages
+*/
+
+@import "settings";
+@import "helpers";
+@import "menu_common";
+@import "error_messages";
+
+// load css and sass/scss files from subdirectory "mobile"
+<% base_path = pathname + '..' %>
+<% Pathname.glob(base_path + 'mobile/*.css').each {|f| require_asset f } %>
+<%=
+  Pathname.glob(base_path + 'mobile/*.{sass,scss}').sort.map do |f|
+    depend_on f
+    "@import \"#{f}\";"
+  end.join("\n")
+%>

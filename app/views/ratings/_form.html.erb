@@ -13,6 +13,7 @@
     <% end %>
 
     <div class="field">
+      <%= f.label :rating, _("Your rating:") %>
       <%=
         f.select(:rating, [[_('no rating'), nil]] + Rating.allowed_values.map { |v|
             # display numbers with fractional part == 0 without the fractional part

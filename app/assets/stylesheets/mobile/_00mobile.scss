@@ -1,3 +1,5 @@
+// filename prefixed with 00 because this file needs to be loaded first
+
 // Add padding to link or other element so that it can be used
 // more easily in mobile devices with touch screen.
 @mixin buttonize($background: true) {
@@ -78,7 +80,6 @@ a:hover, a:active { color: $highlight_color; }
 }
 
 // menu
-@import "../menu_common";
 #menu {
   @include menu;
 

@@ -39,7 +39,6 @@
         
         <% if logged_in? && @product.publisher != current_user %>
           <div id="product-rating-form">
-            <%= _("Your rating:") %>
             <%= render 'ratings/form' %>
           </div>
         <% end %>
@@ -131,7 +130,7 @@
   </div>
 </div>
 
-<div class="product_comment">
+<div id="product-comments">
   <% if can? :show, Comment %>
     <% if !@admin_comments.empty? || @new_admin_comment %>
       <h2><%= _("Admin comments") %>:</h2>

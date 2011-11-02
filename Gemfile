@@ -23,13 +23,16 @@ gem "will_paginate", "~> 3.0.pre2"
 gem 'vlad'
 gem 'vlad-git'
 gem 'fast_gettext'
-gem 'rails-i18n-updater'
 gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git"
 gem 'routing-filter'
 gem 'cancan'
 gem 'acts-as-taggable-on'
 gem 'redcarpet'
 gem 'rubycas-client-rails', :require => false
+
+# use this for updating translation files, but don't use its initializer,
+# which is broken in Rails 3.1
+gem 'rails-i18n-updater', :require => false, :group => :development
 
 # these are used to extract translatable strings from code
 group :development, :test do

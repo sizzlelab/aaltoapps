@@ -25,6 +25,17 @@ module AaltoApps
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    # See which locales are enabled by listing translation files in
+    # config/locales. Load translations fetched with the rails-i18n-updater gem
+    # for those locales (the translations in separate files are merged).
+    enabled_locales = Pathname.glob(Rails.root.join(*%w[config locales *.{rb,yml}])).map do |f|
+      f.basename.sub(/\.(rb|yml)$/, '')
+    end
+    config.i18n.load_path +=
+      Pathname.glob(Rails.root.join(*%w[vendor rails-locales *.{rb,yml}])).find_all do |f|
+        enabled_locales.member?(f.basename.sub(/\.(rb|yml)$/, ''))
+      end.map(&:to_s)
+
     # Markdown parsing and rendering options
     # (see http://rdoc.info/github/tanoku/redcarpet/master/Redcarpet#instance_attr_details)
     ::REDCARPET_OPTIONS = [

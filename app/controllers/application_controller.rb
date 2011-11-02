@@ -18,6 +18,14 @@ class ApplicationController < ActionController::Base
              ) { |e| render_error_page e, 404 }
   rescue_from(CanCan::AccessDenied) { |e| render_error_page e, 403 }
 
+  # Action that renders a 404 error page. Called from routes.rb.
+  def render_404
+    msg = "No route found for path: #{params[:path]}"
+    render_error_page ActionController::RoutingError.new(msg), 404
+  end
+
+protected
+
   def current_user
     @_current_user ||= session[:current_user_id] && User.find(session[:current_user_id])
   end
@@ -38,7 +46,7 @@ class ApplicationController < ActionController::Base
     session.update(protected_vars)
   end
 
-protected
+private
 
   def select_layout
     mobile_device? ? 'mobile_application' : 'application'
@@ -60,20 +68,7 @@ protected
 
     # locale given in URL
     if params[:locale]
-
       I18n.locale = FastGettext.set_locale(params['locale'])
-
-      # make a sorted list of available locales and their associated information
-      @available_locales = FastGettext.available_locales.map do |locale|
-        {
-          :id => locale,
-          # get the native language name by reading a special
-          # I18n-style translation string, which contains the name
-          :name => I18n.translate('i18n.language.name', :locale => locale),
-          :current? => (locale.to_s == I18n.locale.to_s),
-        }
-      end
-      @available_locales.sort! { |a, b| a[:name].casecmp(b[:name]) }
 
     # root path with or without a query string
     elsif /^\/(?<query_string>\?.*)?$/ =~ request.fullpath
@@ -82,7 +77,22 @@ protected
       # preserve it.
       locale = FastGettext.best_locale_in(request.env['HTTP_ACCEPT_LANGUAGE']) || APP_CONFIG.fallback_locale || 'en'
       redirect_to("/#{locale}#{query_string}")
-    else
+      return
+    end
+
+    # make a sorted list of available locales and their associated information
+    @available_locales = FastGettext.available_locales.map do |locale|
+      {
+        :id => locale,
+        # get the native language name by reading a special
+        # I18n-style translation string, which contains the name
+        :name => I18n.translate('i18n.language.name', :locale => locale),
+        :current? => (locale.to_s == I18n.locale.to_s),
+      }
+    end
+    @available_locales.sort! { |a, b| a[:name].casecmp(b[:name]) }
+
+    unless params[:locale]
       raise ActionController::RoutingError.new('No locale in path')
     end
   end

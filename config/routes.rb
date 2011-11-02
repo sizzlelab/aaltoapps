@@ -2,8 +2,10 @@ AaltoApps::Application.routes.draw do
   # prefix all urls with language (e.g. /en/rest_of_url)
   filter :locale
 
-  get 'sessions/cas' => 'sessions#create', :cas => true, :as => :cas_session
-  resources :sessions
+  get 'session' => 'sessions#index' # login page
+  post 'session' => 'sessions#create'
+  get 'session/cas' => 'sessions#create', :cas => true, :as => :cas_session
+  delete 'session' => 'sessions#destroy'
 
   resources :users do
     resources :products
@@ -51,5 +53,7 @@ AaltoApps::Application.routes.draw do
   get 'retrieve_pgt' => 'cas_proxy_callback#retrieve_pgt'
 
   root :to => "products#mainpage"
-  match ':controller(/:action(/:id))'
+
+  # if no other routes match, render error page
+  match '*path' => ApplicationController.action(:render_404)
 end

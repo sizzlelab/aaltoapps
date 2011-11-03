@@ -1,0 +1,118 @@
+%h1#product-title= "#{@product.name} - #{_("Detailed view")}"
+
+#product-info
+  #product-image
+    #product-image-border
+      #image= image_tag @product.photo.url(:small)
+
+  #product-details
+    %dl#product-publisher
+      %dt= _("Publisher")
+      %dd= user_link @product.publisher
+    %dl#product-platform
+      %dt= n_("Platform", "Platforms", @product.platforms.length)
+      - @product.platforms.each do |platform|
+        %dd= platform.name
+    %dl#product-published
+      %dt= _("Published")
+      %dd= l @product.updated_at.to_date, :format => :long
+    %dl#product-popularity
+      %dt= _("Number of views")
+      %dd= @product.popularity
+    %dl#product-rating
+      %dt= _("Rating")
+      %dd
+        = render :partial => 'ratings/rating', :object => @product.avg_rating
+        - if logged_in? && @product.publisher != current_user
+          #product-rating-form= render 'ratings/form'
+    %dl#product-url
+      %dt= _("URL")
+      %dd= link_to @product.url, "http://"+@product.url, :target => '_blank'
+    %dl#product-tags
+      %dt= _("Tags")
+      %dd= raw @product.tags.map {|tag| tag_link tag }.join(', ')
+    - if @product.downloads.present? && can?(:index, Download)
+      %dl#product-downloads
+        %dt= _("Downloads")
+        %dd
+          = render :partial => "downloads/list",
+                   :collection => @product.downloads, :as => :download,
+                   :locals => { :delete => true, :form => nil }
+    %dl#product-description
+      %dt= _("Description")
+      %dd.markdown-content= @product.description_html
+    - if @product.featured
+      %dl#product-featured
+        %dt= _("Featured")
+        %dd= mobile_device? ? s_('is_featured|yes') : '✓'
+
+    :ruby
+      abilities = Set.new(
+        [:edit, :delete, :promote, :demote, :block, :approve, :request_approval].
+          find_all { |action| can? action, @product } )
+    - unless abilities.empty?
+      %dl#product-admin
+        %dt= _("Admin")
+        - if abilities.include? :edit
+          %dd= button_to _('Edit'), edit_product_path(@product), :method => :get, :class => "smallbutton"
+        - if abilities.include? :delete
+          %dd
+            = button_to _('Delete'), @product, :method => :delete,
+                        :class=>"smallbutton",
+                        :confirm => _('Are you sure?')
+        - case @product.approval_state
+          - when 'pending'
+            - if abilities.include? :approve
+              %dd
+                = button_to _("Approve"), approve_product_path(@product), :method => :put,
+                            :class=>"smallbutton",
+                            :confirm => _('Are you sure you want to approve this product?')
+          - when 'submitted', 'blocked'
+            - if abilities.include? :request_approval
+              %dd
+                = button_to _("Request approval"), request_approval_product_path(@product), :method => :put,
+                            :class => 'smallbutton'
+          - when 'published'
+            - if abilities.include? :block
+              %dd
+                = button_to _("Block"), block_product_path(@product), :method => :put,
+                            :class => 'smallbutton',
+                            :confirm => _('Are you sure you want to block this product?')
+        - if abilities.include?(:promote) && !@product.featured
+          %dd
+            = button_to _("Make featured"), promote_product_path(@product), :method => :put,
+                        :class => 'smallbutton'
+        - if abilities.include?(:demote) && @product.featured
+          %dd
+            = button_to _("Remove from featured"), demote_product_path(@product), :method => :put,
+                        :class => 'smallbutton'
+
+    %br
+    = button_to _('Report issue'), 'http://www.sizzlelab.org/contact', :method => :get,
+                :class => 'smallbutton'
+
+#product-comments
+  - if can? :show, Comment
+    - if !@admin_comments.empty? || @new_admin_comment
+      %h2= _("Admin comments")
+      :ruby
+        msg = _("These comments are only shown to administrators and %{comments_shown_for}.") % {
+          :comments_shown_for =>
+            if @product.publisher == current_user
+              s_("comments_shown_for|you")
+            else
+              s_("comments_shown_for|the publisher of the product")
+            end
+        }
+      %p= msg
+
+      #product-admin-comment-list
+        = render :partial => "comment/list", :collection => @comments, :as => :comment
+
+  %p
+    - if can? :new, Comment
+      = render :partial => "comment/form"
+    - else
+      = _("Please login to add comments")
+
+  = button_to _('Back'), :back, :class => 'smallbutton', :method => :get

@@ -1,0 +1,52 @@
+!!! 5
+%html
+  %head
+    %title= _("Aalto Apps")
+
+    -# pass translated strings to javascript
+    -# (passing plural forms won't work with this simple method)
+    :javascript
+      var translations = {
+        edit:    '#{escape_javascript raw _('Edit')}',
+        cancel:  '#{escape_javascript raw _('Cancel')}',
+        loading: '#{escape_javascript raw _('loading...')}',
+        close:   '#{escape_javascript raw _('Close')}',
+        accept:  '#{escape_javascript raw _('Accept')}',
+        decline: '#{escape_javascript raw _('Decline')}'
+      };
+
+    -# TODO: replace with local customized css:
+    %link(rel="stylesheet" type="text/css"
+          href="https://ajax.googleapis.com/ajax/libs/jqueryui/#{Jquery::Rails::JQUERY_UI_VERSION}/themes/base/jquery-ui.css")
+
+    = stylesheet_link_tag    'application'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+
+  %body{:lang => I18n.locale}
+    .layout_whole
+      .wrapper_top
+        .layout_info
+          .layout_menuitem
+            = _("Choose language:")
+            = render :partial => '/layouts/locale_selector'
+          .layout_menuitem= render :partial => '/layouts/mobile_version_selector'
+          .layout_menuitem= render :partial => '/users/login_menu'
+          .layout_menuitem= render :partial => '/products/search'
+
+        .layout_logo
+          = link_to root_path do
+            aalto apps
+
+      .layout_frame
+        .layout_master
+          - if notice
+            #notice= notice
+          - if alert
+            #alert= alert
+          = content_for?(:content) ? yield(:content) : yield
+
+        = render :partial => '/layouts/footer'
+        .clear
+
+    = render :partial => '/layouts/menu'

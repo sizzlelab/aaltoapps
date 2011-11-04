@@ -84,3 +84,9 @@
 #user_form, #product_edit {
   a { @include tall-link; }
 }
+
+// make checkbox labels taller
+.checkbox-label {
+  padding-top: 0.5em;
+  &:first-line { line-height: 150%; }
+}

@@ -51,7 +51,7 @@
               = capture_each_join @product.photo.styles do |stylename, _|
                 = link_to stylename, @product.photo.url(stylename)
             %span#product_edit_delete_photo
-              = f.check_box(:delete_photo) + f.label(:delete_photo, _('Delete'))
+              = f.check_box(:delete_photo) + f.label(:delete_photo, _('Delete'), :class=>'checkbox-label')
             %br
             = f.label :photo, _('Replace with:')
           = f.file_field :photo, :class => 'otherfield'
@@ -87,7 +87,8 @@
             = f.label :terms,
                 substitute_links( _('I accept the OtaSizzle [[Publisher Terms and Conditions]]'),
                                   page_path(:publisher_terms),
-                                  :target => '_blank', :class => 'ajax-popup' )
+                                  :target => '_blank', :class => 'ajax-popup' ),
+                :class => 'checkbox-label'
 
       %dl
         %dt

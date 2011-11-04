@@ -132,25 +132,31 @@ a:hover, a:active { color: $highlight_color; }
 // product details
 #product-details {
   & > dl {
-    margin-top: 0.1em;
-    margin-bottom: 0.1em;
-    margin-left: 0;
-    margin-right: 0;
+    margin: {
+      top: 0.1em;
+      bottom: 0.1em;
+      left: 0;
+      right: 0;
+    }
+
+    // margin for values (dd elements)
+    $left-margin: 0.5em;
+    padding-left: $left-margin;
 
     & > dt {
       min-width: 7em;
       display: inline;
-      //float: left;
+      vertical-align: top;
+      margin-left: -$left-margin; // no margin for titles
     }
     & > dd {
-      //float: left;
-      margin-left: 1em;
+      margin-left: 1em;  // only applies to the 1st line
       display: inline;
-
-      & > * {
-        vertical-align: top;
-      }
     }
+  }
+
+  #product-tags .product-tag-and-separator {
+    white-space: nowrap;
   }
 
   #product-description > dd {
@@ -165,6 +171,18 @@ a:hover, a:active { color: $highlight_color; }
 
   #product-publisher, #product-url, #product-tags {
     a { @include buttonize; }
+  }
+
+  #product-downloads .product-download {
+    // display: list-item;
+    // list-style-position: inside;
+    vertical-align: middle;
+    margin-left: 0.5em;
+
+    .product-download-link {
+      @include buttonize;
+      min-width: 1.5em;
+    }
   }
 }
 
@@ -190,6 +208,6 @@ a:hover, a:active { color: $highlight_color; }
   }
   input[type="file"] {
     overflow: hidden;
-    width: 99.99%;
+    max-width: 99.99%;
   }
 }

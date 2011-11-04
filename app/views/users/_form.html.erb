@@ -101,7 +101,7 @@
           (!@user.receive_admin_email && can?(:set_receive_admin_email, @user)) %>
       <div class="field">
         <%= f.label :receive_admin_email, _('Receive admin e-mail') %><br />
-        <%= f.check_box :receive_admin_email %>
+        <%= f.check_box :receive_admin_email, :class => 'checkbox-label' %>
       </div>
     <% end %>
 
@@ -114,7 +114,8 @@
                 substitute_links(
                   _('I accept the OtaSizzle [[Terms and Conditions]]'),
                   page_path(:user_terms),
-                  :target => '_blank', :class => 'ajax-popup' )
+                  :target => '_blank', :class => 'ajax-popup' ),
+                :class => 'checkbox-label'
       %>
     </div>
 

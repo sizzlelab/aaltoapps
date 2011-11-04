@@ -9,28 +9,41 @@
     %dl#product-publisher
       %dt= _("Publisher")
       %dd= user_link @product.publisher
+
     %dl#product-platform
       %dt= n_("Platform", "Platforms", @product.platforms.length)
       - @product.platforms.each do |platform|
         %dd= platform.name
+
     %dl#product-published
       %dt= _("Published")
       %dd= l @product.updated_at.to_date, :format => :long
+
     %dl#product-popularity
       %dt= _("Number of views")
       %dd= @product.popularity
+
     %dl#product-rating
       %dt= _("Rating")
       %dd
         = render :partial => 'ratings/rating', :object => @product.avg_rating
         - if logged_in? && @product.publisher != current_user
           #product-rating-form= render 'ratings/form'
+
     %dl#product-url
       %dt= _("URL")
       %dd= link_to @product.url, "http://"+@product.url, :target => '_blank'
+
     %dl#product-tags
       %dt= _("Tags")
-      %dd= raw @product.tags.map {|tag| tag_link tag }.join(', ')
+      -#%dd= raw @product.tags.map {|tag| tag_link tag }.join(', ')
+      %dd<
+        - unless @product.tags.empty?
+          - @product.tags[0..-2].each do |tag|
+            %span.product-tag-and-separator<
+              = tag_link(tag) + ','
+          = tag_link @product.tags.last
+
     - if @product.downloads.present? && can?(:index, Download)
       %dl#product-downloads
         %dt= _("Downloads")
@@ -38,9 +51,11 @@
           = render :partial => "downloads/list",
                    :collection => @product.downloads, :as => :download,
                    :locals => { :delete => true, :form => nil }
+
     %dl#product-description
       %dt= _("Description")
       %dd.markdown-content= @product.description_html
+
     - if @product.featured
       %dl#product-featured
         %dt= _("Featured")

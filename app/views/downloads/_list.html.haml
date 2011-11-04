@@ -1,5 +1,5 @@
 .product-download
-  = link_to download.title, download.file.url
+  = link_to download.title, download.file.url, :class => "product-download-link"
   (#{number_to_human_size(download.file.size)})
 
   - if defined?(delete) && delete && can?(:delete, download)

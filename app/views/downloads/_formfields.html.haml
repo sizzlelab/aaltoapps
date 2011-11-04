@@ -6,9 +6,9 @@
   %li.product-download
     - if edit
       = form.text_field :title, :class => "textfield"
-      - link = link_to "file #{number_to_human_size(download.file.size)}",
+      - link = link_to(_("file") + " " + number_to_human_size(download.file.size),
                        download.file.url,
-                       :target => '_blank'
+                       :target => '_blank' )
       (#{link})
     - else
       = link_to download.title, download.file.url
@@ -16,7 +16,7 @@
 
     - if delete && can?(:delete, download)
       = form.check_box :_destroy
-      = form.label :_destroy, _('Delete')
+      = form.label :_destroy, _('Delete'), :class => 'checkbox-label'
 
     - if edit
       %br

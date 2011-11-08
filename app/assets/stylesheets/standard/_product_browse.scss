@@ -14,22 +14,11 @@
 
 .product_list {
   .browse_product {
-    background-image: -webkit-gradient(
-      linear,
-      left bottom,
-      left top,
-      color-stop(0.36, $product_background_gradient1),
-      color-stop(0.58, $product_background_gradient2),
-      color-stop(0.84, $product_background_gradient3)
-    );
-    @each $prefix in "", -moz-, -ms-, -o-, -webkit- {
-      background-image: #{$prefix}linear-gradient(
-        center bottom,
-        $product_background_gradient1 36%,
-        $product_background_gradient2 58%,
-        $product_background_gradient3 84%
-      );
-    }
+    @include vertical-gradient((
+      $product_background_gradient1 36%,
+      $product_background_gradient2 58%,
+      $product_background_gradient3 84%
+    ));
     background-color: $product_background;
 
     padding-top: 0.4em;

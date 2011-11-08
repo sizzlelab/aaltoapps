@@ -20,3 +20,32 @@
     -webkit-transition: -webkit-box-shadow 0.5s;
   }
 }
+
+// usage: @include vertical-gradient((color1 position1, color2 position2, ...));
+// Positions must be given as percentages.
+@mixin vertical-gradient($stops) {
+  $webkit-gradient-stops: ();
+  $linear-gradient-stops: ();
+  @each $stop in $stops {
+    $webkit-gradient-stops: append($webkit-gradient-stops,
+                                   color-stop(nth($stop, 2), nth($stop, 1)),
+                                   comma);
+    $linear-gradient-stops: append($linear-gradient-stops,
+                                   nth($stop, 1) nth($stop, 2),
+                                   comma);
+  }
+
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    $webkit-gradient-stops
+  );
+
+  @each $prefix in "", -moz-, -ms-, -o-, -webkit- {
+    background-image: #{$prefix}linear-gradient(
+      center bottom,
+      $linear-gradient-stops
+    );
+  }
+}

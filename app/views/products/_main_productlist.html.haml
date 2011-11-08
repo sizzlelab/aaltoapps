@@ -43,12 +43,12 @@
         ['popularity', _('Popularity')],
         ['avg_rating', _('User rating')],
       ]
-    = capture_each_join sort_headers, ' | ' do |key, title|
-      - if key == @sort
-        %span.selected-sort-key= title
-      - else
-        = link_to title, products_path_with_params(:sort => key)
-    %br
+    #browse_products_sort
+      = capture_each_join sort_headers, ' | ' do |key, title|
+        - if key == @sort
+          %span.selected-sort-key= title
+        - else
+          = link_to title, products_path_with_params(:sort => key)
     %br
     = render :partial => 'products', :object => @products
 

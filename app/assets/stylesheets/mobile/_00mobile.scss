@@ -84,6 +84,9 @@ a:hover, a:active { color: $highlight_color; }
   @include menu;
 
   & > .navmenu {
+    @include border-radius(1em 0.1em 1em 0.1em);
+    border: 0.25em solid $content_background;
+
     display: inline-block;
     min-width: 10em;
   }
@@ -110,11 +113,20 @@ a:hover, a:active { color: $highlight_color; }
   }
 
   .browse_product {
-    background: $product_background;
+    @include vertical-gradient((
+      $product_background_gradient1 36%,
+      $product_background_gradient2 58%,
+      $product_background_gradient3 84%
+    ));
+    background-color: $product_background;
+
     padding: 0.4em;
     margin-bottom: 1em;
-    @include box-shadow(0 0 7px black);
     @include border-radius(0.5em 0.2em 0.2em 0.5em);
+    @include box-shadow(0 0 7px black);
+    &:hover, &:active {
+      @include box-shadow(0 0 7px $highlight_color, true);
+    }
 
     .browse_product_picture {
       float: right;
@@ -125,6 +137,17 @@ a:hover, a:active { color: $highlight_color; }
       text-overflow-ellipsis: hidden;
     }
   }
+}
+
+#browse_products_sort > * {
+  @include tall-link;
+}
+
+#browse_paginate .pagination {
+  // buttonize paginator links
+  a { @include buttonize; }
+  // buttonize paginator items that aren't links with no background
+  .disabled, .current { @include buttonize(false); }
 }
 
 .tag-cloud a { @include buttonize; }

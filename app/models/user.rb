@@ -50,6 +50,15 @@ class User < ActiveRecord::Base
       end
     end
 
+    # allow setting read-only fields for new records
+    new_attributes.extract!(*ASI_RO_ATTRIBUTES).each do |attr, value|
+      if new_record?
+        asi_attributes[attr.to_s] = value
+      else
+        raise ActiveRecord::AttributeAssignmentError, "Attribute #{attr} is read-only"
+      end
+    end
+
     # this will call the setter methods for normal and ASI attributes
     super(new_attributes, *args)
   end

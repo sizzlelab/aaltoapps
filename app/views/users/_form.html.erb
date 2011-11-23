@@ -5,12 +5,18 @@
 
       <ul>
       <%
-        ( (@user.errors[:terms].present? ?
-              [_('In order to register, you must accept the OtaSizzle "Terms and Conditions".')] :
-              [] ) +
-          (flash[:error] || []) +
-          @user.errors.except(:terms).full_messages
-        ).each do |msg|
+        # combine error messages from the following sources:
+        # - custom error message in the first position if terms not accepted
+        # - flash error messages
+        # - form error messages except the message for not accepting terms
+        errors = []
+        if @user.errors[:terms].present?
+          errors << _('In order to register, you must accept the OtaSizzle "Terms and Conditions".')
+          @user.errors[:terms] = []
+        end
+        errors += flash[:error] || []
+        errors += @user.errors.full_messages
+        errors.each do |msg|
       %>
         <li><%= msg %></li>
       <% end %>

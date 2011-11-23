@@ -98,6 +98,10 @@ a:hover, a:active { color: $highlight_color; }
     left: 0.5em;
   }
 
+  .menusingle, .menutop {
+    font-weight: bold;
+  }
+
   .submenu_row {
     padding-left: 2.0em;
   }

@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'Harabara';
+  src: url('/fonts/Harabara.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TB';
+  src: url('/fonts/Qlassik_TB-webfont.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: $background;
+  color: $text_color;
+  font-family: 'TB';
+  font-size: 1em;
+  line-height: 120%;
+}
+
+pre {
+  background-color: $code_background;
+  padding: 10px;
+  font-size: 11px;
+  text-align: left;
+}
+
+a {
+  color: white;
+
+  &:hover {
+    color: $highlight_color;
+    -webkit-transition: color 0.3s;
+  }
+}
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}

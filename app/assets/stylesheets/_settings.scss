@@ -7,16 +7,23 @@ $product_background_gradient2: $product_background;
 $product_background_gradient3: #333033;
 
 $searchfield_background: #666;
+$code_background: #171717;
 
 $text_color: #00BFFF;
 $highlight_color: #FF6A00;
 $link_color: white;
+$flash_notice_color: #666;
 
 $error_title_color: #f44;
 $error_text_color: inherit;
 $error_border_color: #f44;
 
 $inline_error_color: #f77;
+$inline_error_border_color: #f44;
+$inline_error_heading_background: #c00;
+$inline_error_heading_color: #fff;
+$inline_error_list_color: #fff;
+$formfield_with_errors_border_color: #c00;
 
 $product_comment_name_color: white;
 $product_comment_time_color: #666;

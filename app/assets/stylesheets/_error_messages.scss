@@ -1,3 +1,65 @@
+#notice {
+  color: $flash_notice_color;
+  text-align: left;
+}
+
+#alert {
+  color: $inline_error_color;
+  text-align: left;
+}
+
 .user-link-error {
   color: $inline_error_color;
+}
+
+.field_with_errors {
+  padding: 2px;
+  color: red;
+  display: inline-block;
+
+  input, textarea, select {
+    border: thick solid $formfield_with_errors_border_color;
+  }
+}
+
+#error_explanation {
+  color: $inline_error_color;
+  margin-left: 29%;
+  width: 40%;
+  border: thin solid $inline_error_border_color;
+  padding: {
+    top: 0.5em;
+    left: 0.5em;
+    right: 0.5em;
+    bottom: 0.2em;
+  }
+  margin-bottom: 1em;
+  background: $background;
+  @include border-radius(0.7em 0.2em 0.7em 0.2em);
+
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    //padding: 5px 5px 5px 15px;
+    padding: {
+      top: 0.3em;
+      bottom: 0.3em;
+      right: 0.3em;
+      left: 0.9em;
+    }
+    font-size: 1em;
+    margin: -0.5em;
+    text-align: center;
+    margin-bottom: 0;
+    background: $inline_error_heading_background;
+    color: $inline_error_heading_color;
+    @include border-radius(0.7em 0.2em 0 0);
+  }
+
+  ul li {
+    margin-right: 11%;
+    font-size: 0.8em;
+    text-align: left;
+    color: $inline_error_list_color;
+  }
 }

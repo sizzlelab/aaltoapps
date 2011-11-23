@@ -26,6 +26,10 @@
   %body{:lang => I18n.locale}
     .layout_whole
       .wrapper_top
+        .layout_logo
+          = link_to root_path do
+            aalto apps
+
         .layout_info
           .layout_menuitem
             = _("Choose language:")
@@ -33,10 +37,6 @@
           .layout_menuitem= render :partial => '/layouts/mobile_version_selector'
           .layout_menuitem= render :partial => '/users/login_menu'
           .layout_menuitem= render :partial => '/products/search'
-
-        .layout_logo
-          = link_to root_path do
-            aalto apps
 
       .layout_frame
         .layout_master

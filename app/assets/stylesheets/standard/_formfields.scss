@@ -1,46 +1,9 @@
-.textfield {
-  background: $background;
-  color: white;
-  @include border-radius(0.5em);
-  border: none;
-  padding: 0.2em;
-}
-
 .searchfield {
-  background: $searchfield_background;
-  color: white;
-  @include border-radius(0.5em);
-  border: none;
-  padding: 0.7em;
-  @include box-shadow(0 0 7px black);
   margin-right: 0.5em;
 
-  &:hover {
-    @include box-shadow(0 0 7px $highlight_color);
-  }
   &:focus {
     @include box-shadow((0 0 7px $highlight_color, inset 0 1px 2px black));
   }
-}
-
-.commentfield {
-  background: $background;
-  color: white;
-  @include border-radius(0.5em);
-  border: none;
-  padding: 0.2em;
-}
-
-.otherfield {
-  background: $background;
-  color: white;
-  border: none;
-  padding: 0.2em;
-  @include border-radius(0.5em);
-}
-
-.inlinebuttons {
-  display: inline-block;
 }
 
 .smallbutton {
@@ -80,12 +43,4 @@
     color: $highlight_color;
     @include box-shadow(0 0 7px $highlight_color, true);
   }
-}
-
-.pwfield {
-  background: $background;
-  color: white;
-  border: none;
-  padding: 0.2em;
-  @include border-radius(0.5em);
 }

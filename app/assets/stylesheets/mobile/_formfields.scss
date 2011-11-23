@@ -1,3 +1,7 @@
+.otherfield {
+  padding: 0.5em;
+}
+
 .smallbutton {
   @include buttonize;
 
@@ -43,36 +47,6 @@
   &:hover, &:active {
     @include box-shadow(0 0 7px $highlight_color);
   }
-}
-
-.inlinebuttons {
-  display: inline-block;
-}
-
-@mixin formfield($field_background: $background) {
-  background: $field_background;
-  color: white;
-  @include border-radius(0.5em);
-  border: none;
-}
-
-.textfield, .commentfield, .pwfield {
-  @include formfield;
-  padding: 0.2em;
-}
-
-.searchfield {
-  @include formfield(#666);
-  padding: 0.7em;
-
-  &:hover, &:active {
-    @include box-shadow(0 0 7px $highlight_color, true);
-  }
-}
-
-.otherfield {
-  @include formfield;
-  padding: 0.5em;
 }
 
 // add margins to user form fields

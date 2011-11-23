@@ -1,0 +1,31 @@
+@mixin formfield($field_background: $background) {
+  background: $field_background;
+  color: white;
+  @include border-radius(0.5em);
+  border: none;
+}
+
+.textfield, .commentfield, .pwfield, .otherfield {
+  @include formfield;
+  padding: 0.2em;
+}
+
+.searchfield {
+  @include formfield($searchfield_background);
+  padding: 0.7em;
+  @include box-shadow(0 0 7px black);
+
+  &:hover, &:active {
+    @include box-shadow(0 0 7px $highlight_color, true);
+  }
+}
+
+.inlinebuttons {
+  display: inline-block;
+}
+
+// without this Chrome shows white background in dropdown boxes
+select option {
+  background: inherit;
+  color: inherit;
+}

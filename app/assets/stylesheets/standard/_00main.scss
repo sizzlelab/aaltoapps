@@ -1,21 +1,43 @@
 @font-face {
   font-family: 'Harabara';
-  src: url('/fonts/Harabara.ttf');
+  src: url('/fonts/harabara-webfont.eot');
+  src: url('/fonts/harabara-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/harabara-webfont.woff') format('woff'),
+       url('/fonts/harabara-webfont.ttf') format('truetype'),
+       url('/fonts/harabara-webfont.svgz#HarabaraRegular') format('svg'),
+       url('/fonts/harabara-webfont.svg#HarabaraRegular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'TB';
-  src: url('/fonts/Qlassik_TB-webfont.ttf');
+  font-family: 'Qlassik';
+  src: url('/fonts/qlassik_tb-webfont.eot');
+  src: url('/fonts/qlassik_tb-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/qlassik_tb-webfont.woff') format('woff'),
+       url('/fonts/qlassik_tb-webfont.ttf') format('truetype'),
+       url('/fonts/qlassik_tb-webfont.svgz#QlassikMediumRegular') format('svg'),
+       url('/fonts/qlassik_tb-webfont.svg#QlassikMediumRegular') format('svg');
   font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Qlassik';
+  src: url('/fonts/qlassikbold_tb-webfont.eot');
+  src: url('/fonts/qlassikbold_tb-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/qlassikbold_tb-webfont.woff') format('woff'),
+       url('/fonts/qlassikbold_tb-webfont.ttf') format('truetype'),
+       url('/fonts/qlassikbold_tb-webfont.svgz#QlassikBoldRegular') format('svg'),
+       url('/fonts/qlassikbold_tb-webfont.svg#QlassikBoldRegular') format('svg');
+  font-weight: bold;
   font-style: normal;
 }
 
 body {
   background-color: $background;
   color: $text_color;
-  font-family: 'TB';
+  font-family: 'Qlassik';
   font-size: 1em;
   line-height: 120%;
 }

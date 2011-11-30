@@ -237,4 +237,12 @@ a:hover, a:active { color: $highlight_color; }
     overflow: hidden;
     max-width: 99.99%;
   }
+
+  #product_edit_downloads .product-download-formfields {
+    border: solid 0.15em $background;
+    padding: 0.25em;
+    @include border-radius(0.5em);
+    margin-bottom: 0.25em;
+    &:last-child { margin-bottom: 0; }
+  }
 }

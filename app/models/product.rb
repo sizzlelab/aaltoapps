@@ -24,8 +24,11 @@ class Product < ActiveRecord::Base
   attr_accessor :terms
   attr_accessor :delete_photo
   before_update :delete_photo_handler
+
   accepts_nested_attributes_for :downloads, :allow_destroy => true,
-    :reject_if => proc { |attrs| !attrs['file'] }
+    # if no file given in new download field, ignore the download:
+    :reject_if => proc { |attrs| !attrs['id'] && !attrs['file'] }
+  before_save :recalculate_download_weights
 
   include MarkdownHelper
   markdown_fields :description
@@ -42,8 +45,18 @@ class Product < ActiveRecord::Base
     self.save!	
   end
 
+private
+
   def delete_photo_handler
     self.photo = nil if self.delete_photo == '1'
+  end
+
+  def recalculate_download_weights
+    i = 1
+    downloads.sort_by(&:weight_as_float).each do |d|
+      d.weight = i
+      i += 1
+    end
   end
 
 end

@@ -217,9 +217,8 @@ public
 private
 
   def add_popularity
-    @product = Product.find(params[:id])
-    @product.popularity += 1
-    @product.save
+    # increase popularity without triggering validations or callbacks
+    Product.where(:id => params[:id]).update_all('popularity = popularity + 1')
   end
 
   def order_parameter(get_param)

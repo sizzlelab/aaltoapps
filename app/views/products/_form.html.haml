@@ -71,19 +71,21 @@
                      :locals => { :edit => true, :delete => true, :form => f }
           %dl#product_new_download
             %dt= _('Add a new download:')
-            %dd
+            %dd.product-download-formfields
               = f.fields_for :downloads, @product.downloads.build do |d|
-                = d.label :title, _('Title') + ':'
-                = d.text_field :title, :class => "textfield"
-                %br
-                = d.label :file, _('File') + ':'
-                = d.file_field :file, :class => 'otherfield'
+                .product-download-formfields-line
+                  = d.label :title, _('Title') + ':'
+                  = d.text_field :title, :class => "textfield"
+                .product-download-formfields-line
+                  = d.label :file, _('File') + ':'
+                  = d.file_field :file, :class => 'otherfield'
                 - unless @product.downloads.find_all(&:valid?).empty?
-                  %br
-                  = d.label :weight, _('Order') + ':'
-                  = d.number_field :weight,
-                                   :value => @product.downloads.map(&:weight).max + 1,
-                                   :class => 'textfield', :size => 5, :step => 'any'
+                  .product-download-formfields-line.product-download-order
+                    = d.label :weight, _('Order') + ':'
+                    = d.number_field :weight,
+                                     :value => @product.downloads.map(&:weight).max + 1,
+                                     :class => 'textfield product-download-order-field',
+                                     :size => 5, :step => 'any'
 
       - if @product.new_record?
         %dl

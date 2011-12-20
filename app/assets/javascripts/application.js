@@ -8,6 +8,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require menu
+//= require edit_downloads
 
 (function ($) {
   $(document).ready(function() {

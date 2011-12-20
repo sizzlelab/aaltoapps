@@ -2,31 +2,34 @@
   edit   = false unless defined? edit
   delete = false unless defined? delete
 
-= form.fields_for :downloads, download do |form|
-  %li.product-download-formfields
-    - if edit
-      .product-download-formfields-line
-        = form.label :title, _('Title') + ':'
-        = form.text_field :title, :class => "textfield"
-        %span.product-download-formfields-file-link
-          - link = link_to(_("file") + " " + number_to_human_size(download.file.size),
-                           download.file.url,
-                           :target => '_blank' )
-          (#{link})
-      .product-download-formfields-line.product-download-order
-        = form.label :weight, _('Order') + ':'
-        = form.number_field :weight, :class => "textfield", :size => 5, :step => 'any'
-    - else
-      .product-download-formfields-line.product-download-noedit
-        = link_to download.title, download.file.url
-        (#{number_to_human_size(download.file.size)})
+%li
+  .product-download-formfields
+    = form.fields_for :downloads, download do |form|
+      - if edit
+        .product-download-formfields-line
+          = form.label :title, _('Title') + ':'
+          = form.text_field :title, :class => "textfield"
+          %span.product-download-formfields-file-link
+            - link = link_to(_("file") + " " + number_to_human_size(download.file.size),
+                             download.file.url,
+                             :target => '_blank' )
+            (#{link})
+        .product-download-formfields-line.product-download-order
+          = form.label :weight, _('Order') + ':'
+          = form.number_field :weight,
+                              :class => "textfield product-download-order-field",
+                              :size => 5, :step => 'any'
+      - else
+        .product-download-formfields-line.product-download-noedit
+          = link_to download.title, download.file.url
+          (#{number_to_human_size(download.file.size)})
 
-    - if edit
-      .product-download-formfields-line
-        = form.label :file, _('Replace with') + ':'
-        = form.file_field :file, :class => 'otherfield'
+      - if edit
+        .product-download-formfields-line
+          = form.label :file, _('Replace with') + ':'
+          = form.file_field :file, :class => 'otherfield'
 
-    - if delete && can?(:delete, download)
-      .product-download-formfields-line
-        = form.check_box :_destroy
-        = form.label :_destroy, _('Delete file'), :class => 'checkbox-label'
+      - if delete && can?(:delete, download)
+        .product-download-formfields-line
+          = form.check_box :_destroy, :class => 'product-download-delete-checkbox'
+          = form.label :_destroy, _('Delete file'), :class => 'checkbox-label'

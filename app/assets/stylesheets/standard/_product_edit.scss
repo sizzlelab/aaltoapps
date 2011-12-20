@@ -33,16 +33,67 @@
     & > *:last-child  { margin-bottom: 0; }
   }
 
-  #product_edit_downloads .product-download-formfields {
-    border: solid 0.15em $background;
-    padding: 0.25em;
-    @include border-radius(0.5em);
+  #product_edit_download_list {
+    $border_width: 0.15em;
+    $border_radius: 0.75em;
 
-    margin-bottom: 0.25em;
-    &:last-child { margin-bottom: 0; }
+    li {
+      display: block;
+      border: solid $border_width $background;
+      padding: {
+        left: 0.25em;
+        right: 0.25em;
+      }
+      @include border-radius($border_radius);
 
-    .product-download-formfields-line label:first-child {
-      padding-right: 0.5em;
+      margin-bottom: 0.25em;
+      &:last-child { margin-bottom: 0; }
+
+      background: $content_background;
+
+      .product-download-formfields-line {
+        margin: {
+          top: 0.25em;
+          bottom: 0.25em;
+        }
+
+        label:first-child {
+          padding-right: 0.5em;
+        }
+      }
+
+      #product_new_download {
+        margin: {
+          top: 0.5em;
+          bottom: 0.5em;
+        }
+      }
     }
+
+    .product-download-formfields-grip {
+      $smaller_border_radius: $border_radius - 0.5 * $border_width;
+      @include border-radius($smaller_border_radius 0 0 $smaller_border_radius);
+      background: $background;
+      position: absolute;
+      top: -0.5 * $border_width;
+      bottom: -0.5 * $border_width;
+      left: -0.5 * $border_width;
+    }
+
+    .product-download-formfields-placeholder {
+      @extend li;
+      border: dashed $border_width $background;
+      list-style-type: none;
+    }
+
+    @mixin colored($color) {
+      $c: mix($background, $color, 95%);
+      border-color: $c;
+      .product-download-formfields-grip {
+        background: $c;
+      }
+    }
+    .product-new-download     { @include colored(#0f0); }
+    .product-deleted-download { @include colored(#f00); }
   }
 }

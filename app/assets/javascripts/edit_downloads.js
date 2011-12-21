@@ -38,6 +38,10 @@
         'visibility',
         $(this).is(':last-child') ? 'hidden' : 'visible' );
     });
+
+    // enable sorting if there are at least 2 items, otherwise disable
+    $('#product_edit_download_list').sortable(
+      ($('#product_edit_download_list li').length < 2) ? 'disable' : 'enable' );
   }
 
   $(document).ready(function() {
@@ -50,7 +54,10 @@
     var grip = $('<div class="product-download-formfields-grip">')
       .css({ width: '1.75em' });
     var new_dl = $('<li class="product-new-download">')
-      .append($('#product_new_download'));
+      .append(
+        $('#product_new_download')
+          .addClass('product-new-download-inner')
+      );
     $('#product_edit_download_list')
       .css('padding-left', 0)
       .append(new_dl)
@@ -177,7 +184,9 @@
           // may be caused by this bug: http://bugs.jqueryui.com/ticket/4792)
           $('#product_edit_download_list li')
             .css({ top: '', left: ''});
-        }
+        },
+        // disable, if less than 2 items to sort:
+        disabled: ($('#product_edit_download_list li').length < 2)
       })
 
     after_order_change();

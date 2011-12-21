@@ -79,7 +79,10 @@
                 .product-download-formfields-line
                   = d.label :file, _('File') + ':'
                   = d.file_field :file, :class => 'otherfield'
-                - unless @product.downloads.find_all(&:valid?).empty?
+                -# make weight field hidden if the product has no downloads
+                - if @product.downloads.find_all(&:valid?).empty?
+                  = d.hidden_field :weight, :value => 1, :class => 'product-download-order-field'
+                - else
                   .product-download-formfields-line.product-download-order
                     = d.label :weight, _('Order') + ':'
                     = d.number_field :weight,

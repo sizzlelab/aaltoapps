@@ -19,10 +19,6 @@
         move_down: '#{escape_javascript raw _('Move down')}'
       };
 
-    -# TODO: replace with local customized css:
-    %link(rel="stylesheet" type="text/css"
-          href="https://ajax.googleapis.com/ajax/libs/jqueryui/#{Jquery::Rails::JQUERY_UI_VERSION}/themes/base/jquery-ui.css")
-
     = stylesheet_link_tag    'application'
     = javascript_include_tag 'application'
     = csrf_meta_tags

@@ -1,0 +1,30 @@
+<%
+# Generates an asset pipeline compatible stylesheet from a stylesheet
+# generated with jQuery UI's Themeroller
+
+  filenames = Dir.glob(File.join(File.dirname(__FILE__), 'theme', 'jquery-ui*.css'), File::FNM_CASEFOLD)
+  raise "No css files in jQuery UI theme directory"      if filenames.length == 0
+  raise "Several css files in jQuery UI theme directory" if filenames.length > 1
+
+  File.open(filenames[0], 'rt') do |file|
+    # version check (ignore minor version)
+    if file.readline =~ /\A\/\*\s*\z/ && file.readline =~ /\A \* jQuery UI CSS Framework (\d\w*\.\w+)/
+      theme_version = $1
+      jquery_ui_version = Jquery::Rails::JQUERY_UI_VERSION[/\A\d\w*\.\w+/]
+      unless theme_version == jquery_ui_version
+        Rails.logger.warn "jQuery UI's theme's version (#{theme_version}) doesn't match jQuery UI version (#{jquery_ui_version})"
+      end
+    end
+
+    file.seek 0
+
+    file.each_line do |line|
+      # replace image urls with their asset path equivalents
+      line.gsub!(/\burl\((.*?)\)/) { 'url(' + image_path("jquery-ui-theme/theme/#{$1}") + ')' }
+      # fix ui-icon-arrowthick-1-n offset
+      line.gsub!(/(?<=\.ui-icon-arrowthick-1-n \{ background-position: )0(?= -48px; \})/, '1px')
+
+      %><%= line %><%
+    end
+  end
+%>

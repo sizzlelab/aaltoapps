@@ -1,9 +1,3 @@
 .product-download
   = link_to download.title, download.file.url, :class => "product-download-link"
   (#{number_to_human_size(download.file.size)})
-
-  - if defined?(delete) && delete && can?(:delete, download)
-    .inlinebuttons
-      = button_to _('Delete'), [download.product, download], :method => :delete,
-                               :class => "smallbutton",
-                               :confirm => _('Are you sure?')

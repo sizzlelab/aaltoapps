@@ -61,43 +61,45 @@
         %dt= _("Featured")
         %dd= mobile_device? ? s_('is_featured|yes') : '✓'
 
+    - if @product.approval_state == 'published' || @approval_buttons.present?
+      %dl#product-approval-state
+        %dt= s_("approval_status|Status")
+        %dd
+          = approval_status(@product)
+          - if @approval_buttons.include? :request_approval
+            %dd
+              = button_to _("Request approval"), request_approval_product_path(@product), :method => :put,
+                          :class => 'smallbutton'
+          - if @approval_buttons.include? :approve
+            %dd
+              = button_to _("Approve"), approve_product_path(@product), :method => :put,
+                          :class=>"smallbutton",
+                          :confirm => _('Are you sure you want to approve this product?')
+          - if @approval_buttons.include? :block
+            %dd
+              = button_to _("Block"), block_product_path(@product), :method => :put,
+                          :class => 'smallbutton',
+                          :confirm => _('Are you sure you want to block this product?')
+
     :ruby
-      abilities = Set.new(
-        [:edit, :delete, :promote, :demote, :block, :approve, :request_approval].
-          find_all { |action| can? action, @product } )
-    - unless abilities.empty?
+      buttons =
+        [:edit, :delete, :promote, :demote].
+          keep_if { |action| can? action, @product }
+    - unless buttons.empty?
       %dl#product-admin
         %dt= _("Admin")
-        - if abilities.include? :edit
+        - if buttons.include? :edit
           %dd= button_to _('Edit'), edit_product_path(@product), :method => :get, :class => "smallbutton"
-        - if abilities.include? :delete
+        - if buttons.include? :delete
           %dd
             = button_to _('Delete'), @product, :method => :delete,
                         :class=>"smallbutton",
                         :confirm => _('Are you sure?')
-        - case @product.approval_state
-          - when 'pending'
-            - if abilities.include? :approve
-              %dd
-                = button_to _("Approve"), approve_product_path(@product), :method => :put,
-                            :class=>"smallbutton",
-                            :confirm => _('Are you sure you want to approve this product?')
-          - when 'submitted', 'blocked'
-            - if abilities.include? :request_approval
-              %dd
-                = button_to _("Request approval"), request_approval_product_path(@product), :method => :put,
-                            :class => 'smallbutton'
-          - when 'published'
-            - if abilities.include? :block
-              %dd
-                = button_to _("Block"), block_product_path(@product), :method => :put,
-                            :class => 'smallbutton',
-                            :confirm => _('Are you sure you want to block this product?')
-        - if abilities.include?(:promote) && !@product.featured
+        - if buttons.include?(:promote) && !@product.featured
           %dd
             = button_to _("Make featured"), promote_product_path(@product), :method => :put,
                         :class => 'smallbutton'
-        - if abilities.include?(:demote) && @product.featured
+        - if buttons.include?(:demote) && @product.featured
           %dd
             = button_to _("Remove from featured"), demote_product_path(@product), :method => :put,
                         :class => 'smallbutton'

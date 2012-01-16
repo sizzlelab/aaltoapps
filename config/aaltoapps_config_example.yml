@@ -19,6 +19,9 @@ development: &non_production_settings
 
   email_from_address: "noreply@nowhere.test"
 
+  # if true new products need to be approved by an administrator
+  require_approval_for_new_products: true
+
   # set or override Rails configuration
   rails_config:
 

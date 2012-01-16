@@ -14,7 +14,7 @@ class Product < ActiveRecord::Base
   validates :name, :description, :url, :platforms, :presence => true
   validates :name, :length => { :minimum => 3 }
   validates :url, :length => { :minimum => 12 } # http://ab.cd
-  validates :approval_state, :inclusion => { :in => %w( submitted pending published blocked ) }
+  validates :approval_state, :inclusion => { :in => %w( pending published blocked ) }
   validates :terms, :acceptance => true
 
   validates_attachment_size :photo, :less_than => 5.megabytes
@@ -34,6 +34,16 @@ class Product < ActiveRecord::Base
   markdown_fields :description
 
   attr_protected :publisher_id, :approval_state, :approval_date, :featured, :popularity
+
+  after_initialize do |product|
+    # set default value for approval_state according to configuration
+    self.approval_state ||=
+      if APP_CONFIG.require_approval_for_new_products == false  # must be false, not nil
+        'published'
+      else  # true, nil (not set) or anything except false
+        'pending'
+      end
+  end
 
   def is_approved?
     self.approval_state == 'published'

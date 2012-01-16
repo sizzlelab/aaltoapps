@@ -100,6 +100,16 @@ public
     @new_admin_comment.admin_comment = true
     @new_admin_comment = nil unless can? :new, @new_admin_comment
 
+    # which product approval state related buttons are applicable
+    # in the current state:
+    @approval_buttons =
+      case @product.approval_state
+        when 'pending'   then Set[:approve, :block]
+        when 'published' then Set[:block]
+        when 'blocked'   then Set[:request_approval, :approve]
+      end
+    @approval_buttons.keep_if { |action| can? action, @product }
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @product }

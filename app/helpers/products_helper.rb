@@ -4,7 +4,6 @@ module ProductsHelper
   def approval_status(param)
     param = param.approval_state if param.is_a?(Product)
     case param
-      when 'submitted' then _('submitted')
       when 'pending'   then _('waiting for approval')
       when 'published' then _('published')
       when 'blocked'   then _('blocked')

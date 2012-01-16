@@ -27,8 +27,6 @@
         %ul
           - if can_approve
             %li.submenu_row
-              = link_to _('New products'), products_path(:approval => 'submitted')
-            %li.submenu_row
               = link_to _('Products pending approval'), products_path(:approval => 'pending')
             %li.submenu_row
               = link_to _('Blocked products'), products_path(:approval => 'blocked')

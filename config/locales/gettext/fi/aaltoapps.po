@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: version 0.0.1\n"
-"POT-Creation-Date: 2011-12-20 16:11+0200\n"
-"PO-Revision-Date: 2011-12-20 16:18+0200\n"
+"POT-Creation-Date: 2012-01-18 14:56+0200\n"
+"PO-Revision-Date: 2012-01-18 16:17+0200\n"
 "Last-Translator: Pekka Ekman <pekman@cc.hut.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
@@ -65,11 +65,11 @@ msgstr "Lisää uusi tiedosto"
 msgid "Add new platform"
 msgstr "Lisää uusi alusta"
 
-#: app/views/products/show.html.haml:70
+#: app/views/products/show.html.haml:90
 msgid "Admin"
 msgstr "Admin"
 
-#: app/views/products/show.html.haml:112
+#: app/views/products/show.html.haml:114
 msgid "Admin comments"
 msgstr "Ylläpitäjän kommentit"
 
@@ -77,15 +77,15 @@ msgstr "Ylläpitäjän kommentit"
 msgid "All"
 msgstr "Kaikki"
 
-#: app/views/products/show.html.haml:82
+#: app/views/products/show.html.haml:75
 msgid "Approve"
 msgstr "Hyväksy"
 
-#: app/views/products/show.html.haml:82
+#: app/views/products/show.html.haml:75
 msgid "Are you sure you want to approve this product?"
 msgstr "Oletko varma, että haluat hyväksyä tämän tuotteen?"
 
-#: app/views/products/show.html.haml:93
+#: app/views/products/show.html.haml:80
 msgid "Are you sure you want to block this product?"
 msgstr "Oletko varma että haluat muuttaa tämän tuotteen estetyksi?"
 
@@ -95,24 +95,23 @@ msgstr "Oletko varma että haluat poistaa itseltäsi admin-oikeudet?"
 
 #: app/views/platforms/index.html.erb:20
 #: app/views/categories/index.html.erb:18 app/views/users/index.html.erb:30
-#: app/views/downloads/_list.html.haml:7 app/views/products/show.html.haml:75
-#: app/views/comment/_list.html.haml:16
+#: app/views/products/show.html.haml:95 app/views/comment/_list.html.haml:16
 msgid "Are you sure?"
 msgstr "Oletko varma?"
 
 #: app/views/platforms/new.html.erb:5 app/views/platforms/edit.html.erb:5
 #: app/views/categories/show.html.erb:22 app/views/users/new.html.erb:5
 #: app/views/users/edit.html.erb:6 app/views/users/show.html.erb:50
-#: app/views/products/new.html.haml:4 app/views/products/show.html.haml:133
+#: app/views/products/new.html.haml:4 app/views/products/show.html.haml:135
 #: app/views/products/edit.html.haml:4
 msgid "Back"
 msgstr "Takaisin"
 
-#: app/views/products/show.html.haml:93
+#: app/views/products/show.html.haml:80
 msgid "Block"
 msgstr "Estä"
 
-#: app/views/layouts/_menu.html.haml:34
+#: app/views/layouts/_menu.html.haml:32
 msgid "Blocked products"
 msgstr "Estetyt sovellukset"
 
@@ -120,7 +119,7 @@ msgstr "Estetyt sovellukset"
 msgid "Browse all applications"
 msgstr "Kaikki sovellukset"
 
-#: app/views/products/_form.html.haml:106
+#: app/views/products/_form.html.haml:109
 #: app/views/layouts/application.html.haml:9
 msgid "Cancel"
 msgstr "Peruuta"
@@ -154,7 +153,7 @@ msgid "Choose a platform"
 msgstr "Valitse alusta"
 
 #: app/views/layouts/mobile_application.html.haml:39
-#: app/views/layouts/application.html.haml:39
+#: app/views/layouts/application.html.haml:35
 msgid "Choose language:"
 msgstr "Valitse kieli:"
 
@@ -182,8 +181,8 @@ msgstr "Nykyinen kuva:"
 msgid "Decline"
 msgstr "Kieltäydy"
 
-#: app/views/downloads/_list.html.haml:7 app/views/products/show.html.haml:75
-#: app/views/products/_form.html.haml:55 app/views/comment/_list.html.haml:16
+#: app/views/products/show.html.haml:95 app/views/products/_form.html.haml:55
+#: app/views/comment/_list.html.haml:16
 msgid "Delete"
 msgstr "Poista"
 
@@ -211,7 +210,7 @@ msgstr "Ladattavat tiedostot"
 #: app/views/platforms/show.html.erb:22 app/views/platforms/index.html.erb:18
 #: app/views/categories/show.html.erb:21
 #: app/views/categories/index.html.erb:17 app/views/users/show.html.erb:48
-#: app/views/users/index.html.erb:29 app/views/products/show.html.haml:72
+#: app/views/users/index.html.erb:29 app/views/products/show.html.haml:92
 #: app/views/layouts/application.html.haml:9
 msgid "Edit"
 msgstr "Muokkaa"
@@ -260,7 +259,7 @@ msgstr "Etunimi"
 msgid "Grant administrator role"
 msgstr "Anna admin-oikeudet"
 
-#: app/views/products/_form.html.haml:95
+#: app/views/products/_form.html.haml:98
 msgid "I accept the OtaSizzle [[Publisher Terms and Conditions]]"
 msgstr "Hyväksyn OtaSizzlen [[julkaisijan käyttäjäehdot]]"
 
@@ -374,7 +373,7 @@ msgstr "Kirjaudu ulos"
 msgid "Logout successful"
 msgstr "Olet kirjautunut ulos"
 
-#: app/views/products/show.html.haml:98
+#: app/views/products/show.html.haml:100
 msgid "Make featured"
 msgstr "Tee suositeltu"
 
@@ -425,10 +424,6 @@ msgstr "Uusi käyttäjä"
 msgid "New comment created."
 msgstr "Kommentti luotu."
 
-#: app/views/layouts/_menu.html.haml:30
-msgid "New products"
-msgstr "Uudet sovellukset"
-
 #: app/views/products/_main_productlist.html.haml:56
 msgid "Next &#8594;"
 msgstr "Seuraava &#8594;"
@@ -442,7 +437,7 @@ msgid "Number of views"
 msgstr "Katselukerrat"
 
 #: app/views/downloads/_formfields.html.haml:18
-#: app/views/products/_form.html.haml:84
+#: app/views/products/_form.html.haml:87
 msgid "Order"
 msgstr "Järjestysnumero"
 
@@ -468,7 +463,7 @@ msgstr "Alusta päivitetty onnistuneesti."
 msgid "Platform was successufully deleted."
 msgstr "Alusta poistettu."
 
-#: app/views/layouts/_menu.html.haml:40
+#: app/views/layouts/_menu.html.haml:38
 msgid "Platforms"
 msgstr "Alustat"
 
@@ -476,7 +471,7 @@ msgstr "Alustat"
 msgid "Please fill in the following form."
 msgstr "Ole hyvä ja täytä alla oleva lomake."
 
-#: app/views/products/show.html.haml:131
+#: app/views/products/show.html.haml:133
 msgid "Please login to add comments"
 msgstr "Voit kommentoida kun olet kirjautunut sisään"
 
@@ -488,11 +483,11 @@ msgstr "Katselukerrat"
 msgid "Popularity: "
 msgstr "Katselukerrat: "
 
-#: app/controllers/products_controller.rb:134
+#: app/controllers/products_controller.rb:144
 msgid "Product was successfully created."
 msgstr "Sovellus luotiin onnistuneesti"
 
-#: app/controllers/products_controller.rb:152
+#: app/controllers/products_controller.rb:162
 msgid "Product was successfully updated."
 msgstr "Sovellus päivitettiin onnistuneesti."
 
@@ -500,7 +495,7 @@ msgstr "Sovellus päivitettiin onnistuneesti."
 msgid "Products"
 msgstr "Sovellukset"
 
-#: app/views/layouts/_menu.html.haml:32
+#: app/views/layouts/_menu.html.haml:30
 msgid "Products pending approval"
 msgstr "Hyväksyntää odottavat tuotteet"
 
@@ -553,7 +548,7 @@ msgstr "Rekisteröidy"
 msgid "Register to aaltoapps"
 msgstr "Rekisteröidy AaltoAppsiin"
 
-#: app/views/products/show.html.haml:102
+#: app/views/products/show.html.haml:104
 msgid "Remove from featured"
 msgstr "Poista suositelluista"
 
@@ -565,11 +560,11 @@ msgstr "Korvaa tällä"
 msgid "Replace with:"
 msgstr "Korvaa tällä:"
 
-#: app/views/products/show.html.haml:106
+#: app/views/products/show.html.haml:108
 msgid "Report issue"
 msgstr "Ilmoita ongelmasta"
 
-#: app/views/products/show.html.haml:88
+#: app/views/products/show.html.haml:71
 msgid "Request approval"
 msgstr "Pyydä hyväksyntää"
 
@@ -601,7 +596,7 @@ msgstr "Tila:"
 
 #: app/views/platforms/_form.html.erb:25 app/views/categories/new.html.erb:25
 #: app/views/categories/edit.html.erb:25
-#: app/views/products/_form.html.haml:104
+#: app/views/products/_form.html.haml:107
 msgid "Submit"
 msgstr "Hyväksy"
 
@@ -619,11 +614,11 @@ msgstr "Siirry tavalliseen versioon"
 msgid "Tags"
 msgstr "Tagit"
 
-#: app/views/products/_form.html.haml:92
+#: app/views/products/_form.html.haml:95
 msgid "Terms and conditions"
 msgstr "Käyttäjäehdot"
 
-#: app/views/products/show.html.haml:113
+#: app/views/products/show.html.haml:115
 msgid ""
 "These comments are only shown to administrators and %{comments_shown_for}."
 msgstr "Nämä kommentit näkyvät vain ylläpitäjille ja %{comments_shown_for}."
@@ -662,7 +657,7 @@ msgstr "Käyttäjä päivitettiin onnistuneesti."
 msgid "Username"
 msgstr "Käyttäjätunnus"
 
-#: app/views/layouts/_menu.html.haml:37
+#: app/views/layouts/_menu.html.haml:35
 msgid "Users"
 msgstr "Käyttäjät"
 
@@ -706,7 +701,11 @@ msgstr "admin"
 msgid "administrator"
 msgstr "adminstrator"
 
-#: app/helpers/products_helper.rb:10
+#: app/views/products/show.html.haml:66
+msgid "approval_status|Status"
+msgstr "Tila"
+
+#: app/helpers/products_helper.rb:9
 msgid "blocked"
 msgstr "estetty"
 
@@ -727,11 +726,11 @@ msgstr "ei voida antaa olemattomalle sovellukselle"
 msgid "can not be given when not logged in"
 msgstr "ei voida antaa kun ei ole sisäänkirjautunut"
 
-#: app/views/products/show.html.haml:118
+#: app/views/products/show.html.haml:120
 msgid "comments_shown_for|the publisher of the product"
 msgstr "sovelluksen julkaisijalle"
 
-#: app/views/products/show.html.haml:116
+#: app/views/products/show.html.haml:118
 msgid "comments_shown_for|you"
 msgstr "sinulle"
 
@@ -893,7 +892,7 @@ msgstr "ei vielä arvioitu"
 msgid "publish"
 msgstr "julkaise"
 
-#: app/helpers/products_helper.rb:9
+#: app/helpers/products_helper.rb:8
 msgid "published"
 msgstr "julkaistu"
 
@@ -910,10 +909,6 @@ msgstr "rekisteröidy"
 msgid "search"
 msgstr "etsi"
 
-#: app/helpers/products_helper.rb:7
-msgid "submitted"
-msgstr "lähetetty"
-
 #: app/helpers/users_helper.rb:17
 msgid "user_link|error!"
 msgstr "virhe!"
@@ -922,6 +917,6 @@ msgstr "virhe!"
 msgid "user_link|unknown"
 msgstr "tuntematon"
 
-#: app/helpers/products_helper.rb:8
+#: app/helpers/products_helper.rb:7
 msgid "waiting for approval"
 msgstr "odottaa hyväksymistä"

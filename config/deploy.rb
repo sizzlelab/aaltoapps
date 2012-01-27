@@ -83,8 +83,19 @@ namespace :vlad do
     # if branch specified and there are custom values for the branch, use them
     (branch_config[ENV['BRANCH']] || {}).each { |key,val| set key, val }
 
-    if ENV['COMPILE_ASSETS'] =~ /^local/i
+    case ENV['COMPILE_ASSETS']
+    when /^local([-_].*)?$/i
       Rake::Task['vlad:concurrent_tasks'].invoke
+      Rake::Task['vlad:upload_assets'].invoke
+
+      unless $1 =~ /\bno[-_]?clean\b/i
+        # delete the compiled assets, because they would interfere with
+        # dynamic asset generation in development environment
+        Rake::Task['assets:clean'].reenable
+        Rake::Task['assets:clean'].invoke
+      end
+    when /^precompiled$/i
+      Rake::Task['vlad:remote_tasks'].invoke
       Rake::Task['vlad:upload_assets'].invoke
     else
       Rake::Task['vlad:remote_tasks'].invoke

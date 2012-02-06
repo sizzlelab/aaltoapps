@@ -44,7 +44,7 @@
         ['avg_rating', _('User rating')],
       ]
     #browse_products_sort
-      = capture_each_join sort_headers, ' | ' do |key, title|
+      = capture_map_join sort_headers, ' | ' do |key, title|
         - if key == @sort
           %span.selected-sort-key= title
         - else

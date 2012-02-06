@@ -38,9 +38,7 @@
 
 <p>
   <b><%= _("Published Products") %>:</b>
-  <% @user.published.each do |published_product| %>
-    <%= link_to published_product.name, published_product %>
-  <% end %>
+  <%= map_join_nowrap(@user.published) { |p| link_to p.name, p } %>
 </p>
 
 

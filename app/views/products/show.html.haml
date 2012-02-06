@@ -12,8 +12,7 @@
 
     %dl#product-platform
       %dt= n_("Platform", "Platforms", @product.platforms.length)
-      - @product.platforms.each do |platform|
-        %dd= platform.name
+      %dd= map_join_nowrap(@product.platforms) {|p| link_to p.name, platform_products_path(p) }
 
     %dl#product-published
       %dt= _("Published")
@@ -36,13 +35,7 @@
 
     %dl#product-tags
       %dt= _("Tags")
-      -#%dd= raw @product.tags.map {|tag| tag_link tag }.join(', ')
-      %dd<
-        - unless @product.tags.empty?
-          - @product.tags[0..-2].each do |tag|
-            %span.product-tag-and-separator<
-              = tag_link(tag) + ','
-          = tag_link @product.tags.last
+      %dd= map_join_nowrap(@product.tags) {|tag| tag_link tag }
 
     - if @product.downloads.present? && can?(:index, Download)
       %dl#product-downloads

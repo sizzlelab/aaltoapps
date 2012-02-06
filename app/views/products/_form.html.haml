@@ -48,7 +48,7 @@
             = link_to @product.photo.original_filename, @product.photo.url
             (#{number_to_human_size(@product.photo.size)})
             = surround '(', ')' do
-              = capture_each_join @product.photo.styles do |stylename, _|
+              = capture_map_join_nowrap @product.photo.styles do |stylename, _|
                 = link_to stylename, @product.photo.url(stylename)
             %span#product_edit_delete_photo
               = f.check_box(:delete_photo) + f.label(:delete_photo, _('Delete'), :class=>'checkbox-label')

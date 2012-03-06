@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
         Rails.logger.info "PT: " + proxy_ticket.inspect
 
         success_url = cas_session_url(:consent_ok => '1') # new CAS login on success
-        failure_url = sessions_url
+        failure_url = session_url
 
         Session.create({ :username => session[:cas_user],
                          :proxy_ticket => proxy_ticket },

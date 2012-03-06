@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   def create
     cas = !!params[:cas]
     begin
-      @new_session = if cas
+      if cas
         # delete flash error message if coming from consent form page
         flash.delete(:error) if params[:consent_ok]
 
@@ -17,19 +17,20 @@ class SessionsController < ApplicationController
         Rails.logger.info "PGT: " + proxy_granting_ticket.inspect
         proxy_ticket = RubyCAS::Filter.client.request_proxy_ticket(
                          proxy_granting_ticket, APP_CONFIG.asi_url
-                       ).ticket
+                       ).andand.ticket
+        raise 'CAS proxy ticket not received' if proxy_ticket.nil?
         Rails.logger.info "PT: " + proxy_ticket.inspect
 
         success_url = cas_session_url(:consent_ok => '1') # new CAS login on success
         failure_url = session_url
 
-        Session.create({ :username => session[:cas_user],
-                         :proxy_ticket => proxy_ticket },
-                       success_url, failure_url )
+        @new_session = Session.create({ :username => session[:cas_user],
+                                        :proxy_ticket => proxy_ticket },
+                                      success_url, failure_url )
       else
         session[:form_username] = params[:username]
-        Session.create({ :username => params[:username],
-                         :password => params[:password] })
+        @new_session = Session.create({ :username => params[:username],
+                                        :password => params[:password] })
       end
 
     rescue Session::NewUserRedirect => e

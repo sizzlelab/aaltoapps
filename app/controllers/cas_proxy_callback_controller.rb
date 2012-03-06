@@ -18,4 +18,9 @@ if AaltoApps::Application::CAS_ENABLED
   class CasProxyCallbackController
     RAILS_ROOT = ::Rails.root
   end
+
+else
+  # cas not enabled => create an empty controller so that proper 404 errors
+  # are generated if someone tries to use it
+  class CasProxyCallbackController < ActionController::Base; end
 end

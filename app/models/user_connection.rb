@@ -1,3 +1,8 @@
+# This file is based on the file app/models/person_connection.rb in Kassi
+# project (http://github.com/sizzlelab/kassi) released under MIT license.
+# Copyright (c) 2010 OtaSizzle, Aalto University
+# Copyright (c) 2010-2012 Aalto University and the authors
+
 # This is a separate class to handle remote connection to ASI database where the
 # actual information of user model is stored.
 # 

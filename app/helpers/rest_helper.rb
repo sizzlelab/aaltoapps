@@ -1,3 +1,8 @@
+# This file is based on the corresponding file in Kassi project
+# (http://github.com/sizzlelab/kassi) released under MIT license.
+# Copyright (c) 2010 OtaSizzle, Aalto University
+# Copyright (c) 2010-2012 Aalto University and the authors
+
 require 'rest_client'
 require "benchmark"
 
